@@ -1,0 +1,79 @@
+		<!DOCTYPE html>
+		<html>
+        <head>
+          <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+		  <meta name="theme-color" content="#F0FFFF"/>
+          <title>3D Web Uygulaması - Three.js</title>
+              <link rel="stylesheet" href="css/style.css">
+			<style>
+				textarea{
+					
+					width = 10px;
+					height= 10px;
+				}
+			</style>
+        </head>
+        <body>
+			
+		<noscript>
+    		Bu uygulamayı çalıştırmak için tarayıcınızın JavaScript desteklemesi gerekmektedir. Lütfen ayarlardan açınız veya teknik ekibinizden açmak için yardım isteyiniz.
+		</noscript>
+		
+		<div id="info">
+			<textarea rows="6" cols="100%" readonly> Kullanım Talimatları:
+				
+ Mouse'un sol tıkı ile Çizim'in yönünü değiştirebilirsiniz, sağ tıkı ile Çizimin yerini değiştirebilirsiniz, tekerleği ile ise yakınlaştırabilir veya uzaklaştırabilirsiniz.
+			</textarea>
+		
+		</div>		
+			
+			<form action="http://localhost/tutorialsPoint/holymoly/new-form-index.php" method="get">
+			  <input type="text" name="boy" id="gonderBoy">
+			  <input type="text" name="en" id="gonderEn">
+			</form>
+	
+		<div id="mydivtag"></div>
+        <div id="container" style="text-align:center">
+
+        </div>
+        <script>
+		document.addEventListener("DOMContentLoaded", function(event){
+			
+			var app = ThreeUtils.setupApp();
+			var scene = app.scene;
+  
+			var geom = new THREE.CubeGeometry(100, 0, 0);
+			var mat = new THREE.MeshPhongMaterial({color: 0xffffff});
+			var mesh = new THREE.Mesh(geom, mat);
+		  
+			app.camera.position.set(-25, 40, 90);
+			app.camera.lookAt(app.scene.position); //the origin
+			
+			if (app.camera.position.z < 0){
+
+				app.camera.rotation.z = 0;
+			}
+
+			ThreeUtils.animate();
+		});
+
+        </script>
+        <script src="js/jquery-1.9.0.js"></script>
+        <script src='js/three.min.js'></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src='js/SceneExporter.js'></script>
+			
+		<script src="js/OBJLoader.js"></script>
+		<script src="js/MTLLoader.js"></script>
+        <script src='js/TrackballControls.js'></script>
+		
+		<script type="text/javascript" src="js/THREEx.screenshot.js"></script>
+			
+        <script src='js/dat.gui.js'></script>
+		<script src="js/index.js"></script>
+        <script src='js/ozellikler.js'></script>
+		<script src="js/OrbitControls.js"></script>
+		<script src="js/DragControls.js"></script>
+					
+        </body>
+        </html>
