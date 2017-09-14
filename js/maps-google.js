@@ -179,91 +179,22 @@ $(document).ready(function(){
 					  travelMode  : google.maps.DirectionsTravelMode.DRIVING
 					};
 					
-					//mesafeleri değişkenlere atayıp konsolo yazdırma
-					directionsService.route(request, function(response, status){
-				
-						if(status == google.maps.DirectionsStatus.OK){
-
-							uzaklikTemelli = response.routes[0].legs[0].distance.value;
-							//console.log(uzaklikTemelli);// the distance in metres
-					  }
-
-					  else{
-
-							console.log("mesafe ölçülemedi");
-							//alert("Mesafe ölçülemiyor.");
-					  }
-					});
 					
-					directionsService.route(request2, function(response, status){
-				
-				  		if(status == google.maps.DirectionsStatus.OK){
 
-							uzaklikHasanoglan = response.routes[0].legs[0].distance.value; // the distance in metres
-							//console.log(uzaklikHasanoglan);
-				  		}
-
-				  		else{
-					  
-					 		console.log("mesafe ölçülemedi");
-							//alert("Mesafe ölçülemiyor.");
-				  		}
-					});
-
-					directionsService.route(request3, function(response, status){
-
-						if(status == google.maps.DirectionsStatus.OK){
-
-							uzaklikSaray = response.routes[0].legs[0].distance.value; // the distance in metres
-							//console.log(uzaklikSaray);
-						}
-
-				  		else{
-
-					 		console.log("mesafe ölçülemedi");
-							//alert("Mesafe ölçülemiyor.");
-				  		}
-					});
-					
-					
-					console.log("google-maps içi");
-					
-					
-					
-					
+					console.log("request:" + request);
+					console.log("request2:" + request2);
+					console.log("request3:" + request3);
+		
 					displayLocationElevation(marker.getPosition(), elevator);
 					
-					
+					displayLocationDistance(request, request2, request3);
 
-
-					
 					/*
 					var uzaklikTemelli = (google.maps.geometry.spherical.computeDistanceBetween(marker.getPosition(), marker1.getPosition()) / 1000).toFixed(6);
 					var uzaklikHasanoglan = (google.maps.geometry.spherical.computeDistanceBetween(marker.getPosition(), marker2.getPosition()) / 1000).toFixed(6);
 					var uzaklikSaray = (google.maps.geometry.spherical.computeDistanceBetween(marker.getPosition(), marker3.getPosition()) / 1000).toFixed(6);*/
 					
-					console.log("Temelli Fabrikasına Uzaklık: " + uzaklikTemelli);
-					console.log("Hasanoğlan Fabrikasına Uzaklık: " + uzaklikHasanoglan);
-					console.log("Saray Fabrikasına Uzaklık: " + uzaklikSaray);
 					
-					if(uzaklikTemelli ==  Math.min(uzaklikTemelli, uzaklikHasanoglan, uzaklikSaray)){
-						
-						console.log("en kısa uzaklık Temelli Fabrikası: " + uzaklikTemelli);
-						//hidden form'a uzaklıkları ekle...
-						document.getElementById('input_fabrika').value = "Temelli Fabrikası, uzaklık: " + uzaklikTemelli + "m";
-					}
-					
-					else if(uzaklikHasanoglan == Math.min(uzaklikTemelli, uzaklikHasanoglan, uzaklikSaray)){
-						
-						console.log("en kısa uzaklık Hasanoğlan Fabrikası: " + uzaklikHasanoglan);
-						document.getElementById('input_fabrika').value = "Hasanoğlan Fabrikası, uzaklık: " + uzaklikHasanoglan + "m";
-					}
-					
-					else{
-						
-						console.log("en kısa uzaklık Saray Fabrikası: " + uzaklikSaray);
-						document.getElementById('input_fabrika').value = "Saray Fabrikası, uzaklık: " + uzaklikSaray + "m";
-					}
                 }
             }
         });
@@ -296,6 +227,78 @@ $(document).ready(function(){
 					console.log('Elevation service failed due to: ' + status);
 				}
 			});
+		}
+		
+		function displayLocationDistance(request, request2, request3){
+			
+					//mesafeleri değişkenlere atayıp konsolo yazdırma
+					directionsService.route(request, function(response, status){
+				
+						if(status === 'OK'){
+
+							uzaklikTemelli = response.routes[0].legs[0].distance.value;
+							//console.log(uzaklikTemelli);// the distance in metres
+					  }
+
+					  else{
+
+							console.log("mesafe ölçülemedi");
+							//alert("Mesafe ölçülemiyor.");
+					  }
+					});
+					
+					directionsService.route(request2, function(response, status){
+				
+				  		if(status == 'OK'){
+
+							uzaklikHasanoglan = response.routes[0].legs[0].distance.value; // the distance in metres
+							//console.log(uzaklikHasanoglan);
+				  		}
+
+				  		else{
+					  
+					 		console.log("mesafe ölçülemedi");
+							//alert("Mesafe ölçülemiyor.");
+				  		}
+					});
+
+					directionsService.route(request3, function(response, status){
+
+						if(status == 'OK'){
+
+							uzaklikSaray = response.routes[0].legs[0].distance.value; // the distance in metres
+							//console.log(uzaklikSaray);
+						}
+
+				  		else{
+
+					 		console.log("mesafe ölçülemedi");
+							//alert("Mesafe ölçülemiyor.");
+				  		}
+					});
+			
+					console.log("Temelli Fabrikasına Uzaklık: " + uzaklikTemelli);
+					console.log("Hasanoğlan Fabrikasına Uzaklık: " + uzaklikHasanoglan);
+					console.log("Saray Fabrikasına Uzaklık: " + uzaklikSaray);
+					
+					if(uzaklikTemelli ==  Math.min(uzaklikTemelli, uzaklikHasanoglan, uzaklikSaray)){
+						
+						console.log("en kısa uzaklık Temelli Fabrikası: " + uzaklikTemelli);
+						//hidden form'a uzaklıkları ekle...
+						document.getElementById('input_fabrika').value = "Temelli Fabrikası, uzaklık: " + uzaklikTemelli + "m";
+					}
+					
+					else if(uzaklikHasanoglan == Math.min(uzaklikTemelli, uzaklikHasanoglan, uzaklikSaray)){
+						
+						console.log("en kısa uzaklık Hasanoğlan Fabrikası: " + uzaklikHasanoglan);
+						document.getElementById('input_fabrika').value = "Hasanoğlan Fabrikası, uzaklık: " + uzaklikHasanoglan + "m";
+					}
+					
+					else{
+						
+						console.log("en kısa uzaklık Saray Fabrikası: " + uzaklikSaray);
+						document.getElementById('input_fabrika').value = "Saray Fabrikası, uzaklık: " + uzaklikSaray + "m";
+					}
 		}
 
     });

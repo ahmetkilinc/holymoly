@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Ankara_Deprem_Haritasi" id="Ankara_Deprem_Haritasi">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Ankara_Deprem_Haritasi</name>
+  <Placemark>
+	<name>Ankara Deprem Haritasi</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Ankara_Deprem_Haritasi">
+		<SimpleData name="visibility">0</SimpleData>
+		<SimpleData name="icon">presets/ankara_0_0_2.gif</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>34.2712115202504,40.6981292885558,0 34.2712115202504,38.3908582297623,0 30.6798936055215,38.3908582297623,0 30.6798936055215,40.6981292885558,0 34.2712115202504,40.6981292885558,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

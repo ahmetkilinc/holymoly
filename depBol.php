@@ -4272,7 +4272,6 @@ console.log("Deprem Bölgesi: " + depremBolgesi);
 		Gökçebey : 60
 	}
 	
-
 var katsayi = 0;
 var karyuku = 0;
 var asilrakim = 0;
@@ -4323,7 +4322,7 @@ console.log("Kar Bölgesi: " + karBolgesi);
 
 
 //*************************** rakım bulma ******************************
-
+/*
 var rakimil = "'. $binayeri .'";
 rakimil = rakimil.toLowerCase();
 rakimil = rakimil.substring(rakimil.indexOf("/") + 1);
@@ -4357,8 +4356,10 @@ else{
 
 	rakim = rakimill;
 }
+*/
 
-asilrakim = rakim;
+asilrakim = gercekrakim;
+rakim = gercekrakim;
 
 //*************************** rakım bulma ********************************
 
