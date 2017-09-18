@@ -85,7 +85,7 @@ class LabeledGrid extends THREE.Object3D{
 				}
 
 				for(var i = 0; i <= (length - (length % stepEn)) / stepEn; i ++){
-																				
+							  													
 					gridGeometry.vertices.push(new THREE.Vector3(i * stepEn, 0, mainGridZ)); //x ekseninde i kadar ilerle sürekli
 					gridGeometry.vertices.push(new THREE.Vector3(i * stepEn, width - (width % stepBoy), mainGridZ)); // 0 to width e kadar çiz.
 				}
@@ -161,6 +161,7 @@ class LabeledGrid extends THREE.Object3D{
         }
 
         toggle(toggle){
+			
             //apply visibility settings to all children
             this.traverse(function(child){
 				
@@ -246,7 +247,7 @@ class LabeledGrid extends THREE.Object3D{
 			
 			else{
 				
-				alert("Yeni değerler işlenirken bir hata meydana geldi: Lütfen tarayıcınızı yeniden başlatın.")
+				alert("Yeni değerler işlenirken bir hata meydana geldi: Lütfen tarayıcınızı yeniden başlatın.");
 			}
         }
 		
