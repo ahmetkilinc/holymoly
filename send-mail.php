@@ -66,7 +66,7 @@ $mail->Host = "ssl://smtp.gmail.com";
 $mail->Port = 465;
 $mail->SMTPAuth = true; // SMTP auth
 $mail->Username = "ahmetkilinc3899@gmail.com"; // SMTP username
-$mail->Password = ""; // SMTP password
+$mail->Password = "ahmet1507ahmet"; // SMTP password
 
 $mail->setFrom('betonel@betonel.com.tr', 'Betonel A.Ş.');
 $mail->AddAddress($_GET["email"]);
@@ -243,7 +243,7 @@ $mail->Host = "ssl://smtp.gmail.com";
 $mail->Port = 465;
 $mail->SMTPAuth = true; // SMTP auth
 $mail->Username = "ahmetkilinc3899@gmail.com"; // SMTP username
-$mail->Password = ""; // SMTP password
+$mail->Password = "ahmet1507ahmet"; // SMTP password
 
 $mail->setFrom('betonel@betonel.com.tr', 'Betonel A.Ş.');
 $mail->AddAddress("akilinc@betonel.com.tr");

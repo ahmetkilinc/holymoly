@@ -1966,14 +1966,36 @@ echo '<html>
 		Ormanlı : 1,
 		Gökçebay : 2
 	};
+	
+	var gercekrakim;
+	
+	console.log("'.$_POST["gercekrakim"].'");
+	
+try{
 
+	if("'.$_POST["gercekrakim"].'" !== "0"){
+	
+		gercekrakim = '. $gercekrakim .';
+	}
+	else{
+	
+		alert("Binanın rakım bilgisine ulaşabilmemiz için haritadaki kırmızı fabrika simgesini adrese sürükleyiniz.");
+		window.history.back();
+	}
+}
+catch(err){
 
-var gercekrakim = '. $gercekrakim .';
+	alert("Binanın rakım bilgisine ulaşabilmemiz için haritadaki kırmızı fabrika simgesini adrese sürükleyiniz.");
+	window.history.back();
+}
+
 
 console.log("gerçek rakım değeri: " + gercekrakim);
 
 
 //********************** deprem bölgesi bulmak ************************
+var depremBolgesi = "";
+
 
 var str = "'. $binayeri .'";
 str = str.toLowerCase();
@@ -1985,24 +2007,34 @@ console.log("Deprem Bölgesi İl: " + str);
 depremBolgesiIl = iller[str.toLowerCase()];
 
 var sbt = "'. $binayeri .'";
-sbt = sbt.substring(0, sbt.indexOf("/"));
 
-sbt = sbt.split(" ");
+try{
 
-sbt = sbt[sbt.length - 1];
+	sbt = sbt.substring(0, sbt.indexOf("/"));
 
-console.log("Deprem Bölgesi İlçe: " + sbt);
+	sbt = sbt.split(" ");
 
-var depremBolgesi = this[str][sbt];
+	sbt = sbt[sbt.length - 1];
 
-console.log("deprem bölgesi hepsinin aynı olduğu nokta: " + this[str].all);
+	console.log("Deprem Bölgesi İlçe: " + sbt);
 
-if(depremBolgesi == null){
+	depremBolgesi = this[str][sbt];
+	
+	console.log("deprem bölgesi hepsinin aynı olduğu nokta: " + this[str].all);
+}
+catch(err){
+
+	alert("hata");
+}
+
+if(depremBolgesi == ""){
 
 	depremBolgesi = depremBolgesiIl;
 }
 
 console.log("Deprem Bölgesi: " + depremBolgesi);
+
+
 
 //********************** deprem bölgesi bulmak ************************
 
@@ -2992,1291 +3024,15 @@ console.log("Deprem Bölgesi: " + depremBolgesi);
 	
 	
 	//*****************************
-	
-	
-	var rakimiller = {
-	
-		adana : 23,
-		adıyaman : 669,
-		afyon : 1.021,
-		ağrı : 1.640,
-		aksaray : 980,
-		amasya : 411,
-		ankara : 938,
-		antalya : 43,
-		ardahan : 1.900,
-		artvin : 345,
-		aydın : 70,
-		balıkesir : 101,
-		bartın : 25,
-		batman : 550,
-		bayburt : 1550,
-		bilecik : 526,
-		bingöl : 1177,
-		bitlis : 1545,
-		bolu : 732,
-		burdur : 1025,
-		bursa : 100,
-		çanakkale : 3,
-		çankırı : 730,
-		çorum : 798,
-		denizli : 450,
-		diyarbakır : 677,
-		edirne : 48,
-		elazığ : 1015,
-		erzincan : 1214,
-		erzurum : 1893,
-		eskişehir : 732,
-		gaziantep : 840,
-		giresun : 84,
-		gümüşhane : 1210,
-		hakkari : 1720,
-		hatay : 85,
-		içel : 6,
-		mersin : 6,
-		ığdır : 858,
-		ısparta : 1043,
-		istanbul : 30,
-		izmir : 25,
-		kahramanmaraş : 568,
-		karabük : 278,
-		karaman : 1250,
-		kars : 1750,
-		kastamonu : 800,
-		kayseri : 1071,
-		kilis : 680,
-		kırıkkale : 700,
-		kırklareli : 203,
-		kırşehir : 985,
-		kocaeli : 76,
-		konya : 1026,
-		kütahya : 969,
-		malatya : 977,
-		manisa : 42,
-		mardin : 1150,
-		muğla : 646,
-		muş : 1300,
-		nevşehir : 1250,
-		niğde : 1208,
-		ordu : 10,
-		rize : 4,
-		sakarya : 31,
-		samsun : 44,
-		siirt : 895,
-		sinop : 32,
-		sivas : 1285,
-		şanlıurfa : 547,
-		şırnak : 1350,
-		tekirdağ : 3,
-		tokat : 623,
-		trabzon : 37,
-		tunceli : 914,
-		uşak : 921,
-		van : 1661,
-		yalova : 2,
-		yozgat: 1418,
-		zonguldak: 13
-	}
-	
-	var rakimankara = {
-	
-		Akyurt: 1050,
-		Altındağ: 1000,
-		Ayaş: 900,
-		Bala: 1320,
-		Beypazarı: 700,
-		Çamlıdere: 1250,
-		Çankaya: 1050,
-		Çubuk: 940,
-		Elmadağ: 1150,
-		Etimesgut: 830,
-		Evren: 833,
-		Gölbaşı: 980,
-		Güdül: 725,
-		Haymana: 1230,
-		Kalecik: 750,
-		Keçiören: 950,
-		Kızılcahamam: 980,
-		Mamak: 950,
-		Nallıhan: 630,
-		Polatlı: 870,
-		Pursaklak: 1030,
-		Sincan: 790,
-		Yenimahalle: 875
-	}
-	
-	var rakimadana = {
-	
-		Aladağ : 860,
-		Ceyhan : 25,
-		Çukurova : 150,
-		Feke : 560,
-		İmamoğlu : 84,
-		Karaisalı : 300,
-		Karataş : 10,
-		Kozan : 150,
-		Pozantı : 790,
-		Saimbeyli : 945,
-		Sarıçam : 100,
-		Seyhan : 30,
-		Tufanbeyli : 1472,
-		Yumurtalık : 20,
-		Yüreğir : 20
-	}
-	
-	var rakimadıyaman = {
-	
-		Besni : 925,
-		Çelikhan : 1400,
-		Gerger : 780,
-		Gölbaşı : 890,
-		Kahta : 710,
-		Samsat : 415,
-		Sincik : 1300,
-		Tut : 1072
-	}
-	
-	var rakimafyon = {
-	
-		Başmakçı : 850,
-		Bayat : 1065,
-		Bolvadin : 995,
-		Çay : 1050,
-		Çoban : 990,
-		Dazkırı : 890,
-		Dinar : 900,
-		Emirdağ : 970,
-		Evciler : 907,
-		Hocalar : 1111,
-		İhsaniye : 1100,
-		İscehisar : 1120,
-		Kızılören : 1125,
-		Sandıklı : 1120,
-		Sinanpaşa : 1125,
-		Şuhut : 1130,
-		Sultandağı : 1010
-	}
-	
-	var rakimağrı = {
-	
-		Diyadin : 1925,
-		Doğubeyazıt : 1600,
-		Eleşkirt : 1810,
-		Hamur : 1690,
-		Patnos : 1635,
-		Taşlıçay : 1760,
-		Tutak : 1565
-	}
-	
-	var rakimaksaray = {
-	
-		Ağaçören : 1220,
-		Eskil : 935,
-		Gülağaç : 1160,
-		Güzelyurt : 1505,
-		Ortaköy : 1210,
-		Sarıyahşi : 947
-	}
-	
-	var rakimamasya = {
-	
-		Göynücek : 525,
-		Gümüşhacıköy : 815,
-		Hamamözü : 710,
-		Merzifon : 750,
-		Suluova : 550,
-		Taşova : 235
-	}
-	
-	var rakimantalya = {
-	
-		Akseki : 1150,
-		Aksu : 87,
-		Alanya : 18,
-		Demre : 12,
-		Döşemealtı : 790,
-		Elmalı : 1150,
-		Finike : 7,
-		Gazipaşa : 20,
-		Gündoğmuş : 890,
-		İbradi : 1040,
-		Kaş : 125,
-		Kemer : 10,
-		Kepez : 289,
-		Konyaaltı : 42,
-		Korkuteli : 1480,
-		Kumluca : 29,
-		Manavgat : 40,
-		Muratpaşa : 40,
-		Serik : 28
-	}
-	
-	var rakimardahan = {
-	
-		Çıldır : 1910,
-		Damal : 2110,
-		Göle : 2030,
-		Hanak : 1820,
-		Posof : 1540
-	}
-	
-	var rakimartvin = {
-		
-		Ardanuç : 500,
-		Arhani : 30,
-		Borçka : 140,
-		Hopa : 50,
-		Murgul : 450,
-		Şavşat : 1220,
-		Yusufeli : 600
-	}
-	
-	var rakimaydın = {
-	
-		Bozdoğan : 350,
-		Buharkent : 173,
-		Çine : 75,
-		Didim : 50,
-		Germencik : 55,
-		İncirliova : 40,
-		Karacasu : 570,
-		Karpuzlu : 125,
-		Koçarlı : 50,
-		Köşk : 72,
-		Kuşadası : 40,
-		Kuyucak : 130,
-		Nazilli : 90,
-		Söke : 40,
-		Sultanhisar : 90,
-		Yenipazar : 60
-	}
-	
-	var rakimbalıkesir = {
-	
-		Ayvalık : 10,
-		Balya : 225,
-		Bandırma : 20,
-		Bigadiç : 160,
-		Burhaniye : 12,
-		Dursunbey : 635,
-		Edremit : 25,
-		Erdek : 10,
-		Gömeç : 13,
-		Gönen : 40,
-		Havran : 30,
-		İvrindi : 270,
-		Kepsut : 75,
-		manyas : 50,
-		Marmara : 10,
-		Savaştepe : 300,
-		Sındırgı : 225,
-		Susurluk : 50
-	}
-	
-	var rakimbartın = {
-	
-		Amasra : 20,
-		Kurucaşile : 25,
-		Ulus : 170
-	}
-	
-	var rakimbatman = {
-	
-		Beşiri : 750,
-		Gercüş : 1000,
-		Hasankeyf : 500,
-		Kozluk : 868,
-		Sason : 950
-	}
-	
-	var rakimbayburt = {
-	
-		Aydıntepe : 1635,
-		Demirözü  :1710
-	}
-	
-	var rakimbilecik = {
-	
-		Bozüyük : 750,
-		Gölpazarı : 550,
-		İnhisar : 210,
-		Osmaneli : 110,
-		Pazaryeri : 800,
-		Söğüt : 685,
-		Yenipazar : 615
-	}
-	
-	var rakimbingöl = {
-	
-		Adaklı : 1520,
-		Genç : 1010,
-		Karlıova : 1830,
-		Kığı : 1550,
-		Solhan : 1410,
-		Yayladere : 1600,
-		Yedisu : 1500
-	}
-	
-	var rakimbitlis = {
-	
-		Adilcevaz : 1700,
-		Ahlat : 1720,
-		Güroymak : 1400,
-		Hizan : 1500,
-		Mutki : 1510,
-		Tatvan : 1655
-	}
-	
-	var rakimbolu = {
-	
-		Dörtdivan : 1160,
-		Gerede : 1330,
-		Göynük : 750,
-		Kıbrıscık : 1135,
-		Mengen : 610,
-		Mudurnu : 850,
-		Seben : 750,
-		Yeniçağa : 1000
-	}
-	
-	var rakimburdur = {
-	
-		Ağlasun : 1140,
-		Altınyayla : 1240,
-		Bucak : 820,
-		Çavdır : 1073,
-		Çeltikçi : 867,
-		Gölhisar : 1005,
-		Karamanlı : 1150,
-		Kemer : 1162,
-		Tefenni : 1164,
-		Yeşilova : 1206
-	}
-	
-	var rakimbursa = {
-	
-		Gemlik : 5,
-		Gürsu : 108,
-		Harmancık : 668,
-		İnegöl : 290,
-		İznik : 91,
-		Karacabey : 15,
-		Keles : 1010,
-		Kestel : 130,
-		Mudanya : 10,
-		Nilüfer : 70,
-		Orhaneli : 490,
-		Orhangazi : 125,
-		Osmangazi : 91,
-		Yenişehir : 222,
-		Yıldırım : 110
-	}
-	
-	var rakimçanakkale = {
-	
-		Ayvalık : 285,
-		Bayramiç : 100,
-		Biga : 40,
-		Bozcaada : 20,
-		Çan : 6,
-		Eceabat : 4,
-		Ezine : 50,
-		Gelibolu : 20,
-		Gökçeada : 48,
-		Lapseki : 20,
-		Yenice : 310
-	}
-	
-	var rakimçankırı = {
-	
-		Atkaracalar : 1240,
-		Bayramören : 865,
-		Çerkeş : 1129,
-		Eldivan : 912,
-		Ilgaz : 940,
-		Kızılırmak : 555,
-		Korgun : 880,
-		Kurşunlu : 1129,
-		Orta : 1253,
-		Şabanözü : 1040,
-		Yapraklı : 1210
-	}
-	
-	var rakimçorum = {
-	
-		Alaca : 915,
-		Bayat : 750,
-		Boğazkale : 1005,
-		Dodurga : 590,
-		İskilip : 800,
-		Kargı : 420,
-		Laçin : 730,
-		Mecitözü : 820,
-		Oğuzlar : 650,
-		Ortaköy : 800,
-		Osmancık : 425,
-		Sungurlu : 750,
-		Uğurludağ : 830
-	}
-	
-	var rakimdenizli = {
-	
-		Acıpayam : 1000,
-		Babadağ : 720,
-		Baklan : 1000,
-		Bekilli : 834,
-		Beyağaç : 690,
-		Bozkurt : 856,
-		Buldan : 650,
-		Çal : 840,
-		Çameli : 1325,
-		Çardak : 880,
-		Çivril : 830,
-		Güney : 750,
-		Honaz : 550,
-		Kale : 1050,
-		Sarayköy : 160,
-		Serinhisar : 1000,
-		Tavas : 940
-	}
-	
-	var rakimdiyarbakır = {
-	
-		Bağlar : 880,
-		Bismil : 535,
-		Çermik : 700,
-		Çınar : 680,
-		Çüngüş : 1000,
-		Dicle : 950,
-		Eğil : 800,
-		Ergani : 950,
-		Hani : 900,
-		Hazro : 1050,
-		Kayapınar : 730,
-		Kocaköy : 930,
-		Kulp : 1050,
-		Lice : 1125,
-		Silvan : 830,
-		Sur : 650,
-		Yenişehir : 790
-	}
-	
-	var rakimedirne = {
-	
-		Enez :20,
-		Havsa : 80,
-		İpsala : 17,
-		Keşan : 110,
-		Lalapaşa : 160,
-		Meriç : 30,
-		Süloğlu : 155,
-		Uzunköprü : 20
-	}
-	
-	var rakimelazığ = {
-	
-		Ağın : 900,
-		Alacakaya : 1060,
-		Arıcak : 1080,
-		Baskil : 1220,
-		Karakoçan : 1090,
-		Keban : 816,
-		Kovancılar : 980,
-		Maden : 1100,
-		Palu : 1050,
-		Sivrice : 1266
-	}
-	
-	var rakimerzincan = {
-	
-		Çayırlı : 1520,
-		İliç : 1060,
-		Kemah : 1100,
-		Kemaliye : 925,
-		Otlukbeli : 1755,
-		Refahiye : 1550,
-		Tercan : 1475,
-		Üzümlü : 1450
-	}
-	
-	var rakimerzurum = {
-	
-		Aşkale : 1625,
-		Aziziye : 1885,
-		Çat : 1895,
-		Hınıs : 1750,
-		Horasan : 1540,
-		İspir : 1300,
-		Karaçoban : 1545,
-		Karayazı : 2360,
-		Köprüköy : 1635,
-		Narman : 1700,
-		Oltu : 1280,
-		Palandöken : 1935,
-		Pasinler : 1660,
-		Pazaryolu : 1450,
-		Şenkaya : 1850,
-		Tekman : 2000,
-		Tortum : 1600,
-		Uzundere : 1140,
-		Yakutiye : 1830
-	}
-	
-	var rakimeskişehir = {
-	
-		Alpu : 765,
-		Beylikova : 761,
-		Çifteler : 865,
-		Günyüzü : 891,
-		Han : 1218,
-		İnönü : 840,
-		Mahmudiye : 885,
-		Mihalgazi : 209,
-		Mihalıcçık : 1320,
-		Odunpazarı : 960,
-		Sarıcakaya : 220,
-		Seyitgazi : 1000,
-		Sivrihisar : 1100,
-		Tepebaşı : 960
-	}
-	
-	var rakimgaziantep = {
-	
-		Araban : 566,
-		İslahiye : 530,
-		Nizip : 510,
-		Nurdağı : 630,
-		Oğuzeli : 750,
-		Şahinbey : 900,
-		Şehitkamil : 720,
-		Yavuzeli : 565
-	}
-	
-	var rakimgiresun = {
-	
-		Alucra : 1500,
-		Bulancak : 10,
-		Çamoluk : 1120,
-		Çanaklı : 500,
-		Dereli : 300,
-		Doğankent : 190,
-		Espiye : 10,
-		Eynesil : 50,
-		Görele : 50,
-		Güce : 340,
-		Keşap : 50,
-		Piraziz : 5,
-		Tirebolu : 50,
-		Yağlıdere : 200
-	}
-	
-	var rakimgümüşhane = {
-	
-		Kelkit : 1400,
-		Köse : 1560,
-		Kürtün : 910,
-		Şiran : 1400,
-		Torul : 930
-	}
-	
-	var rakimhakkari = {
-	
-		Çukurca : 1340,
-		Şemdinli : 1420,
-		Yüksekova : 1900
-	}
-	
-	var rakimhatay = {
-	
-		Altınözü : 350,
-		Belen : 750,
-		Dörtyol : 50,
-		Erzin : 160,
-		Hassa : 435,
-		İskenderun : 20,
-		Kırıkhan : 150,
-		Kumlu : 100,
-		Reyhanlı : 150,
-		Samandağ : 40,
-		Yayladağı : 450
-	}
-	
-	var rakimiçel = {
-	
-		Akdeniz : 230,
-		Anamur : 15,
-		Aydıncık : 5,
-		Bozyazı : 150,
-		Çamlıyayla : 1200,
-		Erdemli : 10,
-		Gülnar : 1000,
-		Mezitli : 19,
-		Mut : 350,
-		Silifke : 30,
-		Tarsus : 15,
-		Toroslar : 1500,
-		Yenişehir : 150
-	}
-	
-	var rakimmersin = {
-	
-		Akdeniz : 230,
-		Anamur : 15,
-		Aydıncık : 5,
-		Bozyazı : 150,
-		Çamlıyayla : 1200,
-		Erdemli : 10,
-		Gülnar : 1000,
-		Mezitli : 19,
-		Mut : 350,
-		Silifke : 30,
-		Tarsus : 15,
-		Toroslar : 1500,
-		Yenişehir : 150
-	}
-	
-	var rakimığdır = {
-	
-		Aralık : 813,
-		Karakoyunlu : 844,
-		Tuzluca : 1075
-	}
-	
-	var rakimısparta = {
-	
-		Aksu : 1250,
-		Atabey : 1050,
-		Eğirdir : 950,
-		Gelendost : 945,
-		Gönen : 1050,
-		Keçiborlu : 1000,
-		Senirkent : 1000,
-		Sütçüler : 1030,
-		Uluborlu : 1150,
-		Yalvaç : 1090
-	}
-	
-	var rakimistanbul = {
-	
-		Adalar : 10,
-		Arnavutköy : 100,
-		Avcılar : 70,
-		Bağcılar : 90,
-		Bahçelievler : 150,
-		Bakırköy : 10,
-		Başakşehir : 50,
-		Bayrampaşa : 60,
-		Beşiktaş : 10,
-		Beykoz : 10,
-		Beylikdüzü : 100,
-		Beyoğlu : 50,
-		Büyükçekmece : 10,
-		Çatalca : 150,
-		Çekmeköy : 150,
-		Esenler : 80,
-		Esenyurt : 80,
-		Eyüp : 10,
-		Fatih : 50,
-		Güngören : 50,
-		Kadıköy : 10,
-		Kağıthane : 50,
-		Kartal : 10,
-		Küçükçekmece : 70,
-		maltepe : 10,
-		Pendik : 10,
-		Sancaktepe : 100,
-		Sarıyer : 10,
-		Şile : 50,
-		Silivri : 10,
-		Şişli : 100,
-		Sultanbeyli : 130,
-		Tuzla : 19, 
-		Ümraniye : 120,
-		Üsküdar : 50,
-		Zeytinburnu : 10
-	}
-	
-	var rakimizmir = {
-	
-		Aliağa : 30,
-		Balçova : 50,
-		Bayındır : 100,
-		Bergama : 50,
-		Beydağ : 235,
-		Bornova : 50,
-		Buca : 120,
-		Çeşme : 10,
-		Çiğli : 50,
-		Dikili : 10,
-		Foça : 10,
-		Gaziemir : 150,
-		Güzelbahçe : 90,
-		Karabağlar : 510,
-		Karaburun : 50,
-		Karşıyaka : 10,
-		Kemalpaşa : 230,
-		Kınık : 40,
-		Kiraz : 300,
-		Konak : 8,
-		Menderes : 110,
-		Menemen : 30,
-		Narlıdere : 30,
-		Ödemiş : 120,
-		Seferhisar : 30,
-		Selçuk : 20,
-		Tire : 100,
-		Torbalı : 50,
-		Urla : 50
-	}
-	
-	var rakimkahramanmaraş = {
-	
-		Afşin : 1240,
-		Andırın : 1050,
-		Çağlayancerit : 1100,
-		Ekinözü : 1280,
-		Elbistan : 1150,
-		Göksun : 1350,
-		Nurhak : 1400,
-		Pazarcık : 750,
-		Türkoğlu : 500
-	}
-	
-	var rakimkarabük = {
-	
-		Eflani : 900,
-		Eskipazar : 736,
-		Ovacık : 1130,
-		Safranbolu : 290,
-		Yenice : 140
-	}
-	
-	var rakimkaraman = {
-	
-		Ayrancı : 1145,
-		Başyayla : 1370,
-		Ermenek : 1300,
-		Kazımkarabekir : 1050,
-		Sarıveliler : 1650
-	}
-	
-	var rakimkars = {
-	
-		Akyaka : 1530,
-		Arpaçay : 1690,
-		Digor : 1640,
-		Kağızman : 1420,
-		Sarıkamış : 2060,
-		Selim : 1847,
-		Susuz : 1750
-	}
-	
-	var rakimkastamonu = {
-	
-		Abana : 10,
-		Ağlı : 1220,
-		Araç : 650,
-		Azdavay : 830,
-		Bozkurt : 40,
-		Çatalzeytin : 20,
-		Cide : 15,
-		Daday : 860,
-		Devrekani : 1070,
-		Doğanyurt : 45,
-		Hanönü : 430,
-		İhsangazi : 1000,
-		İnebolu : 25,
-		Küre : 950,
-		Pınarbaşı : 700,
-		Şenpazar : 650,
-		Seydiler : 1030,
-		Taşköprü : 525,
-		Tosya : 880
-	}
-	
-	var rakimkayseri = {
-	
-		Akkışla : 1370,
-		Bünyan : 1350,
-		Develi : 1250,
-		Felahiye : 1300,
-		Hacılar : 1400,
-		İncesu : 1100,
-		Kocasinan : 1060,
-		Melikgazi : 1050,
-		Özvatan : 1270,
-		Pınarbaşı : 1520,
-		Sarıoğlan : 1150,
-		Sarız : 1565,
-		Talas : 1150,
-		Tomarza : 1375,
-		Yahyalı : 1180,
-		Yeşilhisar : 1150
-	}
-	
-	var rakimkilis = {
-	
-		Elbeyli : 514,
-		Musabeyli : 735,
-		Polateli : 840
-	}
-	
-	var rakimkırıkkale = {
-	
-		Bahşılı : 810,
-		Balışeyh : 860,
-		Çelebi : 1250,
-		Delice : 750,
-		Karakeçili : 850,
-		Keskin : 1425,
-		Sulakyurt : 830,
-		Yahşihan : 710
-	}
-	
-	var rakimkırklareli = {
-	
-		Babaeski : 70,
-		Demirköy : 300,
-		Kofçaz : 450,
-		Lüleburgaz : 60,
-		Pehlivanköy : 40,
-		Pınarhisar : 200,
-		Vize : 200
-	}
-	
-	var rakimkırşehir = {
-	
-		Akçakent : 1400,
-		Akpınar : 1150,
-		Boztepe : 1170,
-		Çiçekdağı : 950,
-		Kaman : 1075,
-		Mucur : 1080
-	}
-	
-	var rakimkocaeli = {
-	
-		Başiskele : 45,
-		Çayırova : 140,
-		Darıca : 50,
-		Derince : 20,
-		Dilovası : 45,
-		Gebze : 190,
-		Gölcük : 10,
-		İzmit : 300,
-		Kandıra : 100,
-		Karamürsel  :10,
-		Kartepe : 25,
-		Körfez : 50
-	}
-	
-	var rakimkonya = {
-	
-		Ahırlı : 1220,
-		Akören : 1129,
-		Akşehir : 1050,
-		Altınekin : 1003,
-		Beyşehir : 1150,
-		Bozkır : 1150,
-		Çeltik : 850,
-		Cihanbeyli : 965,
-		Çumra : 1009,
-		Derbent : 1500,
-		Derebucak : 1230,
-		Doğanhisar : 1200,
-		Emirgazi : 1080,
-		Ereğli : 1050,
-		Güneysınır : 1130,
-		Hadim : 1510,
-		Halkapınar : 1190,
-		Hüyük : 1240,
-		Ilgın : 1030,
-		Kadınhanı : 1128,
-		Karapınar : 990,
-		Karatay : 1007,
-		Kulu : 989,
-		Meram : 1030,
-		Sarayönü : 1050,
-		Selçuklu : 1020,
-		Seydişehir : 1130,
-		Taşkent : 1500,
-		Tuzlukçu : 1000,
-		Yalıhüyük : 1102,
-		Yunak : 1100
-	}
-	
-	var rakimkütahya = {
-	
-		Altıntaş : 1030,
-		Aslanapa : 1030,
-		Çavdarhisar : 1000,
-		Domaniç : 880,
-		Dumlupınar : 1228,
-		Emet : 880,
-		Gediz : 800,
-		Hisarcık : 750,
-		Pazarlar : 950,
-		Şaphane : 1000,
-		Simav : 830,
-		Tavşanlı : 840
-	}
-	
-	var rakimmalatya = {
-	
-		Akçadağ : 1050,
-		Arguvan : 1075,
-		Battalgazi : 885,
-		Darende : 1000,
-		Doğanşehir : 1210,
-		Doğanyol : 920,
-		Hekimhan : 1050,
-		Kale : 740,
-		Kuluncak : 1280,
-		Pütürge : 1250,
-		Yazıhan : 825,
-		Yeşilyurt : 1000
-	}
-	
-	var rakimmanisa = {
-	
-		Ahmetli : 85,
-		Akhisar : 100,
-		Alaşehir : 200,
-		Demirci : 900,
-		Gölmarmara : 150,
-		Gördes : 680,
-		Kırkağaç : 200,
-		Köprübaşı : 250,
-		Kula : 669,
-		Salihli : 110,
-		Sarıgöl : 210,
-		Saruhanlı : 35,
-		Selendi : 440,
-		Soma : 200,
-		Turgutlu : 80
-	}
-	
-	var rakimmardin = {
-	
-		Dargeçit : 940,
-		Derik : 850,
-		Kızıltepe : 480,
-		Mazıdağı : 1050,
-		Midyat : 950,
-		Nusaybin : 467,
-		Ömerli : 1100,
-		Savur : 800,
-		Yeşilli : 850
-	}
-	
-	var rakimmuğla = {
-	
-		Bodrum : 10,
-		Dalaman : 10,
-		Datça : 15,
-		Fethiye : 10,
-		Kavaklıdere : 860,
-		Köyceğiz : 10,
-		Marmaris : 10,
-		Milas : 50,
-		Ortaca : 25,
-		Ula : 600,
-		Yatağan : 400
-	}
-	
-	var rakimmuş = {
-	
-		Bulanık : 1500,
-		Hasköy : 1345,
-		Korkut : 1400,
-		Malazgirt : 1530,
-		Varto : 1530
-	}
-	
-	var rakimnevşehir = {
-	
-		Acıgöl : 1232,
-		Avanos : 950,
-		Derinkuyu : 1350,
-		Gülşehir : 950,
-		Hacıbektaş : 1300,
-		Kozaklı : 1100,
-		Ürgüp : 1030
-	}
-	
-	var rakimniğde = {
-	
-		Altunhisar : 1220,
-		Bor : 1140,
-		Çamardı : 1500,
-		Çiftlik : 1555,
-		Ulukışla : 1428
-	}
-	
-	var rakimordu = {
-	
-		Akkuş : 1250,
-		Aybastı : 700,
-		Çamaş : 600,
-		Çatalpınar : 150,
-		Çaybaşı : 490,
-		Fatsa : 10,
-		Gölköy : 850,
-		Gülyalı : 100,
-		Gürgentepe : 1235,
-		İkizce : 140,
-		Kabadüz : 450,
-		Kabataş : 430,
-		Korgan : 760,
-		Kumru : 450,
-		Mesudiye : 1150,
-		Perşembe : 100,
-		Ulubey : 550,
-		Ünye : 20
-	}
-	
-	var rakimrize = {
-	
-		Ardeşen : 10,
-		Çamlıhemşin : 350,
-		Çayeli : 10,
-		Derepazarı : 50,
-		Fındıklı : 20,
-		Güneysu : 200,
-		Hemşin : 350,
-		İkizdere : 800,
-		İyidere : 50, 
-		Kalkandere : 150,
-		Pazar : 50
-	}
-	
-	var rakimsakarya = {
-	
-		Adapazarı : 20,
-		Akyazı : 45,
-		Arifiye : 40,
-		Erenler : 30,
-		Ferizli : 35,
-		Geyve : 80,
-		Hendek : 180,
-		Karapürçek : 150,
-		Karasu : 60,
-		Kaynarca : 50,
-		Kocaali : 50,
-		Pamukova : 100,
-		Sapanca : 40,
-		Serdivan : 85,
-		Söğütlü : 15,
-		Taraklı : 440
-	}
-	
-	var rakimsamsun = {
-	
-		Alaçam : 10,
-		Asarcık : 780,
-		Atakum : 610,
-		Ayvacık : 50,
-		Bafra : 10,
-		Canik : 670,
-		Çarşamba : 35,
-		Havza : 675,
-		İlkadım : 335,
-		Kavak : 600,
-		Ladik : 900,
-		Salıpazarı : 60,
-		Tekkeköy : 240,
-		Vezirköprü : 330,
-		Yakakent : 2
-	}
-	
-	var rakimsiirt = {
-	
-		Baykan : 720,
-		Eruh : 1150,
-		Kurtalan : 690,
-		Pervari : 1400,
-		Şirvan : 1050
-	}
-	
-	var rakimsinop = {
-	
-		Ayancık : 10,
-		Boyabat : 350,
-		Dikmen : 200,
-		Durağan : 200,
-		Erfelek : 300,
-		Gerze : 50,
-		Saraydüzü : 410,
-		Türkeli :20
-	}
-	
-	var rakimsivas = {
-	
-		Akıncılar : 1055,
-		Altınyayla : 1460,
-		Divriği : 1050,
-		Doğanşar : 1300,
-		Gemerek : 1230,
-		Gölova : 1320,
-		Gürün : 1330,
-		Hafik : 1275,
-		İmranlı : 1600,
-		Kangal : 1480,
-		Koyulhisar : 890,
-		Şarkışla : 1270,
-		Suşehri : 1120,
-		Ulaş : 1380,
-		Yıldızeli : 1400,
-		Zara : 1350
-	}
-	
-	var rakimşanlıurfa = {
-	
-		Akçakale : 360,
-		Birecik : 345,
-		Bozova : 519,
-		Ceylanpınar : 360,
-		Halfeti : 450,
-		Harran : 380,
-		Hilvan : 585,
-		Siverek : 800,
-		Suruç : 493,
-		Viranşehir : 550
-	}
-	
-	var rakimşırnak = {
-	
-		Beytüşşebap : 1550,
-		Cizre : 360,
-		Güçlükonak : 795,
-		İdil : 760,
-		Silopi : 510,
-		Uludere : 1250
-		
-	}
-	
-	var rakimtekirdağ = {
-	
-		Çerkezköy : 150,
-		Çorlu : 150,
-		Hayrabolu : 60,
-		Malkara : 250,
-		Muratlı : 90,
-		Saray : 150,
-		Şarköy : 6
-	}
-	
-	var rakimtokat = {
-	
-		Almus : 843,
-		Artova : 1180,
-		Başçiftlik : 1380,
-		Erbaa : 240,
-		Niksar : 375,
-		Pazar : 580,
-		Reşadiye : 559,
-		Sulusaray : 1010,
-		Turhal : 480,
-		Yeşilyurt : 970,
-		Zile : 740
-	}
-	
-	var rakimtrabzon = {
-	
-		Akçaabat : 3,
-		Araklı : 5,
-		Arsin : 20,
-		Beşikdüzü : 4,
-		Çarşıbaşı : 6,
-		Çaykara : 300,
-		Dernekpazarı : 200,
-		Düzköy : 850,
-		Hayrat : 180,
-		Köprübaşı : 650,
-		Maçka : 350,
-		Of : 10,
-		Şalpazarı : 350,
-		Sürmene : 20,
-		Tonya : 800,
-		Vakfıkebir : 20,
-		Yomra : 10
-	}
-	
-	var rakimtunceli = {
-	
-		Çemişgezek : 1000,
-		Hozat : 1530,
-		Mazgirt : 1430,
-		Nazimiye : 1530,
-		Ovacık : 1250,
-		Pertek : 1100,
-		Pülümür : 1535
-	}
-	
-	var rakimuşak = {
-	
-		Banaz : 910,
-		Eşme :850,
-		Karahallı : 950,
-		Sivaslı : 950,
-		Ulubey : 750
-	}
-	
-	var rakimvan = {
-	
-		Bahçesaray : 1620,
-		Başkale : 2000,
-		Çaldıran : 2040,
-		Çatak : 1625,
-		Edremit : 1650,
-		Erciş : 1775,
-		Gevaş : 1750,
-		Gürpınar : 2250,
-		Muradiye : 1780,
-		Özalp : 2075,
-		Saray : 1620
-	}
-	
-	var rakimyalova = {
-	
-		Altınova : 15,
-		Armutlu : 15,
-		Çiftlikköy : 10,
-		Çınarcık : 10,
-		Termal : 120
-	}
-	
-	var rakimyozgat = {
-	
-		Akdağmadeni : 1350,
-		Aydıncık : 840,
-		Boğazlıyan : 1062,
-		Çandır : 1235,
-		Çayıralan : 1372,
-		Çekerek : 925,
-		Kadışehri : 1050,
-		Saraykent : 1170,
-		Sarıkaya : 1125,
-		Şefaatli : 910,
-		Sorgun : 1080,
-		Yenifakılı : 1010,
-		Yerköy : 795 
-	}
-	
-	var rakimzonguldak = {
-	
-		Alaplı : 10,
-		Çaycuma : 40,
-		Devrek : 80,
-		Ereğli : 10,
-		Gökçebey : 60
-	}
+
 	
 var katsayi = 0;
 var karyuku = 0;
 var asilrakim = 0;
 
 //************************ Kar Bölgesi Bulma ***************************
+var karBolgesi = "";
+	
 	
 var kbg = "'. $binayeri .'";
 kbg = kbg.toLowerCase();
@@ -4301,70 +3057,39 @@ console.log(karbolgesiilce);
 
 //console.log("kar bölgesi ilçe bazlı:" + this["kb" + kbg][karbolgesiilce]);
 
-if(this["kb" + kbg][karbolgesiilce]){
+try{
 
-	karBolgesi = this["kb" + kbg][karbolgesiilce];
+	if(this["kb" + kbg][karbolgesiilce]){
+
+		karBolgesi = this["kb" + kbg][karbolgesiilce];
+	}
+	
+	else{
+
+		karBolgesi = karBolgesiIl;
+	}
 }
-else{
 
-	karBolgesi = karBolgesiIl;
+catch(err){
+
+	alert("hata");
 }
 
 //eğer ilçenin kar bölgesini bulamazsa bağlı olduğu ilin kar bölgesini al.
-if(karBolgesi == null){
 
-	
+if(karBolgesi == ""){
+
+	karBolgesi = karBolgesiIl;
 }
 
 console.log("Kar Bölgesi: " + karBolgesi);
 
 //************************ Kar Bölgesi Bulma ***************************
 
-
-//*************************** rakım bulma ******************************
-/*
-var rakimil = "'. $binayeri .'";
-rakimil = rakimil.toLowerCase();
-rakimil = rakimil.substring(rakimil.indexOf("/") + 1);
-rakimil = rakimil.substring(0, rakimil.indexOf(","));
-
-console.log("rakım il: " + rakimil);
-
-rakimill = rakimiller[rakimil.toLowerCase()];
-
-console.log("ilin rakımı yeni: " + rakimill);
-
-var rakimilce = "'. $binayeri .'";
-rakimilce = rakimilce.substring(0, rakimilce.indexOf("/"));
-
-rakimilce = rakimilce.split(" ");
-
-rakimilce = rakimilce[rakimilce.length - 1];
-
-console.log("rakım ilçe: " + rakimilce);
-
-//console.log("rakım ilçe sayı: " + this["rakim" + rakimil][rakimilce]);
-
-
-
-if(this["rakim" + rakimil][rakimilce]){
-
-	var rakim = this["rakim" + rakimil][rakimilce];
-}
-
-else{
-
-	rakim = rakimill;
-}
-*/
-
 asilrakim = gercekrakim;
 rakim = gercekrakim;
 
-//*************************** rakım bulma ********************************
-
-
-//************************* kar yükü bulma *******************************
+//************************* kar yükü bulma *****************************
 
 if(rakim < 200){
 
@@ -4602,7 +3327,7 @@ if(rakim >= 800 && rakim < 900){
 	}
 }
 
-if(rakim >= 900 && rakim <= 1000){
+if(rakim >= 900 && rakim < 1000){
 
 	if(karBolgesi == 1){
 		
@@ -4629,6 +3354,33 @@ if(rakim >= 900 && rakim <= 1000){
 	
 		katsayi = (((rakim - 900) * 0.1) / 100) + 1.5;
 		karyuku = katsayi;
+		karyuku = (karyuku * 1000) / 9.81;
+	}
+}
+
+if(rakim == 1000){
+
+	if(karBolgesi == 1){
+		
+		karyuku = katsayi * 0.8;
+		karyuku = (karyuku * 1000) / 9.81;
+	}
+	
+	else if(karBolgesi == 2){
+
+		karyuku = katsayi * 1.05;
+		karyuku = (karyuku * 1000) / 9.81;
+	}
+	
+	else if(karBolgesi == 3){
+	
+		karyuku = katsayi * 1.35;
+		karyuku = (karyuku * 1000) / 9.81;
+	}
+	
+	else{
+	
+		karyuku = katsayi * 1.6;
 		karyuku = (karyuku * 1000) / 9.81;
 	}
 }

@@ -16,6 +16,33 @@
 		padding-top: 15;
 		text-align: left;
 	}
+	
+	.btnGonder{
+
+    background-color: #2E9AFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: justify;
+    text-decoration: underline;
+    font-size: 14px;
+    margin: 0px 0px;
+	margin-left: 15%;
+    cursor: pointer;
+	}
+	
+	.btnGeri{
+		
+    background-color: #2E9AFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: justify;
+    text-decoration: underline;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+	}
 </style>
 </head>
 <body>
@@ -232,8 +259,8 @@
 	<div class='control_group buttons'>
       <div class='label'></div>
       <div class='input'>
-        <input class='btn primary' type='submit' onclick="return confirm('Verdiğiniz Bilgileri Onaylıyor musunuz?')" value='Gönder'>
-        <input class='btn' type="button" onclick="window.location.assign('index.html');" value='Geri Dön'>
+        <input class='btnGonder' type='submit' onclick="return confirm('Verdiğiniz Bilgileri Onaylıyor musunuz?')" value='Gönder'>
+        <input class='btnGeri' type="button" onclick="window.location.assign('index.html');" value='Geri Dön'>
       </div>
     </div>
 	</div>
@@ -263,7 +290,7 @@
     <script src="js/new-form-index.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8LekTJKEelUsRKGwKXaunkVJt8wHV7Gk&libraries=geometry&language=tr&region=TR">
 	</script>	
-	<script src="js/maps-google.js"></script>
+	<script src="js/g-maps.js"></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 </body>
 </html>

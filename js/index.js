@@ -2937,7 +2937,7 @@ class ThreeUtils {
 				
 					if((settings.araKatGenisligi > (settings.En / settings.stepEn)) || (settings.araKatUzunlugu > (settings.Boy / settings.stepBoy))){
 					   
-						   alert("Kısmi Ara Kat değerlerinizde bir yanlışlık olmalı, lütfen yeni değerler girerek tekrar deneyin.");
+						   alert("Kısmi Arakat değerlerinizde bir yanlışlık olmalı, lütfen yeni değerler girerek tekrar deneyin. Binanın şuanki boyutlarına göre verebileceğiniz maksimum değerler: Arakat Genişliği: " + (settings.En / settings.stepEn).toFixed(0) + ", Arakat Uzunluğu: " + ((settings.Boy / settings.stepBoy).toFixed(0)));
 						
 						   settings.KismiAraKatEkle = false;
 					}	
@@ -3751,7 +3751,38 @@ class ThreeUtils {
 				
 				//var araKatYeriEn = 'A-B';
 				//var araKatYeriBoy = '0-7';
+				/*
+					$.ajax({
+						
+						type: 'POST',
+						url: 'deneme.php',
+						data:{
+							
+							a: "some text"
+						},
+						success: function( data ) {
+							
+							window.location.assign('http://localhost/tutorialsPoint/holymoly/deneme.php');
+						}
+					});
+				 $(document).ready(function(){
+					 
+					$.ajax({
+							
+						url: 'deneme.php',
+						type: 'POST',
+						data: {bar: 'ahmet'},
+							
+						success: function (result){
+								
+							alert('success');
+							window.location.assign('http://localhost/tutorialsPoint/holymoly/deneme.php');
+						}
+					});
+				});*/
 				
+				
+
 				//window.location.assign('http://localhost/tutorialsPoint/holymoly/depBol.php');
 				
 				window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak + '&taliKiris=' + taliKiris + '&arakatKiris=' + arakatKiris + '&arakatKolon=' + arakatKolon);
