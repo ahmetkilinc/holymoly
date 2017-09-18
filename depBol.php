@@ -2027,7 +2027,7 @@ catch(err){
 	alert("hata");
 }
 
-if(depremBolgesi == ""){
+if(!depremBolgesi){
 
 	depremBolgesi = depremBolgesiIl;
 }
@@ -3077,7 +3077,7 @@ catch(err){
 
 //eğer ilçenin kar bölgesini bulamazsa bağlı olduğu ilin kar bölgesini al.
 
-if(karBolgesi == ""){
+if(!karBolgesi){
 
 	karBolgesi = karBolgesiIl;
 }
