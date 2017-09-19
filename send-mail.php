@@ -65,12 +65,12 @@ $mail->Mailer = "smtp";
 $mail->Host = "ssl://smtp.gmail.com";
 $mail->Port = 465;
 $mail->SMTPAuth = true; // SMTP auth
-$mail->Username = "ahmetkilinc3899@gmail.com"; // SMTP username
-$mail->Password = "ahmet1507ahmet"; // SMTP password
+$mail->Username = ""; // SMTP username
+$mail->Password = ""; // SMTP password
 
-$mail->setFrom('betonel@betonel.com.tr', 'Betonel A.Ş.');
+$mail->setFrom('', '');
 $mail->AddAddress($_GET["email"]);
-$mail->addReplyTo("betonel@betonel.com.tr", "Betonel A.Ş.");
+$mail->addReplyTo("", "");
 
 $mail->Subject = "Betonel E-Posta Dogrulama Maili";
 $mail->AddEmbeddedImage('presets/mail-footer.png', 'mail-footer');
@@ -242,12 +242,12 @@ $mail->Mailer = "smtp";
 $mail->Host = "ssl://smtp.gmail.com";
 $mail->Port = 465;
 $mail->SMTPAuth = true; // SMTP auth
-$mail->Username = "ahmetkilinc3899@gmail.com"; // SMTP username
-$mail->Password = "ahmet1507ahmet"; // SMTP password
+$mail->Username = ""; // SMTP username
+$mail->Password = ""; // SMTP password
 
-$mail->setFrom('betonel@betonel.com.tr', 'Betonel A.Ş.');
-$mail->AddAddress("akilinc@betonel.com.tr");
-$mail->addReplyTo("betonel@betonel.com.tr", "Betonel A.Ş.");
+$mail->setFrom('', '');
+$mail->AddAddress("");
+$mail->addReplyTo("", "");
 
 $mail->Subject = "Betonel Müşteri Teklif Bilgileri";
 $mail->AddEmbeddedImage('presets/mail-footer.png', 'mail-footer');
