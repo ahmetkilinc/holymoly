@@ -259,8 +259,8 @@
 	<div class='control_group buttons'>
       <div class='label'></div>
       <div class='input'>
-        <input class='btnGonder' type='submit' onclick="return confirm('Verdiğiniz Bilgileri Onaylıyor musunuz?')" value='Gönder'>
-        <input class='btnGeri' type="button" onclick="window.location.assign('index.html');" value='Geri Dön'>
+		  <input class='btnGonder' type='submit' onclick="return confirm('Verdiğiniz Bilgileri Onaylıyor musunuz?')" value='Gönder'>
+		  <input class='btnGeri' type="button" onclick="window.location.assign('index.html');" value='Geri Dön'>
       </div>
     </div>
 	</div>
@@ -289,8 +289,8 @@
   	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="js/new-form-index.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8LekTJKEelUsRKGwKXaunkVJt8wHV7Gk&libraries=geometry&language=tr&region=TR">
-	</script>	
-	<script src="js/g-maps.js"></script>
+	</script>
+	<script src="js/google-maps.js"></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 </body>
 </html>
