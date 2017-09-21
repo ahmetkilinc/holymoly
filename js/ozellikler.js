@@ -338,7 +338,7 @@ class LabeledGrid extends THREE.Object3D{
                 var sizeLabel2 = sizeLabel.clone();
                 sizeLabel2.position.set(stepBoy + 2, -(4 * stepBoy / 3), 0);
                 sizeLabel2.rotation.z = 0;
-                labelsSideLeft.add(sizeLabel2); 
+                labelsSideLeft.add(sizeLabel2);
 				//
 				
 				//z ekseni grid yüksekliğini ekrana yazdırma

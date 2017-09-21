@@ -87,6 +87,7 @@
 	  <div class='label'>
         <label for='textarea'>Şirket Adresi</label>
       </div>
+
       <div class='input'>
         <textarea id='adres' required='required' type='text' name='adres'></textarea>
 		<span class='hint'>Şirketinizin tam açık adresini yazınız.</span>
@@ -96,7 +97,6 @@
         <label for='number_01'>Telefon (Cep)</label>
       </div>
       <div class='input'>
-        
 		<input type="text" class="textfield" required='required' value="" id="extra7" name="ceptel" onkeypress="return isNumber(event)" />
 		<span class='hint'>İrtibat numaranızı giriniz. (Cep Telefonu)</span>
       </div>
@@ -290,7 +290,7 @@
     <script src="js/new-form-index.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8LekTJKEelUsRKGwKXaunkVJt8wHV7Gk&libraries=geometry&language=tr&region=TR">
 	</script>
-	<script src="js/google-maps.js"></script>
+	<script src="js/maps-google.js"></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 </body>
 </html>
