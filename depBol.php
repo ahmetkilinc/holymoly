@@ -49,7 +49,6 @@ $arakatKiris = $_POST["arakatKiris"];
 $arakatKolon = $_POST["arakatKolon"];
 $dateOnlyY = date("Y");
 
-
 	if(isset($_POST['g-recaptcha-response'])){
 		
     	$captcha = $_POST['g-recaptcha-response'];
@@ -115,9 +114,7 @@ $dateOnlyY = date("Y");
 					</script>
 				</head>
 			<body>
-
 			<button onclick="geriDon()">Değişiklikler için Geri Dön.</button>
-			
 			</body>
 	
 		</p>
@@ -247,7 +244,6 @@ echo '<html>
             border-radius: 100%;
         }
 
-
         .loading-container{
 		
 			margin: 200px auto 
@@ -308,7 +304,6 @@ echo '<html>
 		top: 18%;
 	}
 	
-	
 	</style>
 	</head>
 
@@ -320,7 +315,6 @@ echo '<html>
 </div>
 
 <p align="center" >Doğrulama Mailiniz Gönderiliyor, Lütfen Bekleyin.</p>
-
 
 <p id="depremBolgeleri"></p>
 
@@ -1983,19 +1977,18 @@ try{
 		window.history.back();
 	}
 }
+
 catch(err){
 
 	alert("Binanın rakım bilgisine ulaşabilmemiz için haritadaki kırmızı fabrika simgesini adrese sürükleyiniz.");
 	window.history.back();
 }
 
-
 console.log("gerçek rakım değeri: " + gercekrakim);
 
-
 //********************** deprem bölgesi bulmak ************************
-var depremBolgesi = "";
 
+var depremBolgesi = "";
 
 var str = "'. $binayeri .'";
 str = str.toLowerCase();
@@ -2022,6 +2015,7 @@ try{
 	
 	console.log("deprem bölgesi hepsinin aynı olduğu nokta: " + this[str].all);
 }
+
 catch(err){
 
 	alert("hata");
@@ -2033,8 +2027,6 @@ if(!depremBolgesi){
 }
 
 console.log("Deprem Bölgesi: " + depremBolgesi);
-
-
 
 //********************** deprem bölgesi bulmak ************************
 
@@ -3022,9 +3014,7 @@ console.log("Deprem Bölgesi: " + depremBolgesi);
 		Ulus : 3
 	}
 	
-	
 	//*****************************
-
 	
 var katsayi = 0;
 var karyuku = 0;
@@ -3032,7 +3022,6 @@ var asilrakim = 0;
 
 //************************ Kar Bölgesi Bulma ***************************
 var karBolgesi = "";
-	
 	
 var kbg = "'. $binayeri .'";
 kbg = kbg.toLowerCase();
@@ -3047,6 +3036,7 @@ karBolgesiIl = karbolgesiiller[kbg.toLowerCase()];
 
 
 var karbolgesiilce = "'. $binayeri .'";
+
 karbolgesiilce = karbolgesiilce.substring(0, karbolgesiilce.indexOf("/"));
 
 karbolgesiilce = karbolgesiilce.split(" ");
@@ -3393,12 +3383,12 @@ console.log("asıl rakım değeri: " + asilrakim);
 console.log("hesap rakımı ise: " + rakim);
 
 //************************* kar yükü bulma *******************************
-
 /*
 window.location.assign("http://localhost/tutorialsPoint/holymoly/send-mail.php?=" + "&adsoyad=" + "'. $adsoyad .'" + "&unvan=" + "'.$unvan.'" + "&sirketadi=" + "'. $sirketadi .'" + "&adres=" + "'. $adres .'" +"&ceptel=" + "'. $ceptel .'" + "&cepis=" + "'. $cepis .'" + "&faks=" + "'. $faks .'" + "&email=" + "'. $email .'" + "&boy=" + "'. $boy .'" + "&en=" + "'. $en .'" + "&yukseklik=" + "'. $yukseklik .'" + "&vincliKolonlar=" + "'. $vincliKolonlar .'" + "&vincKirisleri=" + "'. $vincKirisleri .'" + "&vincKirisSayisi=" + "'. $vincKirisSayisi .'" + "&kolonSayisi=" + "'. $kolonSayisi .'" + "&ruzgarKolonSayisi=" + "'. $ruzgarKolonSayisi .'" + "&standSayisi=" + "'. $standSayisi .'" + "&olukSayisi=" + "'. $olukSayisi .'" + "&makasSayisi=" + "'. $makasSayisi .'" + "&asikSayisi=" + "'. $asikSayisi .'" + "&kompleAraKat=" + "'. $kompleAraKat .'" + "&KompleAraKatHolSayisi=" + "'. $KompleAraKatHolSayisi .'" + "&KompleAraKatHolBoyutu=" + "'. $KompleAraKatHolBoyutu .'" + "&kismiAraKat=" + "'. $kismiAraKat .'" + "&kismiAraKatHolSayisi=" + "'. $kismiAraKatHolSayisi .'" + "&kismiAraKatAksSayisi=" + "'. $kismiAraKatAksSayisi .'" + "&kismiAraKatHolBoyutu=" + "'. $kismiAraKatHolBoyutu .'" + "&kismiAraKatAksBoyutu=" + "'. $kismiAraKatAksBoyutu .'" + "&genelHolSayisi=" + "'. $genelHolSayisi .'" + "&vinc=" + "'. $vinc .'" + "&arakat=" + "'. $arakat .'" + "&binayeri=" + "'. $binayeri .'" + "&lat=" + "'. $lat .'" + "&lng=" + "'. $lng .'" + "&clientip=" + "'. $clientip .'" + "&fabrika=" + "'. $fabrika .'" + "&vincKirisYeriEn=" + "'. $vincKirisYeriEn .'" + "&vincKirisYeriBoy=" + "'. $vincKirisYeriBoy .'" + "&araKatYeriEn=" + "'. $araKatYeriEn .'" + "&araKatYeriBoy=" + "'. $araKatYeriBoy .'" + "&ttPlak=" + "'. $ttPlak .'" + "&taliKiris=" + "'. $taliKiris .'" + "&arakatKiris=" + "'. $arakatKiris .'" + "&arakatKolon=" + "'. $arakatKolon .'" + "&depremBolgesi=" + depremBolgesi + "&karyuku=" + karyuku + "&karBolgesi=" + karBolgesi + "&rakim=" + asilrakim);*/
 
+
+
 </script>
-			
 </body>
 </html>';
 

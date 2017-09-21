@@ -1,4 +1,22 @@
 <?php
+
+$url = 'https://www.kardemir.com/Liste.aspx?yil=2017&s=FIYAT&Lng=tr-TR';
+$content = file_get_contents($url);
+$first_step = explode("satirMalzeme" , $content);
+$second_step = explode("mm", $first_step[11]);
+$fourth_step = explode("</td>", $second_step[1]);
+$fifth_step = explode("class", $fourth_step[1]);
+
+$demirFiyat = explode(">", $fifth_step[1]);
+
+$url1 = 'https://www.kardemir.com/Liste.aspx?yil=2017&s=FIYAT&Lng=tr-TR';
+$content1 = file_get_contents($url1);
+$first_step1 = explode("ContentPlaceHolder1_DynamicListe" , $content1);
+$second_step1 = explode("div", $first_step1[1]);
+$third_step1 = explode("=", $second_step1[1]);
+
+$demirFiyatTarih = str_split($third_step1[1], 10);
+
 require("fpdf/alphapdf.php");
 
 $pdf = new AlphaPDF();
@@ -120,7 +138,6 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 		$pdf->SetFont("arial","","10");
 		$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Yapının ". $_GET["araKatYeriEn"] ."/" . $_GET["araKatYeriBoy"] ." aksları arasında +4.50 kotunda kullanım yükü 350 kg/m² olan arakatlar yer almaktadır."), 0, 'J');
 	}
-
 }
 
 $pdf->SetY(125);
@@ -542,7 +559,7 @@ $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "KARKAS"), 1, 'C');
 $pdf->SetY(120);
 $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, "x" . iconv('utf-8', 'ISO-8859-9', " m²") , 1, 'C');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["boy"]*$_GET["en"] ." m²") , 1, 'C');
 
 $pdf->SetY(120);
 $pdf->SetX(110);
@@ -558,20 +575,42 @@ $pdf->SetY(125);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "ARAKAT (350 KG/M²)"), 1, 'C');
 
-$pdf->SetY(125);
-$pdf->SetX(70);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, "x" . iconv('utf-8', 'ISO-8859-9', " m²") , 1, 'C');
+if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
+	
+	$pdf->SetY(125);
+	$pdf->SetX(70);
+	$pdf->SetFont("arial","","10");
+	$pdf->MultiCell(40, 5, "0" . iconv('utf-8', 'ISO-8859-9', " m²") , 1, 'C');
 
-$pdf->SetY(125);
-$pdf->SetX(110);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, "x" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
+	$pdf->SetY(125);
+	$pdf->SetX(110);
+	$pdf->SetFont("arial","","10");
+	$pdf->MultiCell(50, 5, "0" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
 
-$pdf->SetY(125);
-$pdf->SetX(160);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, "x" . " TL", 1, 'C');
+	$pdf->SetY(125);
+	$pdf->SetX(160);
+	$pdf->SetFont("arial","","10");
+	$pdf->MultiCell(40, 5, "0" . " TL", 1, 'C');
+	
+}
+
+else{
+	
+	$pdf->SetY(125);
+	$pdf->SetX(70);
+	$pdf->SetFont("arial","","10");
+	$pdf->MultiCell(40, 5, "0" . iconv('utf-8', 'ISO-8859-9', " m²") , 1, 'C');
+
+	$pdf->SetY(125);
+	$pdf->SetX(110);
+	$pdf->SetFont("arial","","10");
+	$pdf->MultiCell(50, 5, "0" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
+
+	$pdf->SetY(125);
+	$pdf->SetX(160);
+	$pdf->SetFont("arial","","10");
+	$pdf->MultiCell(40, 5, "0" . " TL", 1, 'C');
+}
 
 $pdf->SetY(130);
 $pdf->SetFont("arial","B","11");
@@ -649,13 +688,23 @@ $pdf->SetFont("arial","B","10");
 $pdf->MultiCell(10, 5, "Not:", 0, 1);
 
 $pdf->SetY(165);
-$pdf->SetX(20);
+$pdf->SetX(18);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "Fiyatlarımıza KDV dahil değildir."), 0, 1);
 
 $pdf->SetY(170);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Fiyat hesaplarında, x tarihli Kardemir fiyat listesi baz alınmış olup, inşaat demiri ton fiyatı x TL+KDV olarak fiyatlara dahil edilmiştir."), 0, 1);
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Fiyat hesaplarında, $demirFiyatTarih[0] tarihli Kardemir fiyat listesi baz alınmış olup, inşaat demiri ton fiyatı $demirFiyat[1]"), 0, 1);
+
+$pdf->SetY(170);
+$pdf->SetX(178);
+$pdf->SetFont("arial","","10");
+$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "+ KDV olarak"), 0, 1);
+
+$pdf->SetY(175);
+$pdf->SetFont("arial","","10");
+$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "fiyatlara dahil edilmiştir."), 0, 1);
+
 
 $pdf->SetY(185);
 $pdf->AddFont('arial','BU','arial.php');

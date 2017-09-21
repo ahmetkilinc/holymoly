@@ -25,7 +25,7 @@ class ThreeUtils {
 		var arakatKiris = 0;
 		var arakatKolon = 0;
 		var butunParcalar = 0;
-				
+
         ThreeUtils.app = {};
         var app = ThreeUtils.app;
         app.container = document.getElementById(containerid);
@@ -75,7 +75,7 @@ class ThreeUtils {
             this.En = 20,
 			this.Yükseklik = 13,
             this.stepBoy = 8.57, //with number
-            this.stepEn = 20, //with alpha-beta
+            this.stepEn = 20, 	 //with alpha-beta
             this.a = 0,
             this.b = 0,
 			this.ruzgarKolonSayisi = 2,
@@ -2502,6 +2502,7 @@ class ThreeUtils {
 							arakatKolon = 0;
 							//rüzgar kolon sayısı + arakat kolon sayısı
 						}
+						
 						else{
 							
 							ruzgarKolonSayisi = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2;
@@ -2509,7 +2510,6 @@ class ThreeUtils {
 							arakatKolon = 0;
 						}
 					}
-
 					
 					//tali kiriş bulma
 					
@@ -2541,7 +2541,6 @@ class ThreeUtils {
 						//vincKirisYeriBoy = '0-7';
 					}
 					//vinç konsol yerleri
-					
 					
 					//**ara kat yerleri bulma
 					if(settings.AraKatEkle ==  true){
@@ -2593,7 +2592,6 @@ class ThreeUtils {
 						
 					}
 					//**ara kat yerleri bulma
-					
 					
 					//kolon sayısı*
 					kolonSayisi = Math.round((((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1) * (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) + 1));
@@ -2649,16 +2647,15 @@ class ThreeUtils {
 						
 						if(settings.AraKatEkle === false){
 								
-								//console.log("Tüm stand sayısı: " + Math.round(kolonSayisi + ruzgarKolonSayisi));
-							}
+							//console.log("Tüm stand sayısı: " + Math.round(kolonSayisi + ruzgarKolonSayisi));
+						}
 							
-							else{
+						else{
 								
-								tumStandSayisi = Math.round(((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2) + 1) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1));
+							tumStandSayisi = Math.round(((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2) + 1) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1));
 
-								//console.log("Tüm stand sayısı: " + tumStandSayisi);
-							}
-						
+							//console.log("Tüm stand sayısı: " + tumStandSayisi);
+						}
 					}
 					//rüzgar kolon sayısı + stand sayısı end*
 					
@@ -2671,8 +2668,6 @@ class ThreeUtils {
 					makasSayisi = Math.round((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1));
 					//console.log("Makas Sayısı: " + makasSayisi);
 					//makas sayısı end*
-					
-					
 					
 					//vinç kirişleri sayısı
 					if(settings.Vinc_Kirisleri_Ekle === true){
@@ -2926,7 +2921,7 @@ class ThreeUtils {
 		});
 		
 		//**ara katların yerini değiştirme fonksiyonu, true ise eskisini sil yeni koordinatları ekle.
-		var obj = {
+		var obj={
 			
 			change : function(){
 
@@ -3765,7 +3760,7 @@ class ThreeUtils {
 							window.location.assign('http://localhost/tutorialsPoint/holymoly/deneme.php');
 						}
 					});
-				 $(document).ready(function(){
+				$(document).ready(function(){
 					 
 					$.ajax({
 							
@@ -3783,7 +3778,8 @@ class ThreeUtils {
 				
 				
 
-				//window.location.assign('http://localhost/tutorialsPoint/holymoly/depBol.php');
+				//window.location.assign('https://www.kardemir.com/Liste.aspx?yil=2017&s=FIYAT');
+				
 				
 				window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak + '&taliKiris=' + taliKiris + '&arakatKiris=' + arakatKiris + '&arakatKolon=' + arakatKolon);
 
@@ -3916,7 +3912,6 @@ class ThreeUtils {
 				settings.kismiAraKatKaldir = false;
 				obj.kismiAraKatEkle();
 				settings.objeSayisiniBul();
-				
 			});
 
 			araKatFolder.add(settings, 'kismiAraKatKaldir').name('Kısmi Ara Katları Kaldır').onChange(function(w){
