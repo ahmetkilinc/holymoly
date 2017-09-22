@@ -1,7 +1,21 @@
-Copyright <2017> <ahmet kılınç>	
- 	
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:		
- 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.		
- 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Kullanılan Teknolojiler:
+1)	Client-Side Programlama için kullanılanlar:
+	a)	JavaScript Three.js
+	b)	JavaScript JQuery
+	c)	HTML
+	d)	CSS
+	e)	Google Map Api
+
+2)	Server-Side Programlama için kullanılanlar:
+	a)	PHP PHPMailer
+	b)	PHP fpdf
+	c)	Xampp Apache Server
+
+3)	Kod Yazma ve Debug için Kullanılan Teknolojiler:
+	a)	Brackets JavaScript Text Editör
+	b)	Notepad++
+	c)	Google Chrome v60.0.3112.101
+
+4)	Üç Boyutlu Çizim ve Gösterimi için kullanılanlar:
+	a)	Blender 2.78c
+	b)	Microsoft 3D Builder
