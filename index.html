@@ -18,9 +18,11 @@
 		<noscript>
     		Bu uygulamayı çalıştırmak için tarayıcınızın JavaScript desteklemesi gerekmektedir. Lütfen ayarlardan açınız veya teknik ekibinizden açmak için yardım isteyiniz.
 		</noscript>
-		
-		<div id="info">
-			<textarea rows="6" cols="100%" readonly> Kullanım Talimatları:
+					
+		<div id="info" style="background-color: skyblue" >
+			<textarea rows="6" cols="100%" style="background-color: lightblue" readonly> Kullanım Talimatları:
+
+ Sağ üst taraftaki kontroller ile binanızın boyutunu ayarlayabilir, vinç kirişleri ve arakat ekleyebilirsiniz.
 				
  Mouse'un sol tıkı ile Çizim'in yönünü değiştirebilirsiniz, sağ tıkı ile Çizimin yerini değiştirebilirsiniz, tekerleği ile ise yakınlaştırabilir veya uzaklaştırabilirsiniz.
 			</textarea>		
@@ -52,7 +54,6 @@
 
 				app.camera.rotation.z = 0;
 			}
-
 			ThreeUtils.animate();
 		});
 

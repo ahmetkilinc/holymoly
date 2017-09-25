@@ -144,13 +144,13 @@ echo '<html>
 
 	<head>
 	<style>
-	
+
 		#link {color: #E45635;display:block;font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;text-align:center; text-decoration: none;}
 		#link:hover {color: #CCCCCC}
 
 		#link, #link:hover {-webkit-transition: color 0.5s ease-out;-moz-transition: color 0.5s ease-out;-ms-transition: color 0.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 0.5s ease-out;}
 
-/** BEGIN CSS **/
+		/** BEGIN CSS **/
         body{
 		
 			background: #ADD8E6;
@@ -234,6 +234,18 @@ echo '<html>
             50% {opacity: 1}
             100%{opacity: 0}
         }
+		
+		.stand-alone-header{
+		
+			height: 10px;
+			width: 15px;
+			position: index;
+			border: none;
+			margin-left: 2px;
+			margin-right: 2px;
+			margin-top: 50px;
+			margin-bottom: 150px;
+		}
 		
         .loading-container,
         .loading{
@@ -3014,13 +3026,14 @@ console.log("Deprem Bölgesi: " + depremBolgesi);
 		Ulus : 3
 	}
 	
-	//*****************************
+//*****************************
 	
 var katsayi = 0;
 var karyuku = 0;
 var asilrakim = 0;
 
 //************************ Kar Bölgesi Bulma ***************************
+
 var karBolgesi = "";
 	
 var kbg = "'. $binayeri .'";
@@ -3383,10 +3396,9 @@ console.log("asıl rakım değeri: " + asilrakim);
 console.log("hesap rakımı ise: " + rakim);
 
 //************************* kar yükü bulma *******************************
+
 /*
 window.location.assign("http://localhost/tutorialsPoint/holymoly/send-mail.php?=" + "&adsoyad=" + "'. $adsoyad .'" + "&unvan=" + "'.$unvan.'" + "&sirketadi=" + "'. $sirketadi .'" + "&adres=" + "'. $adres .'" +"&ceptel=" + "'. $ceptel .'" + "&cepis=" + "'. $cepis .'" + "&faks=" + "'. $faks .'" + "&email=" + "'. $email .'" + "&boy=" + "'. $boy .'" + "&en=" + "'. $en .'" + "&yukseklik=" + "'. $yukseklik .'" + "&vincliKolonlar=" + "'. $vincliKolonlar .'" + "&vincKirisleri=" + "'. $vincKirisleri .'" + "&vincKirisSayisi=" + "'. $vincKirisSayisi .'" + "&kolonSayisi=" + "'. $kolonSayisi .'" + "&ruzgarKolonSayisi=" + "'. $ruzgarKolonSayisi .'" + "&standSayisi=" + "'. $standSayisi .'" + "&olukSayisi=" + "'. $olukSayisi .'" + "&makasSayisi=" + "'. $makasSayisi .'" + "&asikSayisi=" + "'. $asikSayisi .'" + "&kompleAraKat=" + "'. $kompleAraKat .'" + "&KompleAraKatHolSayisi=" + "'. $KompleAraKatHolSayisi .'" + "&KompleAraKatHolBoyutu=" + "'. $KompleAraKatHolBoyutu .'" + "&kismiAraKat=" + "'. $kismiAraKat .'" + "&kismiAraKatHolSayisi=" + "'. $kismiAraKatHolSayisi .'" + "&kismiAraKatAksSayisi=" + "'. $kismiAraKatAksSayisi .'" + "&kismiAraKatHolBoyutu=" + "'. $kismiAraKatHolBoyutu .'" + "&kismiAraKatAksBoyutu=" + "'. $kismiAraKatAksBoyutu .'" + "&genelHolSayisi=" + "'. $genelHolSayisi .'" + "&vinc=" + "'. $vinc .'" + "&arakat=" + "'. $arakat .'" + "&binayeri=" + "'. $binayeri .'" + "&lat=" + "'. $lat .'" + "&lng=" + "'. $lng .'" + "&clientip=" + "'. $clientip .'" + "&fabrika=" + "'. $fabrika .'" + "&vincKirisYeriEn=" + "'. $vincKirisYeriEn .'" + "&vincKirisYeriBoy=" + "'. $vincKirisYeriBoy .'" + "&araKatYeriEn=" + "'. $araKatYeriEn .'" + "&araKatYeriBoy=" + "'. $araKatYeriBoy .'" + "&ttPlak=" + "'. $ttPlak .'" + "&taliKiris=" + "'. $taliKiris .'" + "&arakatKiris=" + "'. $arakatKiris .'" + "&arakatKolon=" + "'. $arakatKolon .'" + "&depremBolgesi=" + depremBolgesi + "&karyuku=" + karyuku + "&karBolgesi=" + karBolgesi + "&rakim=" + asilrakim);*/
-
-
 
 </script>
 </body>

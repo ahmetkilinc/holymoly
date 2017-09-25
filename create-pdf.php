@@ -688,22 +688,22 @@ $pdf->SetFont("arial","B","10");
 $pdf->MultiCell(10, 5, "Not:", 0, 1);
 
 $pdf->SetY(165);
-$pdf->SetX(18);
+$pdf->SetX(17);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "Fiyatlarımıza KDV dahil değildir."), 0, 1);
 
 $pdf->SetY(170);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Fiyat hesaplarında, $demirFiyatTarih[0] tarihli Kardemir fiyat listesi baz alınmış olup, inşaat demiri ton fiyatı $demirFiyat[1]"), 0, 1);
-
-$pdf->SetY(170);
-$pdf->SetX(178);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "+ KDV olarak"), 0, 1);
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Fiyat hesaplarında, $demirFiyatTarih[0] tarihli www.kardemir.com sitesindeki fiyat listesi baz alınmış olup, inşaat demiri ton fiyatı "), 0, 1);
 
 $pdf->SetY(175);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "fiyatlara dahil edilmiştir."), 0, 1);
+$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "$demirFiyat[1]"), 0, 1);
+
+$pdf->SetY(175);
+$pdf->SetX(24);
+$pdf->SetFont("arial","","10");
+$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "+ KDV olarak fiyatlara dahil edilmiştir."), 0, 1);
 
 
 $pdf->SetY(185);
