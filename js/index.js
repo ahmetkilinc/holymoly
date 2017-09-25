@@ -456,6 +456,246 @@ class ThreeUtils {
 					}
 				}
 			}
+			//Vinçsiz orta kolon ekleme
+			this.VincsizOrtaKolonEkle = function(){
+
+				var manager = new THREE.LoadingManager();
+				var loader = new THREE.OBJLoader(manager);
+				var fileloader = new THREE.FileLoader();
+				this.makasEkle();
+				this.olukEkle();
+				this.asikEkle();
+				this.VincKirisleriKaldir();
+				settings.KolonAltObjEkle();
+					
+				if(this.AraKatEkle === false){
+				//iki for ile x ve y ekseninde çoğalan vinçsiz orta kolonlar oluşturuluyor.
+					fileloader.load('blenderObjects/VinçsizOrtaKolon.obj', function(data){
+
+						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+
+							var selectedItem1 = app.scene.getObjectByName("x" + i);
+							app.scene.remove(selectedItem1);
+							var selectedItem1 = app.scene.getObjectByName("y" + i);
+							app.scene.remove(selectedItem1);
+							var selectedItem = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
+							app.scene.remove(selectedItem);
+							var selectedItem1 = app.scene.getObjectByName("VincliKenarKolonEkleY" + i);
+							app.scene.remove(selectedItem1);
+							/*var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonX" + i);
+							app.scene.remove(selectedItem1);
+							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonY" + i);
+							app.scene.remove(selectedItem1);*/
+							var selectedItem1 = app.scene.getObjectByName("t" + i);
+							app.scene.remove(selectedItem1);
+							var selectedItem1 = app.scene.getObjectByName("k" + i);
+							app.scene.remove(selectedItem1);
+							var selectedItem1 = app.scene.getObjectByName("z" + i + j);
+							//app.scene.remove(selectedItem1);
+
+							if(settings.En % settings.stepEn === 0){
+
+								for(var j = 0; j < ((settings.En / settings.stepEn) - 1); j++){
+
+									var selectedItem1 = app.scene.getObjectByName("z" + i + j);
+									app.scene.remove(selectedItem1);
+
+									var object = loader.parse(data);
+									object.position.set(2.5 + (settings.stepEn * (j + 1)), 0, 5 - (settings.stepBoy * i));
+									object.rotateY(-1.6);
+									object.name = "z" + i + j;
+									object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
+									app.scene.add(object);
+								}
+							}
+
+							else{
+
+								for(var j = 0; j < ((settings.En / settings.stepEn) - 2); j++){
+
+									var selectedItem1 = app.scene.getObjectByName("z" + i + j);
+									app.scene.remove(selectedItem1);
+
+									var object = loader.parse(data);
+									object.position.set(2.5 + (settings.stepEn * (j + 1)), 0, 5 - (settings.stepBoy * i));
+									object.rotateY(-1.6);
+									object.name = "z" + i + j;
+									object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
+									app.scene.add(object);
+								}
+							}
+						}
+					},
+						function(xhr){
+
+							// console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+						},
+							  //if download fails
+						function(xhr){
+
+							   // console.error('An error happened : ' + xhr);
+						}
+					);
+					//kenar kolonlar ayrı şekilde oluşturuldu.
+					fileloader.load('blenderObjects/VinçsizKenarKolon.obj', function(data){
+
+						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+
+							/*var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonX" + i);
+							app.scene.remove(selectedItem1);
+							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonY" + i);
+							app.scene.remove(selectedItem1);*/
+							
+							var object = loader.parse(data);
+							object.position.set(2.5 + (settings.En - (settings.En % settings.stepEn)), 0, 5 - (settings.stepBoy * i));
+							object.rotateY(-1.6);
+							object.name = "VincsizKenarKolonX" + i;
+							object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
+							app.scene.add(object);
+
+							var object = loader.parse(data);
+							object.position.set(-2.7, 0, -5 - (settings.stepBoy * i));
+							object.rotateY(1.58);
+							object.name = "VincsizKenarKolonY" + i;
+							object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
+							app.scene.add(object);
+						}
+					},
+						function(xhr){
+
+							// console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+						},
+							  //if download fails
+						function(xhr){
+
+							   // console.error('An error happened : ' + xhr);
+						}
+					);
+				}
+				//bir holden fazla büyüdüğü zaman ve arakat eklendiği durumda kolonları 
+				else{
+					
+					settings.AraKatKolonlariEkle();
+				}
+			}
+			//Vinçli orta kolon ekleme
+			this.VincliOrtaKolonEkle = function(){
+				
+				var manager = new THREE.LoadingManager();
+				var loader = new THREE.OBJLoader(manager);
+				var fileloader = new THREE.FileLoader();
+				this.makasEkle();
+				this.olukEkle();
+				this.asikEkle();
+				settings.KolonAltObjEkle();
+					
+				if(this.AraKatEkle === false){
+				//iki for ile x ve y ekseninde çoğalan vinçsiz orta kolonlar oluşturuluyor.
+					fileloader.load('blenderObjects/VinçliKenarKolonlar/VinçliOrtaKolon14.obj', function(data){
+
+						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+
+							var selectedItem1 = app.scene.getObjectByName("x" + i);
+							app.scene.remove(selectedItem1);
+							var selectedItem1 = app.scene.getObjectByName("y" + i);
+							app.scene.remove(selectedItem1);
+							/*var selectedItem = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
+							app.scene.remove(selectedItem);
+							var selectedItem1 = app.scene.getObjectByName("VincliKenarKolonEkleY" + i);
+							app.scene.remove(selectedItem1);*/
+							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonX" + i);
+							app.scene.remove(selectedItem1);
+							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonY" + i);
+							app.scene.remove(selectedItem1);
+							var selectedItem1 = app.scene.getObjectByName("z" + i + j);
+							//app.scene.remove(selectedItem1);
+
+							if(settings.En % settings.stepEn === 0){
+
+								for(var j = 0; j < ((settings.En / settings.stepEn) - 1); j++){
+
+									var selectedItem1 = app.scene.getObjectByName("z" + i + j);
+									app.scene.remove(selectedItem1);
+
+									var object = loader.parse(data);
+									object.position.set(2.5 + (settings.stepEn * (j + 1)), 0, 5 - (settings.stepBoy * i));
+									object.rotateY(-1.6);
+									object.name = "z" + i + j;
+									object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
+									app.scene.add(object);
+								}
+							}
+
+							else{
+
+								for(var j = 0; j < ((settings.En / settings.stepEn) - 2); j++){
+
+									var selectedItem1 = app.scene.getObjectByName("z" + i + j);
+									app.scene.remove(selectedItem1);
+
+									var object = loader.parse(data);
+									object.position.set(2.5 + (settings.stepEn * (j + 1)), 0, 5 - (settings.stepBoy * i));
+									object.rotateY(-1.6);
+									object.name = "z" + i + j;
+									object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
+									app.scene.add(object);
+								}
+							}
+						}
+					},
+						function(xhr){
+
+							//console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+						},
+							  //if download fails
+						function(xhr){
+
+							// console.error('An error happened : ' + xhr);
+						}
+					);
+					//kenar kolonlar ayrı şekilde oluşturuldu.
+					fileloader.load('blenderObjects/VinçliKenarKolon14.obj', function(data){
+
+						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+
+							/*var selectedItem1 = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
+							app.scene.remove(selectedItem1);
+							var selectedItem1 = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
+							app.scene.remove(selectedItem1);*/
+							
+							var object = loader.parse(data);
+							object.position.set(2.7 + (settings.En - (settings.En % settings.stepEn)), 0, 5 - (settings.stepBoy * i));
+							object.rotateY(-1.6);
+							object.name = "VincliKenarKolonEkleX" + i;
+							object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
+							app.scene.add(object);
+
+							var object = loader.parse(data);
+							object.position.set(-2.9, 0, -5 - (settings.stepBoy * i));
+							object.rotateY(1.58);
+							object.name = "VincliKenarKolonEkleY" + i;
+							object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
+							app.scene.add(object);
+
+						}
+					},
+						function(xhr){
+
+							// console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+						},
+							  //if download fails
+						function(xhr){
+
+						// console.error('An error happened : ' + xhr);
+						}
+					);
+				}
+				
+				else{
+					
+					settings.AraKatKolonlariEkle();
+				}
+			}
 			//makas ekleme fonk
 			this.makasEkle = function(){
 				
@@ -1123,246 +1363,6 @@ class ThreeUtils {
 
 						}
 					);
-				}
-			}
-			//Vinçsiz orta kolon ekleme
-			this.VincsizOrtaKolonEkle = function(){
-
-				var manager = new THREE.LoadingManager();
-				var loader = new THREE.OBJLoader(manager);
-				var fileloader = new THREE.FileLoader();
-				this.makasEkle();
-				this.olukEkle();
-				this.asikEkle();
-				this.VincKirisleriKaldir();
-				settings.KolonAltObjEkle();
-					
-				if(this.AraKatEkle === false){
-				//iki for ile x ve y ekseninde çoğalan vinçsiz orta kolonlar oluşturuluyor.
-					fileloader.load('blenderObjects/VinçsizOrtaKolon.obj', function(data){
-
-						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
-
-							var selectedItem1 = app.scene.getObjectByName("x" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("y" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
-							app.scene.remove(selectedItem);
-							var selectedItem1 = app.scene.getObjectByName("VincliKenarKolonEkleY" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonX" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonY" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("t" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("k" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("z" + i + j);
-							//app.scene.remove(selectedItem1);
-
-							if(settings.En % settings.stepEn === 0){
-
-								for(var j = 0; j < ((settings.En / settings.stepEn) - 1); j++){
-
-									var selectedItem1 = app.scene.getObjectByName("z" + i + j);
-									app.scene.remove(selectedItem1);
-
-									var object = loader.parse(data);
-									object.position.set(2.5 + (settings.stepEn * (j + 1)), 0, 5 - (settings.stepBoy * i));
-									object.rotateY(-1.6);
-									object.name = "z" + i + j;
-									object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
-									app.scene.add(object);
-								}
-							}
-
-							else{
-
-								for(var j = 0; j < ((settings.En / settings.stepEn) - 2); j++){
-
-									var selectedItem1 = app.scene.getObjectByName("z" + i + j);
-									app.scene.remove(selectedItem1);
-
-									var object = loader.parse(data);
-									object.position.set(2.5 + (settings.stepEn * (j + 1)), 0, 5 - (settings.stepBoy * i));
-									object.rotateY(-1.6);
-									object.name = "z" + i + j;
-									object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
-									app.scene.add(object);
-								}
-							}
-						}
-					},
-						function(xhr){
-
-							// console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-						},
-							  //if download fails
-						function(xhr){
-
-							   // console.error('An error happened : ' + xhr);
-						}
-					);
-					//kenar kolonlar ayrı şekilde oluşturuldu.
-					fileloader.load('blenderObjects/VinçsizKenarKolon.obj', function(data){
-
-						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
-
-							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonX" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonY" + i);
-							app.scene.remove(selectedItem1);
-							
-							var object = loader.parse(data);
-							object.position.set(2.5 + (settings.En - (settings.En % settings.stepEn)), 0, 5 - (settings.stepBoy * i));
-							object.rotateY(-1.6);
-							object.name = "VincsizKenarKolonX" + i;
-							object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
-							app.scene.add(object);
-
-							var object = loader.parse(data);
-							object.position.set(-2.7, 0, -5 - (settings.stepBoy * i));
-							object.rotateY(1.58);
-							object.name = "VincsizKenarKolonY" + i;
-							object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
-							app.scene.add(object);
-						}
-					},
-						function(xhr){
-
-							// console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-						},
-							  //if download fails
-						function(xhr){
-
-							   // console.error('An error happened : ' + xhr);
-						}
-					);
-				}
-				//bir holden fazla büyüdüğü zaman ve arakat eklendiği durumda kolonları 
-				else{
-					
-					settings.AraKatKolonlariEkle();
-				}
-			}
-			//Vinçli orta kolon ekleme
-			this.VincliOrtaKolonEkle = function(){
-				
-				var manager = new THREE.LoadingManager();
-				var loader = new THREE.OBJLoader(manager);
-				var fileloader = new THREE.FileLoader();
-				this.makasEkle();
-				this.olukEkle();
-				this.asikEkle();
-				settings.KolonAltObjEkle();
-					
-				if(this.AraKatEkle === false){
-				//iki for ile x ve y ekseninde çoğalan vinçsiz orta kolonlar oluşturuluyor.
-					fileloader.load('blenderObjects/VinçliKenarKolonlar/VinçliOrtaKolon14.obj', function(data){
-
-						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
-
-							var selectedItem1 = app.scene.getObjectByName("x" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("y" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
-							app.scene.remove(selectedItem);
-							var selectedItem1 = app.scene.getObjectByName("VincliKenarKolonEkleY" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonX" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonY" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("z" + i + j);
-							//app.scene.remove(selectedItem1);
-
-							if(settings.En % settings.stepEn === 0){
-
-								for(var j = 0; j < ((settings.En / settings.stepEn) - 1); j++){
-
-									var selectedItem1 = app.scene.getObjectByName("z" + i + j);
-									app.scene.remove(selectedItem1);
-
-									var object = loader.parse(data);
-									object.position.set(2.5 + (settings.stepEn * (j + 1)), 0, 5 - (settings.stepBoy * i));
-									object.rotateY(-1.6);
-									object.name = "z" + i + j;
-									object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
-									app.scene.add(object);
-								}
-							}
-
-							else{
-
-								for(var j = 0; j < ((settings.En / settings.stepEn) - 2); j++){
-
-									var selectedItem1 = app.scene.getObjectByName("z" + i + j);
-									app.scene.remove(selectedItem1);
-
-									var object = loader.parse(data);
-									object.position.set(2.5 + (settings.stepEn * (j + 1)), 0, 5 - (settings.stepBoy * i));
-									object.rotateY(-1.6);
-									object.name = "z" + i + j;
-									object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
-									app.scene.add(object);
-								}
-							}
-						}
-					},
-						function(xhr){
-
-							//console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-						},
-							  //if download fails
-						function(xhr){
-
-							// console.error('An error happened : ' + xhr);
-						}
-					);
-					//kenar kolonlar ayrı şekilde oluşturuldu.
-					fileloader.load('blenderObjects/VinçliKenarKolon14.obj', function(data){
-
-						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
-
-							var selectedItem1 = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
-							app.scene.remove(selectedItem1);
-							var selectedItem1 = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
-							app.scene.remove(selectedItem1);
-							
-							var object = loader.parse(data);
-							object.position.set(2.7 + (settings.En - (settings.En % settings.stepEn)), 0, 5 - (settings.stepBoy * i));
-							object.rotateY(-1.6);
-							object.name = "VincliKenarKolonEkleX" + i;
-							object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
-							app.scene.add(object);
-
-							var object = loader.parse(data);
-							object.position.set(-2.9, 0, -5 - (settings.stepBoy * i));
-							object.rotateY(1.58);
-							object.name = "VincliKenarKolonEkleY" + i;
-							object.scale.set(0.2, settings.Yükseklik / 65, 0.2);
-							app.scene.add(object);
-
-						}
-					},
-						function(xhr){
-
-							// console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-						},
-							  //if download fails
-						function(xhr){
-
-						// console.error('An error happened : ' + xhr);
-						}
-					);
-				}
-				
-				else{
-					
-					settings.AraKatKolonlariEkle();
 				}
 			}
 			//Vinç Kirişleri ekleme
@@ -2932,7 +2932,7 @@ class ThreeUtils {
 				
 					if((settings.araKatGenisligi > (settings.En / settings.stepEn)) || (settings.araKatUzunlugu > (settings.Boy / settings.stepBoy))){
 					   
-						   alert("Kısmi Arakat değerlerinizde bir yanlışlık olmalı, lütfen yeni değerler girerek tekrar deneyin. Binanın şuanki boyutlarına göre verebileceğiniz maksimum değerler: Arakat Genişliği: " + (settings.En / settings.stepEn).toFixed(0) + ", Arakat Uzunluğu: " + ((settings.Boy / settings.stepBoy).toFixed(0)));
+						   alert("Kısmi Arakat değerlerinizde bir yanlışlık olmalı, lütfen yeni değerler girerek tekrar deneyin. Binanın şuanki boyutlarına göre verebileceğiniz maksimum değerler: Arakat Genişliği: " + ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn).toFixed(0) + ", Arakat Uzunluğu: " + ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy).toFixed(0));
 						
 						   settings.KismiAraKatEkle = false;
 					}	
@@ -3715,7 +3715,6 @@ class ThreeUtils {
 				
 				settings.KismiAraKatEkle = false;
 				settings.redraw();
-				settings.redraw();
 				settings.objeSayisiniBul();
 				VincKontrol.open();
 				araKatFolder.open();
@@ -3776,13 +3775,9 @@ class ThreeUtils {
 					});
 				});*/
 				
-				
-
 				//window.location.assign('https://www.kardemir.com/Liste.aspx?yil=2017&s=FIYAT');
-				
-				
+								
 				window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak + '&taliKiris=' + taliKiris + '&arakatKiris=' + arakatKiris + '&arakatKolon=' + arakatKolon);
-
 			}
 		};
 		

@@ -19,29 +19,29 @@
 	
 	.btnGonder{
 
-    background-color: #2E9AFE;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: justify;
-    text-decoration: underline;
-    font-size: 14px;
-    margin: 0px 0px;
-	margin-left: 15%;
-    cursor: pointer;
+		background-color: #2E9AFE;
+		border: none;
+		color: white;
+		padding: 15px 32px;
+		text-align: justify;
+		text-decoration: underline;
+		font-size: 14px;
+		margin: 0px 0px;
+		margin-left: 15%;
+		cursor: pointer;
 	}
 	
 	.btnGeri{
 		
-    background-color: #2E9AFE;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: justify;
-    text-decoration: underline;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
+		background-color: #2E9AFE;
+		border: none;
+		color: white;
+		padding: 15px 32px;
+		text-align: justify;
+		text-decoration: underline;
+		font-size: 14px;
+		margin: 4px 2px;
+		cursor: pointer;
 	}
 </style>
 </head>
@@ -195,7 +195,6 @@
       <div class='input'>
 		<input type="text" class="textfield" required='required' value="" id="extra7" name="vinc" onkeypress="return isNumber(event)" />
       </div>
-		  
 	  <div class='label'>
         <label for='number_01'>Arakat Hareketli Yükü (kg/m^2)</label>
       </div>
