@@ -2382,7 +2382,7 @@ class ThreeUtils {
 								}
 								else{
 									
-									ruzgarKolonSayisi = (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2);
+									ruzgarKolonSayisi = (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2).toFixed(0);
 								}
 							}
 							else{
@@ -2391,13 +2391,13 @@ class ThreeUtils {
 									
 									var araSayiRuzgarKolon = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) - settings.araKatGenisligi;
 									
-									ruzgarKolonSayisi = araSayiRuzgarKolon * 4;
+									ruzgarKolonSayisi = (araSayiRuzgarKolon * 4).toFixed(0);
 								}
 								else{
 									
 									var araSayiRuzgarKolon = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) - settings.araKatGenisligi;
 									
-									ruzgarKolonSayisi = (araSayiRuzgarKolon * 4) + (settings.araKatGenisligi * 2);
+									ruzgarKolonSayisi = ((araSayiRuzgarKolon * 4) + (settings.araKatGenisligi * 2)).toFixed(0);
 								}
 							}
 							
@@ -2445,7 +2445,7 @@ class ThreeUtils {
 								}
 								else{
 									
-									ruzgarKolonSayisi = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn);
+									ruzgarKolonSayisi = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn).toFixed(0);
 								}
 							}
 							else{
@@ -2454,13 +2454,13 @@ class ThreeUtils {
 									
 									var araSayiRuzgarKolon = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) - settings.araKatGenisligi;
 									
-									ruzgarKolonSayisi = araSayiRuzgarKolon * 2;
+									ruzgarKolonSayisi = (araSayiRuzgarKolon * 2).toFixed(0);
 								}
 								else{
 									
 									var araSayiRuzgarKolon = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) - settings.araKatGenisligi;
 									
-									ruzgarKolonSayisi = (araSayiRuzgarKolon * 2) + (settings.araKatGenisligi);
+									ruzgarKolonSayisi = ((araSayiRuzgarKolon * 2) + (settings.araKatGenisligi)).toFixed(0);
 								}
 							}
 							
@@ -2497,7 +2497,7 @@ class ThreeUtils {
 						if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
 							
 							//rüzgar kolon sayısı + arakat kolon sayısı
-							ruzgarKolonSayisi = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 4;
+							ruzgarKolonSayisi = (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 4).toFixed;
 							
 							arakatKolon = 0;
 							//rüzgar kolon sayısı + arakat kolon sayısı
@@ -2505,7 +2505,7 @@ class ThreeUtils {
 						
 						else{
 							
-							ruzgarKolonSayisi = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2;
+							ruzgarKolonSayisi = (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2).toFixed(0);
 							
 							arakatKolon = 0;
 						}

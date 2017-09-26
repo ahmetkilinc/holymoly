@@ -577,21 +577,40 @@ $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "ARAKAT (350 KG/M²)"), 1, '
 
 if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	
-	$pdf->SetY(125);
-	$pdf->SetX(70);
-	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(40, 5, "0" . iconv('utf-8', 'ISO-8859-9', " m²") , 1, 'C');
+	if($_GET["kompleAraKat"] == 'true'){
+		
+		$pdf->SetY(125);
+		$pdf->SetX(70);
+		$pdf->SetFont("arial","","10");
+		$pdf->MultiCell(40, 5, "0" . iconv('utf-8', 'ISO-8859-9', " m²") , 1, 'C');
 
-	$pdf->SetY(125);
-	$pdf->SetX(110);
-	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(50, 5, "0" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
+		$pdf->SetY(125);
+		$pdf->SetX(110);
+		$pdf->SetFont("arial","","10");
+		$pdf->MultiCell(50, 5, "0" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
 
-	$pdf->SetY(125);
-	$pdf->SetX(160);
-	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(40, 5, "0" . " TL", 1, 'C');
-	
+		$pdf->SetY(125);
+		$pdf->SetX(160);
+		$pdf->SetFont("arial","","10");
+		$pdf->MultiCell(40, 5, "0" . " TL", 1, 'C');
+	}
+	else if($_GET["kismiAraKat"] == 'true'){
+		
+		$pdf->SetY(125);
+		$pdf->SetX(70);
+		$pdf->SetFont("arial","","10");
+		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"] ." m²") , 1, 'C');
+
+		$pdf->SetY(125);
+		$pdf->SetX(110);
+		$pdf->SetFont("arial","","10");
+		$pdf->MultiCell(50, 5, "0" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
+
+		$pdf->SetY(125);
+		$pdf->SetX(160);
+		$pdf->SetFont("arial","","10");
+		$pdf->MultiCell(40, 5, "0" . " TL", 1, 'C');
+	}
 }
 
 else{
