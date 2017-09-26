@@ -638,7 +638,7 @@ $pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "MAX 10 TONLUK VİNÇ KİR�
 $pdf->SetY(130);
 $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 10, "x" . " ad" , 1, 'C');
+$pdf->MultiCell(40, 10, $_GET["vincKirisSayisi"] . " Adet" , 1, 'C');
 
 $pdf->SetY(130);
 $pdf->SetX(110);
@@ -649,7 +649,7 @@ $pdf->SetY(130);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 10, "x" . " TL", 1, 'C');
-
+/*
 $pdf->SetY(140);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "YATAY CEPHE PANELİ"), 1, 'C');
@@ -687,12 +687,12 @@ $pdf->SetY(145);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, "x" . " TL", 1, 'C');
-
-$pdf->SetY(150);
+*/
+$pdf->SetY(140);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
 
-$pdf->SetY(150);
+$pdf->SetY(140);
 $pdf->SetX(70);
 $pdf->SetFont("arial","B","10");
 $pdf->MultiCell(130, 5, "x" . " TL" , 1, 'R');

@@ -3742,39 +3742,7 @@ class ThreeUtils {
 					kismiAraKatHolBoyutu = 0;
 					kismiAraKatAksBoyutu = 0;
 				}
-				
-				//var araKatYeriEn = 'A-B';
-				//var araKatYeriBoy = '0-7';
-				/*
-					$.ajax({
-						
-						type: 'POST',
-						url: 'deneme.php',
-						data:{
-							
-							a: "some text"
-						},
-						success: function( data ) {
-							
-							window.location.assign('http://localhost/tutorialsPoint/holymoly/deneme.php');
-						}
-					});
-				$(document).ready(function(){
-					 
-					$.ajax({
-							
-						url: 'deneme.php',
-						type: 'POST',
-						data: {bar: 'ahmet'},
-							
-						success: function (result){
-								
-							alert('success');
-							window.location.assign('http://localhost/tutorialsPoint/holymoly/deneme.php');
-						}
-					});
-				});*/
-				
+		
 				//window.location.assign('https://www.kardemir.com/Liste.aspx?yil=2017&s=FIYAT');
 								
 				window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak + '&taliKiris=' + taliKiris + '&arakatKiris=' + arakatKiris + '&arakatKolon=' + arakatKolon);
