@@ -1865,9 +1865,13 @@ class ThreeUtils {
 								app.scene.remove(selectedItem1);
 								var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonY" + i);
 								app.scene.remove(selectedItem1);
-								var selectedItem1 = app.scene.getObjectByName("AraKatKenarKolonX" + i);
+								/*var selectedItem1 = app.scene.getObjectByName("AraKatKenarKolonX" + i);
 								app.scene.remove(selectedItem1);
 								var selectedItem1 = app.scene.getObjectByName("AraKatKenarKolonY" + i);
+								app.scene.remove(selectedItem1);*/
+								var selectedItem1 = app.scene.getObjectByName("ArakatVincliKenarKolonX" + i);
+								app.scene.remove(selectedItem1);
+								var selectedItem1 = app.scene.getObjectByName("ArakatVincliKenarKolonY" + i);
 								app.scene.remove(selectedItem1);
 								var selectedItem1 = app.scene.getObjectByName("ArakatVincliKenarKolonX" + i);
 								app.scene.remove(selectedItem1);
@@ -1921,11 +1925,11 @@ class ThreeUtils {
 						);
 						//kenar kolonlar ayrı şekilde oluşturuldu.
 						fileloader.load('blenderObjects/AraKatKenarKolonSon.obj', function(data){
-
+							/*
 							var selectedItem1 = app.scene.getObjectByName("AraKatKenarKolonX" + i);
 							app.scene.remove(selectedItem1);
 							var selectedItem1 = app.scene.getObjectByName("AraKatKenarKolonY" + i);
-							app.scene.remove(selectedItem1);
+							app.scene.remove(selectedItem1);*/
 
 							for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
 

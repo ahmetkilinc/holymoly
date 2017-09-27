@@ -150,7 +150,6 @@ echo '<html>
 
 		#link, #link:hover {-webkit-transition: color 0.5s ease-out;-moz-transition: color 0.5s ease-out;-ms-transition: color 0.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 0.5s ease-out;}
 
-		/** BEGIN CSS **/
         body{
 		
 			background: #ADD8E6;
@@ -315,7 +314,6 @@ echo '<html>
 		left: 38%;
 		top: 18%;
 	}
-	
 	</style>
 	</head>
 

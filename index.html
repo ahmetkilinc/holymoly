@@ -14,7 +14,6 @@
 			</style>
         </head>
         <body>
-			
 		<noscript>
     		Bu uygulamayı çalıştırmak için tarayıcınızın JavaScript desteklemesi gerekmektedir. Lütfen ayarlardan açınız veya teknik ekibinizden açmak için yardım isteyiniz.
 		</noscript>
@@ -42,7 +41,6 @@
 			
 			var app = ThreeUtils.setupApp();
 			var scene = app.scene;
-  
 			var geom = new THREE.CubeGeometry(100, 0, 0);
 			var mat = new THREE.MeshPhongMaterial({color: 0xffffff});
 			var mesh = new THREE.Mesh(geom, mat);
@@ -54,6 +52,7 @@
 
 				app.camera.rotation.z = 0;
 			}
+			
 			ThreeUtils.animate();
 		});
 
@@ -73,6 +72,5 @@
         <script src='js/ozellikler.js'></script>
 		<script src="js/OrbitControls.js"></script>
 		<script src="js/DragControls.js"></script>
-					
         </body>
         </html>
