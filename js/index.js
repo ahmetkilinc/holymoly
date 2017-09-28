@@ -1,4 +1,4 @@
-class ThreeUtils {
+class ThreeUtils{
 	
     static setupApp({containerid = 'container', grid = true} = {}){
 		
@@ -25,6 +25,14 @@ class ThreeUtils {
 		var arakatKiris = 0;
 		var arakatKolon = 0;
 		var butunParcalar = 0;
+		var olukEn = 0.4;
+		var olukBoy = 0;
+		var olukYukseklik = 0.4;
+		var olukMetreKup = 0;
+		var asikEn = 0.04;
+		var asikBoy = 0;
+		var asikYukseklik = 0.21;
+		var asikMetreKup = 0;
 
         ThreeUtils.app = {};
         var app = ThreeUtils.app;
@@ -1787,7 +1795,6 @@ class ThreeUtils {
 						}
 						//boş dursun.
 					}
-					
 				}
 				
 				else{
@@ -2924,6 +2931,17 @@ class ThreeUtils {
 			width: 323,
 		});
 		
+		//metreküp hesapları
+				
+			olukBoy = settings.stepBoy;
+			olukMetreKup = ((olukBoy * olukEn * olukYukseklik) * 0.57) * olukSayisi;
+				
+			console.log(olukMetreKup);
+				
+			asikBoy = settings.stepBoy;
+				
+		//metreküp hesapları
+		
 		//**ara katların yerini değiştirme fonksiyonu, true ise eskisini sil yeni koordinatları ekle.
 		var obj={
 			
@@ -3726,14 +3744,6 @@ class ThreeUtils {
 			},
 			
 			teklifAl: function(){
-            	
-				//var dataUrl = app.renderer.domElement.toDataURL('image/png');
-				//var dataUrl = 10;
-				//THREEx.Screenshot.bindKey(app.renderer);
-				/*
-				document.getElementById('mydivtag').innerHTML = "<form class='form' action='http://localhost/tutorialsPoint/holymoly/create-form.php' method='post'> <div class='input'> <input id='data' name='data' value= " + dataUrl + "></div></form>";*/
-								
-				//window.open(dataUrl.toString());
 				
 				document.getElementById('gonderBoy').value = settings.Boy;
 				
@@ -3746,7 +3756,7 @@ class ThreeUtils {
 					kismiAraKatHolBoyutu = 0;
 					kismiAraKatAksBoyutu = 0;
 				}
-		
+
 				//window.location.assign('https://www.kardemir.com/Liste.aspx?yil=2017&s=FIYAT');
 								
 				window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak + '&taliKiris=' + taliKiris + '&arakatKiris=' + arakatKiris + '&arakatKolon=' + arakatKolon);
@@ -3754,6 +3764,7 @@ class ThreeUtils {
 		};
 		
         if(grid){
+			
 			//boyutlandırma folderı*
 			var boyutlandirma = app.gui.addFolder('Bina Boyutlandırma');
 
@@ -3785,8 +3796,15 @@ class ThreeUtils {
                 if(k === true){
                     
                 	settings.kolEkle();
+					if(settings.Vinc_Kirisleri_Ekle == true){
+						
+						settings.VincKirisiEkle();
+					}
+					else{
+						
+						settings.VincKirisleriKaldir();
+					}
                 }
-                
                 else{
 					
 					settings.VincsizKolonEkle();

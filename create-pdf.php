@@ -26,9 +26,8 @@ $pdf->AddPage("P", "A4");
 $pdf->AddFont('arial','','arial.php');
 
 // font ayarlanıyor
-$pdf->SetFont('Arial','',11);
+$pdf->SetFont('Arial', '', 11);
 
-//------------------------
 $pdf->SetAlpha(0.6);
 
 $pdf->Image('presets/logo.png', 10, 10, -140);
