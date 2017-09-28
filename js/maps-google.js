@@ -267,8 +267,6 @@ function initialize(){
 					  travelMode  : google.maps.DirectionsTravelMode.DRIVING
 					};
 					
-					
-
 					/*
 					uzaklikT = (google.maps.geometry.spherical.computeDistanceBetween(marker.getPosition(), marker1.getPosition()) / 1000).toFixed(6);
 					uzaklikH = (google.maps.geometry.spherical.computeDistanceBetween(marker.getPosition(), marker2.getPosition()) / 1000).toFixed(6);

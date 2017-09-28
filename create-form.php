@@ -121,7 +121,7 @@
         <label for='input_email'>E-Posta</label>
       </div>
       <div class='input'>
-        <input id='email' required='required' type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}*4$" name='email'>
+        <input id='email' required='required' type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name='email'>
 		<span class='hint'>E-Posta adresinizi giriniz.</span>
       </div>
 			  			  
