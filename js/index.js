@@ -29,10 +29,27 @@ class ThreeUtils{
 		var olukBoy = 0;
 		var olukYukseklik = 0.4;
 		var olukMetreKup = 0;
-		var asikEn = 0.04;
 		var asikBoy = 0;
-		var asikYukseklik = 0.21;
-		var asikMetreKup = 0;
+		
+		var asikYukseklikH = {
+			
+			fabrika : "hasanoglan",
+			yirbibeslik : [15, 25, 8],
+			otuzikilik : [17, 32, 9],
+			yirmidokuzluk : [16, 29, 9],
+			otuzdortluk : [17, 34, 9]
+		};
+		
+		var asikYukseklikT = {
+			
+			fabrika : "temelli",
+			yirbibeslik : [12, 25, 8],
+			yirmisekizlik : [15.5, 28, 9],
+			yirmiyedibucukluk : [18, 27.5, 7],
+			otuzsekizlik : [26, 38, 9]
+		};
+		
+		console.log(asikYukseklikT.yirbibeslik[2]);
 
         ThreeUtils.app = {};
         var app = ThreeUtils.app;
@@ -3818,7 +3835,7 @@ class ThreeUtils{
 					
 					settings.VincKirisiEkle();
 					settings.objeSayisiniBul();
-				}	
+				}
 					
 				else{
 					
@@ -3964,6 +3981,7 @@ class ThreeUtils{
             width:  app.container.clientWidth,
             height: app.container.clientHeight
         };
+		
         app.renderer.setSize(size.width / 1, size.height / 1);
         app.camera.aspect = size.width / size.height;
         app.camera.updateProjectionMatrix();
