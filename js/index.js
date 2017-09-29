@@ -30,26 +30,27 @@ class ThreeUtils{
 		var olukYukseklik = 0.4;
 		var olukMetreKup = 0;
 		var asikBoy = 0;
+		var asikBoyH = 0;
+		var asikMetreKupT = 0;
+		var asikMetreKupH = 0;
 		
 		var asikYukseklikH = {
 			
 			fabrika : "hasanoglan",
-			yirbibeslik : [15, 25, 8],
+			yirmibeslik : [15, 25, 8],
 			otuzikilik : [17, 32, 9],
 			yirmidokuzluk : [16, 29, 9],
 			otuzdortluk : [17, 34, 9]
 		};
-		
+
 		var asikYukseklikT = {
 			
 			fabrika : "temelli",
-			yirbibeslik : [12, 25, 8],
+			yirmibeslik : [12, 25, 8],
 			yirmisekizlik : [15.5, 28, 9],
 			yirmiyedibucukluk : [18, 27.5, 7],
 			otuzsekizlik : [26, 38, 9]
 		};
-		
-		console.log(asikYukseklikT.yirbibeslik[2]);
 
         ThreeUtils.app = {};
         var app = ThreeUtils.app;
@@ -69,26 +70,26 @@ class ThreeUtils{
         var size = app.renderer.getSize();
         app.camera = new THREE.PerspectiveCamera(45, size.width / size.height, 1, 1000);
         app.camera.position.set(- 40, 30, 100);
-		
+
         app.controls = new THREE.TrackballControls(app.camera, app.renderer.domElement);
-					
-		//mouse ile hareket için controls.
+
+		//mouse ile hareket için control.
 		app.controls.rotateSpeed = 0.9;
 		app.controls.panSpeed = 0.5;
 		app.controls.zoomSpeed = 0.9;
 		//mouse-right button
-		
+
 		//app.controls.noZoom = false;
 		app.controls.noPan = false;
 		app.controls.staticMoving = true;
 		app.controls.dynamicDampingFactor = 0.1;
-		
+
 		var geometry = new THREE.BoxGeometry(5, 5, 5);
 
         window.addEventListener('resize', ThreeUtils.onWindowResize, false);
-			
+
         var Settings = function(){
-				
+
             this.VincliKolonlar = false,
 			this.Vinc_Kirisleri_Ekle = false,
 			this.AraKatEkle = false,
@@ -2936,6 +2937,98 @@ class ThreeUtils{
 				}
 			}
 			
+			this.metreKupHesaplari = function(){
+				
+				//oluk metreküp
+				olukBoy = settings.stepBoy;
+				olukMetreKup = ((olukBoy * olukEn * olukYukseklik) * 0.57) * olukSayisi;
+
+				console.log("oluk metreküp toplam: " + olukMetreKup);
+				//oluk metreküp
+				
+				//aşık metreküp
+				asikBoy = settings.stepBoy;
+
+				if(settings.stepBoy >= 8 && settings.stepBoy < 8.4){
+
+					var asikAlan = ((asikYukseklikT.yirmisekizlik[0] / 100) - (asikYukseklikT.yirmisekizlik[2] / 100)) * (asikYukseklikT.yirmisekizlik[1] / 100); 
+					
+					asikBoy = settings.stepBoy;
+					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
+
+					console.log("aşık kirişi metreküp 8-8.4: " + asikMetreKupT);
+				}
+				
+				else if(settings.stepBoy >= 8.4 && settings.stepBoy < 8.7){
+
+					var asikAlan = ((asikYukseklikT.yirmiyedibucukluk[0] / 100) - (asikYukseklikT.yirmiyedibucukluk[2] / 100)) * (asikYukseklikT.yirmiyedibucukluk[1] / 100);
+					
+					asikBoy = settings.stepBoy;
+					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
+					
+					console.log("aşık kirişi metreküp 8.4-8.7:" + asikMetreKupT);
+				}
+				else if(settings.stepBoy >= 8.7 && settings.stepBoy < 9.09){
+
+					var asikAlan = ((asikYukseklikT.otuzsekizlik[0] / 100) - (asikYukseklikT.otuzsekizlik[2] / 100)) * (asikYukseklikT.otuzsekizlik[1] / 100);
+					
+					asikBoy = settings.stepBoy;
+					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
+					
+					console.log("aşık kirişi metreküp 8.7-9.09" + asikMetreKupT);
+				}
+				else{
+					
+					var asikAlan = ((asikYukseklikT.yirmibeslik[0] / 100) - (asikYukseklikT.yirmibeslik[2] / 100)) * (asikYukseklikT.yirmibeslik[1] / 100);
+					 
+					asikBoy = settings.stepBoy;
+					
+					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
+					 
+					console.log("aşık kirişi metreküp 0-8" + asikMetreKupT);
+				}
+				
+				//hasanoğlan fabrika için:
+				if(settings.stepBoy < 8){
+					
+					var asikAlan = ((asikYukseklikH.yirmibeslik[0] / 100) - (asikYukseklikH.yirmibeslik[2] / 100)) * (asikYukseklikH.yirmibeslik[1] / 100);
+					
+					asikBoyH = settings.stepBoy;
+					
+					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
+					
+					console.log("aşık kirişi metreküp" + asikMetreKupH);
+				}
+				else if(settings.stepBoy >= 8 && settings.stepBoy < 8.4){
+
+					var asikAlan = ((asikYukseklikH.yirmidokuzluk[0] / 100) - (asikYukseklik.yirmidokuzluk[2] / 100)) * (asikYukseklikH.yirmidokuzluk[1] / 100);
+					
+					asikBoyH = settings.stepBoy;
+					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
+					
+					console.log("aşık kirişi metreküp" + asikMetreKupH);
+				}
+				else if(settings.stepBoy >= 8.4 && settings.stepBoy < 8.7){
+
+					var asikAlan = ((asikYukseklikH.otuzikilik[0] / 100) - (asikYukseklikH.otuzikilik[2] / 100)) * asikYukseklikH.yirmidokuzluk[0] / 100;
+					
+					asikBoyH = settings.stepBoy;
+					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
+					
+					console.log("asik kirişi metreküp" + asikMetreKupH);
+				}
+				else{
+
+					var asikAlan = ((asikYukseklikH.otuzdortluk[0] / 100) - (asikYukseklikH.otuzdortluk[2] / 100)) * (asikYukseklikH.otuzdortluk[1] / 100);
+					
+					asikBoyH = settings.stepBoy;
+					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
+					
+					console.log("aşık kirişi metreküp" + asikMetreKupH);
+				}
+				//aşık metreküp
+			}
+
 			//obje ekleme ve kaldırma fonksiyonları son*
         }
 		
@@ -2948,17 +3041,8 @@ class ThreeUtils{
 			width: 323,
 		});
 		
-		//metreküp hesapları
-				
-			olukBoy = settings.stepBoy;
-			olukMetreKup = ((olukBoy * olukEn * olukYukseklik) * 0.57) * olukSayisi;
-				
-			console.log(olukMetreKup);
-				
-			asikBoy = settings.stepBoy;
-				
-		//metreküp hesapları
 		
+
 		//**ara katların yerini değiştirme fonksiyonu, true ise eskisini sil yeni koordinatları ekle.
 		var obj={
 			
@@ -3752,6 +3836,7 @@ class ThreeUtils{
 			
 			BinaCiz: function(){
 				
+				settings.metreKupHesaplari();
 				settings.KismiAraKatEkle = false;
 				settings.redraw();
 				settings.objeSayisiniBul();
