@@ -33,6 +33,10 @@ class ThreeUtils{
 		var asikBoyH = 0;
 		var asikMetreKupT = 0;
 		var asikMetreKupH = 0;
+		var catiMakasiMetreKup = 0;
+		var catiMakasiBoy = 0;
+		var catiMakasiEn = 35;
+		var catiMakasiYukseklik = 56.2;
 		
 		var asikYukseklikH = {
 			
@@ -2161,7 +2165,7 @@ class ThreeUtils{
 					app.scene.remove(selectedItem1);
 				}
 			}
-			
+			//kısmi arakatları kaldırma
 			this.kismiAraKatKolonlariEkle = function(){
 				
 				//kısmı arakat eklenmek istenildiğinde kolonları bu şekilde ekle.					
@@ -2319,7 +2323,7 @@ class ThreeUtils{
 						);
 					}
 			}
-			
+			//bütün elemanları sayısını bulma
 			this.objeSayisiniBul = function(){
 			
 				if(settings.En / settings.stepEn > 1){
@@ -2936,7 +2940,7 @@ class ThreeUtils{
 					}
 				}
 			}
-			
+			//elemanların metreküp hesaplamaları
 			this.metreKupHesaplari = function(){
 				
 				//oluk metreküp
@@ -3027,8 +3031,16 @@ class ThreeUtils{
 					console.log("aşık kirişi metreküp" + asikMetreKupH);
 				}
 				//aşık metreküp
+				
+				//çatı makası metreküp
+				
+				catiMakasiBoy = settings.stepEn;
+				catiMakasiMetreKup = ((catiMakasiBoy * (catiMakasiEn / 100) * (catiMakasiYukseklik / 100)) + ((catiMakasiEn / 100) * catiMakasiBoy * (99 / 100))) * makasSayisi;
+				
+				console.log("Çatı Makası Metreküp toplam: " + catiMakasiMetreKup);
+				
+				//çatı makası metreküp
 			}
-
 			//obje ekleme ve kaldırma fonksiyonları son*
         }
 		
@@ -3041,8 +3053,6 @@ class ThreeUtils{
 			width: 323,
 		});
 		
-		
-
 		//**ara katların yerini değiştirme fonksiyonu, true ise eskisini sil yeni koordinatları ekle.
 		var obj={
 			
