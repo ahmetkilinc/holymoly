@@ -225,6 +225,7 @@
 				</div>
 		    </div>			  
 		</div>
+			
 		<div class="panel-footer">
 			<div class="row">
 			  	<div class="col-md-12">
