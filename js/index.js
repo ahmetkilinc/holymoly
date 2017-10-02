@@ -29,21 +29,176 @@ class ThreeUtils{
 		var olukBoy = 0;
 		var olukYukseklik = 0.4;
 		var olukMetreKup = 0;
+		
 		var asikBoy = 0;
 		var asikBoyH = 0;
 		var asikMetreKupT = 0;
 		var asikMetreKupH = 0;
+		
 		var catiMakasiMetreKup = 0;
 		var catiMakasiBoy = 0;
 		var catiMakasiEn = 35;
 		var catiMakasiYukseklik = 56.2;
 		
+		var makasHasanoglan12 = {
+			
+			fabrika : "hasanoglan",
+			boy : [12, 14.5],
+			en : [35, 25],
+			yukseklik : 51.6,
+			yukseklikUcgen : 25.75
+		};
+		
+		var makasHasanoglan15 = {
+			
+			fabrika : "hasanoglan",
+			boy : [14.5, 16.5],
+			en : [35, 25],
+			yukseklik : 51.6,
+			yukseklikUcgen : 25.75
+		};
+		
+		var makasHasanoglan16 = {
+			
+			fabrika : "hasanoglan",
+			boy : [16.5, 18.5],
+			en : [35, 30],
+			yukseklik : 49.5,
+			yukseklikUcgen : 24.75
+		};
+		
+		var makasHasanoglan18 = {
+			
+			fabrika : "hasanoglan",
+			boy : [18.5, 20.5],
+			en : [35, 30],
+			yukseklik : 49.5,
+			yukseklikUcgen : 24.75
+		};
+		
+		var makasHasanoglan20 = {
+		
+			fabrika : "hasanoglan",
+			boy : [20.5, 22.5],
+			en : [35, 30],
+			yukseklik : 49.5,
+			yukseklikUcgen : 24.75
+		};
+		
+		var makasHasanoglan21 = {
+			
+			fabrika : "hasanoglan",
+			boy : [22.5, 23.5],
+			en : [43, 41.5],
+			yukseklik : 49.5,
+			yukseklikUcgen : 24.75
+		};
+		
+		var makasHasanoglan23 = {
+			
+			fabrika : "hasanoglan",
+			boy : [23.5, 26.5],
+			en : [43, 41.5],
+			yukseklik : 49.5
+			yukseklikUcgen : 24.75
+		};
+		
+		var makasHasanoglan26 = {
+			
+			fabrika : "hasanoglan",
+			boy : [26.5, 30],
+			en : [43, 41.5],
+			yukseklik : 49.5,
+			yukseklikUcgen : 24.75
+		};
+		
+		var makasTemelli7 = {
+			
+			fabrika : "temelli",
+			boy : [7.5, 10.5],
+			en : [35, 25],
+			yukseklik : 53,
+			yukseklikUcgen : 52
+		};
+		
+		var makasTemelli9 = {
+			
+			fabrika : "temelli",
+			boy : [10.5, 12.5],
+			en : [35, 25],
+			yukseklik : 53,
+			yukseklikUcgen : 62
+		};
+		
+		var makasTemelli12 = {
+			
+			fabrika : "temelli",
+			boy : [12.5, 15.5],
+			en : [35, 25],
+			yukseklik : 53,
+			yukseklikUcgen : 77
+		};
+		
+		var makasTemelli16 = {
+			
+			fabrika : "temelli",
+			boy : [15.5, 18],
+			en : [35, 25],
+			yukseklik : 49.5,
+			yukseklikUcgen : 49.5
+		};
+		
+		var makasTemelli18 = {
+			
+			fabrika : "temelli",
+			boy : [18, 20.5],
+			en : [35, 25],
+			yukseklik : 49.5,
+			yukseklikUcgen : 49.5
+		};
+		
+		var makasTemelli20 = {
+			
+			fabrika : "temelli",
+			boy : [20.5, 22.5],
+			en : [35, 25],
+			yukseklik : 49.5,
+			yukseklikUcgen : 49.5
+		};
+		
+		var makasTemelli21 = {
+			
+			fabrika : "temelli",
+			boy : [22.5, 23.5],
+			en : [43, 41.5],
+			yukseklik : 37.3,
+			yukseklikUcgen : 37.3
+		};
+		
+		var makasTemelli23 = {
+			
+			fabrika : "temelli",
+			boy : [23.5, 26.5],
+			en : [43, 41.5],
+			yukseklik : 37.3,
+			yukseklikUcgen : 37.3
+		};
+		
+		var makasTemelli26 = {
+			
+			fabrika : "temelli",
+			boy : [26.5, 29.5],
+			en : [43, 41.5],
+			yukseklik : 37.5,
+			yukseklikUcgen : 37.5
+		};
+		
 		var asikYukseklikH = {
 			
 			fabrika : "hasanoglan",
 			yirmibeslik : [15, 25, 8],
-			otuzikilik : [17, 32, 9],
 			yirmidokuzluk : [16, 29, 9],
+			otuzikilik : [17, 32, 9],
 			otuzdortluk : [17, 34, 9]
 		};
 
@@ -51,8 +206,8 @@ class ThreeUtils{
 			
 			fabrika : "temelli",
 			yirmibeslik : [12, 25, 8],
-			yirmisekizlik : [15.5, 28, 9],
 			yirmiyedibucukluk : [18, 27.5, 7],
+			yirmisekizlik : [15.5, 28, 9],
 			otuzsekizlik : [26, 38, 9]
 		};
 
@@ -2960,7 +3115,7 @@ class ThreeUtils{
 					asikBoy = settings.stepBoy;
 					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
 
-					console.log("aşık kirişi metreküp 8-8.4: " + asikMetreKupT);
+					console.log("Temelli fab aşık kirişi metreküp 8-8.4: " + asikMetreKupT);
 				}
 				
 				else if(settings.stepBoy >= 8.4 && settings.stepBoy < 8.7){
@@ -2970,7 +3125,7 @@ class ThreeUtils{
 					asikBoy = settings.stepBoy;
 					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
 					
-					console.log("aşık kirişi metreküp 8.4-8.7:" + asikMetreKupT);
+					console.log("Temelli fab aşık kirişi metreküp 8.4-8.7: " + asikMetreKupT);
 				}
 				else if(settings.stepBoy >= 8.7 && settings.stepBoy < 9.09){
 
@@ -2979,7 +3134,7 @@ class ThreeUtils{
 					asikBoy = settings.stepBoy;
 					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
 					
-					console.log("aşık kirişi metreküp 8.7-9.09" + asikMetreKupT);
+					console.log("Temelli fab aşık kirişi metreküp 8.7-9.09: " + asikMetreKupT);
 				}
 				else{
 					
@@ -2989,7 +3144,7 @@ class ThreeUtils{
 					
 					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
 					 
-					console.log("aşık kirişi metreküp 0-8" + asikMetreKupT);
+					console.log("Temelli fab aşık kirişi metreküp 0-8: " + asikMetreKupT);
 				}
 				
 				//hasanoğlan fabrika için:
@@ -3001,7 +3156,7 @@ class ThreeUtils{
 					
 					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
 					
-					console.log("aşık kirişi metreküp" + asikMetreKupH);
+					console.log("Hasanoğlan fab aşık kirişi metreküp <8: " + asikMetreKupH);
 				}
 				else if(settings.stepBoy >= 8 && settings.stepBoy < 8.4){
 
@@ -3010,7 +3165,7 @@ class ThreeUtils{
 					asikBoyH = settings.stepBoy;
 					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
 					
-					console.log("aşık kirişi metreküp" + asikMetreKupH);
+					console.log("Hasanoğlan fab aşık kirişi metreküp 8-8.4: " + asikMetreKupH);
 				}
 				else if(settings.stepBoy >= 8.4 && settings.stepBoy < 8.7){
 
@@ -3019,7 +3174,7 @@ class ThreeUtils{
 					asikBoyH = settings.stepBoy;
 					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
 					
-					console.log("asik kirişi metreküp" + asikMetreKupH);
+					console.log("Hasanoğlan fab asik kirişi metreküp 8.4-8.7: " + asikMetreKupH);
 				}
 				else{
 
@@ -3028,7 +3183,7 @@ class ThreeUtils{
 					asikBoyH = settings.stepBoy;
 					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
 					
-					console.log("aşık kirişi metreküp" + asikMetreKupH);
+					console.log("Hasanoğlan fab aşık kirişi metreküp >8.7: " + asikMetreKupH);
 				}
 				//aşık metreküp
 				
@@ -3040,6 +3195,12 @@ class ThreeUtils{
 				console.log("Çatı Makası Metreküp toplam: " + catiMakasiMetreKup);
 				
 				//çatı makası metreküp
+				
+				//kolonlar metreküp
+				
+				
+				
+				//kolonlar metreküp
 			}
 			//obje ekleme ve kaldırma fonksiyonları son*
         }
