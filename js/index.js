@@ -3208,6 +3208,8 @@ class ThreeUtils{
 					makasAlanUcgen = ((makasTemelli7.en[0] - makasTemelli7.en[1]) * makasTemelli7.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					
+					console.log("temelli 7.5 - 10.5 makas metreküp: " + makasMetreKup);
 				}
 
 				else if(settings.stepEn >= 10.5 && settings.stepEn < 12){
@@ -3217,6 +3219,8 @@ class ThreeUtils{
 					makasAlanUcgen = ((makasTemelli9.en[0] - makasTemelli9.en[1]) * makasTemelli9.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					
+					console.log("temelli 10.5 - 12 makas metreküp: " + makasMetreKup);
 				}
 
 				else if(settings.stepEn >= 12 && settings.stepEn < 14.5){
@@ -3226,12 +3230,16 @@ class ThreeUtils{
 					makasAlanUcgen = ((makasHasanoglan12.en[0] - makasHasanoglan12.en[1]) * makasHasanoglan12.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					
 					//
+					
 					makasAlanT = (makasTemelli12.en[0] - makasTemelli12.en[1]) * makasTemelli12.yukseklik;
 
 					makasAlanUcgenT = ((makasTemelli12.en[0] - makasTemelli12.en[1]) * makasTemelli12.yukseklik) / 2;
 
 					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					
+					console.log("hasanoğlan 12 - 14.5 makas metreküp: " + makasMetreKup + ", temelli 12 - 14.5 makas metreküp: " + makasMetreKupT);
 				}
 
 				else if(settings.stepEn >= 14.5 && settings.stepEn < 16.5){
@@ -3241,6 +3249,8 @@ class ThreeUtils{
 					makasAlanUcgen = ((makasHasanoglan15.en[0] - makasHasanoglan15.en[1]) * makasHasanoglan15.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					
+					console.log("hasanoğlan 14.5 - 16.5 makas metreküp: " + makasMetreKup);
 				}
 
 				else if(settings.stepEn >= 16.5 && settings.stepEn < 18.5){
@@ -3257,6 +3267,8 @@ class ThreeUtils{
 					makasAlanUcgenT = ((makasTemelli16.en[0] - makasTemelli16.en[1]) * makasTemelli16.yukseklikUcgen) / 2 ;
 
 					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					
+					console.log("hasanoğlan 16.5 - 18.5 makas metreküp: " + makasMetreKup + ", temelli 16.5 - 18.5 makas metreküp: " + makasMetreKupT);
 				}
 
 				else if(settings.stepEn >= 18.5 && settings.stepEn < 20.5){
@@ -3266,12 +3278,16 @@ class ThreeUtils{
 					makasAlanUcgen = ((makasHasanoglan18.en[0] - makasHasanoglan18.en[1]) * makasHasanoglan18.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
-
+					
+					//
+					
 					makasAlanT = (makasTemelli18.en[0] - makasTemelli18.en[1]) * makasTemelli18.yukseklik;
 
 					makasAlanUcgenT = ((makasTemelli18.en[0] - makasTemelli18.en[1]) * makasTemelli18.yukseklikUcgen) / 2;
 
 					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					
+					console.log("hasanoğlan 18.5 - 20.5 makas metreküp: " + makasMetreKup + ", temelli 18.5 - 20.5 makas metreküp: " + makasMetreKupT);
 				}
 
 				else if(settings.stepEn >= 20.5 && settings.stepEn < 22.5){
@@ -3281,12 +3297,16 @@ class ThreeUtils{
 					makasAlanUcgen = ((makasHasanoglan20.en[0] - makasHasanoglan20.en[1]) * makasHasanoglan20.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
-
+					
+					//
+					
 					makasAlanT = (makasTemelli20.en[0] - makasTemelli20.en[1]) * makasTemelli20.yukseklik;
 
 					makasAlanUcgenT = ((makasTemelli20.en[0] - makasTemelli20.en[1]) * makasTemelli20.yukseklikUcgen) / 2;
 
-					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi
+					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					
+					console.log("hasanoğlan 20.5 - 22.5 makas metreküp: " + makasMetreKup + ", temelli 20.5 - 22.5 makas metreküp: " + makasMetreKupT);
 				}
 
 				else if(settings.stepEn >= 22.5 && settings.stepEn < 23.5){
@@ -3296,12 +3316,16 @@ class ThreeUtils{
 					makasAlanUcgen = ((makasHasanoglan21.en[0] - makasHasanoglan21.en[1]) * makasHasanoglan21.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
-
+					
+					//
+					
 					makasAlanT = (makasTemelli21.en[0] - makasTemelli21.en[1]) * makasTemelli21.yukseklik;
 
 					makasAlanUcgenT = ((makasTemelli21.en[0] - makasTemelli21.en[1]) * makasTemelli21.yukseklikUcgen) / 2;
 
 					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					
+					console.log("hasanoğlan 22.5 - 23.5 makas metreküp: " + makasMetreKup + ", temelli 22.5 - 23.5 makas metreküp: " + makasMetreKupT);
 				}
 
 				else if(settings.stepEn >= 23.5 && settings.stepEn < 26.5){
@@ -3311,12 +3335,18 @@ class ThreeUtils{
 					makasAlanUcgen = ((makasHasanoglan23.en[0] - makasHasanoglan23.en[1]) * makasHasanoglan23.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
-
+					
+					//
+					
 					makasAlanT = (makasTemelli23.en[0] - makasTemelli23.en[1]) * makasTemelli23.yukseklik;
 
 					makasAlanUcgenT = ((makasTemelli23.en[0] - makasTemelli23.en[1]) * makasTemelli23.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					
+					console.log("hasanoğlan 23.5 - 26.5 makas metreküp: " + makasMetreKup + ", temelli 23.5 - 26.5 makas metreküp: " + makasMetreKupT);
+					
+					
 				}
 
 				else if(settings.stepEn >= 26.5 && settings.stepEn < 30){
@@ -3326,13 +3356,22 @@ class ThreeUtils{
 					makasAlanUcgen = ((makasHasanoglan26.en[0] - makasHasanoglan26.en[1]) * makasHasanoglan26.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
-
+					
+					//
+					
 					makasAlanT = (makasTemelli26.en[0] - makasTemelli26.en[1]) * makasTemelli26.yukseklik;
 
 					makasAlanUcgenT = ((makasTemelli26.en[0] - makasTemelli26.en[1]) * makasTemelli26.yukseklikUcgen) / 2;
 
 					makasMetreKup = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					
+					console.log("hasanoğlan 26.5 - 30 makas metreküp: " + makasMetreKup + ", temelli 26.5 - 30 makas metreküp: " + makasMetreKupT);
 				}
+			}
+			
+			this.kolonMetreKupHesabi = function(){
+				
+				
 			}
 			//obje ekleme ve kaldırma fonksiyonları son*
         }
