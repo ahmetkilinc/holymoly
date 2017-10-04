@@ -43,6 +43,61 @@ class ThreeUtils{
 		var makasAlanUcgenT = 0;
 		var makasMetreKupT = 0;
 		
+		var kolonAlan = 0;
+		var kolonAlanYamuk = 0;
+		var kolonMetreKup = 0;
+		var kolonYukseklik = 0;
+		
+		//kolonlar
+		var kolon40 = {
+			
+			kolonEn : 40,
+			kolonBoy : 40,
+			kolonYamukBoyut : [40, 20, 20]
+		};
+		
+		var kolon45 = {
+			
+			kolonEn : 45,
+			kolonBoy : 45,
+			kolonYamukBoyut : [45, 22.5, 25]
+		};
+		
+		var kolon50 = {
+			
+			kolonEn : 50,
+			kolonBoy : 50,
+			kolonYamukBoyut : [50, 25, 30]
+		};
+		
+		var kolon55 = {
+			
+			kolonEn : 55,
+			kolonBoy : 55,
+			kolonYamukBoyut : [55, 27.5, 35]
+		};
+		
+		var kolon60 = {
+			
+			kolonEn : 60,
+			kolonBoy : 60,
+			kolonYamukBoyut : [60, 30, 40]
+		};
+		
+		var kolon65 = {
+			
+			kolonEn : 65,
+			kolonBoyut : 65,
+			kolonYamukBoyut : [65, 32.5, 45]
+		};
+		
+		var kolon70 = {
+			
+			kolonEn : 70,
+			kolonBoyut : 70,
+			kolonYamukBoyut : [70, 35, 50]
+		};
+				
 		//makaslar
 		var makasHasanoglan12 = {
 			
@@ -3100,7 +3155,7 @@ class ThreeUtils{
 					}
 				}
 			}
-			//elemanların(çatı makası hariç) metreküp hesaplamaları
+			//elemanların(çatı makası ve kolon hariç) metreküp hesaplamaları
 			this.metreKupHesaplari = function(){
 				
 				//oluk metreküp
@@ -3368,11 +3423,91 @@ class ThreeUtils{
 					console.log("hasanoğlan 26.5 - 30 makas metreküp: " + makasMetreKup + ", temelli 26.5 - 30 makas metreküp: " + makasMetreKupT);
 				}
 			}
-			
+			//kolon metreküp hesabı
 			this.kolonMetreKupHesabi = function(){
 				
+				//alert(kolon70.kolonYamukBoyut[0] +" "+ kolon70.kolonYamukBoyut[1] +" "+ kolon70.kolonYamukBoyut[2]);
 				
+				if(settings.Yükseklik >= 3 && settings.Yükseklik < 7){
+
+					kolonAlan = kolon40.kolonEn * kolon40.kolonBoy;
+
+					kolonAlanYamuk = ((kolon40.kolonYamukBoyut[0] + kolon40.kolonYamukBoyut[1]) * kolon40.kolonYamukBoyut[2]) / 2;
+
+					kolonMetreKup = ((kolonAlan * settings.Yükseklik) + (kolonAlanYamuk * kolon40.kolonYamukBoyut[0])) * kolonSayisi;
+					
+					console.log("kolon yükseklik 3 - 7 metreküp: " + kolonMetreKup);
+
+				}
+
+				else if(settings.Yükseklik >= 7 && settings.Yükseklik < 11){
+
+					kolonAlan = kolon45.kolonEn * kolon45.kolonBoy;
+
+					kolonAlanYamuk = ((kolon45.kolonYamukBoyut[0] + kolon45.kolonYamukBoyut[1]) * kolon45.kolonYamukBoyut[2]) / 2;
+
+					kolonMetreKup = ((kolonAlan * settings.Yükseklik) + (kolonAlanYamuk * kolon45.kolonYamukBoyut[0])) * kolonSayisi;
+					
+					console.log("kolon yükseklik 7 - 11 metreküp: " + kolonMetreKup);
+				}
+
+				else if(settings.Yükseklik >= 11 && settings.Yükseklik < 15){
+
+					kolonAlan = kolon50.kolonEn * kolon50.kolonBoy;
+
+					kolonAlanYamuk = ((kolon50.kolonYamukBoyut[0] + kolon50.kolonYamukBoyut[1]) * kolon50.kolonYamukBoyut[2]) / 2;
+
+					kolonMetreKup = ((kolonAlan * settings.Yükseklik) + (kolonAlanYamuk * kolon50.kolonYamukBoyut[0])) * kolonSayisi;
+					
+					console.log("kolon yükseklik 11 - 15 metreküp: " + kolonMetreKup);
+				}
+
+				else if(settings.Yükseklik >= 15 && settings.Yükseklik < 19){
+
+					kolonAlan = kolon55.kolonEn * kolon55.kolonBoy;
+
+					kolonAlanYamuk = ((kolon55.kolonYamukBoyut[0] + kolon55.kolonYamukBoyut[1]) * kolon55.kolonYamukBoyut[2]) / 2;
+
+					kolonMetreKup = ((kolonAlan * settings.Yükseklik) + (kolonAlanYamuk * kolon55.kolonYamukBoyut[0])) * kolonSayisi;
+				
+					console.log("kolon yükseklik 15 - 19 metreküp: " + kolonMetreKup);
+				}
+
+				else if(settings.Yükseklik >= 19 && settings.Yükseklik < 23){
+
+					kolonAlan = kolon60.kolonEn * kolon60.kolonBoyut;
+
+					kolonAlanYamuk = ((kolon60.kolonYamukBoyut[0] + kolon60.kolonYamukBoyut[1]) * kolon60.kolonYamukBoyut[2]) / 2;
+
+					kolonMetreKup = ((kolonAlan * settings.Yükseklik) + (kolonAlanYamuk * kolon60.kolonYamukBoyut[0])) * kolonSayisi;
+					
+					console.log("kolon yükseklik 19 - 23 metreküp: " + kolonMetreKup);
+				}
+
+				else if(settings.Yükseklik >=  23 && settings.Yükseklik < 27){
+
+					kolonAlan = kolon65.kolonEn * kolon65.kolonBoyut;
+
+					kolonAlanYamuk = ((kolon65.kolonYamukBoyut[0] + kolon65.kolonYamukBoyut[1]) * kolon65.kolonYamukBoyut[2]) / 2;
+
+					kolonMetreKup = ((kolonAlan * settings.Yükseklik) + (kolonAlanYamuk * kolon65.kolonYamukBoyut[0])) * kolonSayisi;
+					
+					console.log("kolon yükseklik 23 - 27 metreküp: " + kolonMetreKup);
+				}
+				
+				else{
+
+					kolonAlan = kolon70.kolonEn * kolon70.kolonBoyut;
+
+					kolonAlanYamuk = ((kolon70.kolonYamukBoyut[0] + kolon70.kolonYamukBoyut[1]) * kolon70.kolonYamukBoyut[2]) / 2;
+
+					kolonMetreKup = ((kolonAlan * settings.Yükseklik) + (kolonAlanYamuk * kolon70.kolonYamukBoyut[0])) * kolonSayisi;
+					
+					console.log("kolon yükseklik 27 - 30 metreküp: " + kolonMetreKup);
+				}
 			}
+			
+			
 			//obje ekleme ve kaldırma fonksiyonları son*
         }
 		
@@ -4178,6 +4313,7 @@ class ThreeUtils{
 			
 			BinaCiz: function(){
 				
+				settings.kolonMetreKupHesabi();
 				settings.metreKupHesaplari();
 				settings.makasMetreKupHesabi();
 				settings.KismiAraKatEkle = false;
@@ -4213,12 +4349,12 @@ class ThreeUtils{
 			//boyutlandırma folderı*
 			var boyutlandirma = app.gui.addFolder('Bina Boyutlandırma');
 
-			boyutlandirma.add(settings, 'Boy').min(5).max(100).step(0.01).name('Bina Uzunluğu (Boy)').onChange(function(value){
+			boyutlandirma.add(settings, 'Boy').min(7.5).max(100).step(0.01).name('Bina Uzunluğu (Boy)').onChange(function(value){
 			   
                 settings.Boy = value;
             });
 
-			boyutlandirma.add(settings, 'En').min(5).max(100).step(0.01).name('Bina Genişliği (En)').onChange(function(value){
+			boyutlandirma.add(settings, 'En').min(7.5).max(100).step(0.01).name('Bina Genişliği (En)').onChange(function(value){
 				
                 settings.En = value;
             });
