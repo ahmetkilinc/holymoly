@@ -3023,7 +3023,7 @@ console.log("Deprem Bölgesi: " + depremBolgesi);
 		Safranbolu : 4,
 		Ulus : 3
 	}
-	
+		
 //*****************************
 	
 var katsayi = 0;
