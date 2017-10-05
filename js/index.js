@@ -48,6 +48,10 @@ class ThreeUtils{
 		var kolonMetreKup = 0;
 		var kolonYukseklik = 0;
 		
+		var piPlakYukseklik = 0;
+		var piPlakAlan = 0;
+		var piPlakMetreKup = 0;
+		
 		//kolonlar
 		var kolon40 = {
 			
@@ -3426,8 +3430,6 @@ class ThreeUtils{
 			//kolon metreküp hesabı
 			this.kolonMetreKupHesabi = function(){
 				
-				//alert(kolon70.kolonYamukBoyut[0] +" "+ kolon70.kolonYamukBoyut[1] +" "+ kolon70.kolonYamukBoyut[2]);
-				
 				if(settings.Yükseklik >= 3 && settings.Yükseklik < 7){
 
 					kolonAlan = kolon40.kolonEn * kolon40.kolonBoy;
@@ -3507,7 +3509,14 @@ class ThreeUtils{
 				}
 			}
 			
-			
+			this.piPlakMetreKupHesabi = function(){
+				
+				var integratedSys = kolonSayisi;
+				integratedSys.toFixed(2);
+				app.scene.add(integratedSys);
+				
+				piPlakYukseklik = settings.Yükseklik / 25;
+			}
 			//obje ekleme ve kaldırma fonksiyonları son*
         }
 		
