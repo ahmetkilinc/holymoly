@@ -93,6 +93,19 @@ $dateOnlyY = date("Y");
 						height:30px;
 						padding-top:11px;
 					}
+					
+					.btnGeri{
+		
+						background-color: #2E9AFE;
+						border: none;
+						color: white;
+						padding: 15px 32px;
+						text-align: justify;
+						text-decoration: underline;
+						font-size: 14px;
+						margin: 4px 2px;
+						cursor: pointer;
+					}
 				</style>
 			</head>
 			<body>
@@ -114,7 +127,7 @@ $dateOnlyY = date("Y");
 					</script>
 				</head>
 			<body>
-			<button onclick="geriDon()">Değişiklikler için Geri Dön.</button>
+				<input class="btnGeri" type="button" onclick="geriDon()" value="Değişiklikler için Geri Dön">
 			</body>
 	
 		</p>
@@ -3395,8 +3408,7 @@ console.log("hesap rakımı ise: " + rakim);
 
 //************************* kar yükü bulma *******************************
 
-/*
-window.location.assign("http://localhost/tutorialsPoint/holymoly/send-mail.php?=" + "&adsoyad=" + "'. $adsoyad .'" + "&unvan=" + "'.$unvan.'" + "&sirketadi=" + "'. $sirketadi .'" + "&adres=" + "'. $adres .'" +"&ceptel=" + "'. $ceptel .'" + "&cepis=" + "'. $cepis .'" + "&faks=" + "'. $faks .'" + "&email=" + "'. $email .'" + "&boy=" + "'. $boy .'" + "&en=" + "'. $en .'" + "&yukseklik=" + "'. $yukseklik .'" + "&vincliKolonlar=" + "'. $vincliKolonlar .'" + "&vincKirisleri=" + "'. $vincKirisleri .'" + "&vincKirisSayisi=" + "'. $vincKirisSayisi .'" + "&kolonSayisi=" + "'. $kolonSayisi .'" + "&ruzgarKolonSayisi=" + "'. $ruzgarKolonSayisi .'" + "&standSayisi=" + "'. $standSayisi .'" + "&olukSayisi=" + "'. $olukSayisi .'" + "&makasSayisi=" + "'. $makasSayisi .'" + "&asikSayisi=" + "'. $asikSayisi .'" + "&kompleAraKat=" + "'. $kompleAraKat .'" + "&KompleAraKatHolSayisi=" + "'. $KompleAraKatHolSayisi .'" + "&KompleAraKatHolBoyutu=" + "'. $KompleAraKatHolBoyutu .'" + "&kismiAraKat=" + "'. $kismiAraKat .'" + "&kismiAraKatHolSayisi=" + "'. $kismiAraKatHolSayisi .'" + "&kismiAraKatAksSayisi=" + "'. $kismiAraKatAksSayisi .'" + "&kismiAraKatHolBoyutu=" + "'. $kismiAraKatHolBoyutu .'" + "&kismiAraKatAksBoyutu=" + "'. $kismiAraKatAksBoyutu .'" + "&genelHolSayisi=" + "'. $genelHolSayisi .'" + "&vinc=" + "'. $vinc .'" + "&arakat=" + "'. $arakat .'" + "&binayeri=" + "'. $binayeri .'" + "&lat=" + "'. $lat .'" + "&lng=" + "'. $lng .'" + "&clientip=" + "'. $clientip .'" + "&fabrika=" + "'. $fabrika .'" + "&vincKirisYeriEn=" + "'. $vincKirisYeriEn .'" + "&vincKirisYeriBoy=" + "'. $vincKirisYeriBoy .'" + "&araKatYeriEn=" + "'. $araKatYeriEn .'" + "&araKatYeriBoy=" + "'. $araKatYeriBoy .'" + "&ttPlak=" + "'. $ttPlak .'" + "&taliKiris=" + "'. $taliKiris .'" + "&arakatKiris=" + "'. $arakatKiris .'" + "&arakatKolon=" + "'. $arakatKolon .'" + "&depremBolgesi=" + depremBolgesi + "&karyuku=" + karyuku + "&karBolgesi=" + karBolgesi + "&rakim=" + asilrakim);*/
+window.location.assign("http://localhost/tutorialsPoint/holymoly/send-mail.php?=" + "&adsoyad=" + "'. $adsoyad .'" + "&unvan=" + "'.$unvan.'" + "&sirketadi=" + "'. $sirketadi .'" + "&adres=" + "'. $adres .'" +"&ceptel=" + "'. $ceptel .'" + "&cepis=" + "'. $cepis .'" + "&faks=" + "'. $faks .'" + "&email=" + "'. $email .'" + "&boy=" + "'. $boy .'" + "&en=" + "'. $en .'" + "&yukseklik=" + "'. $yukseklik .'" + "&vincliKolonlar=" + "'. $vincliKolonlar .'" + "&vincKirisleri=" + "'. $vincKirisleri .'" + "&vincKirisSayisi=" + "'. $vincKirisSayisi .'" + "&kolonSayisi=" + "'. $kolonSayisi .'" + "&ruzgarKolonSayisi=" + "'. $ruzgarKolonSayisi .'" + "&standSayisi=" + "'. $standSayisi .'" + "&olukSayisi=" + "'. $olukSayisi .'" + "&makasSayisi=" + "'. $makasSayisi .'" + "&asikSayisi=" + "'. $asikSayisi .'" + "&kompleAraKat=" + "'. $kompleAraKat .'" + "&KompleAraKatHolSayisi=" + "'. $KompleAraKatHolSayisi .'" + "&KompleAraKatHolBoyutu=" + "'. $KompleAraKatHolBoyutu .'" + "&kismiAraKat=" + "'. $kismiAraKat .'" + "&kismiAraKatHolSayisi=" + "'. $kismiAraKatHolSayisi .'" + "&kismiAraKatAksSayisi=" + "'. $kismiAraKatAksSayisi .'" + "&kismiAraKatHolBoyutu=" + "'. $kismiAraKatHolBoyutu .'" + "&kismiAraKatAksBoyutu=" + "'. $kismiAraKatAksBoyutu .'" + "&genelHolSayisi=" + "'. $genelHolSayisi .'" + "&vinc=" + "'. $vinc .'" + "&arakat=" + "'. $arakat .'" + "&binayeri=" + "'. $binayeri .'" + "&lat=" + "'. $lat .'" + "&lng=" + "'. $lng .'" + "&clientip=" + "'. $clientip .'" + "&fabrika=" + "'. $fabrika .'" + "&vincKirisYeriEn=" + "'. $vincKirisYeriEn .'" + "&vincKirisYeriBoy=" + "'. $vincKirisYeriBoy .'" + "&araKatYeriEn=" + "'. $araKatYeriEn .'" + "&araKatYeriBoy=" + "'. $araKatYeriBoy .'" + "&ttPlak=" + "'. $ttPlak .'" + "&taliKiris=" + "'. $taliKiris .'" + "&arakatKiris=" + "'. $arakatKiris .'" + "&arakatKolon=" + "'. $arakatKolon .'" + "&depremBolgesi=" + depremBolgesi + "&karyuku=" + karyuku + "&karBolgesi=" + karBolgesi + "&rakim=" + asilrakim);
 
 </script>
 </body>
