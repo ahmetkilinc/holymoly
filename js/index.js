@@ -292,7 +292,7 @@ class ThreeUtils{
 
         var size = app.renderer.getSize();
         app.camera = new THREE.PerspectiveCamera(45, size.width / size.height, 1, 1000);
-        app.camera.position.set(- 40, 30, 100);
+        app.camera.position.set(-40, 30, 100);
 
         app.controls = new THREE.TrackballControls(app.camera, app.renderer.domElement);
 
