@@ -244,7 +244,7 @@ class ThreeUtils{
 			boy : [23.5, 26.5],
 			en : [43, 41.5],
 			yukseklik : 37.3,
-			yukseklikUcgen : 37.3
+			yukseklikUcgen : 37.3	
 		};
 		
 		var makasTemelli26 = {
