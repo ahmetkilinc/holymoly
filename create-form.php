@@ -184,6 +184,8 @@
 		<input id='input_arakatKolon' type='hidden' name='arakatKolon' readonly value= <?php echo $_GET['arakatKolon']; ?>>
 			  	  			  
 		<input id='input_ip' type='hidden' name='clientip' readonly value= <?php echo $_SERVER['REMOTE_ADDR']; ?>>
+			  
+		<input id='input_img' type='hidden' name='img' readonly value= <?php echo $_POST['img']; ?>>
 
 		<input id='input_fabrika' type='hidden' name='fabrika' readonly value=>
 			  

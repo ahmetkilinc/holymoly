@@ -158,10 +158,20 @@ echo '<html>
 	<head>
 	<style>
 
-		#link {color: #E45635;display:block;font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;text-align:center; text-decoration: none;}
-		#link:hover {color: #CCCCCC}
+		#link{
+				
+			color: #E45635;display:block;font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;text-align:center; text-decoration: none;
+		}
+		
+		#link:hover{
+		
+			color: #CCCCCC
+		}
 
-		#link, #link:hover {-webkit-transition: color 0.5s ease-out;-moz-transition: color 0.5s ease-out;-ms-transition: color 0.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 0.5s ease-out;}
+		#link, #link:hover{
+		
+			-webkit-transition: color 0.5s ease-out;-moz-transition: color 0.5s ease-out;-ms-transition: color 0.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 0.5s ease-out;
+		}
 
         body{
 		

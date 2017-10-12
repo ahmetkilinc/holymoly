@@ -244,7 +244,7 @@ class ThreeUtils{
 			boy : [23.5, 26.5],
 			en : [43, 41.5],
 			yukseklik : 37.3,
-			yukseklikUcgen : 37.3
+			yukseklikUcgen : 37.3	
 		};
 		
 		var makasTemelli26 = {
@@ -3517,6 +3517,56 @@ class ThreeUtils{
 				
 				piPlakYukseklik = settings.Yükseklik / 25;
 			}
+			
+			this.takeScreenshot = function(){
+				
+				//yeni bir sayfa aç
+				var w = window.open('', '');
+				w.document.title = "Screenshot";
+				
+				var img = new Image();
+				app.renderer.render(app.scene, app.camera);
+				img.src = app.renderer.domElement.toDataURL();
+				
+				w.document.body.appendChild(img);
+	
+				/*
+				$.ajax({
+					  type: "POST",
+					  url: "script.php",
+					  data: { 
+						 imgBase64: img
+					  }
+					}).done(function(o){
+					
+					  console.log('saved'); 
+					  // If you want the file to be visible in the browser 
+					  // - please modify the callback in javascript. All you
+					  // need is to return the url to the file, you just saved 
+					  // and than put the image in your browser.
+					});
+				*/
+				
+				
+				
+				
+				  var xhttp = new XMLHttpRequest();
+				  xhttp.onreadystatechange = function(){
+					  
+					if (this.readyState == 4 && this.status == 200){
+						
+					 console.log(img);
+					}
+				  };
+				  xhttp.open("POST", "file:///C:/xampp/htdocs/tutorialsPoint/holymoly/create-form.php?img=" + img, true);
+				  xhttp.send();
+				
+				
+				
+				
+				
+			}
+			
 			//obje ekleme ve kaldırma fonksiyonları son*
         }
 		
@@ -3534,7 +3584,8 @@ class ThreeUtils{
 			
 			change : function(){
 
-				  	settings.redraw();
+				  	//settings.redraw();
+					settings.takeScreenshot();
 				  },
 				   
 			kismiAraKatEkle: function(){
