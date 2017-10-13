@@ -3521,35 +3521,27 @@ class ThreeUtils{
 			this.takeScreenshot = function(){
 				
 				//yeni bir sayfa aç
-				var w = window.open('', '');
+				/*var w = window.open('', '');
 				w.document.title = "Screenshot";
 				
 				var img = new Image();
 				app.renderer.render(app.scene, app.camera);
 				img.src = app.renderer.domElement.toDataURL();
 				
-				w.document.body.appendChild(img);
+				w.document.body.appendChild(img);*/
 	
-				/*
-				$.ajax({
+				/*$.ajax({
 					  type: "POST",
-					  url: "script.php",
-					  data: { 
-						 imgBase64: img
+					  url: "http://localhost/tutorialsPoint/holymoly/create-form.php?hop=" + img.src,
+					  data: {
+						 imgBase64: app.renderer.domElement.toDataURL()
 					  }
 					}).done(function(o){
 					
 					  console.log('saved'); 
-					  // If you want the file to be visible in the browser 
-					  // - please modify the callback in javascript. All you
-					  // need is to return the url to the file, you just saved 
-					  // and than put the image in your browser.
-					});
-				*/
+					});*/
 				
-				
-				
-				
+				/*
 				  var xhttp = new XMLHttpRequest();
 				  xhttp.onreadystatechange = function(){
 					  
@@ -3559,12 +3551,7 @@ class ThreeUtils{
 					}
 				  };
 				  xhttp.open("POST", "file:///C:/xampp/htdocs/tutorialsPoint/holymoly/create-form.php?img=" + img, true);
-				  xhttp.send();
-				
-				
-				
-				
-				
+				  xhttp.send();*/
 			}
 			
 			//obje ekleme ve kaldırma fonksiyonları son*
@@ -3585,7 +3572,7 @@ class ThreeUtils{
 			change : function(){
 
 				  	//settings.redraw();
-					settings.takeScreenshot();
+					//settings.takeScreenshot();
 				  },
 				   
 			kismiAraKatEkle: function(){
@@ -4397,10 +4384,57 @@ class ThreeUtils{
 					kismiAraKatHolBoyutu = 0;
 					kismiAraKatAksBoyutu = 0;
 				}
+				
+				//settings.takeScreenshot();
+				
+				
+				
+				//yeni bir sayfa aç
+				var w = window.open('', '');
+				w.document.title = "Screenshot";
+				
+				var img = new Image();
+				app.renderer.render(app.scene, app.camera);
+				img.src = app.renderer.domElement.toDataURL();
+				
+				w.document.body.appendChild(img);
+				
+				var myJSON = JSON.stringify(img.src);
+
+				$.ajax({
+					  type: "POST",
+					  url: "http://localhost/tutorialsPoint/holymoly/create-form.php",
+					  data: {
+						  
+						 imgBase64: img.src
+					  }
+					}).done(function(o){
+					
+					  console.log('saved');
+					
+						window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak + '&taliKiris=' + taliKiris + '&arakatKiris=' + arakatKiris + '&arakatKolon=' + arakatKolon + '&imgBase64');
+					});
+				
+				/*$.ajax({  
+					type: 'GET',
+					url: 'http://localhost/tutorialsPoint/holymoly/create-form.php', 
+					data: { album: "elma" },
+					success: function(response){
+						
+						console.log("saved");
+						
+					
+					}
+				});*/
+				
+				
+				
+				
+				
 
 				//window.location.assign('https://www.kardemir.com/Liste.aspx?yil=2017&s=FIYAT');
-								
-				window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak + '&taliKiris=' + taliKiris + '&arakatKiris=' + arakatKiris + '&arakatKolon=' + arakatKolon);
+				
+				/*window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak + '&taliKiris=' + taliKiris + '&arakatKiris=' + arakatKiris + '&arakatKolon=' + arakatKolon + '&imgBase64=123');*/
 			}
 		};
 		

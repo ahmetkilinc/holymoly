@@ -1,3 +1,16 @@
+<?php
+    // requires php5
+    define('UPLOAD_DIR', 'C:\xampp\htdocs\tutorialsPoint\holymoly\images/');
+    $img = $_POST['imgBase64'];
+    $img = str_replace('data:image/png;base64,', '', $img);
+    $img = str_replace(' ', '+', $img);
+	//$data = $img;
+    $data = base64_decode($img);
+    $file = UPLOAD_DIR . uniqid() . '.png';
+    $success = file_put_contents($file, $data);
+    //print $success ? $file : 'Unable to save the file.';
+?>
+
 <html>
 <head>
 	
@@ -185,8 +198,6 @@
 			  	  			  
 		<input id='input_ip' type='hidden' name='clientip' readonly value= <?php echo $_SERVER['REMOTE_ADDR']; ?>>
 			  
-		<input id='input_img' type='hidden' name='img' readonly value= <?php echo $_POST['img']; ?>>
-
 		<input id='input_fabrika' type='hidden' name='fabrika' readonly value=>
 			  
 		<input id='input_rakim' type='hidden' name='gercekrakim' readonly value=>
