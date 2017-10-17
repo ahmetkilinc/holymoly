@@ -893,6 +893,25 @@ $pdf->SetFont("arial","","10");
 $pdf->SetTextColor(0, 0, 0);
 $pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "+ Manşon, mesnet donatısı"), 0, 1);
 
+$pdf->SetY(145);
+$pdf->AddFont('arial','BU','arial.php');
+$pdf->SetFont("arial","BU","11");
+$pdf->SetTextColor(0, 0, 0);
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Bina Tasarımın 2 Boyutlu Gösterimi:"), 0, 'C');
+
+if (file_exists('images\2Dimage.png')){
+	
+    $pdf->Image('images/2Dimage.png', 30, 170, -200);
+}
+else{
+	
+	$pdf->SetY(180);
+	$pdf->SetFont("arial","","11");
+	$pdf->SetTextColor(0, 0, 0);
+	$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "2D gösterim oluşturulamadı, lütfen bilgi almak için irtibata geçiniz."), 1, 'C');
+}
+
+
 $pdf->SetAlpha(0.5);
 
 $pdf->SetY(250);
@@ -1035,4 +1054,19 @@ $pdf->SetAlpha(1);
 $pdf->SetTextColor(0,0,0);
 
 $pdf->Output('','betonel-teklif.pdf');
+
+echo '<html> <body> <script> $(window).on("beforeunload", function(e) {
+
+    if(confirm("Are you sure you want to close this window")){
+	
+         return true;
+    }else{
+	
+         return false;
+     }
+});  </script> </body> </html>';
+	
+if(unlink('images/2Dimage.png'))
+    echo "File Deleted.";
+
 ?>
