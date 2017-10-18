@@ -53,8 +53,9 @@ $depremBolgesi = $_GET["depremBolgesi"];
 $karyuku = $_GET["karyuku"];
 $karBolgesi = $_GET["karBolgesi"];
 $rakim = $_GET["rakim"];
+$token = $_GET["token"];
 
-$message = str_replace(' ', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf.php?adsoyad=' .urlencode(base64_encode($adsoyad)) . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&faks=' . urlencode(base64_encode($faks)) . '&binayeri=' . urlencode(base64_encode($binayeri)) . '&boy=' . $boy . '&en=' . $en . '&yukseklik=' . $yukseklik . '&vincKirisleri=' . $vincKirisleri . '&asikSayisi=' . $asikSayisi . '&olukSayisi=' . $olukSayisi . '&kolonSayisi=' . $kolonSayisi . '&ruzgarKolonSayisi=' . $ruzgarKolonSayisi . '&makasSayisi=' . $makasSayisi . '&vincKirisSayisi=' . $vincKirisSayisi . '&genelHolSayisi=' . $genelHolSayisi . '&kompleAraKat=' . $kompleAraKat . '&kismiAraKat=' . $kismiAraKat . '&KompleAraKatHolSayisi=' . $KompleAraKatHolSayisi . '&KompleAraKatHolBoyutu=' . $KompleAraKatHolBoyutu . '&kismiAraKatHolSayisi=' . $kismiAraKatHolSayisi . '&kismiAraKatAksSayisi=' . $kismiAraKatAksSayisi . '&kismiAraKatHolBoyutu=' . $kismiAraKatHolBoyutu . '&kismiAraKatAksBoyutu=' . $kismiAraKatAksBoyutu . '&enlem=' . $lat . '&boylam=' . $lng . '&vincKirisYeriEn=' . $vincKirisYeriEn . '&vincKirisYeriBoy=' . $vincKirisYeriBoy . '&araKatYeriEn='. $araKatYeriEn . '&araKatYeriBoy=' . $araKatYeriBoy . '&ttPlak=' . $ttPlak . '&taliKiris=' . $taliKiris . '&arakatKiris=' . $arakatKiris . '&arakatKolon=' . $arakatKolon . '&depremBolgesi=' . $depremBolgesi . '&karyuku=' . $karyuku . '&karBolgesi=' . $karBolgesi . '&rakim=' . $rakim);
+$message = str_replace(' ', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf.php?adsoyad=' .urlencode(base64_encode($adsoyad)) . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&faks=' . urlencode(base64_encode($faks)) . '&binayeri=' . urlencode(base64_encode($binayeri)) . '&boy=' . $boy . '&en=' . $en . '&yukseklik=' . $yukseklik . '&vincKirisleri=' . $vincKirisleri . '&asikSayisi=' . $asikSayisi . '&olukSayisi=' . $olukSayisi . '&kolonSayisi=' . $kolonSayisi . '&ruzgarKolonSayisi=' . $ruzgarKolonSayisi . '&makasSayisi=' . $makasSayisi . '&vincKirisSayisi=' . $vincKirisSayisi . '&genelHolSayisi=' . $genelHolSayisi . '&kompleAraKat=' . $kompleAraKat . '&kismiAraKat=' . $kismiAraKat . '&KompleAraKatHolSayisi=' . $KompleAraKatHolSayisi . '&KompleAraKatHolBoyutu=' . $KompleAraKatHolBoyutu . '&kismiAraKatHolSayisi=' . $kismiAraKatHolSayisi . '&kismiAraKatAksSayisi=' . $kismiAraKatAksSayisi . '&kismiAraKatHolBoyutu=' . $kismiAraKatHolBoyutu . '&kismiAraKatAksBoyutu=' . $kismiAraKatAksBoyutu . '&enlem=' . $lat . '&boylam=' . $lng . '&vincKirisYeriEn=' . $vincKirisYeriEn . '&vincKirisYeriBoy=' . $vincKirisYeriBoy . '&araKatYeriEn='. $araKatYeriEn . '&araKatYeriBoy=' . $araKatYeriBoy . '&ttPlak=' . $ttPlak . '&taliKiris=' . $taliKiris . '&arakatKiris=' . $arakatKiris . '&arakatKolon=' . $arakatKolon . '&depremBolgesi=' . $depremBolgesi . '&karyuku=' . $karyuku . '&karBolgesi=' . $karBolgesi . '&rakim=' . $rakim . '&token=' . $token);
 
 $mail = new PHPMailer();
 
@@ -64,12 +65,8 @@ $mail->Mailer = "smtp";
 $mail->Host = "ssl://smtp.gmail.com";
 $mail->Port = 465;
 $mail->SMTPAuth = true; // SMTP auth
-$mail->Username = ""; // SMTP username
-$mail->Password = ""; // SMTP password
 
-$mail->setFrom('', '');
 $mail->AddAddress($_GET["email"]);
-$mail->addReplyTo("", "");
 
 $mail->Subject = "Betonel E-Posta Dogrulama Maili";
 $mail->AddEmbeddedImage('presets/mail-footer.png', 'mail-footer');
@@ -137,6 +134,19 @@ if(!$mail->Send()){
 						height:30px;
 						padding-top:11px;
 					}
+					
+					.btnGeri{
+		
+						background-color: #2E9AFE;
+						border: none;
+						color: white;
+						padding: 15px 32px;
+						text-align: justify;
+						text-decoration: underline;
+						font-size: 14px;
+						margin: 4px 2px;
+						cursor: pointer;
+					}
 				</style>
 			</head>
 			<body>
@@ -159,7 +169,7 @@ if(!$mail->Send()){
 				</head>
 			<body>
 
-			<button onclick="geriDon()">Değişiklikler için Geri Dön.</button>
+				<input class="btnGeri" type="button" onclick="geriDon()" value="Değişiklikler için Geri Dön">
 			
 			</body>
 	
@@ -241,12 +251,7 @@ $mail->Mailer = "smtp";
 $mail->Host = "ssl://smtp.gmail.com";
 $mail->Port = 465;
 $mail->SMTPAuth = true; // SMTP auth
-$mail->Username = ""; // SMTP username
-$mail->Password = ""; // SMTP password
 
-$mail->setFrom('', '');
-$mail->AddAddress("");
-$mail->addReplyTo("", "");
 
 $mail->Subject = "Betonel Müşteri Teklif Bilgileri";
 $mail->AddEmbeddedImage('presets/mail-footer.png', 'mail-footer');

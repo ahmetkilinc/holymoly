@@ -899,9 +899,9 @@ $pdf->SetFont("arial","BU","11");
 $pdf->SetTextColor(0, 0, 0);
 $pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Bina Tasarımın 2 Boyutlu Gösterimi:"), 0, 'C');
 
-if (file_exists('images\2Dimage.png')){
+if (file_exists('images\ '.$_GET['token'].'\2Dimage.png')){
 	
-    $pdf->Image('images/2Dimage.png', 30, 170, -200);
+    $pdf->Image('images/'.$_GET['token'].'/2Dimage.png', 30, 170, -200);
 }
 else{
 	
@@ -1065,8 +1065,8 @@ echo '<html> <body> <script> $(window).on("beforeunload", function(e) {
          return false;
      }
 });  </script> </body> </html>';
-	
+/*	
 if(unlink('images/2Dimage.png'))
     echo "File Deleted.";
-
+*/
 ?>
