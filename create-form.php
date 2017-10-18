@@ -1,21 +1,44 @@
 <?php
 
-    //define('UPLOAD_DIR', 'C:\xampp\htdocs\tutorialsPoint\holymoly\images/');
+	//define('UPLOAD_DIR', 'C:\xampp\htdocs\tutorialsPoint\holymoly\images/');
 	//chmod(UPLOAD_DIR, 0755);
-    $img = $_REQUEST['imgBase64'];
+	$img = $_REQUEST['imgBase64'];
 
-    $img = str_replace('data:image/png;base64,', '', $img);
-    $img = str_replace(' ', '+', $img);
+	$img = str_replace('data:image/png;base64,', '', $img);
+	$img = str_replace(' ', '+', $img);
 
-    $data = base64_decode($img);
+	$data = base64_decode($img);
 
-    //$file = UPLOAD_DIR . uniqid() . '.png';
+	//$file = UPLOAD_DIR . uniqid() . '.png';
 
-	$uniqid = rand();
+	$token = time();
 
-	echo($uniqid);
+	if (!file_exists('images/'.$token)){
+
 		
-	$success = file_put_contents('images\2Dimage.png', $data, 8);	
+		mkdir('images/'.$token, 0777, true);
+		
+	}
+
+	$a = 'images/'.$token;
+
+	$success = file_put_contents('images/'.$token.'\2Dimage.png', $data, 8);
+	
+	$dir = "images/";
+
+
+	//2D image ları silme kısmı (tamamlanmadı)
+
+	//fclose($dir);
+	/*
+	foreach(glob($dir."*") as $file){
+		//30 günden eski png dosyalarını sil.
+		if(filectime($file) < time()){
+
+			unlink($file);
+		}
+	}*/
+
 
 ?>	
 
@@ -205,6 +228,8 @@
 		<input id='input_arakatKolon' type='hidden' name='arakatKolon' readonly value= <?php echo $_GET['arakatKolon']; ?>>
 			  	  			  
 		<input id='input_ip' type='hidden' name='clientip' readonly value= <?php echo $_SERVER['REMOTE_ADDR']; ?>>
+			  
+		<input id='input_token' type='hidden' name='token' readonly value= <?php echo $token ?>>
 			  
 		<input id='input_fabrika' type='hidden' name='fabrika' readonly value=>
 			  
