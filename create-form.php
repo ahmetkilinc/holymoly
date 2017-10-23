@@ -14,32 +14,28 @@
 	$token = time();
 
 	if (!file_exists('images/'.$token)){
-
 		
 		mkdir('images/'.$token, 0777, true);
-		
 	}
 
 	$a = 'images/'.$token;
 
-	$success = file_put_contents('images/'.$token.'\2Dimage.png', $data, 8);
+	$success = file_put_contents('images/'.$token.'/2Dimage.png', $data, 8);
 	
-	$dir = "images/";
+	//$dir = "images/";
 
-
-	//2D image ları silme kısmı (tamamlanmadı)
+	//2D image ları silme kısmı (tamamlanmadı, permission denied hatası veriyor)
 
 	//fclose($dir);
 	/*
 	foreach(glob($dir."*") as $file){
+	
 		//30 günden eski png dosyalarını sil.
 		if(filectime($file) < time()){
 
 			unlink($file);
 		}
 	}*/
-
-
 ?>	
 
 <html>
@@ -133,7 +129,7 @@
       </div>
 
       <div class='input'>
-        <textarea id='adres' required='required' type='text' name='adres'></textarea>
+        <textarea id='adres' required='required' pattern=".{5,}" type='text' name='adres'></textarea>
 		<span class='hint'>Şirketinizin tam açık adresini yazınız.</span>
       </div>
 		 
@@ -141,16 +137,16 @@
         <label for='number_01'>Telefon (Cep)</label>
       </div>
       <div class='input'>
-		<input type="text" class="textfield" required='required' value="" id="extra7" name="ceptel" onkeypress="return isNumber(event)" />
-		<span class='hint'>İrtibat numaranızı giriniz. (Cep Telefonu)</span>
+		<input type="text" class="textfield" required='required' pattern=".{11,}" value="" id="extra7" name="ceptel" onkeypress="return isNumber(event)" />
+		<span class='hint'>İrtibat numaranızı giriniz. (0555 555 55 55 şeklinde)</span>
       </div>
 		  
 	  <div class='label'>
         <label for='number_02'>Telefon (İş)</label>
       </div>
       <div class='input'>
-		<input type="text" class="textfield" required='required' value="" id="extra7" name="cepis" onkeypress="return isNumber(event)" />
-		<span class='hint'>İrtibat numaranızı giriniz. (İş Telefonu)</span>
+		<input type="text" class="textfield" required='required' pattern=".{11,}" value="" id="extra7" name="cepis" onkeypress="return isNumber(event)" />
+		<span class='hint'>İrtibat numaranızı giriniz. (0312 000 00 00 şekilde)</span>
       </div>
 		  
 	  <div class='label'>

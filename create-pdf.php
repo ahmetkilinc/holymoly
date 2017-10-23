@@ -17,6 +17,8 @@ $third_step1 = explode("=", $second_step1[1]);
 
 $demirFiyatTarih = str_split($third_step1[1], 10);
 
+//eklenmiş iki dosya olması halinde bir öncekini al
+
 require("fpdf/alphapdf.php");
 
 $pdf = new AlphaPDF();
@@ -57,7 +59,12 @@ $pdf->MultiCell(60, 6, iconv('utf-8', 'ISO-8859-9', base64_decode(urldecode($_GE
 $pdf->SetY(40);
 $pdf->SetX(160);
 $pdf->SetFont("arial","B","11");
-$pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', "Tarih: " . date("d.m.Y")), 0, 'L');
+$pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', "Tarih: "), 0, 'L');
+
+$pdf->SetY(40);
+$pdf->SetX(178);
+$pdf->SetFont("arial", "B", "11");
+$pdf->MultiCell(60, 6, iconv('utf-8', 'ISO-8859-9', date("d.m.Y")), 0, 'L');
 
 $pdf->SetY(45);
 $pdf->SetFont("arial","B","11");
@@ -71,7 +78,12 @@ $pdf->MultiCell(60, 6, iconv('utf-8', 'ISO-8859-9', base64_decode(urldecode($_GE
 $pdf->SetY(45);
 $pdf->SetX(160);
 $pdf->SetFont("arial","B","11");
-$pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', "Rev: 00"), 0, 'L');
+$pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', "Rev: "), 0, 'L');
+
+$pdf->SetY(45);
+$pdf->SetX(178);
+$pdf->SetFont("arial", "B", "11");
+$pdf->MultiCell(60, 6, iconv('utf-8', 'ISO-8859-9', "00"), 0, 'L');
 
 $pdf->SetY(50);
 $pdf->SetFont("arial","B","11");
@@ -88,7 +100,7 @@ $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', "Teklif No: "), 0, 'L');
 
 $pdf->SetY(50);
-$pdf->SetX(177);
+$pdf->SetX(178);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', date("ym") . "-0001"), 0, 'L');
 
@@ -897,11 +909,25 @@ $pdf->SetY(145);
 $pdf->AddFont('arial','BU','arial.php');
 $pdf->SetFont("arial","BU","11");
 $pdf->SetTextColor(0, 0, 0);
-$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Bina Tasarımın 2 Boyutlu Gösterimi:"), 0, 'C');
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Bina Tasarımının 2 Boyutlu Gösterimi:"), 0, 'C');
 
-if (file_exists('images\ '.$_GET['token'].'\2Dimage.png')){
+$token = $_GET['token'];
+
+$token = $token - 1;
+
+if (file_exists('images/'.$token)){
 	
-    $pdf->Image('images/'.$_GET['token'].'/2Dimage.png', 30, 170, -200);
+	$token = $token;
+}
+
+else{
+	
+	$token = $token + 1;
+}
+
+if (file_exists('images/'.$token.'/2Dimage.png')){
+	
+    $pdf->Image('images/'.$token.'/2Dimage.png', 25, 150, -200);
 }
 else{
 	
@@ -910,7 +936,6 @@ else{
 	$pdf->SetTextColor(0, 0, 0);
 	$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "2D gösterim oluşturulamadı, lütfen bilgi almak için irtibata geçiniz."), 1, 'C');
 }
-
 
 $pdf->SetAlpha(0.5);
 
@@ -1055,7 +1080,7 @@ $pdf->SetTextColor(0,0,0);
 
 $pdf->Output('','betonel-teklif.pdf');
 
-echo '<html> <body> <script> $(window).on("beforeunload", function(e) {
+echo '<html> <body> <script> $(window).on("beforeunload", function(e){
 
     if(confirm("Are you sure you want to close this window")){
 	
@@ -1065,8 +1090,20 @@ echo '<html> <body> <script> $(window).on("beforeunload", function(e) {
          return false;
      }
 });  </script> </body> </html>';
-/*	
-if(unlink('images/2Dimage.png'))
-    echo "File Deleted.";
-*/
+
+
+	$dir = "images";
+
+	//2D image ları silme kısmı (tamamlanmadı)
+
+	//fclose($dir);
+	/*
+	foreach(glob($dir. "/1508310775") as $file){
+		//30 günden eski png dosyalarını sil.
+		if(filectime($file) < time()){
+
+			unlink($file);
+		}
+	}*/
+
 ?>
