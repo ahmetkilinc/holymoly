@@ -4338,9 +4338,9 @@ class ThreeUtils{
 			
 			teklifAl: function(){
 				
-				document.getElementById('gonderBoy').value = settings.Boy;
+				document.getElementById('gonderBoy').value = settings.Boy.toFixed(2);
 				
-				document.getElementById('gonderEn').value = settings.En;
+				document.getElementById('gonderEn').value = settings.En.toFixed(2);
 		
 				if(settings.KismiAraKatEkle === false){
 					

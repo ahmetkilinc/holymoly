@@ -909,7 +909,7 @@ $pdf->SetY(145);
 $pdf->AddFont('arial','BU','arial.php');
 $pdf->SetFont("arial","BU","11");
 $pdf->SetTextColor(0, 0, 0);
-$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Bina Tasarımının 2 Boyutlu Gösterimi:"), 0, 'C');
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Bina Tasarımının 3 Boyutlu Gösterimi:"), 0, 'C');
 
 $token = $_GET['token'];
 
@@ -1079,31 +1079,5 @@ $pdf->SetAlpha(1);
 $pdf->SetTextColor(0,0,0);
 
 $pdf->Output('','betonel-teklif.pdf');
-
-echo '<html> <body> <script> $(window).on("beforeunload", function(e){
-
-    if(confirm("Are you sure you want to close this window")){
-	
-         return true;
-    }else{
-	
-         return false;
-     }
-});  </script> </body> </html>';
-
-
-	$dir = "images";
-
-	//2D image ları silme kısmı (tamamlanmadı)
-
-	//fclose($dir);
-	/*
-	foreach(glob($dir. "/1508310775") as $file){
-		//30 günden eski png dosyalarını sil.
-		if(filectime($file) < time()){
-
-			unlink($file);
-		}
-	}*/
 
 ?>

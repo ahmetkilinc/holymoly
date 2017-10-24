@@ -21,22 +21,31 @@
 	$a = 'images/'.$token;
 
 	$success = file_put_contents('images/'.$token.'/2Dimage.png', $data, 8);
-	
-	//$dir = "images/";
+
+	//echo 'ekleme başarılı: ' . $success;
+	/*
+	$dir = "images/";
+
+	fclose($dir);
+
+	foreach(glob($dir."*") as $file){
+		
+		fclose($file);
+	}
 
 	//2D image ları silme kısmı (tamamlanmadı, permission denied hatası veriyor)
 
 	//fclose($dir);
-	/*
+	
 	foreach(glob($dir."*") as $file){
 	
 		//30 günden eski png dosyalarını sil.
-		if(filectime($file) < time()){
+		//if(filectime($file) < time()){
 
 			unlink($file);
-		}
+		//}
 	}*/
-?>	
+?>
 
 <html>
 <head>
@@ -241,7 +250,16 @@
         <label for='number_01'>Arakat Hareketli Yükü (kg/m^2)</label>
       </div>
       <div class='input'>
-		<input type="text" class="textfield" required='required' value="" id="extra7" name="arakat" onkeypress="return isNumber(event)" />
+		<select name="arakat">
+			<option value="350">350</option>
+			<option value="500">500</option>
+			<option value="750">750</option>
+			<option value="1000">1000</option>
+			<option value="1250">1250</option>
+			<option value="1500">1500</option>
+			<option value="2000">2000</option>
+			<option value="2500">2500</option>
+		</select>
       </div>
 	<p>
 	<br>
