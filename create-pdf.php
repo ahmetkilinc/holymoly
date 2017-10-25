@@ -296,7 +296,7 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	$pdf->SetY(230);
 	$pdf->SetX(115);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9',"350 kg/m²"), 0, 1);
+	$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9',$_GET["arakat"] ." kg/m²"), 0, 1);
 }
 
 if ($_GET["vincKirisleri"] == 'true'){
@@ -925,7 +925,11 @@ else{
 	$token = $token + 1;
 }
 
-if (file_exists('images/'.$token.'/2Dimage.png')){
+$filename = 'images/'.$token;
+
+//echo filesize($filename);
+
+if ((file_exists('images/'.$token.'/2Dimage.png')) && (filesize($filename) != 0)){
 	
     $pdf->Image('images/'.$token.'/2Dimage.png', 25, 150, -200);
 }
