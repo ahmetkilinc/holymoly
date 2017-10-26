@@ -956,12 +956,13 @@ if ((file_exists('images/'.$token.'/2Dimage.png')) and (filesize($filename) != 0
 	
     $pdf->Image('images/'.$token.'/2Dimage.png', 25, 150, -200);
 }
+
 else{
 	
 	$pdf->SetY(180);
 	$pdf->SetFont("arial","","11");
 	$pdf->SetTextColor(0, 0, 0);
-	$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "2D gösterim oluşturulamadı, lütfen bilgi almak için irtibata geçiniz."), 1, 'C');
+	$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "3D gösterim oluşturulamadı, lütfen bilgi almak için irtibata geçiniz."), 1, 'C');
 }
 
 $pdf->SetAlpha(0.5);
