@@ -914,10 +914,35 @@ $pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Bina Tasarımının 3 Boyu
 $token = $_GET['token'];
 
 $token = $token - 1;
+$token2 = $token - 2;
+$token3 = $token - 3;
+$token4 = $token - 4;
+$token5 = $token - 5;
+
 
 if (file_exists('images/'.$token)){
 	
 	$token = $token;
+}
+
+else if(file_exists('images/'.$token2)){
+	
+	$token = $token2;
+}
+
+else if(file_exists('images/'.$token3)){
+	
+	$token = $token3;
+}
+
+else if(file_exists('images/'.$token4)){
+	
+	$token = $token4;
+}
+
+else if(file_exists('images/'.$token5)){
+	
+	$token = $token5;
 }
 
 else{
@@ -925,11 +950,9 @@ else{
 	$token = $token + 1;
 }
 
-$filename = 'images/'.$token;
+$filename = 'images/'.$token.'/2Dimage.png';
 
-//echo filesize($filename);
-
-if ((file_exists('images/'.$token.'/2Dimage.png')) && (filesize($filename) != 0)){
+if ((file_exists('images/'.$token.'/2Dimage.png')) and (filesize($filename) != 0)){
 	
     $pdf->Image('images/'.$token.'/2Dimage.png', 25, 150, -200);
 }
