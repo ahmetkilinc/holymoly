@@ -296,7 +296,7 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	$pdf->SetY(230);
 	$pdf->SetX(115);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9',"350 kg/m²"), 0, 1);
+	$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9',$_GET["arakat"] ." kg/m²"), 0, 1);
 }
 
 if ($_GET["vincKirisleri"] == 'true'){
@@ -914,10 +914,35 @@ $pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Bina Tasarımının 3 Boyu
 $token = $_GET['token'];
 
 $token = $token - 1;
+$token2 = $token - 2;
+$token3 = $token - 3;
+$token4 = $token - 4;
+$token5 = $token - 5;
+
 
 if (file_exists('images/'.$token)){
 	
 	$token = $token;
+}
+
+else if(file_exists('images/'.$token2)){
+	
+	$token = $token2;
+}
+
+else if(file_exists('images/'.$token3)){
+	
+	$token = $token3;
+}
+
+else if(file_exists('images/'.$token4)){
+	
+	$token = $token4;
+}
+
+else if(file_exists('images/'.$token5)){
+	
+	$token = $token5;
 }
 
 else{
@@ -925,7 +950,9 @@ else{
 	$token = $token + 1;
 }
 
-if (file_exists('images/'.$token.'/2Dimage.png')){
+$filename = 'images/'.$token.'/2Dimage.png';
+
+if ((file_exists('images/'.$token.'/2Dimage.png')) and (filesize($filename) != 0)){
 	
     $pdf->Image('images/'.$token.'/2Dimage.png', 25, 150, -200);
 }
