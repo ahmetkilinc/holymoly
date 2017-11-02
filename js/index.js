@@ -4570,7 +4570,7 @@ class ThreeUtils{
 				araKatFolder.__ul.childNodes[4].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
 				araKatFolder.__ul.childNodes[5].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
 				boyutlandirma.__ul.childNodes[4].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
-				teklifAl.__ul.childNodes[1].childNodes[0].childNodes[0].classList += ' teklif_button';
+				//teklifAl.__ul.childNodes[1].childNodes[0].childNodes[0].classList += ' teklif_button';
         }
 
 		//ekran ve grid oluşturulduktan sonra ilk kenar kolonlarını da oluştur.
