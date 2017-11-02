@@ -135,6 +135,11 @@ if ($_GET["vincKirisleri"] == 'true'){
 	$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Yapının ". $_GET["vincKirisYeriEn"] ."/". $_GET["vincKirisYeriBoy"] . " aksları arasında +6.70 kotunda max kullanım kapasite 100 ton olan vinç konsolları yer almaktadır. Vinç kirişleri tek vinç yüküne göre tasarlanmıştır. "), 0, 'J');
 }
 
+else if($_GET['controlP'] == 'true'){
+	
+	
+}
+
 if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	
 	if($_GET["vincKirisleri"] == 'true'){
@@ -745,7 +750,7 @@ $pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9', "5. ÖDEME:"), 0, 1);
 $pdf->SetY(190);
 $pdf->AddFont('arial','','arial.php');
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "KDV'li toplam bedelin yüzde 30u iş avansı olarak ödenecek, geriye kalan bakiye sözleşme imzasında verilecek olan 30, 60, 90 gün vadeli eşit tutarlı çekler ile yapılacaktır. Çekler sözleşme yapıldığı tarihte Betonel A.S. ye teslim edilecektir. "), 0, 'J');
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "KDV'li toplam bedelin yüzde 30'u iş avansı olarak ödenecek, geriye kalan bakiye sözleşme imzasında verilecek olan 30, 60, 90 gün vadeli eşit tutarlı çekler ile yapılacaktır. Çekler sözleşme yapıldığı tarihte Betonel A.Ş.'ye teslim edilecektir. "), 0, 'J');
 
 $pdf->SetY(205);
 $pdf->AddFont('arial','BU','arial.php');
@@ -918,6 +923,8 @@ $token2 = $token - 2;
 $token3 = $token - 3;
 $token4 = $token - 4;
 $token5 = $token - 5;
+$token6 = $token - 6;
+$token7 = $token - 7;
 
 
 if (file_exists('images/'.$token)){
@@ -943,6 +950,16 @@ else if(file_exists('images/'.$token4)){
 else if(file_exists('images/'.$token5)){
 	
 	$token = $token5;
+}
+
+else if(file_exists('images/'.$token6)){
+	
+	$token = $token6;
+}
+
+else if(file_exists('images/'.$token7)){
+	
+	$token = $token7;
 }
 
 else{
