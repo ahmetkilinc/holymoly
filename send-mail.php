@@ -54,8 +54,55 @@ $karyuku = $_GET["karyuku"];
 $karBolgesi = $_GET["karBolgesi"];
 $rakim = $_GET["rakim"];
 $token = $_GET["token"];
+$vincKirisiMetreKup = $_GET["vincKirisiMetreKup"];
 
-$message = str_replace(' ', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf.php?adsoyad=' .urlencode(base64_encode($adsoyad)) . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&faks=' . urlencode(base64_encode($faks)) . '&binayeri=' . urlencode(base64_encode($binayeri)) . '&boy=' . $boy . '&en=' . $en . '&yukseklik=' . $yukseklik . '&vincKirisleri=' . $vincKirisleri . '&asikSayisi=' . $asikSayisi . '&olukSayisi=' . $olukSayisi . '&kolonSayisi=' . $kolonSayisi . '&ruzgarKolonSayisi=' . $ruzgarKolonSayisi . '&makasSayisi=' . $makasSayisi . '&vincKirisSayisi=' . $vincKirisSayisi . '&genelHolSayisi=' . $genelHolSayisi . '&kompleAraKat=' . $kompleAraKat . '&kismiAraKat=' . $kismiAraKat . '&KompleAraKatHolSayisi=' . $KompleAraKatHolSayisi . '&KompleAraKatHolBoyutu=' . $KompleAraKatHolBoyutu . '&kismiAraKatHolSayisi=' . $kismiAraKatHolSayisi . '&kismiAraKatAksSayisi=' . $kismiAraKatAksSayisi . '&kismiAraKatHolBoyutu=' . $kismiAraKatHolBoyutu . '&kismiAraKatAksBoyutu=' . $kismiAraKatAksBoyutu . '&enlem=' . $lat . '&boylam=' . $lng . '&vincKirisYeriEn=' . $vincKirisYeriEn . '&vincKirisYeriBoy=' . $vincKirisYeriBoy . '&araKatYeriEn='. $araKatYeriEn . '&araKatYeriBoy=' . $araKatYeriBoy . '&ttPlak=' . $ttPlak . '&taliKiris=' . $taliKiris . '&arakatKiris=' . $arakatKiris . '&arakatKolon=' . $arakatKolon . '&depremBolgesi=' . $depremBolgesi . '&karyuku=' . $karyuku . '&karBolgesi=' . $karBolgesi . '&rakim=' . $rakim . '&token=' . $token);
+$datedb = date("d-m-Y");
+$datedbOnly = date("ym")
+
+$servername = "localhost";
+$username = "root";
+$dbname = "webapp";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error){
+
+	die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT d_degeri FROM degiskenler WHERE d_ismi = 'demir'";
+
+$result = $conn->query($sql);
+
+$row = $result->fetch_assoc();
+
+$demirFiyatdb = $row["d_degeri"];
+
+$demirFiyatTarihdb = $row["d_tarihi"];
+
+//fiyat hesabı pdf ine yollamak için databaseden verileri çek.
+$sqlHesap = "SELECT d_degeri FROM degiskenler";
+
+$result = $conn->query($sqlHesap);
+
+$i = 0;
+
+if($result->num_rows > 0){
+	
+	while($row = $result->fetch_assoc()){
+		
+		$degiskenDegerleri[$i] = $row["d_degeri"];
+		
+		$i = $i + 1;
+	}
+}
+
+//
+
+$message = str_replace(' ', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf.php?adsoyad=' .urlencode(base64_encode($adsoyad)) . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&faks=' . urlencode(base64_encode($faks)) . '&binayeri=' . urlencode(base64_encode($binayeri)) . '&boy=' . $boy . '&en=' . $en . '&yukseklik=' . $yukseklik . '&vincKirisleri=' . $vincKirisleri . '&asikSayisi=' . $asikSayisi . '&olukSayisi=' . $olukSayisi . '&kolonSayisi=' . $kolonSayisi . '&ruzgarKolonSayisi=' . $ruzgarKolonSayisi . '&makasSayisi=' . $makasSayisi . '&vincKirisSayisi=' . $vincKirisSayisi . '&genelHolSayisi=' . $genelHolSayisi . '&kompleAraKat=' . $kompleAraKat . '&kismiAraKat=' . $kismiAraKat . '&KompleAraKatHolSayisi=' . $KompleAraKatHolSayisi . '&KompleAraKatHolBoyutu=' . $KompleAraKatHolBoyutu . '&kismiAraKatHolSayisi=' . $kismiAraKatHolSayisi . '&kismiAraKatAksSayisi=' . $kismiAraKatAksSayisi . '&kismiAraKatHolBoyutu=' . $kismiAraKatHolBoyutu . '&kismiAraKatAksBoyutu=' . $kismiAraKatAksBoyutu . '&enlem=' . $lat . '&boylam=' . $lng . '&vincKirisYeriEn=' . $vincKirisYeriEn . '&vincKirisYeriBoy=' . $vincKirisYeriBoy . '&araKatYeriEn='. $araKatYeriEn . '&araKatYeriBoy=' . $araKatYeriBoy . '&ttPlak=' . $ttPlak . '&taliKiris=' . $taliKiris . '&arakatKiris=' . $arakatKiris . '&arakatKolon=' . $arakatKolon . '&depremBolgesi=' . $depremBolgesi . '&karyuku=' . $karyuku . '&karBolgesi=' . $karBolgesi . '&rakim=' . $rakim . '&token=' . $token . '&arakat=' . $arakat . '&demirFiyatdb=' . $demirFiyatdb . '&demirFiyatTarihdb=' . $demirFiyatTarihdb . '&date=' . $datedb . '&teklif=' . $datedbOnly);
+
+
+$messageHesap = str_replace('', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf-hesap.php?demirFiyat=' . $degiskenDegerleri[0] . '&betonFiyat=' . $degiskenDegerleri[1] . '&betonIscilik=' . $degiskenDegerleri[2] . '&demirIscilik=' . $degiskenDegerleri[3] . '&nakliyat=' . $degiskenDegerleri[4] . '&montajIscilik=' . $degiskenDegerleri[5] . '&buharKuru=' . $degiskenDegerleri[6] . '&ankraj=' . $degiskenDegerleri[7] . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&adsoyad=' . urlencode(base64_encode($adsoyad)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&vincKirisiMetreKup=' . $vincKirisiMetreKup);
 
 $mail = new PHPMailer();
 
@@ -66,7 +113,9 @@ $mail->Host = "ssl://smtp.gmail.com";
 $mail->Port = 465;
 $mail->SMTPAuth = true; // SMTP auth
 
+$mail->setFrom('betonel@betonel.com.tr', 'Betonel A.Ş.');
 $mail->AddAddress($_GET["email"]);
+$mail->addReplyTo("betonel@betonel.com.tr", "Betonel A.Ş.");
 
 $mail->Subject = "Betonel E-Posta Dogrulama Maili";
 $mail->AddEmbeddedImage('presets/mail-footer.png', 'mail-footer');
@@ -252,6 +301,7 @@ $mail->Host = "ssl://smtp.gmail.com";
 $mail->Port = 465;
 $mail->SMTPAuth = true; // SMTP auth
 
+$mail->setFrom('betonel@betonel.com.tr', 'Betonel A.Ş.');
 
 $mail->Subject = "Betonel Müşteri Teklif Bilgileri";
 $mail->AddEmbeddedImage('presets/mail-footer.png', 'mail-footer');
@@ -343,7 +393,9 @@ $mail->Body =
 			</table>
 				<div class=\"container\">
 				
-					<br> <h4>Müşterinin aldığı PDF dosyasına ulaşmak için <a href= $message>tıklayınız.</a></h4> <br> <br> <br> <br>
+					<br> <h4>Müşterinin aldığı PDF dosyasına ulaşmak için <a href= $message>tıklayınız.</a></h4> <br> <br>
+					<4>Hesap PDF dosyasına ulaşmak için tıklayınız: <a href= $messageHesap>Hesap PDF</a></h4>
+					<br> <br>
 				</div>
 				<footer>
 					<img src=\"cid:mail-footer\" alt=\"Betonel A.Ş.\" style=\"width:1326px;height:195;\">
@@ -381,4 +433,6 @@ if(!$mail->Send()){
 else{
 	
 }
+
+$conn->close();
 ?>
