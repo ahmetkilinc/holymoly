@@ -21,30 +21,7 @@
 	$a = 'images/'.$token;
 
 	$success = file_put_contents('images/'.$token.'/2Dimage.png', $data, 8);
-
-	//echo 'ekleme başarılı: ' . $success;
-	/*
-	$dir = "images/";
-
-	fclose($dir);
-
-	foreach(glob($dir."*") as $file){
-		
-		fclose($file);
-	}
-
-	//2D image ları silme kısmı (tamamlanmadı, permission denied hatası veriyor)
-
-	//fclose($dir);
 	
-	foreach(glob($dir."*") as $file){
-	
-		//30 günden eski png dosyalarını sil.
-		//if(filectime($file) < time()){
-
-			unlink($file);
-		//}
-	}*/
 ?>
 
 <html>
@@ -236,9 +213,12 @@
 			  
 		<input id='input_token' type='hidden' name='token' readonly value= <?php echo $token ?>>
 			  
+		<input id='' type="hidden" name="vincKirisiMetreKup" readonly value= <?php echo $_GET['vincKirisiMetreKup']; ?>>
+			  
 		<input id='input_fabrika' type='hidden' name='fabrika' readonly value=>
 			  
 		<input id='input_rakim' type='hidden' name='gercekrakim' readonly value=>
+			  
 			  
 	  <div class='label'>
         <label for='number_01'>Vinç Kaldırma Kapasitesi (ton)</label>

@@ -25,6 +25,10 @@ class ThreeUtils{
 		var arakatKiris = 0;
 		var arakatKolon = 0;
 		var butunParcalar = 0;
+		
+		//var vincKirisiMetreKup = 1.55;
+		var vincKirisiMetreKup = 0;
+		
 		var olukEn = 0.4;
 		var olukBoy = 0;
 		var olukYukseklik = 0.4;
@@ -55,224 +59,224 @@ class ThreeUtils{
 		//kolonlar
 		var kolon40 = {
 			
-			kolonEn : 40,
-			kolonBoy : 40,
-			kolonYamukBoyut : [40, 20, 20]
+			kolonEn : 0.4,
+			kolonBoy : 0.4,
+			kolonYamukBoyut : [0.4, 0.2, 0.2]
 		};
 		
 		var kolon45 = {
 			
-			kolonEn : 45,
-			kolonBoy : 45,
-			kolonYamukBoyut : [45, 22.5, 25]
+			kolonEn : 0.45,
+			kolonBoy : 0.45,
+			kolonYamukBoyut : [0.45, 0.225, 0.25]
 		};
 		
 		var kolon50 = {
 			
-			kolonEn : 50,
-			kolonBoy : 50,
-			kolonYamukBoyut : [50, 25, 30]
+			kolonEn : 0.5,
+			kolonBoy : 0.5,
+			kolonYamukBoyut : [0.5, 0.25, 0.3]
 		};
 		
 		var kolon55 = {
 			
-			kolonEn : 55,
-			kolonBoy : 55,
-			kolonYamukBoyut : [55, 27.5, 35]
+			kolonEn : 0.55,
+			kolonBoy : 0.55,
+			kolonYamukBoyut : [0.55, 0.275, 0.35]
 		};
 		
 		var kolon60 = {
 			
-			kolonEn : 60,
-			kolonBoy : 60,
-			kolonYamukBoyut : [60, 30, 40]
+			kolonEn : 0.6,
+			kolonBoy : 0.6,
+			kolonYamukBoyut : [0.6, 0.3, 0.4]
 		};
 		
 		var kolon65 = {
 			
-			kolonEn : 65,
-			kolonBoyut : 65,
-			kolonYamukBoyut : [65, 32.5, 45]
+			kolonEn : 0.65,
+			kolonBoyut : 0.65,
+			kolonYamukBoyut : [0.65, 0.325, 0.45]
 		};
 		
 		var kolon70 = {
 			
-			kolonEn : 70,
-			kolonBoyut : 70,
-			kolonYamukBoyut : [70, 35, 50]
+			kolonEn : 0.7,
+			kolonBoyut : 0.7,
+			kolonYamukBoyut : [0.7, 0.35, 0.5]
 		};
 				
 		//makaslar
 		var makasHasanoglan12 = {
 			
 			fabrika : "hasanoglan",
-			boy : [12, 14.5],
-			en : [35, 25],
-			yukseklik : 51.6,
-			yukseklikUcgen : 25.75
+			boy : [0.12, 0.145],
+			en : [0.35, 0.25],
+			yukseklik : 0.516,
+			yukseklikUcgen : 0.2575
 		};
 		
 		var makasHasanoglan15 = {
 			
 			fabrika : "hasanoglan",
-			boy : [14.5, 16.5],
-			en : [35, 25],
-			yukseklik : 51.6,
-			yukseklikUcgen : 25.75
+			boy : [0.145, 0.165],
+			en : [0.35, 0.25],
+			yukseklik : 0.516,
+			yukseklikUcgen : 0.2575
 		};
 		
 		var makasHasanoglan16 = {
 			
 			fabrika : "hasanoglan",
-			boy : [16.5, 18.5],
-			en : [35, 30],
-			yukseklik : 49.5,
-			yukseklikUcgen : 24.75
+			boy : [0.165, 0.185],
+			en : [0.35, 0.3],
+			yukseklik : 0.495,
+			yukseklikUcgen : 0.2475
 		};
 		
 		var makasHasanoglan18 = {
 			
 			fabrika : "hasanoglan",
-			boy : [18.5, 20.5],
-			en : [35, 30],
-			yukseklik : 49.5,
-			yukseklikUcgen : 24.75
+			boy : [0.185, 0.205],
+			en : [0.35, 0.3],
+			yukseklik : 0.495,
+			yukseklikUcgen : 0.2475
 		};
 		
 		var makasHasanoglan20 = {
 		
 			fabrika : "hasanoglan",
-			boy : [20.5, 22.5],
-			en : [35, 30],
-			yukseklik : 49.5,
-			yukseklikUcgen : 24.75
+			boy : [0.205, 0.225],
+			en : [0.35, 0.3],
+			yukseklik : 0.495,
+			yukseklikUcgen : 0.2475
 		};
 		
 		var makasHasanoglan21 = {
 			
 			fabrika : "hasanoglan",
-			boy : [22.5, 23.5],
-			en : [43, 41.5],
-			yukseklik : 49.5,
-			yukseklikUcgen : 24.75
+			boy : [0.225, 0.235],
+			en : [0.43, 0.415],
+			yukseklik : 0.495,
+			yukseklikUcgen : 0.2475
 		};
 		
 		var makasHasanoglan23 = {
 			
 			fabrika : "hasanoglan",
-			boy : [23.5, 26.5],
-			en : [43, 41.5],
-			yukseklik : 49.5,
-			yukseklikUcgen : 24.75
+			boy : [0.235, 0.265],
+			en : [0.43, 0.415],
+			yukseklik : 0.495,
+			yukseklikUcgen : 0.2475
 		};
 		
 		var makasHasanoglan26 = {
 			
 			fabrika : "hasanoglan",
-			boy : [26.5, 30],
-			en : [43, 41.5],
-			yukseklik : 49.5,
-			yukseklikUcgen : 24.75
+			boy : [0.265, 0.3],
+			en : [0.43, 0.415],
+			yukseklik : 0.495,
+			yukseklikUcgen : 0.2475
 		};
 		
 		var makasTemelli7 = {
 			
 			fabrika : "temelli",
-			boy : [7.5, 10.5],
-			en : [35, 25],
-			yukseklik : 53,
-			yukseklikUcgen : 52
+			boy : [0.075, 0.105],
+			en : [0.35, 0.25],
+			yukseklik : 0.53,
+			yukseklikUcgen : 0.52
 		};
 		
 		var makasTemelli9 = {
 			
 			fabrika : "temelli",
-			boy : [10.5, 12.5],
-			en : [35, 25],
-			yukseklik : 53,
-			yukseklikUcgen : 62
+			boy : [0.105, 0.125],
+			en : [0.35, 0.25],
+			yukseklik : 0.53,
+			yukseklikUcgen : 0.62
 		};
 		
 		var makasTemelli12 = {
 			
 			fabrika : "temelli",
-			boy : [12.5, 15.5],
-			en : [35, 25],
-			yukseklik : 53,
-			yukseklikUcgen : 77
+			boy : [0.125, 0.155],
+			en : [0.35, 0.25],
+			yukseklik : 0.53,
+			yukseklikUcgen : 0.77
 		};
 		
 		var makasTemelli16 = {
 			
 			fabrika : "temelli",
-			boy : [15.5, 18],
-			en : [35, 25],
-			yukseklik : 49.5,
-			yukseklikUcgen : 49.5
+			boy : [0.155, 0.18],
+			en : [0.35, 0.25],
+			yukseklik : 0.495,
+			yukseklikUcgen : 0.495
 		};
 		
 		var makasTemelli18 = {
 			
 			fabrika : "temelli",
-			boy : [18, 20.5],
-			en : [35, 25],
-			yukseklik : 49.5,
-			yukseklikUcgen : 49.5
+			boy : [0.18, 0.205],
+			en : [0.35, 0.25],
+			yukseklik : 0.495,
+			yukseklikUcgen : 0.495
 		};
 		
 		var makasTemelli20 = {
 			
 			fabrika : "temelli",
-			boy : [20.5, 22.5],
-			en : [35, 25],
-			yukseklik : 49.5,
-			yukseklikUcgen : 49.5
+			boy : [0.205, 0.225],
+			en : [0.35, 0.25],
+			yukseklik : 0.495,
+			yukseklikUcgen : 0.495
 		};
 		
 		var makasTemelli21 = {
 			
 			fabrika : "temelli",
-			boy : [22.5, 23.5],
-			en : [43, 41.5],
-			yukseklik : 37.3,
-			yukseklikUcgen : 37.3
+			boy : [0.225, 0.235],
+			en : [0.43, 0.415],
+			yukseklik : 0.373,
+			yukseklikUcgen : 0.373
 		};
 		
 		var makasTemelli23 = {
 			
 			fabrika : "temelli",
-			boy : [23.5, 26.5],
-			en : [43, 41.5],
-			yukseklik : 37.3,
-			yukseklikUcgen : 37.3	
+			boy : [0.235, 0.265],
+			en : [0.43, 0.415],
+			yukseklik : 0.373,
+			yukseklikUcgen : 0.373	
 		};
 		
 		var makasTemelli26 = {
 			
 			fabrika : "temelli",
-			boy : [26.5, 29.5],
-			en : [43, 41.5],
-			yukseklik : 37.5,
-			yukseklikUcgen : 37.5
+			boy : [0.265, 0.295],
+			en : [0.43, 0.415],
+			yukseklik : 0.375,
+			yukseklikUcgen : 0.375
 		};
 		//makaslar end
 		
 		var asikYukseklikH = {
 			
 			fabrika : "hasanoglan",
-			yirmibeslik : [15, 25, 8],
-			yirmidokuzluk : [16, 29, 9],
-			otuzikilik : [17, 32, 9],
-			otuzdortluk : [17, 34, 9]
+			yirmibeslik : [0.15, 0.25, 0.08],
+			yirmidokuzluk : [0.16, 0.29, 0.09],
+			otuzikilik : [0.17, 0.32, 0.09],
+			otuzdortluk : [0.17, 0.34, 0.09]
 		};
 
 		var asikYukseklikT = {
 			
 			fabrika : "temelli",
-			yirmibeslik : [12, 25, 8],
-			yirmiyedibucukluk : [18, 27.5, 7],
-			yirmisekizlik : [15.5, 28, 9],
-			otuzsekizlik : [26, 38, 9]
+			yirmibeslik : [0.12, 0.25, 0.08],
+			yirmiyedibucukluk : [0.18, 0.275, 0.07],
+			yirmisekizlik : [0.155, 0.28, 0.09],
+			otuzsekizlik : [0.26, 0.38, 0.09]
 		};
 
         ThreeUtils.app = {};
@@ -341,10 +345,10 @@ class ThreeUtils{
 
 				settings.EkranResetleme();
 				//settings.objeSayisiniBul();
-                this.stepBoy = parseFloat(this.Boy / ((this.Boy / 10) + 1));
+                this.stepBoy = parseFloat(this.Boy / ((this.Boy / 9.54) + 1));
                 this.stepEn  = parseFloat(this.En / ((this.En / 30) + 1));
 
-				app.grid = new LabeledGrid(60, 20, (60/ (60/10+1)), (60/ (60/30+1)), 13, [0,1,0], 0x000055, 0.21, true, "#000000", "left");
+				app.grid = new LabeledGrid(60, 20, (60/ (60/9.54+1)), (60/ (60/30+1)), 13, [0,1,0], 0x000055, 0.21, true, "#000000", "left");
 				app.scene.add(app.grid);
 				//return app;
 
@@ -3162,6 +3166,13 @@ class ThreeUtils{
 			}
 			//elemanların(çatı makası ve kolon hariç) metreküp hesaplamaları
 			this.metreKupHesaplari = function(){
+								
+				console.log("vinç kiriş sayısı: " + vincKirisiSayisi);
+				//vinc kirişi metreküp
+				vincKirisiMetreKup = vincKirisiSayisi * 1.55;
+				
+				console.log("Vinç Kirişi Metreküp: " + vincKirisiMetreKup);
+				
 				
 				//oluk metreküp
 				olukBoy = settings.stepBoy;
@@ -3178,7 +3189,7 @@ class ThreeUtils{
 					var asikAlan = ((asikYukseklikT.yirmisekizlik[0] / 100) - (asikYukseklikT.yirmisekizlik[2] / 100)) * (asikYukseklikT.yirmisekizlik[1] / 100); 
 					
 					asikBoy = settings.stepBoy;
-					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
+					asikMetreKupT = ((asikBoy * asikAlan) * asikSayisi) * 30000;
 
 					console.log("Temelli fab aşık kirişi metreküp 8-8.4: " + asikMetreKupT);
 				}
@@ -3188,7 +3199,7 @@ class ThreeUtils{
 					var asikAlan = ((asikYukseklikT.yirmiyedibucukluk[0] / 100) - (asikYukseklikT.yirmiyedibucukluk[2] / 100)) * (asikYukseklikT.yirmiyedibucukluk[1] / 100);
 					
 					asikBoy = settings.stepBoy;
-					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
+					asikMetreKupT = ((asikBoy * asikAlan) * asikSayisi) * 30000;
 					
 					console.log("Temelli fab aşık kirişi metreküp 8.4-8.7: " + asikMetreKupT);
 				}
@@ -3197,7 +3208,7 @@ class ThreeUtils{
 					var asikAlan = ((asikYukseklikT.otuzsekizlik[0] / 100) - (asikYukseklikT.otuzsekizlik[2] / 100)) * (asikYukseklikT.otuzsekizlik[1] / 100);
 					
 					asikBoy = settings.stepBoy;
-					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
+					asikMetreKupT = ((asikBoy * asikAlan) * asikSayisi) * 30000;
 					
 					console.log("Temelli fab aşık kirişi metreküp 8.7-9.09: " + asikMetreKupT);
 				}
@@ -3207,7 +3218,7 @@ class ThreeUtils{
 					 
 					asikBoy = settings.stepBoy;
 					
-					asikMetreKupT = (asikBoy * asikAlan) * asikSayisi;
+					asikMetreKupT = ((asikBoy * asikAlan) * asikSayisi) * 30000;
 					 
 					console.log("Temelli fab aşık kirişi metreküp 0-8: " + asikMetreKupT);
 				}
@@ -3219,16 +3230,16 @@ class ThreeUtils{
 					
 					asikBoyH = settings.stepBoy;
 					
-					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
+					asikMetreKupH = ((asikBoyH * asikAlan) * asikSayisi) * 15000;
 					
 					console.log("Hasanoğlan fab aşık kirişi metreküp <8: " + asikMetreKupH);
 				}
 				else if(settings.stepBoy >= 8 && settings.stepBoy < 8.4){
 
-					var asikAlan = ((asikYukseklikH.yirmidokuzluk[0] / 100) - (asikYukseklik.yirmidokuzluk[2] / 100)) * (asikYukseklikH.yirmidokuzluk[1] / 100);
+					var asikAlan = ((asikYukseklikH.yirmidokuzluk[0] / 100) - (asikYukseklikH.yirmidokuzluk[2] / 100)) * (asikYukseklikH.yirmidokuzluk[1] / 100);
 					
 					asikBoyH = settings.stepBoy;
-					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
+					asikMetreKupH = ((asikBoyH * asikAlan) * asikSayisi) * 15000;
 					
 					console.log("Hasanoğlan fab aşık kirişi metreküp 8-8.4: " + asikMetreKupH);
 				}
@@ -3237,7 +3248,7 @@ class ThreeUtils{
 					var asikAlan = ((asikYukseklikH.otuzikilik[0] / 100) - (asikYukseklikH.otuzikilik[2] / 100)) * asikYukseklikH.yirmidokuzluk[0] / 100;
 					
 					asikBoyH = settings.stepBoy;
-					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
+					asikMetreKupH = ((asikBoyH * asikAlan) * asikSayisi) * 15000;
 					
 					console.log("Hasanoğlan fab asik kirişi metreküp 8.4-8.7: " + asikMetreKupH);
 				}
@@ -3246,7 +3257,7 @@ class ThreeUtils{
 					var asikAlan = ((asikYukseklikH.otuzdortluk[0] / 100) - (asikYukseklikH.otuzdortluk[2] / 100)) * (asikYukseklikH.otuzdortluk[1] / 100);
 					
 					asikBoyH = settings.stepBoy;
-					asikMetreKupH = (asikBoyH * asikAlan) * asikSayisi;
+					asikMetreKupH = ((asikBoyH * asikAlan) * asikSayisi) * 15000;
 					
 					console.log("Hasanoğlan fab aşık kirişi metreküp >8.7: " + asikMetreKupH);
 				}
@@ -3267,7 +3278,7 @@ class ThreeUtils{
 
 					makasAlanUcgen = ((makasTemelli7.en[0] - makasTemelli7.en[1]) * makasTemelli7.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi) * 10;
 					
 					console.log("temelli 7.5 - 10.5 makas metreküp: " + makasMetreKup);
 				}
@@ -3278,7 +3289,7 @@ class ThreeUtils{
 
 					makasAlanUcgen = ((makasTemelli9.en[0] - makasTemelli9.en[1]) * makasTemelli9.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi) * 10;
 					
 					console.log("temelli 10.5 - 12 makas metreküp: " + makasMetreKup);
 				}
@@ -3289,7 +3300,7 @@ class ThreeUtils{
 
 					makasAlanUcgen = ((makasHasanoglan12.en[0] - makasHasanoglan12.en[1]) * makasHasanoglan12.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi) * 10;
 					
 					//
 					
@@ -3297,7 +3308,7 @@ class ThreeUtils{
 
 					makasAlanUcgenT = ((makasTemelli12.en[0] - makasTemelli12.en[1]) * makasTemelli12.yukseklik) / 2;
 
-					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					makasMetreKupT = (((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi) * 10;
 					
 					console.log("hasanoğlan 12 - 14.5 makas metreküp: " + makasMetreKup + ", temelli 12 - 14.5 makas metreküp: " + makasMetreKupT);
 				}
@@ -3308,7 +3319,7 @@ class ThreeUtils{
 
 					makasAlanUcgen = ((makasHasanoglan15.en[0] - makasHasanoglan15.en[1]) * makasHasanoglan15.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi) * 10;
 					
 					console.log("hasanoğlan 14.5 - 16.5 makas metreküp: " + makasMetreKup);
 				}
@@ -3319,14 +3330,14 @@ class ThreeUtils{
 
 					makasAlanUcgen = ((makasHasanoglan16.en[0] - makasHasanoglan16.en[1]) * makasHasanoglan16.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi) * 10;
 
 					//
 					makasAlanT = (makasTemelli16.en[0] - makasTemelli16.en[1]) * makasTemelli16.yukseklik;
 
 					makasAlanUcgenT = ((makasTemelli16.en[0] - makasTemelli16.en[1]) * makasTemelli16.yukseklikUcgen) / 2 ;
 
-					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					makasMetreKupT = (((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi) * 10;
 					
 					console.log("hasanoğlan 16.5 - 18.5 makas metreküp: " + makasMetreKup + ", temelli 16.5 - 18.5 makas metreküp: " + makasMetreKupT);
 				}
@@ -3337,7 +3348,7 @@ class ThreeUtils{
 
 					makasAlanUcgen = ((makasHasanoglan18.en[0] - makasHasanoglan18.en[1]) * makasHasanoglan18.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi) * 10;
 					
 					//
 					
@@ -3345,7 +3356,9 @@ class ThreeUtils{
 
 					makasAlanUcgenT = ((makasTemelli18.en[0] - makasTemelli18.en[1]) * makasTemelli18.yukseklikUcgen) / 2;
 
-					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					makasMetreKupT = (((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi) * 10;
+					
+					console.log("makas sayisi: " + makasSayisi);
 					
 					console.log("hasanoğlan 18.5 - 20.5 makas metreküp: " + makasMetreKup + ", temelli 18.5 - 20.5 makas metreküp: " + makasMetreKupT);
 				}
@@ -3356,15 +3369,17 @@ class ThreeUtils{
 
 					makasAlanUcgen = ((makasHasanoglan20.en[0] - makasHasanoglan20.en[1]) * makasHasanoglan20.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi) * 10;
 					
 					//
 					
 					makasAlanT = (makasTemelli20.en[0] - makasTemelli20.en[1]) * makasTemelli20.yukseklik;
 
 					makasAlanUcgenT = ((makasTemelli20.en[0] - makasTemelli20.en[1]) * makasTemelli20.yukseklikUcgen) / 2;
+					
+					console.log("makas sayisi: " + makasSayisi);
 
-					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					makasMetreKupT = (((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi) * 10;
 					
 					console.log("hasanoğlan 20.5 - 22.5 makas metreküp: " + makasMetreKup + ", temelli 20.5 - 22.5 makas metreküp: " + makasMetreKupT);
 				}
@@ -3375,7 +3390,7 @@ class ThreeUtils{
 
 					makasAlanUcgen = ((makasHasanoglan21.en[0] - makasHasanoglan21.en[1]) * makasHasanoglan21.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi) * 10;
 					
 					//
 					
@@ -3383,7 +3398,7 @@ class ThreeUtils{
 
 					makasAlanUcgenT = ((makasTemelli21.en[0] - makasTemelli21.en[1]) * makasTemelli21.yukseklikUcgen) / 2;
 
-					makasMetreKupT = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					makasMetreKupT = (((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi) * 10;
 					
 					console.log("hasanoğlan 22.5 - 23.5 makas metreküp: " + makasMetreKup + ", temelli 22.5 - 23.5 makas metreküp: " + makasMetreKupT);
 				}
@@ -3394,7 +3409,7 @@ class ThreeUtils{
 
 					makasAlanUcgen = ((makasHasanoglan23.en[0] - makasHasanoglan23.en[1]) * makasHasanoglan23.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi) * 10;
 					
 					//
 					
@@ -3402,11 +3417,9 @@ class ThreeUtils{
 
 					makasAlanUcgenT = ((makasTemelli23.en[0] - makasTemelli23.en[1]) * makasTemelli23.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi) * 10;
 					
 					console.log("hasanoğlan 23.5 - 26.5 makas metreküp: " + makasMetreKup + ", temelli 23.5 - 26.5 makas metreküp: " + makasMetreKupT);
-					
-					
 				}
 
 				else if(settings.stepEn >= 26.5 && settings.stepEn < 30){
@@ -3415,7 +3428,7 @@ class ThreeUtils{
 
 					makasAlanUcgen = ((makasHasanoglan26.en[0] - makasHasanoglan26.en[1]) * makasHasanoglan26.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlan * settings.stepEn) + (makasAlanUcgen * settings.stepEn)) * makasSayisi) * 10;
 					
 					//
 					
@@ -3423,7 +3436,7 @@ class ThreeUtils{
 
 					makasAlanUcgenT = ((makasTemelli26.en[0] - makasTemelli26.en[1]) * makasTemelli26.yukseklikUcgen) / 2;
 
-					makasMetreKup = ((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi;
+					makasMetreKup = (((makasAlanT * settings.stepEn) + (makasAlanUcgenT * settings.stepEn)) * makasSayisi) * 10;
 					
 					console.log("hasanoğlan 26.5 - 30 makas metreküp: " + makasMetreKup + ", temelli 26.5 - 30 makas metreküp: " + makasMetreKupT);
 				}
@@ -3511,10 +3524,6 @@ class ThreeUtils{
 			}
 			
 			this.piPlakMetreKupHesabi = function(){
-				
-				var integratedSys = kolonSayisi;
-				integratedSys.toFixed(2);
-				app.scene.add(integratedSys);
 				
 				piPlakYukseklik = settings.Yükseklik / 25;
 			}
@@ -4325,12 +4334,12 @@ class ThreeUtils{
 			
 			BinaCiz: function(){
 				
+				settings.objeSayisiniBul();
 				settings.kolonMetreKupHesabi();
 				settings.metreKupHesaplari();
 				settings.makasMetreKupHesabi();
 				settings.KismiAraKatEkle = false;
 				settings.redraw();
-				settings.objeSayisiniBul();
 				VincKontrol.open();
 				araKatFolder.open();
 				teklifAl.open();
@@ -4381,29 +4390,8 @@ class ThreeUtils{
 					}).done(function(o){
 					
 					  	console.log('saved');
-						window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=');
+						window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=' + '&vincKirisiMetreKup=' + vincKirisiMetreKup);
 					});
-				
-				/*$.ajax({  
-					type: 'GET',
-					url: 'http://localhost/tutorialsPoint/holymoly/create-form.php', 
-					data: { album: "elma" },
-					success: function(response){
-						
-						console.log("saved");
-						
-					
-					}
-				});*/
-				
-				
-				
-				
-				
-
-				//window.location.assign('https://www.kardemir.com/Liste.aspx?yil=2017&s=FIYAT');
-				
-				/*window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak + '&taliKiris=' + taliKiris + '&arakatKiris=' + arakatKiris + '&arakatKolon=' + arakatKolon + '&imgBase64=');*/
 			}
 		};
 		
@@ -4462,6 +4450,9 @@ class ThreeUtils{
 					
 					settings.VincKirisiEkle();
 					settings.objeSayisiniBul();
+					settings.metreKupHesaplari();
+					settings.makasMetreKupHesabi();
+					settings.kolonMetreKupHesabi();
 				}
 					
 				else{

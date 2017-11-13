@@ -17,6 +17,10 @@ $third_step1 = explode("=", $second_step1[1]);
 
 $demirFiyatTarih = str_split($third_step1[1], 10);
 
+$demirFiyatdb = $_GET["demirFiyatdb"];
+
+$demirFiyatTarihdb = $_GET["demirFiyatTarihdb"];
+
 //eklenmiş iki dosya olması halinde bir öncekini al
 
 require("fpdf/alphapdf.php");
@@ -64,7 +68,7 @@ $pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', "Tarih: "), 0, 'L');
 $pdf->SetY(40);
 $pdf->SetX(178);
 $pdf->SetFont("arial", "B", "11");
-$pdf->MultiCell(60, 6, iconv('utf-8', 'ISO-8859-9', date("d.m.Y")), 0, 'L');
+$pdf->MultiCell(60, 6, iconv('utf-8', 'ISO-8859-9', $_GET["date"]), 0, 'L');
 
 $pdf->SetY(45);
 $pdf->SetFont("arial","B","11");
@@ -102,7 +106,7 @@ $pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', "Teklif No: "), 0, 'L');
 $pdf->SetY(50);
 $pdf->SetX(178);
 $pdf->SetFont("arial","B","11");
-$pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', date("ym") . "-0001"), 0, 'L');
+$pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', $_GET["teklif"] . "-0001"), 0, 'L');
 
 $pdf->SetY(55);
 $pdf->SetFont("arial","B","11");
@@ -135,10 +139,6 @@ if ($_GET["vincKirisleri"] == 'true'){
 	$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Yapının ". $_GET["vincKirisYeriEn"] ."/". $_GET["vincKirisYeriBoy"] . " aksları arasında +6.70 kotunda max kullanım kapasite 100 ton olan vinç konsolları yer almaktadır. Vinç kirişleri tek vinç yüküne göre tasarlanmıştır. "), 0, 'J');
 }
 
-else if($_GET['controlP'] == 'true'){
-	
-	
-}
 
 if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	
@@ -729,11 +729,11 @@ $pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "Fiyatlarımıza KDV dahil 
 
 $pdf->SetY(170);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Fiyat hesaplarında, $demirFiyatTarih[0] tarihli www.kardemir.com sitesindeki fiyat listesi baz alınmış olup, inşaat demiri ton fiyatı "), 0, 1);
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Fiyat hesaplarında, $demirFiyatTarihdb tarihli www.kardemir.com sitesindeki fiyat listesi baz alınmış olup, inşaat demiri ton fiyatı "), 0, 1);
 
 $pdf->SetY(175);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "$demirFiyat[1]"), 0, 1);
+$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "$demirFiyatdb"), 0, 1);
 
 $pdf->SetY(175);
 $pdf->SetX(24);
