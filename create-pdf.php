@@ -1,5 +1,5 @@
 <?php
-
+/*
 $url = 'https://www.kardemir.com/Liste.aspx?yil=2017&s=FIYAT&Lng=tr-TR';
 $content = file_get_contents($url);
 $first_step = explode("satirMalzeme" , $content);
@@ -15,7 +15,7 @@ $first_step1 = explode("ContentPlaceHolder1_DynamicListe" , $content1);
 $second_step1 = explode("div", $first_step1[1]);
 $third_step1 = explode("=", $second_step1[1]);
 
-$demirFiyatTarih = str_split($third_step1[1], 10);
+$demirFiyatTarih = str_split($third_step1[1], 10);*/
 
 $demirFiyatdb = $_GET["demirFiyatdb"];
 
