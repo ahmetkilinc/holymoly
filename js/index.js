@@ -25,6 +25,11 @@ class ThreeUtils{
 		var arakatKiris = 0;
 		var arakatKolon = 0;
 		var butunParcalar = 0;
+		var ongermeHalatiOluk = 0;
+		var ongermeHalatiAsik = 0;
+		var ongermeHalatiAraKatKiris = 0;
+		var ongermeHalatiPiplak = 0;
+		var ongermeHalatiMakas = 0;
 		
 		//var vincKirisiMetreKup = 1.55;
 		var vincKirisiMetreKup = 0;
@@ -3526,6 +3531,18 @@ class ThreeUtils{
 			this.piPlakMetreKupHesabi = function(){
 				
 				piPlakYukseklik = settings.Yükseklik / 25;
+			}
+			
+			this.metrajHesabi = function(){
+				
+				//oluk metraj
+				var ongermeHalatiOluk = olukSayisi * settings.stepBoy * 1.548;
+				var ongermeHalatiAsik = asikSayisi * settings.stepBoy * 1.548;
+				var ongermeHalatiAraKatKiris = arakatKiris.toFixed(0) * settings.stepBoy * 8.808;
+				var ongermeHalatiPiplak = ttPlak * settings.stepBoy * 4.404;
+				var ongermeHalatiMakas = makasSayisi * settings.stepEn * 8.808;
+				
+				console.log("ongerme halat: " + ongermeHalatiOluk + ongermeHalatiAsik + ongermeHalatiAraKatKiris + ongermeHalatiPiplak + ongermeHalatiMakas);
 			}
 		
 			//obje ekleme ve kaldırma fonksiyonları son*
