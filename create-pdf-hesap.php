@@ -11,6 +11,7 @@ $montajIscilik = $_GET["montajIscilik"];
 $buharKuru = $_GET["buharKuru"];
 $ankraj = $_GET["ankraj"];
 $vincKirisiMetreKup = $_GET["vincKirisiMetreKup"];
+$ongermeHalati = $_GET["ongermeHalati"];
 
 $betonMetreKup = $vincKirisiMetreKup + 0;
 
@@ -285,20 +286,44 @@ $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', "x" . " TL"), 1, 'C');
 
+
+//öngerme halatı
 $pdf->SetY(130);
+$pdf->SetFont("arial","B","11");
+$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "Öngerme Halatı"), 1, 'L');
+
+$pdf->SetY(130);
+$pdf->SetX(70);
+$pdf->SetFont("arial","","10");
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', " m"), 1, 'C');
+
+$pdf->SetY(130);
+$pdf->SetX(110);
+$pdf->SetFont("arial","","10");
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalati . " TL/ad"), 1, 'C');
+
+$pdf->SetY(130);
+$pdf->SetX(160);
+$pdf->SetFont("arial","","10");
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', "x" . " TL"), 1, 'C');
+
+
+
+
+$pdf->SetY(135);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "Genel Giderler"), 1, 'L');
 
-$pdf->SetY(130);
+$pdf->SetY(135);
 $pdf->SetX(70);
 $pdf->SetFont("arial", "B", "10");
 $pdf->MultiCell(130, 5, iconv('utf-8', 'ISO-8859-9', " "), 1, 'C');
 
-$pdf->SetY(135);
+$pdf->SetY(140);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
 
-$pdf->SetY(135);
+$pdf->SetY(140);
 $pdf->SetX(70);
 $pdf->SetFont("arial","B","10");
 $pdf->MultiCell(130, 10, iconv('utf-8', 'ISO-8859-9', "x" . " TL"), 1, 'R');
