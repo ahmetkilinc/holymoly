@@ -30,6 +30,7 @@ class ThreeUtils{
 		var ongermeHalatiAraKatKiris = 0;
 		var ongermeHalatiPiplak = 0;
 		var ongermeHalatiMakas = 0;
+		var ongermeHalatiToplam = 0;
 		
 		//var vincKirisiMetreKup = 1.55;
 		var vincKirisiMetreKup = 0;
@@ -349,6 +350,7 @@ class ThreeUtils{
             this.redraw = function(){
 
 				settings.EkranResetleme();
+				settings.metrajHesabi();
 				//settings.objeSayisiniBul();
                 this.stepBoy = parseFloat(this.Boy / ((this.Boy / 9.54) + 1));
                 this.stepEn  = parseFloat(this.En / ((this.En / 30) + 1));
@@ -3536,13 +3538,23 @@ class ThreeUtils{
 			this.metrajHesabi = function(){
 				
 				//oluk metraj
-				var ongermeHalatiOluk = olukSayisi * settings.stepBoy * 1.548;
-				var ongermeHalatiAsik = asikSayisi * settings.stepBoy * 1.548;
-				var ongermeHalatiAraKatKiris = arakatKiris.toFixed(0) * settings.stepBoy * 8.808;
-				var ongermeHalatiPiplak = ttPlak * settings.stepBoy * 4.404;
-				var ongermeHalatiMakas = makasSayisi * settings.stepEn * 8.808;
+				ongermeHalatiOluk = olukSayisi * settings.stepBoy * 1.548;
+				ongermeHalatiAsik = asikSayisi * settings.stepBoy * 1.548;
+				ongermeHalatiAraKatKiris = arakatKiris.toFixed(0) * settings.stepBoy * 8.808;
+				ongermeHalatiPiplak = ttPlak * settings.stepBoy * 4.404;
 				
-				console.log("ongerme halat: " + ongermeHalatiOluk + ongermeHalatiAsik + ongermeHalatiAraKatKiris + ongermeHalatiPiplak + ongermeHalatiMakas);
+				if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+					
+					ongermeHalatiMakas = makasSayisi * (settings.stepEn / 3) * 8.808;
+				}
+				else{
+					
+					ongermeHalatiMakas = makasSayisi * (settings.stepEn / 2) * 8.808;
+				}
+				
+				ongermeHalatiToplam = ongermeHalatiOluk + ongermeHalatiAsik + ongermeHalatiAraKatKiris + ongermeHalatiPiplak + ongermeHalatiMakas;
+				
+				console.log("Öngerme halatı toplam: " + ongermeHalatiToplam);
 			}
 		
 			//obje ekleme ve kaldırma fonksiyonları son*
@@ -4376,13 +4388,7 @@ class ThreeUtils{
 					kismiAraKatAksBoyutu = 0;
 				}
 				
-				//settings.takeScreenshot();
-				
-				
-				
-				//yeni bir sayfa aç
-				//var w = window.open('', '');
-				//w.document.title = "Screenshot";
+				settings.metrajHesabi();
 				
 				var img = new Image();
 				app.renderer.render(app.scene, app.camera);
@@ -4393,6 +4399,7 @@ class ThreeUtils{
 				var myJSON = JSON.stringify(img);
 
 				$.ajax({
+					
 					  type: "POST",
 					
 					  url: "http://localhost/tutorialsPoint/holymoly/create-form.php",
@@ -4407,7 +4414,7 @@ class ThreeUtils{
 					}).done(function(o){
 					
 					  	console.log('saved');
-						window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=' + '&vincKirisiMetreKup=' + vincKirisiMetreKup);
+						window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=' + '&vincKirisiMetreKup=' + vincKirisiMetreKup + '&ongermeHalatiToplam=' + ongermeHalatiToplam);
 					});
 			}
 		};

@@ -11,7 +11,9 @@ $montajIscilik = $_GET["montajIscilik"];
 $buharKuru = $_GET["buharKuru"];
 $ankraj = $_GET["ankraj"];
 $vincKirisiMetreKup = $_GET["vincKirisiMetreKup"];
-$ongermeHalati = $_GET["ongermeHalati"];
+$ongermeHalatFiyati = $_GET["ongermeHalatFiyati"];
+$ongermeHalatiToplam = $_GET["ongermeHalatiToplam"];
+
 
 $betonMetreKup = $vincKirisiMetreKup + 0;
 
@@ -295,17 +297,17 @@ $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "Öngerme Halatı"), 1, 'L')
 $pdf->SetY(130);
 $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', " m"), 1, 'C');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalatiToplam ." kg"), 1, 'C');
 
 $pdf->SetY(130);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalati . " TL/ad"), 1, 'C');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalatFiyati . " TL/ad"), 1, 'C');
 
 $pdf->SetY(130);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', "x" . " TL"), 1, 'C');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalatiToplam * $ongermeHalatFiyati . " TL"), 1, 'C');
 
 
 

@@ -213,7 +213,9 @@
 			  
 		<input id='input_token' type='hidden' name='token' readonly value= <?php echo $token ?>>
 			  
-		<input id='' type="hidden" name="vincKirisiMetreKup" readonly value= <?php echo $_GET['vincKirisiMetreKup']; ?>>
+		<input id='input_vincKirisiMetreKup' type="hidden" name="vincKirisiMetreKup" readonly value= <?php echo $_GET['vincKirisiMetreKup']; ?>>
+			  
+		<input id='' type="hidden" name="ongermeHalatiToplam" readonly value= <?php echo $_GET['ongermeHalatiToplam'] ?>>
 			  
 		<input id='input_fabrika' type='hidden' name='fabrika' readonly value=>
 			  
