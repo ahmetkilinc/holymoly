@@ -10,6 +10,7 @@ Kullanılan Teknolojiler:
 	a)	PHP PHPMailer
 	b)	PHP fpdf
 	c)	Xampp Apache Server
+	d)	MySql Database
 
 3)	Kod Yazma ve Debug için Kullanılan Teknolojiler:
 	a)	Brackets JavaScript Text Editör
