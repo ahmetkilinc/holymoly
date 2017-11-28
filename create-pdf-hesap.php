@@ -331,7 +331,7 @@ $pdf->SetFont("arial","B","10");
 $pdf->MultiCell(130, 10, iconv('utf-8', 'ISO-8859-9', "x" . " TL"), 1, 'R');
 
 $pdf->SetAlpha(1);
-$pdf->SetTextColor(0,0,0);
+$pdf->SetTextColor(0, 0, 0);
 
-$pdf->Output('','betonel-fiyat-hesaplari.pdf');
+$pdf->Output('', 'betonel-fiyat-hesaplari.pdf');
 ?>

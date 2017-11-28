@@ -233,14 +233,14 @@
       </div>
       <div class='input'>
 		<select name="arakat">
-			<option value="350">350</option>
-			<option value="500">500</option>
-			<option value="750">750</option>
-			<option value="1000">1000</option>
-			<option value="1250">1250</option>
-			<option value="1500">1500</option>
-			<option value="2000">2000</option>
-			<option value="2500">2500</option>
+			<option value="350">350 - Ofis</option>
+			<option value="500">500 - Hafif Atolye (Tekstil, Elektrik)</option>
+			<option value="750">750 - Atolye</option>
+			<option value="1000">1000 - Hafif Forklift</option>
+			<option value="1250">1250 - Forklift, Kamyonet</option>
+			<option value="1500">1500 - Tır, Kamyon</option>
+			<option value="2000">2000 - Ağır İmalat</option>
+			<option value="2500">2500 - Ağır Depolama (Cam, Kağıt, Matbaa)</option>
 		</select>
       </div>
 	<p>
