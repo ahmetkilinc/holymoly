@@ -58,9 +58,11 @@ class ThreeUtils{
 		var kolonMetreKup = 0;
 		var kolonYukseklik = 0;
 		
-		var piPlakYukseklik = 0;
-		var piPlakAlan = 0;
-		var piPlakMetreKup = 0;
+		var ttPlakMetreKup30 = 0;
+		var ttPlakMetreKup45 = 0;
+		var ttPlakMetreKup70 = 0;
+		var ttPlakYukseklik3045 = 0.05;
+		var ttPlakYukseklik70 = 0.1;
 		
 		//kolonlar
 		var kolon40 = {
@@ -3447,6 +3449,7 @@ class ThreeUtils{
 					
 					console.log("hasanoğlan 26.5 - 30 makas metreküp: " + makasMetreKup + ", temelli 26.5 - 30 makas metreküp: " + makasMetreKupT);
 				}
+				console.log("*** ***");
 			}
 			//kolon metreküp hesabı
 			this.kolonMetreKupHesabi = function(){
@@ -3530,11 +3533,6 @@ class ThreeUtils{
 				}
 			}
 			
-			this.piPlakMetreKupHesabi = function(){
-				
-				piPlakYukseklik = settings.Yükseklik / 25;
-			}
-			
 			this.metrajHesabi = function(){
 				
 				//oluk metraj
@@ -3555,6 +3553,17 @@ class ThreeUtils{
 				ongermeHalatiToplam = ongermeHalatiOluk + ongermeHalatiAsik + ongermeHalatiAraKatKiris + ongermeHalatiPiplak + ongermeHalatiMakas;
 				
 				console.log("Öngerme halatı toplam: " + ongermeHalatiToplam);
+			}
+			
+			this.ttPlakMetreKupHesabi = function(){
+				
+				var tempTtPlakMetreKup30 = ttPlakYukseklik3045 * settings.stepEn * settings.stepBoy;
+				var tempTtPlakMetreKup45 = ttPlakYukseklik3045 * settings.stepEn * settings.stepBoy;
+				var tempTtPlakMetreKup70 = ttPlakYukseklik70 * settings.stepEn * settings.stepBoy;
+
+				ttPlakMetreKup30 = tempTtPlakMetreKup30 + ((0.125 * 0.25 * settings.stepBoy) * 2);
+				ttPlakMetreKup45 = tempTtPlakMetreKup45 + ((0.125 * 0.4 * settings.stepBoy) * 2);
+				ttPlakMetreKup70 = tempTtPlakMetreKup70 + ((0.125 * 0.6 * settings.stepBoy) * 3);
 			}
 		
 			//obje ekleme ve kaldırma fonksiyonları son*
@@ -4372,6 +4381,14 @@ class ThreeUtils{
 				VincKontrol.open();
 				araKatFolder.open();
 				teklifAl.open();
+				
+				if(settings.AraKatEkle === true || settings.KismiAraKatEkle === true){
+
+					settings.ttPlakMetreKupHesabi();
+				}
+
+				console.log("30luk ttPlak: " + ttPlakMetreKup30 + "45lik ttPlak: " + ttPlakMetreKup45 + "70lik ttPlak: " + ttPlakMetreKup70);
+				
 			},
 			
 			teklifAl: function(){
@@ -4393,6 +4410,19 @@ class ThreeUtils{
 				var img = new Image();
 				app.renderer.render(app.scene, app.camera);
 				img.src = app.renderer.domElement.toDataURL();
+				
+				
+				if(settings.AraKatEkle === true || settings.KismiAraKatEkle === true){
+
+					
+					settings.ttPlakMetreKupHesabi();
+				}
+
+				console.log("30luk ttPlak: " + ttPlakMetreKup30 + "45lik ttPlak: " + ttPlakMetreKup45 + "70lik ttPlak: " + ttPlakMetreKup70);
+				
+				
+				
+				
 				
 				//w.document.body.appendChild(img);
 				
@@ -4477,6 +4507,7 @@ class ThreeUtils{
 					settings.metreKupHesaplari();
 					settings.makasMetreKupHesabi();
 					settings.kolonMetreKupHesabi();
+					settings.metrajHesabi();
 				}
 					
 				else{
