@@ -14,15 +14,30 @@
 	$token = time();
 
 	if (!file_exists('images/'.$token)){
+
 		
 		mkdir('images/'.$token, 0777, true);
+		
 	}
 
 	$a = 'images/'.$token;
 
 	$success = file_put_contents('images/'.$token.'/2Dimage.png', $data, 8);
-	
-?>
+/*
+	$dir = "http://ahmetkilinc.net/holymoly/images/";
+
+	//fclose($dir);
+
+	//2D image ları silme kısmı (tamamlanmadı, permission denied hatası veriyor)
+
+	foreach(glob($dir."*") as $file){
+		//30 günden eski png dosyalarını sil.
+		if(filectime($file) < time()){
+
+			unlink($file);
+		}
+	}*/
+?>	
 
 <html>
 <head>
@@ -44,7 +59,7 @@
 	}
 	
 	.btnGonder{
-
+		
 		background-color: #2E9AFE;
 		border: none;
 		color: white;
@@ -69,19 +84,23 @@
 		margin: 4px 2px;
 		cursor: pointer;
 	}
+	
 </style>
 </head>
 <body>
 
   <div class='header'>
 	  
+	  
   </div>
 <div class='maincontent'>
   <div class='navigation'>
+	  
+	
 	  <img height="60" width="120" src="presets/logo.png"/>
 	  <h2>Betonel Teklif Formu</h2>
   </div>
-  <form class='form' action="http://localhost/tutorialsPoint/holymoly/depBol.php" method="post">
+  <form class='form' action="depBol.php" method="post">
 	  
 	  <div class='control_group required'>
 		  <div class='control_group'>
@@ -113,9 +132,8 @@
 	  <div class='label'>
         <label for='textarea'>Şirket Adresi</label>
       </div>
-
       <div class='input'>
-        <textarea id='adres' required='required' pattern=".{5,}" type='text' name='adres'></textarea>
+        <textarea id='adres' required='required' type='text' name='adres'></textarea>
 		<span class='hint'>Şirketinizin tam açık adresini yazınız.</span>
       </div>
 		 
@@ -123,8 +141,9 @@
         <label for='number_01'>Telefon (Cep)</label>
       </div>
       <div class='input'>
+        
 		<input type="text" class="textfield" required='required' pattern=".{11,}" value="" id="extra7" name="ceptel" onkeypress="return isNumber(event)" />
-		<span class='hint'>İrtibat numaranızı giriniz. (0555 555 55 55 şeklinde)</span>
+		<span class='hint'>İrtibat numaranızı giriniz. (0555 555 55 55)</span>
       </div>
 		  
 	  <div class='label'>
@@ -132,14 +151,14 @@
       </div>
       <div class='input'>
 		<input type="text" class="textfield" required='required' pattern=".{11,}" value="" id="extra7" name="cepis" onkeypress="return isNumber(event)" />
-		<span class='hint'>İrtibat numaranızı giriniz. (0312 000 00 00 şekilde)</span>
+		<span class='hint'>İrtibat numaranızı giriniz. (0312 000 00 00)</span>
       </div>
 		  
 	  <div class='label'>
         <label for='number_03'>Faks</label>
       </div>
       <div class='input'>
-		<input type="text" class="textfield" value="" id="extra7" name="faks" onkeypress="return isNumber(event)" />
+		<input type="text" class="textfield" pattern=".{11,}" value="" id="extra7" name="faks" onkeypress="return isNumber(event)" />
 		<span class='hint'>Faks numaranızı giriniz. (Zorunlu Değil)</span>
       </div>
 		  
@@ -206,21 +225,46 @@
 		<input id='input_taliKiris' type='hidden' name='taliKiris' readonly value= <?php echo $_GET['taliKiris']; ?>>
 			  
 		<input id='input_arakatKiris' type='hidden' name='arakatKiris' readonly value= <?php echo $_GET['arakatKiris']; ?>>
-			  
+		
 		<input id='input_arakatKolon' type='hidden' name='arakatKolon' readonly value= <?php echo $_GET['arakatKolon']; ?>>
-			  	  			  
+			  
 		<input id='input_ip' type='hidden' name='clientip' readonly value= <?php echo $_SERVER['REMOTE_ADDR']; ?>>
 			  
 		<input id='input_token' type='hidden' name='token' readonly value= <?php echo $token ?>>
+		
+		
+		
+		
+		<input id='input_vincKirisiMetreKup' type='hidden' name='vincKirisiMetreKup' readonly value= <?php echo $_GET['vincKirisiMetreKup']; ?>>
+		
+		<input id='input_olukMetreKup' type='hidden' name='olukMetreKup' readonly value= <?php echo $_GET['olukMetreKup']; ?>>
+		
+		<input id='input_asikMetreKupT' type='hidden' name='asikMetreKupT' readonly value= <?php echo $_GET['asikMetreKupT']; ?>>
+		
+		<input id='input_makasMetreKup' type='hidden' name='makasMetreKup' readonly value= <?php echo $_GET['makasMetreKup']; ?>>
+		
+		<input id='input_kolonMetreKup' type='hidden' name='kolonMetreKup' readonly value= <?php echo $_GET['kolonMetreKup']; ?>>
+		
+		<input id='input_ongermeHalatiToplam' type="hidden" name="ongermeHalatiToplam" readonly value= <?php echo $_GET['ongermeHalatiToplam'] ?>>
+		
+		<input id='input_ongermeHalatiKarkas' type="hidden" name="ongermeHalatiKarkas" readonly value= <?php echo $_GET['ongermeHalatiKarkas'] ?>>
 			  
-		<input id='input_vincKirisiMetreKup' type="hidden" name="vincKirisiMetreKup" readonly value= <?php echo $_GET['vincKirisiMetreKup']; ?>>
-			  
-		<input id='' type="hidden" name="ongermeHalatiToplam" readonly value= <?php echo $_GET['ongermeHalatiToplam'] ?>>
-			  
-		<input id='input_fabrika' type='hidden' name='fabrika' readonly value=>
-			  
+		<input id='input_ongermeHalatiAraKatKiris' type="hidden" name="ongermeHalatiAraKatKiris" readonly value= <?php echo $_GET['ongermeHalatiAraKatKiris'] ?>>
+		
+		<input id='input_ankrajToplam' type="hidden" name="ankrajToplam" readonly value= <?php echo $_GET['ankrajToplam'] ?>>
+		
+		
+		<input id='input_ttPlakMetreKup30' type="hidden" name="ttPlakMetreKup30" readonly value= <?php echo $_GET['ttPlakMetreKup30'] ?>>
+		
+		<input id='input_ttPlakMetreKup45' type="hidden" name="ttPlakMetreKup45" readonly value= <?php echo $_GET['ttPlakMetreKup45'] ?>>
+		
+		<input id='input_ttPlakMetreKup70' type="hidden" name="ttPlakMetreKup70" readonly value= <?php echo $_GET['ttPlakMetreKup70'] ?>>
+
+
+
+			  <input id='input_fabrika' type='hidden' name='fabrika' readonly value=>
+		
 		<input id='input_rakim' type='hidden' name='gercekrakim' readonly value=>
-			  
 			  
 	  <div class='label'>
         <label for='number_01'>Vinç Kaldırma Kapasitesi (ton)</label>
@@ -228,14 +272,15 @@
       <div class='input'>
 		<input type="text" class="textfield" required='required' value="" id="extra7" name="vinc" onkeypress="return isNumber(event)" />
       </div>
+		  
 	  <div class='label'>
         <label for='number_01'>Arakat Hareketli Yükü (kg/m^2)</label>
       </div>
       <div class='input'>
-		<select name="arakat">
+		<select name="arakatYuku">
 			<option value="350">350 - Ofis</option>
 			<option value="500">500 - Hafif Atolye (Tekstil, Elektrik)</option>
-			<option value="750">750 - Atolye</option>
+			<option value="750">750 - Atolye </option>
 			<option value="1000">1000 - Hafif Forklift</option>
 			<option value="1250">1250 - Forklift, Kamyonet</option>
 			<option value="1500">1500 - Tır, Kamyon</option>
@@ -267,7 +312,6 @@
 				</div>
 		    </div>			  
 		</div>
-			
 		<div class="panel-footer">
 			<div class="row">
 			  	<div class="col-md-12">
@@ -301,8 +345,8 @@
 	<div class='control_group buttons'>
       <div class='label'></div>
       <div class='input'>
-		  <input class='btnGonder' type='submit' onclick="return confirm('Verdiğiniz Bilgileri Onaylıyor musunuz?')" value='Gönder'>
-		  <input class='btnGeri' type="button" onclick="window.location.assign('index.html');" value='Geri Dön'>
+        <input class='btnGonder' type='submit' onclick="return confirm('Verdiğiniz Bilgileri Onaylıyor musunuz?')" value='Gönder'>
+        <input class='btnGeri' type="button" onclick="window.location.assign('index.html');" value='Geri Dön'>
       </div>
     </div>
 	</div>
@@ -331,8 +375,8 @@
   	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="js/new-form-index.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8LekTJKEelUsRKGwKXaunkVJt8wHV7Gk&libraries=geometry&language=tr&region=TR">
-	</script>
-	<script src="js/maps-google.js"></script>
+	</script>	
+	<script src="http://localhost/tutorialsPoint/holymoly/js/gmaps.js"></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 </body>
 </html>

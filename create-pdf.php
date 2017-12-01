@@ -1,5 +1,5 @@
 <?php
-/*
+
 $url = 'https://www.kardemir.com/Liste.aspx?yil=2017&s=FIYAT&Lng=tr-TR';
 $content = file_get_contents($url);
 $first_step = explode("satirMalzeme" , $content);
@@ -15,13 +15,17 @@ $first_step1 = explode("ContentPlaceHolder1_DynamicListe" , $content1);
 $second_step1 = explode("div", $first_step1[1]);
 $third_step1 = explode("=", $second_step1[1]);
 
-$demirFiyatTarih = str_split($third_step1[1], 10);*/
+$demirFiyatTarih = str_split($third_step1[1], 10);
+
+//databaseden verileri kullanmak
 
 $demirFiyatdb = $_GET["demirFiyatdb"];
 
 $demirFiyatTarihdb = $_GET["demirFiyatTarihdb"];
 
-//eklenmiş iki dosya olması halinde bir öncekini al
+$date = $_GET["date"];
+
+$teklifNo = $_GET["teklif"];
 
 require("fpdf/alphapdf.php");
 
@@ -32,8 +36,9 @@ $pdf->AddPage("P", "A4");
 $pdf->AddFont('arial','','arial.php');
 
 // font ayarlanıyor
-$pdf->SetFont('Arial', '', 11);
+$pdf->SetFont('Arial','',11);
 
+//------------------------
 $pdf->SetAlpha(0.6);
 
 $pdf->Image('presets/logo.png', 10, 10, -140);
@@ -68,7 +73,7 @@ $pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', "Tarih: "), 0, 'L');
 $pdf->SetY(40);
 $pdf->SetX(178);
 $pdf->SetFont("arial", "B", "11");
-$pdf->MultiCell(60, 6, iconv('utf-8', 'ISO-8859-9', $_GET["date"]), 0, 'L');
+$pdf->MultiCell(60, 6, iconv('utf-8', 'ISO-8859-9', $date), 0, 'L');
 
 $pdf->SetY(45);
 $pdf->SetFont("arial","B","11");
@@ -106,7 +111,7 @@ $pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', "Teklif No: "), 0, 'L');
 $pdf->SetY(50);
 $pdf->SetX(178);
 $pdf->SetFont("arial","B","11");
-$pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', $_GET["teklif"] . "-0001"), 0, 'L');
+$pdf->MultiCell(35, 6, iconv('utf-8', 'ISO-8859-9', $teklifNo . "-0001"), 0, 'L');
 
 $pdf->SetY(55);
 $pdf->SetFont("arial","B","11");
@@ -138,7 +143,6 @@ if ($_GET["vincKirisleri"] == 'true'){
 	$pdf->SetFont("arial","","10");
 	$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Yapının ". $_GET["vincKirisYeriEn"] ."/". $_GET["vincKirisYeriBoy"] . " aksları arasında +6.70 kotunda max kullanım kapasite 100 ton olan vinç konsolları yer almaktadır. Vinç kirişleri tek vinç yüküne göre tasarlanmıştır. "), 0, 'J');
 }
-
 
 if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	
@@ -301,7 +305,7 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	$pdf->SetY(230);
 	$pdf->SetX(115);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9',$_GET["arakat"] ." kg/m²"), 0, 1);
+	$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9', $_GET["arakatYuku"] . " kg/m²"), 0, 1);
 }
 
 if ($_GET["vincKirisleri"] == 'true'){
@@ -575,143 +579,134 @@ $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "KARKAS"), 1, 'C');
 $pdf->SetY(120);
 $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["boy"]*$_GET["en"] ." m²") , 1, 'C');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["boy"] * $_GET["en"] ." m²") , 1, 'R');
+
+$karkasBirimFiyat = round(($_GET["karkasToplamFiyat"] / ($_GET["boy"] * $_GET["en"])), 2);
 
 $pdf->SetY(120);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, "x" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $karkasBirimFiyat . " TL/m²"), 1, 'R');
 
 $pdf->SetY(120);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, "x" . " TL", 1, 'C');
+$pdf->MultiCell(40, 5, $_GET["karkasToplamFiyat"] . " TL", 1, 'R');
 
-$pdf->SetY(125);
-$pdf->SetFont("arial","B","11");
-$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "ARAKAT (350 KG/M²)"), 1, 'C');
 
 if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
+	
+	$pdf->SetY(125);
+	$pdf->SetFont("arial","B","11");
+	$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "ARAKAT (" . $_GET["arakatYuku"] . " KG/M²)"), 1, 'C');
 	
 	if($_GET["kompleAraKat"] == 'true'){
 		
 		$pdf->SetY(125);
 		$pdf->SetX(70);
-		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(40, 5, "0" . iconv('utf-8', 'ISO-8859-9', " m²") , 1, 'C');
+		$pdf->SetFont("arial", "", "10");
+		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["boy"] * $_GET["en"] . " m²") , 1, 'R');
 
+		$arakatBirimFiyat = round(($_GET["arakatToplamFiyat"] / ($_GET["boy"] * $_GET["en"])), 2);
+		
 		$pdf->SetY(125);
 		$pdf->SetX(110);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(50, 5, "0" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
+		$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $arakatBirimFiyat . " TL/m²"), 1, 'R');
 
 		$pdf->SetY(125);
 		$pdf->SetX(160);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(40, 5, "0" . " TL", 1, 'C');
+		$pdf->MultiCell(40, 5, $_GET["arakatToplamFiyat"] . " TL", 1, 'R');
 	}
+	
 	else if($_GET["kismiAraKat"] == 'true'){
 		
 		$pdf->SetY(125);
 		$pdf->SetX(70);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"] ." m²") , 1, 'C');
+		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"] ." m²") , 1, 'R');
+		
+		$arakatBirimFiyat = round(($_GET["arakatToplamFiyat"] / ($_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"])), 2);
 
 		$pdf->SetY(125);
 		$pdf->SetX(110);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(50, 5, "0" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
+		$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $arakatBirimFiyat . " TL/m²"), 1, 'R');
 
 		$pdf->SetY(125);
 		$pdf->SetX(160);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(40, 5, "0" . " TL", 1, 'C');
+		$pdf->MultiCell(40, 5, $_GET["arakatToplamFiyat"] . " TL", 1, 'R');
 	}
+	
+	$pdf->SetY(130);
+	$pdf->SetFont("arial","B","11");
+	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "MAX 10 TONLUK VİNÇ KİRİŞİ"), 1, 'C');
+
+	$pdf->SetY(130);
+	$pdf->SetX(70);
+	$pdf->SetFont("arial","","10");
+	$pdf->MultiCell(40, 10, $_GET["vincKirisSayisi"] . " Adet" , 1, 'R');
+
+	$vinckirisiBirimFiyat = round(($_GET["vinckirisiToplamFiyat"] / $_GET["vincKirisSayisi"]), 2);
+	
+	$pdf->SetY(130);
+	$pdf->SetX(110);
+	$pdf->SetFont("arial","","10");
+	$pdf->MultiCell(50, 10, $vinckirisiBirimFiyat . " TL/ad", 1, 'R');
+
+	$pdf->SetY(130);
+	$pdf->SetX(160);
+	$pdf->SetFont("arial","","10");
+	$pdf->MultiCell(40, 10, $_GET["vinckirisiToplamFiyat"] . " TL", 1, 'R');
+
+	$pdf->SetY(140);
+	$pdf->SetFont("arial","B","11");
+	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
+	
+	$toplamFiyat = $_GET["vinckirisiToplamFiyat"] + $_GET["arakatToplamFiyat"] + $_GET["karkasToplamFiyat"];
+
+	$pdf->SetY(140);
+	$pdf->SetX(70);
+	$pdf->SetFont("arial","B","10");
+	$pdf->MultiCell(130, 10, $toplamFiyat . " TL" , 1, 'R');
 }
 
 else{
 	
 	$pdf->SetY(125);
+	$pdf->SetFont("arial","B","11");
+	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "MAX 10 TONLUK VİNÇ KİRİŞİ"), 1, 'C');
+
+	$pdf->SetY(125);
 	$pdf->SetX(70);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(40, 5, "0" . iconv('utf-8', 'ISO-8859-9', " m²") , 1, 'C');
+	$pdf->MultiCell(40, 10, $_GET["vincKirisSayisi"] . " Adet" , 1, 'R');
+
+	$vinckirisiBirimFiyat = round(($_GET["vinckirisiToplamFiyat"] / $_GET["vincKirisSayisi"]), 2);
 
 	$pdf->SetY(125);
 	$pdf->SetX(110);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(50, 5, "0" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
+	$pdf->MultiCell(50, 10, $vinckirisiBirimFiyat . " TL/ad", 1, 'R');
 
 	$pdf->SetY(125);
 	$pdf->SetX(160);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(40, 5, "0" . " TL", 1, 'C');
+	$pdf->MultiCell(40, 10, $_GET["vinckirisiToplamFiyat"] . " TL", 1, 'R');
+
+	$toplamFiyat = $_GET["vinckirisiToplamFiyat"] + $_GET["karkasToplamFiyat"];
+	
+	$pdf->SetY(135);
+	$pdf->SetFont("arial","B","11");
+	$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
+
+	$pdf->SetY(135);
+	$pdf->SetX(70);
+	$pdf->SetFont("arial","B","10");
+	$pdf->MultiCell(130, 5, $toplamFiyat . " TL" , 1, 'R');
 }
-
-$pdf->SetY(130);
-$pdf->SetFont("arial","B","11");
-$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "MAX 10 TONLUK VİNÇ KİRİŞİ"), 1, 'C');
-
-$pdf->SetY(130);
-$pdf->SetX(70);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 10, $_GET["vincKirisSayisi"] . " Adet" , 1, 'C');
-
-$pdf->SetY(130);
-$pdf->SetX(110);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 10, "x" . " TL/ad", 1, 'C');
-
-$pdf->SetY(130);
-$pdf->SetX(160);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 10, "x" . " TL", 1, 'C');
-/*
-$pdf->SetY(140);
-$pdf->SetFont("arial","B","11");
-$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "YATAY CEPHE PANELİ"), 1, 'C');
-
-$pdf->SetY(140);
-$pdf->SetX(70);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, "x" . iconv('utf-8', 'ISO-8859-9', " m²") , 1, 'C');
-
-$pdf->SetY(140);
-$pdf->SetX(110);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, "x" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
-
-$pdf->SetY(140);
-$pdf->SetX(160);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, "x" . " TL", 1, 'C');
-
-$pdf->SetY(145);
-$pdf->SetFont("arial","B","11");
-$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "DÜŞEY CEPHE PANELİ"), 1, 'C');
-
-$pdf->SetY(145);
-$pdf->SetX(70);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, "x" . iconv('utf-8', 'ISO-8859-9', " m²") , 1, 'C');
-
-$pdf->SetY(145);
-$pdf->SetX(110);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, "x" . iconv('utf-8', 'ISO-8859-9', " TL/m²"), 1, 'C');
-
-$pdf->SetY(145);
-$pdf->SetX(160);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, "x" . " TL", 1, 'C');
-*/
-$pdf->SetY(140);
-$pdf->SetFont("arial","B","11");
-$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
-
-$pdf->SetY(140);
-$pdf->SetX(70);
-$pdf->SetFont("arial","B","10");
-$pdf->MultiCell(130, 5, "x" . " TL" , 1, 'R');
 
 $pdf->SetY(160);
 $pdf->AddFont('arial','','arial.php');
@@ -723,22 +718,22 @@ $pdf->SetFont("arial","B","10");
 $pdf->MultiCell(10, 5, "Not:", 0, 1);
 
 $pdf->SetY(165);
-$pdf->SetX(17);
+$pdf->SetX(18);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "Fiyatlarımıza KDV dahil değildir."), 0, 1);
 
 $pdf->SetY(170);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Fiyat hesaplarında, $demirFiyatTarihdb tarihli www.kardemir.com sitesindeki fiyat listesi baz alınmış olup, inşaat demiri ton fiyatı "), 0, 1);
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Fiyat hesaplarında, $demirFiyatTarihdb tarihli Kardemir fiyat listesi baz alınmış olup, inşaat demiri ton fiyatı $demirFiyatdb TL"), 0, 1);
+
+$pdf->SetY(170);
+$pdf->SetX(178);
+$pdf->SetFont("arial","","10");
+$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "+ KDV olarak"), 0, 1);
 
 $pdf->SetY(175);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "$demirFiyatdb"), 0, 1);
-
-$pdf->SetY(175);
-$pdf->SetX(24);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "+ KDV olarak fiyatlara dahil edilmiştir."), 0, 1);
+$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "fiyatlara dahil edilmiştir."), 0, 1);
 
 
 $pdf->SetY(185);
@@ -910,6 +905,7 @@ $pdf->SetFont("arial","","10");
 $pdf->SetTextColor(0, 0, 0);
 $pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "+ Manşon, mesnet donatısı"), 0, 1);
 
+//2d image ın pdf e eklenmesi.
 $pdf->SetY(145);
 $pdf->AddFont('arial','BU','arial.php');
 $pdf->SetFont("arial","BU","11");
@@ -925,7 +921,6 @@ $token4 = $token - 4;
 $token5 = $token - 5;
 $token6 = $token - 6;
 $token7 = $token - 7;
-
 
 if (file_exists('images/'.$token)){
 	
@@ -969,11 +964,10 @@ else{
 
 $filename = 'images/'.$token.'/2Dimage.png';
 
-if ((file_exists('images/'.$token.'/2Dimage.png')) and (filesize($filename) != 0)){
+if ((file_exists('images/'.$token.'/2Dimage.png')) && (filesize($filename) != 0)){
 	
     $pdf->Image('images/'.$token.'/2Dimage.png', 25, 150, -200);
 }
-
 else{
 	
 	$pdf->SetY(180);
@@ -1124,5 +1118,4 @@ $pdf->SetAlpha(1);
 $pdf->SetTextColor(0,0,0);
 
 $pdf->Output('','betonel-teklif.pdf');
-
 ?>

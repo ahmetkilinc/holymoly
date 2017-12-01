@@ -49,14 +49,45 @@ $arakatKiris = $_POST["arakatKiris"];
 $arakatKolon = $_POST["arakatKolon"];
 $dateOnlyY = date("Y");
 $token = $_POST["token"];
+
+$arakatYuku = $_POST["arakatYuku"];
+
 $vincKirisiMetreKup = $_POST["vincKirisiMetreKup"];
+$olukMetreKup = $_POST["olukMetreKup"];
+$asikMetreKupT = $_POST["asikMetreKupT"];
+$makasMetreKup = $_POST["makasMetreKup"];
+$kolonMetreKup = $_POST["kolonMetreKup"];
+
 $ongermeHalatiToplam = $_POST["ongermeHalatiToplam"];
+$ongermeHalatiKarkas = $_POST["ongermeHalatiKarkas"];
+$ongermeHalatiAraKatKiris = $_POST["ongermeHalatiAraKatKiris"];
+
+$ankrajToplam = $_POST["ankrajToplam"];
+
+$ttPlakMetreKup30 = $_POST["ttPlakMetreKup30"];
+$ttPlakMetreKup45 = $_POST["ttPlakMetreKup45"];
+$ttPlakMetreKup70 = $_POST["ttPlakMetreKup70"];
 
 
-	if(isset($_POST['g-recaptcha-response'])){
+if($arakatYuku >= 350 && $arakatYuku < 500){
+
+	$ttPlakMetreKup = $ttPlakMetreKup30;
+}
+
+else if($arakatYuku >= 500 && $arakatYuku < 1500){
+	
+	$ttPlakMetreKup = $ttPlakMetreKup45;
+}
+
+else if($arakatYuku >= 1500 && $arakatYuku < 3000){
+	
+	$ttPlakMetreKup = $ttPlakMetreKup70;
+}
+
+if(isset($_POST['g-recaptcha-response'])){
 		
-    	$captcha = $_POST['g-recaptcha-response'];
-	}
+    $captcha = $_POST['g-recaptcha-response'];
+}
 
 	if(!$captcha){
 		
@@ -131,7 +162,9 @@ $ongermeHalatiToplam = $_POST["ongermeHalatiToplam"];
 					</script>
 				</head>
 			<body>
+
 				<input class="btnGeri" type="button" onclick="geriDon()" value="Değişiklikler için Geri Dön">
+			
 			</body>
 	
 		</p>
@@ -161,22 +194,13 @@ echo '<html>
 
 	<head>
 	<style>
+	
+		#link {color: #E45635;display:block;font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;text-align:center; text-decoration: none;}
+		#link:hover {color: #CCCCCC}
 
-		#link{
-				
-			color: #E45635;display:block;font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;text-align:center; text-decoration: none;
-		}
-		
-		#link:hover{
-		
-			color: #CCCCCC
-		}
+		#link, #link:hover {-webkit-transition: color 0.5s ease-out;-moz-transition: color 0.5s ease-out;-ms-transition: color 0.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 0.5s ease-out;}
 
-		#link, #link:hover{
-		
-			-webkit-transition: color 0.5s ease-out;-moz-transition: color 0.5s ease-out;-ms-transition: color 0.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 0.5s ease-out;
-		}
-
+/** BEGIN CSS **/
         body{
 		
 			background: #ADD8E6;
@@ -261,18 +285,6 @@ echo '<html>
             100%{opacity: 0}
         }
 		
-		.stand-alone-header{
-		
-			height: 10px;
-			width: 15px;
-			position: index;
-			border: none;
-			margin-left: 2px;
-			margin-right: 2px;
-			margin-top: 50px;
-			margin-bottom: 150px;
-		}
-		
         .loading-container,
         .loading{
 		
@@ -281,6 +293,7 @@ echo '<html>
             width: 200px;
             border-radius: 100%;
         }
+
 
         .loading-container{
 		
@@ -341,6 +354,8 @@ echo '<html>
 		left: 38%;
 		top: 18%;
 	}
+	
+	
 	</style>
 	</head>
 
@@ -352,6 +367,7 @@ echo '<html>
 </div>
 
 <p align="center" >Doğrulama Mailiniz Gönderiliyor, Lütfen Bekleyin.</p>
+
 
 <p id="depremBolgeleri"></p>
 
@@ -2014,18 +2030,19 @@ try{
 		window.history.back();
 	}
 }
-
 catch(err){
 
 	alert("Binanın rakım bilgisine ulaşabilmemiz için haritadaki kırmızı fabrika simgesini adrese sürükleyiniz.");
 	window.history.back();
 }
 
+
 console.log("gerçek rakım değeri: " + gercekrakim);
 
-//********************** deprem bölgesi bulmak ************************
 
+//********************** deprem bölgesi bulmak ************************
 var depremBolgesi = "";
+
 
 var str = "'. $binayeri .'";
 str = str.toLowerCase();
@@ -2052,7 +2069,6 @@ try{
 	
 	console.log("deprem bölgesi hepsinin aynı olduğu nokta: " + this[str].all);
 }
-
 catch(err){
 
 	alert("hata");
@@ -2064,6 +2080,8 @@ if(!depremBolgesi){
 }
 
 console.log("Deprem Bölgesi: " + depremBolgesi);
+
+
 
 //********************** deprem bölgesi bulmak ************************
 
@@ -3050,16 +3068,18 @@ console.log("Deprem Bölgesi: " + depremBolgesi);
 		Safranbolu : 4,
 		Ulus : 3
 	}
-		
-//*****************************
+	
+	
+	//*****************************
+
 	
 var katsayi = 0;
 var karyuku = 0;
 var asilrakim = 0;
 
 //************************ Kar Bölgesi Bulma ***************************
-
 var karBolgesi = "";
+	
 	
 var kbg = "'. $binayeri .'";
 kbg = kbg.toLowerCase();
@@ -3074,7 +3094,6 @@ karBolgesiIl = karbolgesiiller[kbg.toLowerCase()];
 
 
 var karbolgesiilce = "'. $binayeri .'";
-
 karbolgesiilce = karbolgesiilce.substring(0, karbolgesiilce.indexOf("/"));
 
 karbolgesiilce = karbolgesiilce.split(" ");
@@ -3421,10 +3440,11 @@ console.log("asıl rakım değeri: " + asilrakim);
 console.log("hesap rakımı ise: " + rakim);
 
 //************************* kar yükü bulma *******************************
-/*
-window.location.assign("http://localhost/tutorialsPoint/holymoly/send-mail.php?=" + "&adsoyad=" + "'. $adsoyad .'" + "&unvan=" + "'.$unvan.'" + "&sirketadi=" + "'. $sirketadi .'" + "&adres=" + "'. $adres .'" +"&ceptel=" + "'. $ceptel .'" + "&cepis=" + "'. $cepis .'" + "&faks=" + "'. $faks .'" + "&email=" + "'. $email .'" + "&boy=" + "'. $boy .'" + "&en=" + "'. $en .'" + "&yukseklik=" + "'. $yukseklik .'" + "&vincliKolonlar=" + "'. $vincliKolonlar .'" + "&vincKirisleri=" + "'. $vincKirisleri .'" + "&vincKirisSayisi=" + "'. $vincKirisSayisi .'" + "&kolonSayisi=" + "'. $kolonSayisi .'" + "&ruzgarKolonSayisi=" + "'. $ruzgarKolonSayisi .'" + "&standSayisi=" + "'. $standSayisi .'" + "&olukSayisi=" + "'. $olukSayisi .'" + "&makasSayisi=" + "'. $makasSayisi .'" + "&asikSayisi=" + "'. $asikSayisi .'" + "&kompleAraKat=" + "'. $kompleAraKat .'" + "&KompleAraKatHolSayisi=" + "'. $KompleAraKatHolSayisi .'" + "&KompleAraKatHolBoyutu=" + "'. $KompleAraKatHolBoyutu .'" + "&kismiAraKat=" + "'. $kismiAraKat .'" + "&kismiAraKatHolSayisi=" + "'. $kismiAraKatHolSayisi .'" + "&kismiAraKatAksSayisi=" + "'. $kismiAraKatAksSayisi .'" + "&kismiAraKatHolBoyutu=" + "'. $kismiAraKatHolBoyutu .'" + "&kismiAraKatAksBoyutu=" + "'. $kismiAraKatAksBoyutu .'" + "&genelHolSayisi=" + "'. $genelHolSayisi .'" + "&vinc=" + "'. $vinc .'" + "&arakat=" + "'. $arakat .'" + "&binayeri=" + "'. $binayeri .'" + "&lat=" + "'. $lat .'" + "&lng=" + "'. $lng .'" + "&clientip=" + "'. $clientip .'" + "&fabrika=" + "'. $fabrika .'" + "&vincKirisYeriEn=" + "'. $vincKirisYeriEn .'" + "&vincKirisYeriBoy=" + "'. $vincKirisYeriBoy .'" + "&araKatYeriEn=" + "'. $araKatYeriEn .'" + "&araKatYeriBoy=" + "'. $araKatYeriBoy .'" + "&ttPlak=" + "'. $ttPlak .'" + "&taliKiris=" + "'. $taliKiris .'" + "&arakatKiris=" + "'. $arakatKiris .'" + "&arakatKolon=" + "'. $arakatKolon .'" + "&depremBolgesi=" + depremBolgesi + "&karyuku=" + karyuku + "&karBolgesi=" + karBolgesi + "&rakim=" + asilrakim + "&token=" + "'. $token .'" + "&vincKirisiMetreKup=" + "'. $vincKirisiMetreKup .'" + "&ongermeHalatiToplam=" + "'. $ongermeHalatiToplam .'");*/
+
+window.location.assign("http://localhost/tutorialsPoint/holymoly/send-mail.php?=" + "&adsoyad=" + "'. $adsoyad .'" + "&unvan=" + "'.$unvan.'" + "&sirketadi=" + "'. $sirketadi .'" + "&adres=" + "'. $adres .'" +"&ceptel=" + "'. $ceptel .'" + "&cepis=" + "'. $cepis .'" + "&faks=" + "'. $faks .'" + "&email=" + "'. $email .'" + "&boy=" + "'. $boy .'" + "&en=" + "'. $en .'" + "&yukseklik=" + "'. $yukseklik .'" + "&vincliKolonlar=" + "'. $vincliKolonlar .'" + "&vincKirisleri=" + "'. $vincKirisleri .'" + "&vincKirisSayisi=" + "'. $vincKirisSayisi .'" + "&kolonSayisi=" + "'. $kolonSayisi .'" + "&ruzgarKolonSayisi=" + "'. $ruzgarKolonSayisi .'" + "&standSayisi=" + "'. $standSayisi .'" + "&olukSayisi=" + "'. $olukSayisi .'" + "&makasSayisi=" + "'. $makasSayisi .'" + "&asikSayisi=" + "'. $asikSayisi .'" + "&kompleAraKat=" + "'. $kompleAraKat .'" + "&KompleAraKatHolSayisi=" + "'. $KompleAraKatHolSayisi .'" + "&KompleAraKatHolBoyutu=" + "'. $KompleAraKatHolBoyutu .'" + "&kismiAraKat=" + "'. $kismiAraKat .'" + "&kismiAraKatHolSayisi=" + "'. $kismiAraKatHolSayisi .'" + "&kismiAraKatAksSayisi=" + "'. $kismiAraKatAksSayisi .'" + "&kismiAraKatHolBoyutu=" + "'. $kismiAraKatHolBoyutu .'" + "&kismiAraKatAksBoyutu=" + "'. $kismiAraKatAksBoyutu .'" + "&genelHolSayisi=" + "'. $genelHolSayisi .'" + "&vinc=" + "'. $vinc .'" + "&arakat=" + "'. $arakat .'" + "&binayeri=" + "'. $binayeri .'" + "&lat=" + "'. $lat .'" + "&lng=" + "'. $lng .'" + "&clientip=" + "'. $clientip .'" + "&fabrika=" + "'. $fabrika .'" + "&vincKirisYeriEn=" + "'. $vincKirisYeriEn .'" + "&vincKirisYeriBoy=" + "'. $vincKirisYeriBoy .'" + "&araKatYeriEn=" + "'. $araKatYeriEn .'" + "&araKatYeriBoy=" + "'. $araKatYeriBoy .'" + "&ttPlak=" + "'. $ttPlak .'" + "&taliKiris=" + "'. $taliKiris .'" + "&arakatKiris=" + "'. $arakatKiris .'" + "&arakatKolon=" + "'. $arakatKolon .'" + "&depremBolgesi=" + depremBolgesi + "&karyuku=" + karyuku + "&karBolgesi=" + karBolgesi + "&rakim=" + asilrakim + "&token=" + "'. $token .'" + "&vincKirisiMetreKup=" + "'. $vincKirisiMetreKup .'" + "&olukMetreKup=" + "'. $olukMetreKup .'" + "&asikMetreKupT=" +"'. $asikMetreKupT .'" + "&makasMetreKup=" + "'. $makasMetreKup .'" + "&kolonMetreKup=" + "'. $kolonMetreKup .'" + "&ongermeHalatiToplam=" + "'. $ongermeHalatiToplam .'" + "&ankrajToplam=" + "'. $ankrajToplam .'" + "&arakatYuku=" + "'. $arakatYuku .'" + "&ttPlakMetreKup=" + "'. $ttPlakMetreKup .'" + "&ongermeHalatiKarkas=" + "'. $ongermeHalatiKarkas .'" + "&ongermeHalatiAraKatKiris=" + "'. $ongermeHalatiAraKatKiris .'");
 
 </script>
+			
 </body>
 </html>';
 
