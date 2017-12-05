@@ -50,6 +50,8 @@ class ThreeUtils {
 		
 		//rüzgar kolonlar
 		var taneRuzgarKolonMetreKup = 2.11;
+		var arakatKolonMetreküp = 2.11;
+		var arakatKolonMetreküpAdet = 0;
 		
 		//makaslar
 		var taneMakasMetreKup = 5.78;
@@ -2987,14 +2989,44 @@ class ThreeUtils {
 			//kolon metreküp hesabı
 			this.kolonMetreKupHesabi = function(){
 				
-				kolonMetreKup = (taneKolonMetreKup * kolonSayisi) + (taneRuzgarKolonMetreKup * ruzgarKolonSayisi);
-				console.log("kolon sayısı: " + kolonSayisi + ", rüzgar kolon sayısı: " + ruzgarKolonSayisi + ", Toplam Kolon Metreküp: " + kolonMetreKup);
-				console.log("*******");
+				if(settings.AraKatEkle === true){
+									
+					kolonMetreKup = taneKolonMetreKup * arakatKolon;
+					
+					console.log("kolon sayısı: " + kolonSayisi + ", rüzgar kolon sayısı: " + ruzgarKolonSayisi + " arakat kolon sayısı: " + arakatKolon + ", Toplam Kolon Metreküp: " + kolonMetreKup);
+					console.log("****komple arakat ekli***");
+				}
 				
-				var toplamM = kolonMetreKup + makasMetreKup + asikMetreKupT + olukMetreKup + vincKirisiMetreKup;
+				else if(settings.KismiAraKatEkle === true && settings.kismiAraKatKaldir === false){
+					/*
+					kolonMetreKup = (taneKolonMetreKup * kolonSayisi) + (taneRuzgarKolonMetreKup * ruzgarKolonSayisi) + (arakatKolonMetreküp * (kolonSayisi - arakatKolon));*/
+					
+					if((settings.araKatGenisligi == ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) && (settings.araKatUzunlugu == ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy))){
+						
+						kolonMetreKup = taneKolonMetreKup * arakatKolon;
+					
+						console.log("kolon sayısı: " + kolonSayisi + ", rüzgar kolon sayısı: " + ruzgarKolonSayisi + " arakat kolon sayısı: " + arakatKolon + ", Toplam Kolon Metreküp: " + kolonMetreKup);
+						console.log("****kısmi arakat ekli - genislik ve uzunluk full***");
+					}
+					
+					else{
+						
+						var arakatsizKolon = parseInt(kolonSayisi) + parseInt(ruzgarKolonSayisi) - parseInt(arakatKolon);
+					
+						kolonMetreKup = (arakatsizKolon * taneKolonMetreKup) + (arakatKolon * taneKolonMetreKup) + (ruzgarKolonSayisi * taneRuzgarKolonMetreKup);
+
+						console.log("kolon sayısı: " + kolonSayisi + ", rüzgar kolon sayısı: " + ruzgarKolonSayisi + " arakat kolon sayısı: " + arakatKolon + " arakatsız kolon sayısı: "+ arakatsizKolon + ", Toplam Kolon Metreküp: " + kolonMetreKup);
+						console.log("****kısmi arakat ekli***");
+					}
+				}
 				
-				console.log("toplam metreküp: " + toplamM);
-				console.log("*******");
+				else if(settings.AraKatEkle === false && settings.KismiAraKatEkle === false){
+					
+					kolonMetreKup = (taneKolonMetreKup * kolonSayisi) + (taneRuzgarKolonMetreKup * ruzgarKolonSayisi);
+					
+					console.log("kolon sayısı: " + kolonSayisi + ", rüzgar kolon sayısı: " + ruzgarKolonSayisi + " arakat kolon sayısı: " + arakatKolon + ", Toplam Kolon Metreküp: " + kolonMetreKup);
+					console.log("***arakat yok****");
+				}
 			}
 
 			this.metrajHesabi = function(){
@@ -3004,18 +3036,19 @@ class ThreeUtils {
 				//oluk metraj
 				ongermeHalatiOluk = olukSayisi * settings.stepBoy * 1.548;
 				ongermeHalatiAsik = asikSayisi * settings.stepBoy * 1.548;
-				ongermeHalatiAraKatKiris = arakatKiris.toFixed(0) * settings.stepBoy * 8.808;
-				ongermeHalatiPiplak = ttPlak * settings.stepBoy * 4.404;
+				ongermeHalatiMakas = makasSayisi * settings.stepEn * 8.808;
 				
 				if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
 					
-					ongermeHalatiMakas = makasSayisi * (settings.stepEn / 3) * 8.808;
+					ongermeHalatiAraKatKiris = arakatKiris.toFixed(0) * (settings.stepBoy / 3) * 8.808;
+					ongermeHalatiPiplak = ttPlak * (settings.stepBoy / 3) * 4.404;
 					console.log("3e BÖLÜNDÜ!!!!!!!!!!!!!!");
 				}
 				
 				else{
 					
-					ongermeHalatiMakas = makasSayisi * (settings.stepEn / 2) * 8.808;
+					ongermeHalatiAraKatKiris = arakatKiris.toFixed(0) * (settings.stepBoy / 2) * 8.808;
+					ongermeHalatiPiplak = ttPlak * (settings.stepBoy / 2) * 4.404;
 					console.log("2ye BÖLÜNDÜ");
 				}
 				
@@ -3049,10 +3082,10 @@ class ThreeUtils {
 				var tempTtPlakMetreKup70 = ttPlakYukseklik70 * (settings.stepEn / 3) * settings.stepBoy;
 
 				ttPlakMetreKup30 = (tempTtPlakMetreKup30 + ((0.125 * 0.25 * 1) * 2)) * ttPlak;
-				ttPlakMetreKup30 = (tempTtPlakMetreKup45 + ((0.125 * 0.4 * 1) * 2)) * ttPlak;
+				ttPlakMetreKup45 = (tempTtPlakMetreKup45 + ((0.125 * 0.4 * 1) * 2)) * ttPlak;
 				ttPlakMetreKup70 = (tempTtPlakMetreKup70 + ((0.125 * 0.6 * 1) * 3)) * ttPlak;
 				
-				console.log("ttplakMetreKup: " + ttPlakMetreKup30 + " - " + ttPlakMetreKup30 + " - " + ttPlakMetreKup70);
+				console.log("ttplakMetreKup: " + ttPlakMetreKup30 + " - " + ttPlakMetreKup45 + " - " + ttPlakMetreKup70);
 			}
 		}
 		
@@ -3863,14 +3896,28 @@ class ThreeUtils {
 				settings.KismiAraKatEkle = false;
 				settings.redraw();
 				settings.objeSayisiniBul();
-				settings.kolonMetreKupHesabi();
 				settings.metreKupHesaplari();
+				settings.ttPlakMetreKupHesabi();
+				settings.kolonMetreKupHesabi();
 				settings.makasMetreKupHesabi();
 				settings.metrajHesabi();
 				settings.ankrajHesabi();
 				VincKontrol.open();
 				araKatFolder.open();
 				teklifAl.open();
+				
+				console.log("**********************////**************************/////**************************////*******************");
+				
+				console.log("vinç kirişi metreküp: " + vincKirisiMetreKup);
+				console.log("oluk metreküp: " + olukMetreKup.toFixed(2));
+				console.log("aşık metreküp: " + asikMetreKupT.toFixed(2));
+				console.log("makas metreküp: " + makasMetreKup.toFixed(2));
+				console.log("kolon metreküp: " + kolonMetreKup.toFixed(2));
+				console.log("öngermeli halat toplam: " + ongermeHalatiToplam.toFixed(2));
+				console.log("ankraj: " + ankrajToplam);
+				console.log("ttPlakMetreKup30: " + ttPlakMetreKup30);
+				console.log("ttPlakMetreKup45: " + ttPlakMetreKup45);
+				console.log("ttPlakMetreKup70: " + ttPlakMetreKup70);
 			},
 
 			teklifAl: function(){
@@ -3911,7 +3958,7 @@ class ThreeUtils {
 					
 					  type: "POST",
 					
-					  url: "http://localhost/tutorialsPoint/holymoly/create-form.php",
+					  url: "http://ahmetkilinc.net/holymoly/create-form.php",
 					
 					  contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 					
@@ -3923,7 +3970,7 @@ class ThreeUtils {
 					
 					  	console.log('saved');
 
-						window.location.assign('http://localhost/tutorialsPoint/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=' + '&vincKirisiMetreKup=' + vincKirisiMetreKup + '&olukMetreKup=' + olukMetreKup.toFixed(2) + '&asikMetreKupT=' + asikMetreKupT.toFixed(2) + '&makasMetreKup=' + makasMetreKup.toFixed(2) + '&kolonMetreKup=' + (kolonMetreKup).toFixed(2) + '&ongermeHalatiToplam=' + ongermeHalatiToplam.toFixed(2) + '&ankrajToplam=' + ankrajToplam + '&ttPlakMetreKup30=' + ttPlakMetreKup30 + '&ttPlakMetreKup45=' + ttPlakMetreKup45 + '&ttPlakMetreKup70=' + ttPlakMetreKup70 + '&ongermeHalatiKarkas=' + ongermeHalatiKarkas + '&ongermeHalatiAraKatKiris=' + ongermeHalatiAraKatKiris);
+						window.location.assign('http://ahmetkilinc.net/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=' + '&vincKirisiMetreKup=' + vincKirisiMetreKup + '&olukMetreKup=' + olukMetreKup.toFixed(2) + '&asikMetreKupT=' + asikMetreKupT.toFixed(2) + '&makasMetreKup=' + makasMetreKup.toFixed(2) + '&kolonMetreKup=' + (kolonMetreKup).toFixed(2) + '&ongermeHalatiToplam=' + ongermeHalatiToplam.toFixed(2) + '&ankrajToplam=' + ankrajToplam + '&ttPlakMetreKup30=' + ttPlakMetreKup30 + '&ttPlakMetreKup45=' + ttPlakMetreKup45 + '&ttPlakMetreKup70=' + ttPlakMetreKup70 + '&ongermeHalatiKarkas=' + ongermeHalatiKarkas + '&ongermeHalatiAraKatKiris=' + ongermeHalatiAraKatKiris);
 					});
 			}
 		};
@@ -4018,6 +4065,7 @@ class ThreeUtils {
 					settings.kismiAraKatKaldir = true;
 					settings.KismiAraKatEkle = false;
 					settings.ttPlakMetreKupHesabi();
+					settings.metrajHesabi();
 				}
 					
 				else{
@@ -4029,6 +4077,7 @@ class ThreeUtils {
 					settings.AraKatKaldir();
 					settings.objeSayisiniBul();
 					settings.ttPlakMetreKupHesabi();
+					settings.metrajHesabi();
 					
 					if(settings.VincliKolonlar === true){
 				   
@@ -4074,6 +4123,7 @@ class ThreeUtils {
 				settings.kismiAraKatKaldir = false;
 				obj.kismiAraKatEkle();
 				settings.objeSayisiniBul();
+				settings.kolonMetreKupHesabi();
 				
 			});
 
