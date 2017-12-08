@@ -3920,7 +3920,68 @@ class ThreeUtils {
 				console.log("ttPlakMetreKup70: " + ttPlakMetreKup70);
 			},
 
+			
 			teklifAl: function(){
+				
+				if (confirm("Binanızın PDF'de gözükecek halini kabul ediyor musunuz? Yönünü değiştirmek için İPTAL e tıklayın.") == true) {
+					
+					
+					document.getElementById('gonderBoy').value = settings.Boy.toFixed(2);
+				
+					document.getElementById('gonderEn').value = settings.En.toFixed(2);
+			
+					if(settings.KismiAraKatEkle === false){
+						
+						kismiAraKatHolSayisi = 0;
+						kismiAraKatAksSayisi = 0;
+						kismiAraKatHolBoyutu = 0;
+						kismiAraKatAksBoyutu = 0;
+					}
+					
+					settings.objeSayisiniBul();
+					settings.metreKupHesaplari();
+					settings.makasMetreKupHesabi();
+					settings.kolonMetreKupHesabi();
+					settings.metrajHesabi();
+					settings.ankrajHesabi();
+					
+					var img = new Image();
+					app.renderer.render(app.scene, app.camera);
+					img.src = app.renderer.domElement.toDataURL();
+
+					if(settings.AraKatEkle === true || settings.KismiAraKatEkle === true){
+						
+						settings.ttPlakMetreKupHesabi();
+					}
+
+					console.log("30luk ttPlak: " + ttPlakMetreKup30 + "45lik ttPlak: " + ttPlakMetreKup45 + "70lik ttPlak: " + ttPlakMetreKup70);
+					
+					var myJSON = JSON.stringify(img);
+
+					$.ajax({
+						
+						  type: "POST",
+						
+						  url: "http://ahmetkilinc.net/holymoly/create-form.php",
+						
+						  contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+						
+						  data:{
+							  
+							 imgBase64: img.src
+						  }
+						}).done(function(o){
+						
+							console.log('saved');
+
+							window.location.assign('http://ahmetkilinc.net/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=' + '&vincKirisiMetreKup=' + vincKirisiMetreKup + '&olukMetreKup=' + olukMetreKup.toFixed(2) + '&asikMetreKupT=' + asikMetreKupT.toFixed(2) + '&makasMetreKup=' + makasMetreKup.toFixed(2) + '&kolonMetreKup=' + (kolonMetreKup).toFixed(2) + '&ongermeHalatiToplam=' + ongermeHalatiToplam.toFixed(2) + '&ankrajToplam=' + ankrajToplam + '&ttPlakMetreKup30=' + ttPlakMetreKup30 + '&ttPlakMetreKup45=' + ttPlakMetreKup45 + '&ttPlakMetreKup70=' + ttPlakMetreKup70 + '&ongermeHalatiKarkas=' + ongermeHalatiKarkas + '&ongermeHalatiAraKatKiris=' + ongermeHalatiAraKatKiris);
+						});
+					
+					
+				} else {
+					
+				}
+			}
 				
 				document.getElementById('gonderBoy').value = settings.Boy.toFixed(2);
 				

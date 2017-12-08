@@ -153,20 +153,26 @@ $pdf->SetY(90);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "Beton"), 1, 'L');
 
+
 $pdf->SetY(90);
 $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $BetonMetreKup ." m³") , 1, 'R');
 
+setlocale(LC_MONETARY, 'tr_TR');
+$betonFiyat = money_format('%i', $betonFiyat);
+
 $pdf->SetY(90);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $betonFiyat . " TL/m³"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $betonFiyat . "/m³"), 1, 'R');
+
+$betonToplamFiyat = money_format('%i', $betonToplamFiyat);
 
 $pdf->SetY(90);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, $betonToplamFiyat . " TL", 1, 'R');
+$pdf->MultiCell(40, 5, $betonToplamFiyat . "", 1, 'R');
 
 
 //demir
@@ -180,15 +186,19 @@ $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $DemirMetreKup . " kg") , 1, 'R');
 
+$demirFiyat = money_format('%i', $demirFiyat);
+
 $pdf->SetY(95);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $demirFiyat . " TL/m³"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $demirFiyat . "/m³"), 1, 'R');
+
+$demirToplamFiyat = money_format('%i', $demirToplamFiyat);
 
 $pdf->SetY(95);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, $demirToplamFiyat ." TL", 1, 'R');
+$pdf->MultiCell(40, 5, $demirToplamFiyat ."", 1, 'R');
 
 
 //beton işçilik
@@ -201,15 +211,19 @@ $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $BetonMetreKup . " m³"), 1, 'R');
 
+$betonIscilik = money_format('%i', $betonIscilik);
+
 $pdf->SetY(100);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $betonIscilik . " TL/m³"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $betonIscilik . "/m³"), 1, 'R');
+
+$betonIscilikToplamFiyat = money_format('%i', $betonIscilikToplamFiyat);
 
 $pdf->SetY(100);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $betonIscilikToplamFiyat . " TL"), 1, 'R');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $betonIscilikToplamFiyat . ""), 1, 'R');
 
 
 //demir işçilik
@@ -222,15 +236,19 @@ $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $DemirMetreKup ." kg"), 1, 'R');
 
+$demirIscilik = money_format('%i', $demirIscilik);
+
 $pdf->SetY(105);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $demirIscilik . " TL/m³"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $demirIscilik . "/m³"), 1, 'R');
+
+$demirIscilikToplamFiyat = money_format('%i', $demirIscilikToplamFiyat);
 
 $pdf->SetY(105);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $demirIscilikToplamFiyat . " TL"), 1, 'R');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $demirIscilikToplamFiyat . ""), 1, 'R');
 
 
 //nakliye
@@ -243,15 +261,19 @@ $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', ceil($BetonMetreKup * 0.125) . " sefer"), 1, 'R');
 
+$nakliyat = money_format('%i', $nakliyat);
+
 $pdf->SetY(110);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $nakliyat . " TL/sefer"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $nakliyat . "/sefer"), 1, 'R');
+
+$nakliyatToplamFiyat = money_format('%i', $nakliyatToplamFiyat);
 
 $pdf->SetY(110);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $nakliyatToplamFiyat . " TL"), 1, 'R');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $nakliyatToplamFiyat . ""), 1, 'R');
 
 
 //montaj işçilik
@@ -264,15 +286,19 @@ $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $BetonMetreKup . " m³"), 1, 'R');
 
+$montajIscilik = money_format('%i', $montajIscilik);
+
 $pdf->SetY(115);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $montajIscilik . " TL/m³"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $montajIscilik . "/m³"), 1, 'R');
+
+$montajIscilikToplamFiyat = money_format('%i', $montajIscilikToplamFiyat);
 
 $pdf->SetY(115);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $montajIscilikToplamFiyat . " TL"), 1, 'R');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $montajIscilikToplamFiyat . ""), 1, 'R');
 
 
 //buhar kürü
@@ -285,15 +311,19 @@ $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $BetonMetreKup . " m³"), 1, 'R');
 
+$buharKuru = money_format('%i', $buharKuru);
+
 $pdf->SetY(120);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $buharKuru . " TL/m³"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $buharKuru . "/m³"), 1, 'R');
+
+$buharKuruToplamFiyat = money_format('%i', $buharKuruToplamFiyat);
 
 $pdf->SetY(120);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $buharKuruToplamFiyat . " TL"), 1, 'R');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $buharKuruToplamFiyat . ""), 1, 'R');
 
 //ankraj
 $pdf->SetY(125);
@@ -317,15 +347,19 @@ else{
 	$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $ankrajToplam . " Adet"), 1, 'R');
 }
 
+$ankraj = money_format('%i', $ankraj);
+
 $pdf->SetY(125);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $ankraj . " TL/ad"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $ankraj . "/ad"), 1, 'R');
+
+$ankrajToplamFiyat = money_format('%i', $ankrajToplamFiyat);
 
 $pdf->SetY(125);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $ankrajToplamFiyat . " TL"), 1, 'R');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $ankrajToplamFiyat . ""), 1, 'R');
 
 
 //öngerme halati
@@ -338,15 +372,19 @@ $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalatiToplam . " kg"), 1, 'R');
 
+$ongermeHalatFiyati = money_format('%i', $ongermeHalatFiyati);
+
 $pdf->SetY(130);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalatFiyati . " TL/kg"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalatFiyati . "/kg"), 1, 'R');
+
+$ongermeHalatiToplamFiyat = money_format('%i', $ongermeHalatiToplamFiyat);
 
 $pdf->SetY(130);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalatiToplamFiyat . " TL"), 1, 'R');
+$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalatiToplamFiyat . ""), 1, 'R');
 
 
 
@@ -355,49 +393,24 @@ $pdf->SetY(135);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "Genel Giderler"), 1, 'L');
 
+$genelGiderlerFiyat = money_format('%i', $genelGiderlerFiyat);
+
 $pdf->SetY(135);
 $pdf->SetX(70);
 $pdf->SetFont("arial", "B", "10");
-$pdf->MultiCell(130, 5, iconv('utf-8', 'ISO-8859-9', $genelGiderlerFiyat . " TL"), 1, 'R');
+$pdf->MultiCell(130, 5, iconv('utf-8', 'ISO-8859-9', $genelGiderlerFiyat . ""), 1, 'R');
 
 
 $pdf->SetY(140);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
 
+$toplamFiyat = money_format('%i', $toplamFiyat);
+
 $pdf->SetY(140);
 $pdf->SetX(70);
 $pdf->SetFont("arial","B","10");
-$pdf->MultiCell(130, 10, iconv('utf-8', 'ISO-8859-9', $toplamFiyat . " TL"), 1, 'R');
-
-//deneme kısmını buraya yaz. kontrol et. 150den başla.
-
-$pdf->SetY(160);
-$pdf->SetFont("arial", "B", "10");
-$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "karkas metreküp:"), 1, 'L');
-
-$pdf->SetY(160);
-$pdf->SetX(70);
-$pdf->SetFont("arial", "B", "10");
-$pdf->MultiCell(130, 5, iconv('utf-8', 'ISO-8859-9', $karkasBetonMetreKup . " "), 1, 'R');
-
-$pdf->SetY(165);
-$pdf->SetFont("arial", "B", "10");
-$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "arakat metreküp:"), 1, 'L');
-
-$pdf->SetY(165);
-$pdf->SetX(70);
-$pdf->SetFont("arial", "B", "10");
-$pdf->MultiCell(130, 5, iconv('utf-8', 'ISO-8859-9', $arakatBetonMetreKup . " "), 1, 'R');
-
-$pdf->SetY(170);
-$pdf->SetFont("arial", "B", "10");
-$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "vinckirisi metreküp:"), 1, 'L');
-
-$pdf->SetY(170);
-$pdf->SetX(70);
-$pdf->SetFont("arial", "B", "10");
-$pdf->MultiCell(130, 5, iconv('utf-8', 'ISO-8859-9', $vincKirisiBetonMetreKup . " "), 1, 'R');
+$pdf->MultiCell(130, 10, iconv('utf-8', 'ISO-8859-9', $toplamFiyat . ""), 1, 'R');
 
 
 //alt kısım.

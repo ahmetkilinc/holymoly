@@ -576,6 +576,7 @@ $pdf->SetY(120);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "KARKAS"), 1, 'C');
 
+
 $pdf->SetY(120);
 $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
@@ -583,16 +584,20 @@ $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["boy"] * $_GET["en"] .
 
 $karkasBirimFiyat = round(($_GET["karkasToplamFiyat"] / ($_GET["boy"] * $_GET["en"])), 2);
 
+setlocale(LC_MONETARY, 'tr_TR');
+$karkasBirimFiyat = money_format('%i', $karkasBirimFiyat);
+
 $pdf->SetY(120);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $karkasBirimFiyat . " TL/m²"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $karkasBirimFiyat . "/m²"), 1, 'R');
+
+$karkasToplamFiyat = money_format('%i', $_GET["karkasToplamFiyat"]);
 
 $pdf->SetY(120);
 $pdf->SetX(160);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(40, 5, $_GET["karkasToplamFiyat"] . " TL", 1, 'R');
-
+$pdf->MultiCell(40, 5, $karkasToplamFiyat . "", 1, 'R');
 
 if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	
@@ -607,17 +612,20 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 		$pdf->SetFont("arial", "", "10");
 		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["boy"] * $_GET["en"] . " m²") , 1, 'R');
 
-		$arakatBirimFiyat = round(($_GET["arakatToplamFiyat"] / ($_GET["boy"] * $_GET["en"])), 2);
+		$arakatBirimFiyat = round(($arakatToplamFiyat / ($_GET["boy"] * $_GET["en"])), 2);
+		$arakatBirimFiyat = money_format('%i', $arakatBirimFiyat);
 		
 		$pdf->SetY(125);
 		$pdf->SetX(110);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $arakatBirimFiyat . " TL/m²"), 1, 'R');
+		$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $arakatBirimFiyat . "/m²"), 1, 'R');
 
+		$arakatToplamFiyat = money_format('%i', $arakatToplamFiyat);
+		
 		$pdf->SetY(125);
 		$pdf->SetX(160);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(40, 5, $_GET["arakatToplamFiyat"] . " TL", 1, 'R');
+		$pdf->MultiCell(40, 5, $arakatToplamFiyat . "", 1, 'R');
 	}
 	
 	else if($_GET["kismiAraKat"] == 'true'){
@@ -627,17 +635,21 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 		$pdf->SetFont("arial","","10");
 		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"] ." m²") , 1, 'R');
 		
-		$arakatBirimFiyat = round(($_GET["arakatToplamFiyat"] / ($_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"])), 2);
+		$arakatBirimFiyat = round(($arakatToplamFiyat / ($_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"])), 2);
 
+		$arakatBirimFiyat = money_format('%i', $arakatBirimFiyat);
+		
 		$pdf->SetY(125);
 		$pdf->SetX(110);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $arakatBirimFiyat . " TL/m²"), 1, 'R');
+		$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $arakatBirimFiyat . "/m²"), 1, 'R');
+		
+		$arakatToplamFiyat = money_format('%i', $arakatToplamFiyat);
 
 		$pdf->SetY(125);
 		$pdf->SetX(160);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(40, 5, $_GET["arakatToplamFiyat"] . " TL", 1, 'R');
+		$pdf->MultiCell(40, 5, $arakatToplamFiyat . "", 1, 'R');
 	}
 	
 	$pdf->SetY(130);
@@ -651,33 +663,39 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 
 	$vinckirisiBirimFiyat = round(($_GET["vinckirisiToplamFiyat"] / $_GET["vincKirisSayisi"]), 2);
 	
+	$vinckirisiBirimFiyat = money_format('%i', $vinckirisiBirimFiyat);
+	
 	$pdf->SetY(130);
 	$pdf->SetX(110);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(50, 10, $vinckirisiBirimFiyat . " TL/ad", 1, 'R');
+	$pdf->MultiCell(50, 10, $vinckirisiBirimFiyat . "/ad", 1, 'R');
+	
+	$vinckirisiToplamFiyat = money_format('%i', $_GET["vinckirisiToplamFiyat"]);
 
 	$pdf->SetY(130);
 	$pdf->SetX(160);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(40, 10, $_GET["vinckirisiToplamFiyat"] . " TL", 1, 'R');
+	$pdf->MultiCell(40, 10, $vinckirisiToplamFiyat . "", 1, 'R');
 
 	$pdf->SetY(140);
 	$pdf->SetFont("arial","B","11");
 	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
 	
-	$toplamFiyat = $_GET["vinckirisiToplamFiyat"] + $_GET["arakatToplamFiyat"] + $_GET["karkasToplamFiyat"];
+	$toplamFiyat = $_GET["vinckirisiToplamFiyat"] + $arakatToplamFiyat + $_GET["karkasToplamFiyat"];
+	
+	$toplamFiyat = money_format('%i', $toplamFiyat);
 
 	$pdf->SetY(140);
 	$pdf->SetX(70);
 	$pdf->SetFont("arial","B","10");
-	$pdf->MultiCell(130, 10, $toplamFiyat . " TL" , 1, 'R');
+	$pdf->MultiCell(130, 10, $toplamFiyat . "" , 1, 'R');
 }
 
 else{
 	
 	$pdf->SetY(125);
 	$pdf->SetFont("arial","B","11");
-	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "MAX 10 TONLUK VİNÇ KİRİŞİ"), 1, 'C');
+	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "MAX ". $_GET["vinc"] ." TONLUK VİNÇ KİRİŞİ"), 1, 'C');
 
 	$pdf->SetY(125);
 	$pdf->SetX(70);
@@ -685,18 +703,24 @@ else{
 	$pdf->MultiCell(40, 10, $_GET["vincKirisSayisi"] . " Adet" , 1, 'R');
 
 	$vinckirisiBirimFiyat = round(($_GET["vinckirisiToplamFiyat"] / $_GET["vincKirisSayisi"]), 2);
+	
+	$vinckirisiBirimFiyat = money_format('%i', $vinckirisiBirimFiyat);
 
 	$pdf->SetY(125);
 	$pdf->SetX(110);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(50, 10, $vinckirisiBirimFiyat . " TL/ad", 1, 'R');
+	$pdf->MultiCell(50, 10, $vinckirisiBirimFiyat . "/ad", 1, 'R');
+	
+	$vinckirisiToplamFiyat = money_format('%i', $_GET["vinckirisiToplamFiyat"]);
 
 	$pdf->SetY(125);
 	$pdf->SetX(160);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(40, 10, $_GET["vinckirisiToplamFiyat"] . " TL", 1, 'R');
+	$pdf->MultiCell(40, 10, $vinckirisiToplamFiyat . "", 1, 'R');
 
 	$toplamFiyat = $_GET["vinckirisiToplamFiyat"] + $_GET["karkasToplamFiyat"];
+	
+	$toplamFiyat = money_format('%i', $toplamFiyat);
 	
 	$pdf->SetY(135);
 	$pdf->SetFont("arial","B","11");
@@ -705,8 +729,9 @@ else{
 	$pdf->SetY(135);
 	$pdf->SetX(70);
 	$pdf->SetFont("arial","B","10");
-	$pdf->MultiCell(130, 5, $toplamFiyat . " TL" , 1, 'R');
+	$pdf->MultiCell(130, 5, $toplamFiyat . "" , 1, 'R');
 }
+
 
 $pdf->SetY(160);
 $pdf->AddFont('arial','','arial.php');
