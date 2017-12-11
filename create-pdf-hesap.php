@@ -1,10 +1,5 @@
 <?php 
-//veritabanından çekilenler
 
-	
-$karkasBetonMetreKup = $_GET["karkasBetonMetreKup"];
-$arakatBetonMetreKup = $_GET["arakatBetonMetreKup"];
-$vincKirisiBetonMetreKup = $_GET["vincKirisiBetonMetreKup"];
 
 $demirFiyat = $_GET["demirFiyat"];
 $betonFiyat = $_GET["betonFiyat"];
@@ -61,6 +56,37 @@ $genelGiderlerFiyat = round((($betonToplamFiyat + $demirToplamFiyat + $betonIsci
 
 $toplamFiyat = round(($betonToplamFiyat + $demirToplamFiyat + $betonIscilikToplamFiyat + $demirIscilikToplamFiyat + $nakliyatToplamFiyat + $montajIscilikToplamFiyat + $buharKuruToplamFiyat + $ankrajToplamFiyat + $ongermeHalatiToplamFiyat + $genelGiderlerFiyat), 2);
 
+if($toplamFiyat < 100000){
+	
+	$karOrani = 25;
+	$kar = ($toplamFiyat * $karOrani) / 100;
+	$toplamFiyat = $toplamFiyat + $kar;
+}
+
+else if($toplamFiyat >= 100000 && $toplamFiyat < 200000){
+	
+	$karOrani = 20;
+	$kar = ($toplamFiyat * $karOrani) / 100;
+	$toplamFiyat = $toplamFiyat + $kar;
+}
+
+else if($toplamFiyat >= 200000 && $toplamFiyat < 500000){
+	
+	$karOrani = 15;
+	$kar = ($toplamFiyat * $karOrani) / 100;
+	$toplamFiyat = $toplamFiyat + $kar;
+}
+
+else if($toplamFiyat >= 500000){
+	
+	$karOrani = 10;
+	$kar = ($toplamFiyat * $karOrani) / 100;
+	$toplamFiyat = $toplamFiyat + $kar;
+}
+
+$kar = round($kar, 2);
+
+
 require("fpdf/alphapdf.php");
 
 $pdf = new AlphaPDF();
@@ -84,7 +110,6 @@ $pdf->SetTextColor(0, 58, 124);
 $pdf->AddFont('arial','B','arial.php');
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(40, 6, iconv('utf-8', 'ISO-8859-9', "www.betonel.com.tr"), 0, 'C');
-
 
 $pdf->SetAlpha(1);
 
@@ -152,7 +177,6 @@ $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', "TUTARI"), 1, 'C');
 $pdf->SetY(90);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "Beton"), 1, 'L');
-
 
 $pdf->SetY(90);
 $pdf->SetX(70);
@@ -387,7 +411,6 @@ $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $ongermeHalatiToplamFiyat . ""), 1, 'R');
 
 
-
 //genel giderler
 $pdf->SetY(135);
 $pdf->SetFont("arial","B","11");
@@ -401,13 +424,38 @@ $pdf->SetFont("arial", "B", "10");
 $pdf->MultiCell(130, 5, iconv('utf-8', 'ISO-8859-9', $genelGiderlerFiyat . ""), 1, 'R');
 
 
+//kar
 $pdf->SetY(140);
+$pdf->SetFont("arial", "B", "11");
+$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "Kar"), 1, 'L');
+
+$kar = money_format('%i', $kar);
+
+$pdf->SetY(140);
+$pdf->SetX(70);
+$pdf->SetFont("arial","B","10");
+$pdf->MultiCell(130, 5, iconv('utf-8', 'ISO-8859-9', $kar . ""), 1, 'R');
+
+
+//kar oranı
+$pdf->SetY(145);
+$pdf->SetFont("arial", "B", "11");
+$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "Kar Oranı"), 1, 'L');
+
+$pdf->SetY(145);
+$pdf->SetX(70);
+$pdf->SetFont("arial","B","10");
+$pdf->MultiCell(130, 5, iconv('utf-8', 'ISO-8859-9', $karOrani . "%"), 1, 'R');
+
+
+//toplam fiyat
+$pdf->SetY(150);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
 
 $toplamFiyat = money_format('%i', $toplamFiyat);
 
-$pdf->SetY(140);
+$pdf->SetY(150);
 $pdf->SetX(70);
 $pdf->SetFont("arial","B","10");
 $pdf->MultiCell(130, 10, iconv('utf-8', 'ISO-8859-9', $toplamFiyat . ""), 1, 'R');
@@ -450,3 +498,24 @@ $pdf->Output('','betonel-fiyat-hesaplari.pdf');
 
 $conn->close();
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

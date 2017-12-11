@@ -27,6 +27,48 @@ $date = $_GET["date"];
 
 $teklifNo = $_GET["teklif"];
 
+$arakatToplamFiyat = 0;
+
+$vinckirisiToplamFiyat = 0;
+
+$arakatToplamFiyat = $_GET["aFiyat"];
+
+$karkasToplamFiyat = $_GET["karkasToplamFiyat"];
+
+$vinckirisiToplamFiyat = $_GET["vinckirisiToplamFiyat"];
+
+$tFiyat = $arakatToplamFiyat + $karkasToplamFiyat + $vinckirisiToplamFiyat;
+
+$genelGiderlerFiyat = round(($tFiyat * 0.1), 2);
+
+$tFiyat = $tFiyat + $genelGiderlerFiyat;
+
+if($tFiyat < 100000){
+	
+	$karOrani = 25;
+	$kar = ($tFiyat * $karOrani) / 100;
+}
+
+else if($tFiyat >= 100000 && $tFiyat < 200000){
+	
+	$karOrani = 20;
+	$kar = ($tFiyat * $karOrani) / 100;
+}
+
+else if($tFiyat >= 200000 && $tFiyat < 500000){
+	
+	$karOrani = 15;
+	$kar = ($tFiyat * $karOrani) / 100;
+}
+
+else if($tFiyat >= 500000){
+	
+	$karOrani = 10;
+	$kar = ($tFiyat * $karOrani) / 100;
+}
+
+$kar = round($kar, 2);
+
 require("fpdf/alphapdf.php");
 
 $pdf = new AlphaPDF();
@@ -317,7 +359,7 @@ if ($_GET["vincKirisleri"] == 'true'){
 	$pdf->SetY(235);
 	$pdf->SetX(115);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9',"10 ton"), 0, 1);
+	$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9', $_GET["vinc"] . " ton"), 0, 1);
 }
 
 $pdf->SetY(240);
@@ -576,13 +618,14 @@ $pdf->SetY(120);
 $pdf->SetFont("arial","B","11");
 $pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "KARKAS"), 1, 'C');
 
-
 $pdf->SetY(120);
 $pdf->SetX(70);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["boy"] * $_GET["en"] ." m²") , 1, 'R');
 
-$karkasBirimFiyat = round(($_GET["karkasToplamFiyat"] / ($_GET["boy"] * $_GET["en"])), 2);
+$karkasToplamFiyat = $kar + $genelGiderlerFiyat + $karkasToplamFiyat;
+
+$karkasBirimFiyat = round(($karkasToplamFiyat / ($_GET["boy"] * $_GET["en"])), 2);
 
 setlocale(LC_MONETARY, 'tr_TR');
 $karkasBirimFiyat = money_format('%i', $karkasBirimFiyat);
@@ -592,7 +635,7 @@ $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $karkasBirimFiyat . "/m²"), 1, 'R');
 
-$karkasToplamFiyat = money_format('%i', $_GET["karkasToplamFiyat"]);
+$karkasToplamFiyat = money_format('%i', $karkasToplamFiyat);
 
 $pdf->SetY(120);
 $pdf->SetX(160);
@@ -611,7 +654,7 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 		$pdf->SetX(70);
 		$pdf->SetFont("arial", "", "10");
 		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["boy"] * $_GET["en"] . " m²") , 1, 'R');
-
+		
 		$arakatBirimFiyat = round(($arakatToplamFiyat / ($_GET["boy"] * $_GET["en"])), 2);
 		$arakatBirimFiyat = money_format('%i', $arakatBirimFiyat);
 		
@@ -633,10 +676,10 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 		$pdf->SetY(125);
 		$pdf->SetX(70);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"] ." m²") , 1, 'R');
+		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"] ." m²"), 1, 'R');
 		
 		$arakatBirimFiyat = round(($arakatToplamFiyat / ($_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"])), 2);
-
+		
 		$arakatBirimFiyat = money_format('%i', $arakatBirimFiyat);
 		
 		$pdf->SetY(125);
@@ -645,7 +688,7 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 		$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $arakatBirimFiyat . "/m²"), 1, 'R');
 		
 		$arakatToplamFiyat = money_format('%i', $arakatToplamFiyat);
-
+		
 		$pdf->SetY(125);
 		$pdf->SetX(160);
 		$pdf->SetFont("arial","","10");
@@ -654,14 +697,14 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	
 	$pdf->SetY(130);
 	$pdf->SetFont("arial","B","11");
-	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "MAX 10 TONLUK VİNÇ KİRİŞİ"), 1, 'C');
-
+	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "MAX ". $_GET["vinc"] ." TONLUK VİNÇ KİRİŞİ"), 1, 'C');
+	
 	$pdf->SetY(130);
 	$pdf->SetX(70);
 	$pdf->SetFont("arial","","10");
 	$pdf->MultiCell(40, 10, $_GET["vincKirisSayisi"] . " Adet" , 1, 'R');
-
-	$vinckirisiBirimFiyat = round(($_GET["vinckirisiToplamFiyat"] / $_GET["vincKirisSayisi"]), 2);
+	
+	$vinckirisiBirimFiyat = round(($vinckirisiToplamFiyat / $_GET["vincKirisSayisi"]), 2);
 	
 	$vinckirisiBirimFiyat = money_format('%i', $vinckirisiBirimFiyat);
 	
@@ -670,72 +713,70 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	$pdf->SetFont("arial","","10");
 	$pdf->MultiCell(50, 10, $vinckirisiBirimFiyat . "/ad", 1, 'R');
 	
-	$vinckirisiToplamFiyat = money_format('%i', $_GET["vinckirisiToplamFiyat"]);
-
+	$vinckirisiToplamFiyat = money_format('%i', $vinckirisiToplamFiyat);
+	
 	$pdf->SetY(130);
 	$pdf->SetX(160);
 	$pdf->SetFont("arial","","10");
 	$pdf->MultiCell(40, 10, $vinckirisiToplamFiyat . "", 1, 'R');
-
+	
 	$pdf->SetY(140);
 	$pdf->SetFont("arial","B","11");
 	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
 	
-	$toplamFiyat = $_GET["vinckirisiToplamFiyat"] + $arakatToplamFiyat + $_GET["karkasToplamFiyat"];
+	$toplamFiyat = $vinckirisiToplamFiyat + $arakatToplamFiyat + $karkasToplamFiyat + $kar + $genelGiderlerFiyat;
 	
 	$toplamFiyat = money_format('%i', $toplamFiyat);
-
+	
 	$pdf->SetY(140);
 	$pdf->SetX(70);
 	$pdf->SetFont("arial","B","10");
 	$pdf->MultiCell(130, 10, $toplamFiyat . "" , 1, 'R');
 }
-
 else{
 	
 	$pdf->SetY(125);
 	$pdf->SetFont("arial","B","11");
 	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "MAX ". $_GET["vinc"] ." TONLUK VİNÇ KİRİŞİ"), 1, 'C');
-
+	
 	$pdf->SetY(125);
 	$pdf->SetX(70);
 	$pdf->SetFont("arial","","10");
 	$pdf->MultiCell(40, 10, $_GET["vincKirisSayisi"] . " Adet" , 1, 'R');
-
-	$vinckirisiBirimFiyat = round(($_GET["vinckirisiToplamFiyat"] / $_GET["vincKirisSayisi"]), 2);
+	
+	$vinckirisiBirimFiyat = round(($vinckirisiToplamFiyat / $_GET["vincKirisSayisi"]), 2);
 	
 	$vinckirisiBirimFiyat = money_format('%i', $vinckirisiBirimFiyat);
-
+	
 	$pdf->SetY(125);
 	$pdf->SetX(110);
 	$pdf->SetFont("arial","","10");
 	$pdf->MultiCell(50, 10, $vinckirisiBirimFiyat . "/ad", 1, 'R');
 	
-	$vinckirisiToplamFiyat = money_format('%i', $_GET["vinckirisiToplamFiyat"]);
-
+	$vinckirisiToplamFiyat = money_format('%i', $vinckirisiToplamFiyat);
+	
 	$pdf->SetY(125);
 	$pdf->SetX(160);
 	$pdf->SetFont("arial","","10");
 	$pdf->MultiCell(40, 10, $vinckirisiToplamFiyat . "", 1, 'R');
-
-	$toplamFiyat = $_GET["vinckirisiToplamFiyat"] + $_GET["karkasToplamFiyat"];
+	
+	$toplamFiyat = $_GET["vinckirisiToplamFiyat"] + $_GET["karkasToplamFiyat"] + $kar + $genelGiderlerFiyat;
 	
 	$toplamFiyat = money_format('%i', $toplamFiyat);
 	
 	$pdf->SetY(135);
 	$pdf->SetFont("arial","B","11");
 	$pdf->MultiCell(60, 5, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
-
+	
 	$pdf->SetY(135);
 	$pdf->SetX(70);
 	$pdf->SetFont("arial","B","10");
 	$pdf->MultiCell(130, 5, $toplamFiyat . "" , 1, 'R');
 }
 
-
 $pdf->SetY(160);
-$pdf->AddFont('arial','','arial.php');
-$pdf->SetFont("arial","","10");
+$pdf->AddFont('arial', '', 'arial.php');
+$pdf->SetFont("arial", "", "10");
 $pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9', "Betona gömülü özel plaka ve ankrajların birim fiyatı 4TL/kg dır."), 0, 1);
 
 $pdf->SetY(165);
@@ -747,18 +788,11 @@ $pdf->SetX(18);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "Fiyatlarımıza KDV dahil değildir."), 0, 1);
 
-$pdf->SetY(170);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Fiyat hesaplarında, $demirFiyatTarihdb tarihli Kardemir fiyat listesi baz alınmış olup, inşaat demiri ton fiyatı $demirFiyatdb TL"), 0, 1);
+$demirFiyatdb = money_format('%i', $demirFiyatdb);
 
 $pdf->SetY(170);
-$pdf->SetX(178);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "+ KDV olarak"), 0, 1);
-
-$pdf->SetY(175);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(100, 5, iconv('utf-8', 'ISO-8859-9', "fiyatlara dahil edilmiştir."), 0, 1);
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Fiyat hesaplarında, $demirFiyatTarihdb tarihli Kardemir fiyat listesi baz alınmış olup, inşaat demiri ton fiyatı $demirFiyatdb + KDV olarak fiyatlara dahil edilmiştir."), 0, 'J');
 
 
 $pdf->SetY(185);
@@ -993,6 +1027,7 @@ if ((file_exists('images/'.$token.'/2Dimage.png')) && (filesize($filename) != 0)
 	
     $pdf->Image('images/'.$token.'/2Dimage.png', 25, 150, -200);
 }
+
 else{
 	
 	$pdf->SetY(180);
