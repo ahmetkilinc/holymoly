@@ -42,6 +42,7 @@ $dateOnly = date("d-m-Y");
 $teklif = date("ym");
 $clientip = $_GET["clientip"];
 $fabrika = $_GET["fabrika"];
+
 $fabrikauzaklik = $_GET["fabrikauzaklik"];
 
 $vincKirisYeriEn = $_GET["vincKirisYeriEn"];
@@ -75,10 +76,12 @@ $ongermeHalatiAraKatKiris = $_GET["ongermeHalatiAraKatKiris"];
 $ankrajToplam = $_GET["ankrajToplam"];
 
 
+
 $servername = ''; //your server
 $username = ''; //your server username
 $password = ''; //your server pass
 $dbname = ''; //your database name
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -110,6 +113,7 @@ if($result->num_rows > 0){
 	while($row = $result->fetch_assoc()){
 		
 		$degiskenDegerleri[$i] = $row["d_degeri"];
+
 		$i = $i + 1;
 	}
 }//4:nakliyat fiyatı <70km - 9:nakliyat fiyatı 70km<x<150km - 10:nakliyat fiyatı 150<
@@ -129,6 +133,7 @@ else if($fabrikauzaklik > 150000 && $fabrikauzaklik <= 300000){
 else{
 	
 	$nakliyatFiyat = $degiskenDegerleri[10];
+
 }
 
 //sadece karkas fiyatı
@@ -137,8 +142,10 @@ $karkasDemirMetreKup = round(($karkasBetonMetreKup * 150), 2);
 $karkasBetonMetreKupFiyat = round(($karkasBetonMetreKup * $degiskenDegerleri[1]), 2);
 $karkasDemirMetreKupFiyat = round((($karkasDemirMetreKup * $degiskenDegerleri[0]) / 1000), 2);
 $karkasBetonIscilikFiyat = round(($karkasBetonMetreKup * $degiskenDegerleri[2]), 2);
+
 $karkasDemirIscilikFiyat = round((($karkasDemirMetreKup * $degiskenDegerleri[3])), 2);
 $karkasNakliyatFiyat = ceil($karkasBetonMetreKup * 0.125) * $nakliyatFiyat;
+
 $karkasMontajIscilikFiyat = round(($karkasBetonMetreKup * $degiskenDegerleri[5]), 2);
 $karkasBuharKuruFiyat = round(($karkasBetonMetreKup * $degiskenDegerleri[6]), 2);
 $ongermeHalatiKarkasFiyat = round(($ongermeHalatiKarkas * $degiskenDegerleri[8]), 2);
@@ -151,8 +158,10 @@ $arakatDemirMetreKup = round(($arakatBetonMetreKup * 150), 2);
 $arakatBetonMetreKupFiyat = round(($arakatBetonMetreKup * $degiskenDegerleri[1]), 2);
 $arakatDemirMetreKupFiyat = round((($arakatDemirMetreKup * $degiskenDegerleri[0]) / 1000), 2);
 $arakatBetonIscilikFiyat = round(($arakatBetonMetreKup * $degiskenDegerleri[2]), 2);
+
 $arakatDemirIscilikFiyat = round((($arakatDemirMetreKup * $degiskenDegerleri[3])), 2);
 $arakatNakliyatFiyat = ceil($arakatBetonMetreKup * 0.125) * $nakliyatFiyat;
+
 $arakatMontajIscilikFiyat = round(($arakatBetonMetreKup * $degiskenDegerleri[5]), 2);
 $arakatBuharKuruFiyat = round(($arakatBetonMetreKup * $degiskenDegerleri[6]), 2);
 $arakatOngermeliHalatFiyat = round(($ongermeHalatiAraKatKiris * $degiskenDegerleri[8]), 2);
@@ -166,7 +175,9 @@ $vinckirisiBetonMetreKupFiyat = round(($vincKirisiBetonMetreKup * $degiskenDeger
 $vinckirisiDemirMetreKupFiyat = round((($vinckirisiDemirMetreKup * $degiskenDegerleri[0]) / 1000), 2);
 $vinckirisiBetonIscilikFiyat = round(($vincKirisiBetonMetreKup * $degiskenDegerleri[2]), 2);
 $vinckirisiDemirIscilikFiyat = round((($vinckirisiDemirMetreKup * $degiskenDegerleri[3]) / 1000), 2);
+
 $vinckirisiNakliyatFiyat = ceil($vincKirisiBetonMetreKup * 0.125) * $nakliyatFiyat;
+
 $vinckirisiMontajIscilikFiyat = round(($vincKirisiBetonMetreKup * $degiskenDegerleri[5]), 2);
 $vinckirisiBuharKuruFiyat = round(($vincKirisiBetonMetreKup * $degiskenDegerleri[6]), 2);
 
@@ -182,6 +193,7 @@ $messageHesap = str_replace('', '+', 'http://localhost/tutorialsPoint/holymoly/c
 $message = wordwrap($message, 1500, "\n", true);
 $messageHesap = wordwrap($messageHesap, 1500, "\n", true);
 
+
 $mail = new PHPMailer();
 
 $mail->IsSMTP();
@@ -193,9 +205,11 @@ $mail->SMTPAuth = true; // SMTP auth
 $mail->Username = ""; // SMTP username
 $mail->Password = ""; // SMTP password
 
+
 $mail->setFrom('', 'Betonel A.Ş.');
 $mail->AddAddress($_GET["email"]);
 $mail->addReplyTo("", "");
+
 
 $mail->Subject = "Betonel E-Posta Dogrulama Maili";
 $mail->AddEmbeddedImage('presets/mail-footer.png', 'mail-footer');
@@ -203,8 +217,10 @@ $mail->AltBody = "BETONEL Teklif PDF'ine ulaşmak için linki kopyalayınız ve 
 				
 $mail->Body =
 		"<head>
+
 			<meta charset='UTF-8' name='viewport' content='width=device-width, initial-scale=1.0'>
 		  	<meta name='theme-color' content='#F0FFFF'/>
+
 			<style>
 				div.container{
 				
@@ -231,6 +247,7 @@ if(!$mail->Send()){
 
 		echo '<head>
 				<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
   				<title>Doğrulama Maili Bilgi Ekranı</title>
 				<style>
 					div.container{
@@ -318,6 +335,7 @@ else{
 	
 	echo '<head>
 			<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
   			<title>Doğrulama Maili Bilgi Ekranı</title>
 			<style>
 				div.container{
@@ -362,6 +380,7 @@ else{
 				</header>
 
 				<article>
+
 				  <p><img src="presets/logo.png" alt="Betonel A.Ş." style="width:150px; height:75;"> <br> <br> Merhaba Sayın '. $adsoyad . '<strong><i>; <br> <br>' .$email. '</i></strong> e-posta adresine bir doğrulama maili gönderildi, mailinizdeki linke tıklayarak teklif pdfine ulaşabilirsiniz.</p>
 				</article>
 
@@ -394,7 +413,9 @@ $mail->AltBody = "BETONEL Teklif PDF'ine ulaşmak için linki kopyalayınız ve 
 
 $mail->Body = 
 		"<head> 
+
 			<meta charset='UTF-8' name='viewport' content='width=device-width, initial-scale=1.0'>
+
 			<style>
 				div.container{
 
@@ -493,7 +514,9 @@ $mail->WordWrap = 50;
 if(!$mail->Send()){
 '<html>
 		<header>
+
 			<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
 			<style>
 				a{
 				
@@ -522,3 +545,4 @@ else{
 
 $conn->close();
 ?>
+
