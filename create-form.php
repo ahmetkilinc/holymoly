@@ -14,17 +14,15 @@
 	$token = time();
 
 	if (!file_exists('images/'.$token)){
-
 		
 		mkdir('images/'.$token, 0777, true);
-		
 	}
 
 	$a = 'images/'.$token;
 
 	$success = file_put_contents('images/'.$token.'/2Dimage.png', $data, 8);
 /*
-	$dir = "http://ahmetkilinc.net/holymoly/images/";
+	$dir = "http://localhost/tutorialsPoint/holymoly/images/";
 
 	//fclose($dir);
 
@@ -100,7 +98,7 @@
 	  <img height="60" width="120" src="presets/logo.png"/>
 	  <h2>Betonel Teklif Formu</h2>
   </div>
-  <form class='form' action="depBol.php" method="post">
+  <form class='form' action="depBol.php" onsubmit="return controlfonk()" method="post">
 	  
 	  <div class='control_group required'>
 		  <div class='control_group'>
@@ -150,8 +148,8 @@
         <label for='number_02'>Telefon (İş)</label>
       </div>
       <div class='input'>
-		<input type="text" class="textfield" required='required' pattern=".{11,}" value="" id="extra7" name="cepis" onkeypress="return isNumber(event)" />
-		<span class='hint'>İrtibat numaranızı giriniz. (0312 000 00 00)</span>
+		<input type="text" class="textfield" pattern=".{11,}" value="" id="extra7" name="cepis" onkeypress="return isNumber(event)" />
+		<span class='hint'>İrtibat numaranızı giriniz. (Zorunlu Değil)</span>
       </div>
 		  
 	  <div class='label'>
@@ -253,7 +251,6 @@
 		
 		<input id='input_ankrajToplam' type="hidden" name="ankrajToplam" readonly value= <?php echo $_GET['ankrajToplam'] ?>>
 		
-		
 		<input id='input_ttPlakMetreKup30' type="hidden" name="ttPlakMetreKup30" readonly value= <?php echo $_GET['ttPlakMetreKup30'] ?>>
 		
 		<input id='input_ttPlakMetreKup45' type="hidden" name="ttPlakMetreKup45" readonly value= <?php echo $_GET['ttPlakMetreKup45'] ?>>
@@ -261,8 +258,10 @@
 		<input id='input_ttPlakMetreKup70' type="hidden" name="ttPlakMetreKup70" readonly value= <?php echo $_GET['ttPlakMetreKup70'] ?>>
 
 
-
-			  <input id='input_fabrika' type='hidden' name='fabrika' readonly value=>
+			  
+		<input id='input_fabrika' type='hidden' name='fabrika' readonly value=>
+			  
+		<input id='fabrikauzaklik' type="hidden" name="fabrikauzaklik" readonly value=>
 		
 		<input id='input_rakim' type='hidden' name='gercekrakim' readonly value=>
 			  
@@ -277,7 +276,8 @@
         <label for='number_01'>Arakat Hareketli Yükü (kg/m^2)</label>
       </div>
       <div class='input'>
-		<select name="arakatYuku">
+		<select class="textfield" id="arakatyukId" name="arakatYuku">
+			<option value="0">0 - Arakat Yok</option>
 			<option value="350">350 - Ofis</option>
 			<option value="500">500 - Hafif Atolye (Tekstil, Elektrik)</option>
 			<option value="750">750 - Atolye </option>
@@ -345,7 +345,7 @@
 	<div class='control_group buttons'>
       <div class='label'></div>
       <div class='input'>
-        <input class='btnGonder' type='submit' onclick="return confirm('Verdiğiniz Bilgileri Onaylıyor musunuz?')" value='Gönder'>
+        <input class='btnGonder' type='submit' onsubmit="controlfonk()" onclick="return confirm('Verdiğiniz Bilgileri Onaylıyor musunuz?')" value='Gönder'>
         <input class='btnGeri' type="button" onclick="window.location.assign('index.html');" value='Geri Dön'>
       </div>
     </div>
@@ -358,25 +358,44 @@
 </div>
 <script>
 	
+	function controlfonk(){
+		
+		var e = document.getElementById("arakatyukId").value;
+		
+		var arakatKomple = document.getElementById("input_kompleAraKat").value;
+		
+		var arakatKismi = document.getElementById("input_kismiAraKat").value;
+		
+		
+		var controlParameterUzaklik = document.getElementById('fabrikauzaklik').value;
+		
+		if(controlParameterUzaklik == 'undefined' || controlParameterUzaklik == null || controlParameterUzaklik == "" || document.getElementById('fabrika').value == '' || document.getElementById('fabrika').value == 'undefined' || document.getElementById('fabrika').value == null){
+					   
+		   alert("Harita üzerindeki kırmızı bina şeklini lütfen bina adresine taşıyınız. Aksi halde rakım bilgisine ulaşamayız.");
+		   //window.history.back();
+		   return false;
+		}
+		return true;
+	}
+	
 	function isNumber(evt){
 		
 		evt = (evt) ? evt : window.event;
 		var charCode = (evt.which) ? evt.which : evt.keyCode;
 		
 		if(charCode > 31 && (charCode < 48 || charCode > 57)){
-			
 			//"window.location.assign('index.html');"
 			return false;
 		}
 		return true;
 	}
-	
+
 </script>
   	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="js/new-form-index.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8LekTJKEelUsRKGwKXaunkVJt8wHV7Gk&libraries=geometry&language=tr&region=TR">
 	</script>	
-	<script src="http://localhost/tutorialsPoint/holymoly/js/gmaps.js"></script>
+	<script src="http://localhost/tutorialsPoint/holymoly/js/googlemaps.js"></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 </body>
 </html>

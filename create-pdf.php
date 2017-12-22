@@ -35,7 +35,7 @@ $arakatToplamFiyat = $_GET["aFiyat"];
 
 $karkasToplamFiyat = $_GET["karkasToplamFiyat"];
 
-$vinckirisiToplamFiyat = $_GET["vinckirisiToplamFiyat"];
+$vinckirisiToplamFiyat = $_GET["vinckTFiyat"];
 
 $tFiyat = $arakatToplamFiyat + $karkasToplamFiyat + $vinckirisiToplamFiyat;
 
@@ -183,7 +183,7 @@ if ($_GET["vincKirisleri"] == 'true'){
 	
 	$pdf->SetY(105);
 	$pdf->SetFont("arial","","10");
-	$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Yapının ". $_GET["vincKirisYeriEn"] ."/". $_GET["vincKirisYeriBoy"] . " aksları arasında +6.70 kotunda max kullanım kapasite 100 ton olan vinç konsolları yer almaktadır. Vinç kirişleri tek vinç yüküne göre tasarlanmıştır. "), 0, 'J');
+	$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Yapının ". $_GET["vincKirisYeriEn"] ."/". $_GET["vincKirisYeriBoy"] . " aksları arasında +6.70 kotunda max kullanım kapasite ". $_GET["vinc"] ." ton olan vinç konsolları yer almaktadır. Vinç kirişleri tek vinç yüküne göre tasarlanmıştır. "), 0, 'J');
 }
 
 if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
@@ -370,16 +370,6 @@ $pdf->SetY(240);
 $pdf->SetX(115);
 $pdf->SetFont("arial","","10");
 $pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9',"n = 0.3"), 0, 1);
-
-/*
-$pdf->SetY(240);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9',"Güneş Paneli Yükü"), 0, 1);
-
-$pdf->SetY(240);
-$pdf->SetX(115);
-$pdf->SetFont("arial","","10");
-$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9',"kg/m²"), 0, 1);*/
 
 //footer yazı ve resminin opacity'sini yüzde 50 yapmak
 $pdf->SetAlpha(0.5);
@@ -676,10 +666,9 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 		$pdf->SetY(125);
 		$pdf->SetX(70);
 		$pdf->SetFont("arial","","10");
-		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', $_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"] ." m²"), 1, 'R');
+		$pdf->MultiCell(40, 5, iconv('utf-8', 'ISO-8859-9', round(($_GET["kAKatHolByt"] * $_GET["kAKatAksByt"]), 2) . " m²"), 1, 'R');
 		
-		$arakatBirimFiyat = round(($arakatToplamFiyat / ($_GET["kismiAraKatHolBoyutu"] * $_GET["kismiAraKatAksBoyutu"])), 2);
-		
+		$arakatBirimFiyat = round(($arakatToplamFiyat / ($_GET["kAKatHolByt"] * $_GET["kAKatAksByt"])), 2);
 		$arakatBirimFiyat = money_format('%i', $arakatBirimFiyat);
 		
 		$pdf->SetY(125);
@@ -724,8 +713,11 @@ if ($_GET["kompleAraKat"] == 'true' || $_GET["kismiAraKat"] == 'true'){
 	$pdf->SetFont("arial","B","11");
 	$pdf->MultiCell(60, 10, iconv('utf-8', 'ISO-8859-9', "GENEL TOPLAM"), 1, 'R');
 	
-	$toplamFiyat = $vinckirisiToplamFiyat + $arakatToplamFiyat + $karkasToplamFiyat + $kar + $genelGiderlerFiyat;
 	
+	$toplamFiyat = $_GET["vinckTFiyat"] + $_GET["aFiyat"] + $_GET["karkasToplamFiyat"] + $kar + $genelGiderlerFiyat;
+	
+	//$toplamFiyat = $toplamFiyat;
+
 	$toplamFiyat = money_format('%i', $toplamFiyat);
 	
 	$pdf->SetY(140);
@@ -760,7 +752,7 @@ else{
 	$pdf->SetFont("arial","","10");
 	$pdf->MultiCell(40, 10, $vinckirisiToplamFiyat . "", 1, 'R');
 	
-	$toplamFiyat = $_GET["vinckirisiToplamFiyat"] + $_GET["karkasToplamFiyat"] + $kar + $genelGiderlerFiyat;
+	$toplamFiyat = $_GET["vinckTFiyat"] + $_GET["karkasToplamFiyat"] + $kar + $genelGiderlerFiyat;
 	
 	$toplamFiyat = money_format('%i', $toplamFiyat);
 	

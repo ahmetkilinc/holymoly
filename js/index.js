@@ -45,28 +45,36 @@ class ThreeUtils {
 		var ttPlakYukseklik70 = 0.1;
 
 		//kolonlar
-		var taneKolonMetreKup = 3.5;
+		var taneKolonMetreKup = 4;//3.5
+		var taneKolonMetreKup2 = 3.5;
 		var kolonMetreKup = 0;
 		
 		//rüzgar kolonlar
-		var taneRuzgarKolonMetreKup = 2.11;
-		var arakatKolonMetreküp = 2.11;
+		var taneRuzgarKolonMetreKup = 3;//2.11
+		var taneRuzgarKolonMetreKup2 = 2.11;
+		
+		var arakatKolonMetreküp = 3;//2.11
+		var arakatKolonMetreküp2 = 2.11;
 		var arakatKolonMetreküpAdet = 0;
 		
 		//makaslar
-		var taneMakasMetreKup = 5.78;
+		var taneMakasMetreKup = 6.1;//5.78
+		var taneMakasMetreKup2 = 5.78;
 		var makasMetreKup = 0;
 		
 		//asiklar
-		var taneAsikMetreKup = 0.23;
+		var taneAsikMetreKup = 0.8;//0.23
+		var taneAsikMetreKup2 = 0.23;
 		var asikMetreKupT = 0;
 		
 		//oluk kirisi
-		var taneOlukMetreKup = 0.77;
+		var taneOlukMetreKup = 1;//0.77
+		var taneOlukMetreKup2 = 0.77;
 		var olukMetreKup = 0;
 		
 		//vinç kirisi
-		var taneVincMetreKup = 1.5;
+		var taneVincMetreKup = 2.3;//1.5
+		var taneVincMetreKup2 = 1.5;
 		var vincKirisiMetreKup = 0;
 				
         ThreeUtils.app = {};
@@ -2962,28 +2970,61 @@ class ThreeUtils {
 			//diğer tüm metreküpler(aşık-oluk-vinçkirişi)
 			this.metreKupHesaplari = function(){
 				
-				//aşık kirişi
-				asikMetreKupT = taneAsikMetreKup * asikSayisi;
-				console.log("aşık sayısı: " + asikSayisi + " aşık metreküp: " + asikMetreKupT);
-				console.log("********");
+				//if(settings.En > 50 && settings.Boy > 50){
+					
+					//aşık kirişi
+					asikMetreKupT = taneAsikMetreKup * asikSayisi;
+					console.log("aşık sayısı: " + asikSayisi + " aşık metreküp: " + asikMetreKupT);
+					console.log("********");
+
+					//oluk kirişi
+					olukMetreKup = taneOlukMetreKup * olukSayisi;
+					console.log("oluk sayısı: " + olukSayisi + " oluk metreküp: " + olukMetreKup);
+					console.log("********");
+
+					//vinç kirişi
+					vincKirisiMetreKup = taneVincMetreKup * vincKirisiSayisi.toFixed(0);
+					console.log("vinç kiriş sayısı: " + vincKirisiSayisi.toFixed(0) + " vinç kiriş metreküp: " + vincKirisiMetreKup);
+					console.log("********");
+				//}
+				/*
+				else{
+					
+					//aşık kirişi
+					asikMetreKupT = taneAsikMetreKup2 * asikSayisi;
+					console.log("aşık sayısı: " + asikSayisi + " aşık metreküp: " + asikMetreKupT);
+					console.log("********");
+
+					//oluk kirişi
+					olukMetreKup = taneOlukMetreKup2 * olukSayisi;
+					console.log("oluk sayısı: " + olukSayisi + " oluk metreküp: " + olukMetreKup);
+					console.log("********");
+
+					//vinç kirişi
+					vincKirisiMetreKup = taneVincMetreKup2 * vincKirisiSayisi.toFixed(0);
+					console.log("vinç kiriş sayısı: " + vincKirisiSayisi.toFixed(0) + " vinç kiriş metreküp: " + vincKirisiMetreKup);
+					console.log("********");
+				}*/
 				
-				//oluk kirişi
-				olukMetreKup = taneOlukMetreKup * olukSayisi;
-				console.log("oluk sayısı: " + olukSayisi + " oluk metreküp: " + olukMetreKup);
-				console.log("********");
 				
-				//vinç kirişi
-				vincKirisiMetreKup = taneVincMetreKup * vincKirisiSayisi.toFixed(0);
-				console.log("vinç kiriş sayısı: " + vincKirisiSayisi.toFixed(0) + " vinç kiriş metreküp: " + vincKirisiMetreKup);
-				console.log("********");
 			}
 			
 			//makas metreküp hesabı
 			this.makasMetreKupHesabi = function(){
 				
-				makasMetreKup = taneMakasMetreKup * makasSayisi;
-				console.log("makas sayısı: " + makasSayisi + ", makas metreküp: " + makasMetreKup);
-				console.log("*******");
+				//if(settings.En > 50 && settings.Boy > 50){
+					
+					makasMetreKup = taneMakasMetreKup * makasSayisi;
+					console.log("makas sayısı: " + makasSayisi + ", makas metreküp: " + makasMetreKup);
+					console.log("*******");
+				//}
+				/*
+				else{
+					
+					makasMetreKup = taneMakasMetreKup2 * makasSayisi;
+					console.log("makas sayısı: " + makasSayisi + ", makas metreküp: " + makasMetreKup);
+					console.log("*******");
+				}*/
 			}
 			
 			//kolon metreküp hesabı
@@ -3010,7 +3051,7 @@ class ThreeUtils {
 					}
 					
 					else{
-						
+												
 						var arakatsizKolon = parseInt(kolonSayisi) + parseInt(ruzgarKolonSayisi) - parseInt(arakatKolon);
 					
 						kolonMetreKup = (arakatsizKolon * taneKolonMetreKup) + (arakatKolon * taneKolonMetreKup) + (ruzgarKolonSayisi * taneRuzgarKolonMetreKup);
@@ -3114,7 +3155,7 @@ class ThreeUtils {
 						   alert("Kısmi Arakat değerlerinizde bir yanlışlık olmalı, lütfen yeni değerler girerek tekrar deneyin. Binanın şuanki boyutlarına göre verebileceğiniz maksimum değerler: Arakat Genişliği: " + ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn).toFixed(0) + ", Arakat Uzunluğu: " + ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy).toFixed(0));
 						
 						   settings.KismiAraKatEkle = false;
-					}	
+					}
 				
 				
 					else{
@@ -3920,70 +3961,12 @@ class ThreeUtils {
 				console.log("ttPlakMetreKup70: " + ttPlakMetreKup70);
 			},
 
-			
 			teklifAl: function(){
 				
 				if (confirm("Binanızın PDF'de gözükecek halini kabul ediyor musunuz? Yönünü değiştirmek için İPTAL e tıklayın.") == true) {
 					
 					
 					document.getElementById('gonderBoy').value = settings.Boy.toFixed(2);
-				
-					document.getElementById('gonderEn').value = settings.En.toFixed(2);
-			
-					if(settings.KismiAraKatEkle === false){
-						
-						kismiAraKatHolSayisi = 0;
-						kismiAraKatAksSayisi = 0;
-						kismiAraKatHolBoyutu = 0;
-						kismiAraKatAksBoyutu = 0;
-					}
-					
-					settings.objeSayisiniBul();
-					settings.metreKupHesaplari();
-					settings.makasMetreKupHesabi();
-					settings.kolonMetreKupHesabi();
-					settings.metrajHesabi();
-					settings.ankrajHesabi();
-					
-					var img = new Image();
-					app.renderer.render(app.scene, app.camera);
-					img.src = app.renderer.domElement.toDataURL();
-
-					if(settings.AraKatEkle === true || settings.KismiAraKatEkle === true){
-						
-						settings.ttPlakMetreKupHesabi();
-					}
-
-					console.log("30luk ttPlak: " + ttPlakMetreKup30 + "45lik ttPlak: " + ttPlakMetreKup45 + "70lik ttPlak: " + ttPlakMetreKup70);
-					
-					var myJSON = JSON.stringify(img);
-
-					$.ajax({
-						
-						  type: "POST",
-						
-						  url: "http://ahmetkilinc.net/holymoly/create-form.php",
-						
-						  contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-						
-						  data:{
-							  
-							 imgBase64: img.src
-						  }
-						}).done(function(o){
-						
-							console.log('saved');
-
-							window.location.assign('http://ahmetkilinc.net/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=' + '&vincKirisiMetreKup=' + vincKirisiMetreKup + '&olukMetreKup=' + olukMetreKup.toFixed(2) + '&asikMetreKupT=' + asikMetreKupT.toFixed(2) + '&makasMetreKup=' + makasMetreKup.toFixed(2) + '&kolonMetreKup=' + (kolonMetreKup).toFixed(2) + '&ongermeHalatiToplam=' + ongermeHalatiToplam.toFixed(2) + '&ankrajToplam=' + ankrajToplam + '&ttPlakMetreKup30=' + ttPlakMetreKup30 + '&ttPlakMetreKup45=' + ttPlakMetreKup45 + '&ttPlakMetreKup70=' + ttPlakMetreKup70 + '&ongermeHalatiKarkas=' + ongermeHalatiKarkas + '&ongermeHalatiAraKatKiris=' + ongermeHalatiAraKatKiris);
-						});
-					
-					
-				} else {
-					
-				}
-			}
-				
-				document.getElementById('gonderBoy').value = settings.Boy.toFixed(2);
 				
 				document.getElementById('gonderEn').value = settings.En.toFixed(2);
 		
@@ -4033,6 +4016,64 @@ class ThreeUtils {
 
 						window.location.assign('http://ahmetkilinc.net/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=' + '&vincKirisiMetreKup=' + vincKirisiMetreKup + '&olukMetreKup=' + olukMetreKup.toFixed(2) + '&asikMetreKupT=' + asikMetreKupT.toFixed(2) + '&makasMetreKup=' + makasMetreKup.toFixed(2) + '&kolonMetreKup=' + (kolonMetreKup).toFixed(2) + '&ongermeHalatiToplam=' + ongermeHalatiToplam.toFixed(2) + '&ankrajToplam=' + ankrajToplam + '&ttPlakMetreKup30=' + ttPlakMetreKup30 + '&ttPlakMetreKup45=' + ttPlakMetreKup45 + '&ttPlakMetreKup70=' + ttPlakMetreKup70 + '&ongermeHalatiKarkas=' + ongermeHalatiKarkas + '&ongermeHalatiAraKatKiris=' + ongermeHalatiAraKatKiris);
 					});
+					
+				} else {
+					
+					alert("Mous'unuzun sol tıkı ile binanın yönünü değiştirebilir, sağ tıkı ile ise yakınlık-uzaklık değerlerini değiştirebilirsiniz.");
+				}
+				
+				
+				/*
+				document.getElementById('gonderBoy').value = settings.Boy.toFixed(2);
+				
+				document.getElementById('gonderEn').value = settings.En.toFixed(2);
+		
+				if(settings.KismiAraKatEkle === false){
+					
+					kismiAraKatHolSayisi = 0;
+					kismiAraKatAksSayisi = 0;
+					kismiAraKatHolBoyutu = 0;
+					kismiAraKatAksBoyutu = 0;
+				}
+				
+				settings.objeSayisiniBul();
+				settings.metreKupHesaplari();
+				settings.makasMetreKupHesabi();
+				settings.kolonMetreKupHesabi();
+				settings.metrajHesabi();
+				settings.ankrajHesabi();
+				
+				var img = new Image();
+				app.renderer.render(app.scene, app.camera);
+				img.src = app.renderer.domElement.toDataURL();
+
+				if(settings.AraKatEkle === true || settings.KismiAraKatEkle === true){
+					
+					settings.ttPlakMetreKupHesabi();
+				}
+
+				console.log("30luk ttPlak: " + ttPlakMetreKup30 + "45lik ttPlak: " + ttPlakMetreKup45 + "70lik ttPlak: " + ttPlakMetreKup70);
+				
+				var myJSON = JSON.stringify(img);
+
+				$.ajax({
+					
+					  type: "POST",
+					
+					  url: "http://ahmetkilinc.net/holymoly/create-form.php",
+					
+					  contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+					
+					  data:{
+						  
+						 imgBase64: img.src
+					  }
+					}).done(function(o){
+					
+					  	console.log('saved');
+
+						window.location.assign('http://ahmetkilinc.net/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=' + '&vincKirisiMetreKup=' + vincKirisiMetreKup + '&olukMetreKup=' + olukMetreKup.toFixed(2) + '&asikMetreKupT=' + asikMetreKupT.toFixed(2) + '&makasMetreKup=' + makasMetreKup.toFixed(2) + '&kolonMetreKup=' + (kolonMetreKup).toFixed(2) + '&ongermeHalatiToplam=' + ongermeHalatiToplam.toFixed(2) + '&ankrajToplam=' + ankrajToplam + '&ttPlakMetreKup30=' + ttPlakMetreKup30 + '&ttPlakMetreKup45=' + ttPlakMetreKup45 + '&ttPlakMetreKup70=' + ttPlakMetreKup70 + '&ongermeHalatiKarkas=' + ongermeHalatiKarkas + '&ongermeHalatiAraKatKiris=' + ongermeHalatiAraKatKiris);
+					});*/
 			}
 		};
 
