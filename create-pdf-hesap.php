@@ -1,6 +1,6 @@
 <?php 
 
-
+//db fiyatları
 $demirFiyat = $_GET["demirFiyat"];
 $betonFiyat = $_GET["betonFiyat"];
 $betonIscilik = $_GET["betonIscilik"];
@@ -30,7 +30,27 @@ $ongermeHalatiToplam = $_GET["ongermeHalatiToplam"];
 $ankrajToplam = $_GET["ankrajToplam"];
 
 
-$BetonMetreKup = round(($vincKirisiMetreKup + $olukMetreKup + $asikMetreKupT + $makasMetreKup + $kolonMetreKup + $ttPlakMetreKup), 2);
+
+
+//arakat fiyatı ayrı şekilde hesaplanacak
+$arakatBetonMetreKup = round($ttPlakMetreKup, 2);
+$arakatDemirMetreKup = round(($arakatBetonMetreKup * 150), 2);
+$arakatBetonMetreKupFiyat = round(($arakatBetonMetreKup * $betonFiyat), 2);
+$arakatDemirMetreKupFiyat = round((($arakatDemirMetreKup * $demirFiyat) / 1000), 2);
+$arakatBetonIscilikFiyat = round(($arakatBetonMetreKup * $betonIscilik), 2);
+$arakatDemirIscilikFiyat = round((($arakatDemirMetreKup * $demirIscilik) / 1000), 2);
+$arakatNakliyatFiyat = ceil($arakatBetonMetreKup * 0.125) * $nakliyat;
+$arakatMontajIscilikFiyat = round(($arakatBetonMetreKup * $montajIscilik), 2);
+$arakatBuharKuruFiyat = round(($arakatBetonMetreKup * $buharKuru), 2);
+$arakatOngermeliHalatFiyat = round(($ongermeHalatiAraKatKiris * $ongermeHalatFiyati), 2);
+
+$arakatToplamFiyat = round(($arakatBetonMetreKupFiyat + $arakatDemirMetreKupFiyat + $arakatBetonIscilikFiyat + $arakatDemirIscilikFiyat + $arakatNakliyatFiyat + $arakatMontajIscilikFiyat + $arakatBuharKuruFiyat + $arakatOngermeliHalatFiyat), 2);
+
+
+
+
+//karkas ve vinç kiriş fiyatı
+$BetonMetreKup = round(($vincKirisiMetreKup + $olukMetreKup + $asikMetreKupT + $makasMetreKup + $kolonMetreKup), 2);
 $betonToplamFiyat = round(($BetonMetreKup * $betonFiyat), 3);
 
 $DemirMetreKup = round(($BetonMetreKup * 150), 2);
@@ -39,7 +59,7 @@ $demirToplamFiyat = round((($DemirMetreKup * $demirFiyat) / 1000), 2);
 //toplam fiyatlar
 $betonIscilikToplamFiyat = round(($BetonMetreKup * $betonIscilik), 2);
 
-$demirIscilikToplamFiyat = round((($DemirMetreKup * $demirIscilik) / 1000), 2);
+$demirIscilikToplamFiyat = round(($DemirMetreKup * $demirIscilik), 2);
 
 $nakliyatToplamFiyat = ceil($BetonMetreKup * 0.125) * $nakliyat;
 
@@ -52,9 +72,9 @@ $ongermeHalatiToplamFiyat = round(($ongermeHalatiToplam * $ongermeHalatFiyati), 
 $ankrajToplamFiyat = $ankrajToplam * $ankraj;
 
 
-$genelGiderlerFiyat = round((($betonToplamFiyat + $demirToplamFiyat + $betonIscilikToplamFiyat + $demirIscilikToplamFiyat + $nakliyatToplamFiyat + $montajIscilikToplamFiyat + $buharKuruToplamFiyat + $ankrajToplamFiyat + $ongermeHalatiToplamFiyat) * 0.1), 2);
+$genelGiderlerFiyat = round((($betonToplamFiyat + $demirToplamFiyat + $betonIscilikToplamFiyat + $demirIscilikToplamFiyat + $nakliyatToplamFiyat + $montajIscilikToplamFiyat + $buharKuruToplamFiyat + $ankrajToplamFiyat + $ongermeHalatiToplamFiyat + $arakatToplamFiyat) * 0.1), 2);
 
-$toplamFiyat = round(($betonToplamFiyat + $demirToplamFiyat + $betonIscilikToplamFiyat + $demirIscilikToplamFiyat + $nakliyatToplamFiyat + $montajIscilikToplamFiyat + $buharKuruToplamFiyat + $ankrajToplamFiyat + $ongermeHalatiToplamFiyat + $genelGiderlerFiyat), 2);
+$toplamFiyat = round(($betonToplamFiyat + $demirToplamFiyat + $betonIscilikToplamFiyat + $demirIscilikToplamFiyat + $nakliyatToplamFiyat + $montajIscilikToplamFiyat + $buharKuruToplamFiyat + $ankrajToplamFiyat + $ongermeHalatiToplamFiyat + $genelGiderlerFiyat + $arakatToplamFiyat), 2);
 
 if($toplamFiyat < 100000){
 	
@@ -215,7 +235,7 @@ $demirFiyat = money_format('%i', $demirFiyat);
 $pdf->SetY(95);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $demirFiyat . "/m³"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $demirFiyat . "/kg"), 1, 'R');
 
 $demirToplamFiyat = money_format('%i', $demirToplamFiyat);
 
@@ -265,7 +285,7 @@ $demirIscilik = money_format('%i', $demirIscilik);
 $pdf->SetY(105);
 $pdf->SetX(110);
 $pdf->SetFont("arial","","10");
-$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $demirIscilik . "/m³"), 1, 'R');
+$pdf->MultiCell(50, 5, iconv('utf-8', 'ISO-8859-9', $demirIscilik . "/kg"), 1, 'R');
 
 $demirIscilikToplamFiyat = money_format('%i', $demirIscilikToplamFiyat);
 

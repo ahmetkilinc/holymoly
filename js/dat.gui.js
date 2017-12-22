@@ -3137,8 +3137,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	GUI.CLASS_DRAG = 'drag';
 	
 	GUI.DEFAULT_WIDTH = 245;
-	GUI.TEXT_CLOSED = 'Kontrolleri Kapat';
-	GUI.TEXT_OPEN = 'Kontrolleri Aç';
+	GUI.TEXT_CLOSED = 'Bina Özelliklerini Kapat';
+	GUI.TEXT_OPEN = 'Bina Özelliklerini Aç';
 	
 	GUI._keydownHandler = function (e) {
 	  if (document.activeElement.type !== 'text' && (e.which === HIDE_KEY_CODE || e.keyCode === HIDE_KEY_CODE)) {

@@ -42,6 +42,9 @@ $dateOnly = date("d-m-Y");
 $teklif = date("ym");
 $clientip = $_GET["clientip"];
 $fabrika = $_GET["fabrika"];
+
+$fabrikauzaklik = $_GET["fabrikauzaklik"];
+
 $vincKirisYeriEn = $_GET["vincKirisYeriEn"];
 $vincKirisYeriBoy = $_GET["vincKirisYeriBoy"];
 $araKatYeriEn = $_GET["araKatYeriEn"];
@@ -73,10 +76,12 @@ $ongermeHalatiAraKatKiris = $_GET["ongermeHalatiAraKatKiris"];
 $ankrajToplam = $_GET["ankrajToplam"];
 
 
-$servername = 'localhost';
-$username = 'root';
-$password = '';
-$dbname = 'webapp';
+
+$servername = ''; //your server
+$username = ''; //your server username
+$password = ''; //your server pass
+$dbname = ''; //your database name
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -108,9 +113,27 @@ if($result->num_rows > 0){
 	while($row = $result->fetch_assoc()){
 		
 		$degiskenDegerleri[$i] = $row["d_degeri"];
-		
+
 		$i = $i + 1;
 	}
+}//4:nakliyat fiyatı <70km - 9:nakliyat fiyatı 70km<x<150km - 10:nakliyat fiyatı 150<
+
+if($fabrikauzaklik <= 70000){
+	
+	$nakliyatFiyat = $degiskenDegerleri[4];
+}
+else if($fabrikauzaklik > 70000 && $fabrikauzaklik <= 150000){
+	
+	$nakliyatFiyat = $degiskenDegerleri[9];
+}
+else if($fabrikauzaklik > 150000 && $fabrikauzaklik <= 300000){
+	
+	$nakliyatFiyat = $degiskenDegerleri[10];
+}
+else{
+	
+	$nakliyatFiyat = $degiskenDegerleri[10];
+
 }
 
 //sadece karkas fiyatı
@@ -119,8 +142,10 @@ $karkasDemirMetreKup = round(($karkasBetonMetreKup * 150), 2);
 $karkasBetonMetreKupFiyat = round(($karkasBetonMetreKup * $degiskenDegerleri[1]), 2);
 $karkasDemirMetreKupFiyat = round((($karkasDemirMetreKup * $degiskenDegerleri[0]) / 1000), 2);
 $karkasBetonIscilikFiyat = round(($karkasBetonMetreKup * $degiskenDegerleri[2]), 2);
-$karkasDemirIscilikFiyat = round((($karkasDemirMetreKup * $degiskenDegerleri[3]) / 1000), 2);
-$karkasNakliyatFiyat = ceil($karkasBetonMetreKup * 0.125) * $degiskenDegerleri[4];
+
+$karkasDemirIscilikFiyat = round((($karkasDemirMetreKup * $degiskenDegerleri[3])), 2);
+$karkasNakliyatFiyat = ceil($karkasBetonMetreKup * 0.125) * $nakliyatFiyat;
+
 $karkasMontajIscilikFiyat = round(($karkasBetonMetreKup * $degiskenDegerleri[5]), 2);
 $karkasBuharKuruFiyat = round(($karkasBetonMetreKup * $degiskenDegerleri[6]), 2);
 $ongermeHalatiKarkasFiyat = round(($ongermeHalatiKarkas * $degiskenDegerleri[8]), 2);
@@ -133,8 +158,10 @@ $arakatDemirMetreKup = round(($arakatBetonMetreKup * 150), 2);
 $arakatBetonMetreKupFiyat = round(($arakatBetonMetreKup * $degiskenDegerleri[1]), 2);
 $arakatDemirMetreKupFiyat = round((($arakatDemirMetreKup * $degiskenDegerleri[0]) / 1000), 2);
 $arakatBetonIscilikFiyat = round(($arakatBetonMetreKup * $degiskenDegerleri[2]), 2);
-$arakatDemirIscilikFiyat = round((($arakatDemirMetreKup * $degiskenDegerleri[3]) / 1000), 2);
-$arakatNakliyatFiyat = ceil($arakatBetonMetreKup * 0.125) * $degiskenDegerleri[4];
+
+$arakatDemirIscilikFiyat = round((($arakatDemirMetreKup * $degiskenDegerleri[3])), 2);
+$arakatNakliyatFiyat = ceil($arakatBetonMetreKup * 0.125) * $nakliyatFiyat;
+
 $arakatMontajIscilikFiyat = round(($arakatBetonMetreKup * $degiskenDegerleri[5]), 2);
 $arakatBuharKuruFiyat = round(($arakatBetonMetreKup * $degiskenDegerleri[6]), 2);
 $arakatOngermeliHalatFiyat = round(($ongermeHalatiAraKatKiris * $degiskenDegerleri[8]), 2);
@@ -148,16 +175,24 @@ $vinckirisiBetonMetreKupFiyat = round(($vincKirisiBetonMetreKup * $degiskenDeger
 $vinckirisiDemirMetreKupFiyat = round((($vinckirisiDemirMetreKup * $degiskenDegerleri[0]) / 1000), 2);
 $vinckirisiBetonIscilikFiyat = round(($vincKirisiBetonMetreKup * $degiskenDegerleri[2]), 2);
 $vinckirisiDemirIscilikFiyat = round((($vinckirisiDemirMetreKup * $degiskenDegerleri[3]) / 1000), 2);
-$vinckirisiNakliyatFiyat = ceil($vincKirisiBetonMetreKup * 0.125) * $degiskenDegerleri[4];
+
+$vinckirisiNakliyatFiyat = ceil($vincKirisiBetonMetreKup * 0.125) * $nakliyatFiyat;
+
 $vinckirisiMontajIscilikFiyat = round(($vincKirisiBetonMetreKup * $degiskenDegerleri[5]), 2);
 $vinckirisiBuharKuruFiyat = round(($vincKirisiBetonMetreKup * $degiskenDegerleri[6]), 2);
 
 $vinckirisiToplamFiyat = round(($vinckirisiBetonMetreKupFiyat + $vinckirisiDemirMetreKupFiyat + $vinckirisiBetonIscilikFiyat + $vinckirisiDemirIscilikFiyat + $vinckirisiNakliyatFiyat + $vinckirisiMontajIscilikFiyat + $vinckirisiBuharKuruFiyat), 2);
 
+/*
+$message = str_replace(' ', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf.php?adsoyad=' .urlencode(base64_encode($adsoyad)) . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&faks=' . urlencode(base64_encode($faks)) . '&binayeri=' . urlencode(base64_encode($binayeri)) . '&boy=' . $boy . '&en=' . $en . '&yukseklik=' . $yukseklik . '&vincKirisleri=' . $vincKirisleri . '&asikSayisi=' . $asikSayisi . '&olukSayisi=' . $olukSayisi . '&kolonSayisi=' . $kolonSayisi . '&ruzgarKolonSayisi=' . $ruzgarKolonSayisi . '&makasSayisi=' . $makasSayisi . '&vincKirisSayisi=' . $vincKirisSayisi . '&genelHolSayisi=' . $genelHolSayisi . '&kompleAraKat=' . $kompleAraKat . '&kismiAraKat=' . $kismiAraKat . '&KompleAraKatHolSayisi=' . $KompleAraKatHolSayisi . '&KompleAraKatHolBoyutu=' . $KompleAraKatHolBoyutu . '&kismiAraKatHolSayisi=' . $kismiAraKatHolSayisi . '&kismiAraKatAksSayisi=' . $kismiAraKatAksSayisi . '&kAKatHolByt=' . $kismiAraKatHolBoyutu . '&kAKatAksByt=' . $kismiAraKatAksBoyutu . '&enlem=' . $lat . '&boylam=' . $lng . '&vincKirisYeriEn=' . $vincKirisYeriEn . '&vincKirisYeriBoy=' . $vincKirisYeriBoy . '&araKatYeriEn='. $araKatYeriEn . '&araKatYeriBoy=' . $araKatYeriBoy . '&ttPlak=' . $ttPlak . '&taliKiris=' . $taliKiris . '&arakatKiris=' . $arakatKiris . '&arakatKolon=' . $arakatKolon . '&depremBolgesi=' . $depremBolgesi . '&karyuku=' . $karyuku . '&karBolgesi=' . $karBolgesi . '&rakim=' . $rakim . '&token=' . $token . '&arakat=' . $arakat . '&demirFiyatdb=' . $demirFiyatdb . '&demirFiyatTarihdb=' . $demirFiyatTarihdb . '&date=' . $dateOnly . '&teklif=' . $teklif . '&arakatYuku=' . $arakatYuku . '&karkasToplamFiyat=' . $karkasToplamFiyat . '&vinckTFiyat=' . $vinckirisiToplamFiyat . '&aFiyat=' . $arakatToplamFiyat . '&vinc=' . $vinc);*/
 
-$message = str_replace(' ', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf.php?adsoyad=' .urlencode(base64_encode($adsoyad)) . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&faks=' . urlencode(base64_encode($faks)) . '&binayeri=' . urlencode(base64_encode($binayeri)) . '&boy=' . $boy . '&en=' . $en . '&yukseklik=' . $yukseklik . '&vincKirisleri=' . $vincKirisleri . '&asikSayisi=' . $asikSayisi . '&olukSayisi=' . $olukSayisi . '&kolonSayisi=' . $kolonSayisi . '&ruzgarKolonSayisi=' . $ruzgarKolonSayisi . '&makasSayisi=' . $makasSayisi . '&vincKirisSayisi=' . $vincKirisSayisi . '&genelHolSayisi=' . $genelHolSayisi . '&kompleAraKat=' . $kompleAraKat . '&kismiAraKat=' . $kismiAraKat . '&KompleAraKatHolSayisi=' . $KompleAraKatHolSayisi . '&KompleAraKatHolBoyutu=' . $KompleAraKatHolBoyutu . '&kismiAraKatHolSayisi=' . $kismiAraKatHolSayisi . '&kismiAraKatAksSayisi=' . $kismiAraKatAksSayisi . '&kismiAraKatHolBoyutu=' . $kismiAraKatHolBoyutu . '&kismiAraKatAksBoyutu=' . $kismiAraKatAksBoyutu . '&enlem=' . $lat . '&boylam=' . $lng . '&vincKirisYeriEn=' . $vincKirisYeriEn . '&vincKirisYeriBoy=' . $vincKirisYeriBoy . '&araKatYeriEn='. $araKatYeriEn . '&araKatYeriBoy=' . $araKatYeriBoy . '&ttPlak=' . $ttPlak . '&taliKiris=' . $taliKiris . '&arakatKiris=' . $arakatKiris . '&arakatKolon=' . $arakatKolon . '&depremBolgesi=' . $depremBolgesi . '&karyuku=' . $karyuku . '&karBolgesi=' . $karBolgesi . '&rakim=' . $rakim . '&token=' . $token . '&arakat=' . $arakat . '&demirFiyatdb=' . $demirFiyatdb . '&demirFiyatTarihdb=' . $demirFiyatTarihdb . '&date=' . $dateOnly . '&teklif=' . $teklif . '&arakatYuku=' . $arakatYuku . '&karkasToplamFiyat=' . $karkasToplamFiyat . '&vinckirisiToplamFiyat='.$vinckirisiToplamFiyat.'&arakatToplamFiyat='.$arakatToplamFiyat);
+$message = str_replace(' ', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf.php?adsoyad=' .urlencode(base64_encode($adsoyad)) . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&faks=' . urlencode(base64_encode($faks)) . '&binayeri=' . urlencode(base64_encode($binayeri)) . '&boy=' . $boy . '&en=' . $en . '&yukseklik=' . $yukseklik . '&vincKirisleri=' . $vincKirisleri . '&asikSayisi=' . $asikSayisi . '&olukSayisi=' . $olukSayisi . '&kolonSayisi=' . $kolonSayisi . '&ruzgarKolonSayisi=' . $ruzgarKolonSayisi . '&makasSayisi=' . $makasSayisi . '&vincKirisSayisi=' . $vincKirisSayisi . '&genelHolSayisi=' . $genelHolSayisi . '&kompleAraKat=' . $kompleAraKat . '&kismiAraKat=' . $kismiAraKat . '&KompleAraKatHolSayisi=' . $KompleAraKatHolSayisi . '&KompleAraKatHolBoyutu=' . $KompleAraKatHolBoyutu . '&kAKatHolByt=' . $kismiAraKatHolBoyutu . '&kAKatAksByt=' . $kismiAraKatAksBoyutu . '&enlem=' . $lat . '&boylam=' . $lng . '&vincKirisYeriEn=' . $vincKirisYeriEn . '&vincKirisYeriBoy=' . $vincKirisYeriBoy . '&araKatYeriEn='. $araKatYeriEn . '&araKatYeriBoy=' . $araKatYeriBoy . '&ttPlak=' . $ttPlak . '&taliKiris=' . $taliKiris . '&arakatKiris=' . $arakatKiris . '&arakatKolon=' . $arakatKolon . '&depremBolgesi=' . $depremBolgesi . '&karyuku=' . $karyuku . '&karBolgesi=' . $karBolgesi . '&rakim=' . $rakim . '&token=' . $token . '&arakat=' . $arakat . '&demirFiyatdb=' . $demirFiyatdb . '&demirFiyatTarihdb=' . $demirFiyatTarihdb . '&date=' . $dateOnly . '&teklif=' . $teklif . '&arakatYuku=' . $arakatYuku . '&karkasToplamFiyat=' . $karkasToplamFiyat . '&vinckTFiyat=' . $vinckirisiToplamFiyat . '&aFiyat=' . $arakatToplamFiyat . '&vinc=' . $vinc);
 
-$messageHesap = str_replace('', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf-hesap.php?demirFiyat=' . $degiskenDegerleri[0] . '&betonFiyat=' . $degiskenDegerleri[1] . '&betonIscilik=' . $degiskenDegerleri[2] . '&demirIscilik=' . $degiskenDegerleri[3] . '&nakliyat=' . $degiskenDegerleri[4] . '&montajIscilik=' . $degiskenDegerleri[5] . '&buharKuru=' . $degiskenDegerleri[6] . '&ankraj=' . $degiskenDegerleri[7]  . '&ongermeHalatFiyati=' . $degiskenDegerleri[8] . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&adsoyad=' . urlencode(base64_encode($adsoyad)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&date=' . $dateOnly . '&vincKirisiMetreKup=' . $vincKirisiMetreKup . '&olukMetreKup=' . $olukMetreKup . '&asikMetreKupT=' . $asikMetreKupT . '&makasMetreKup=' . $makasMetreKup . '&kolonMetreKup=' . $kolonMetreKup . '&ongermeHalatiToplam=' . $ongermeHalatiToplam . '&ankrajToplam=' . $ankrajToplam . '&arakatYuku=' . $arakatYuku . '&ttPlakMetreKup=' . $ttPlakMetreKup . '&karkasBetonMetreKup=' . $karkasBetonMetreKup . '&arakatBetonMetreKup=' . $ttPlakMetreKup . '&vincKirisiBetonMetreKup=' . $vincKirisiBetonMetreKup);
+$messageHesap = str_replace('', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf-hesap.php?demirFiyat=' . $degiskenDegerleri[0] . '&betonFiyat=' . $degiskenDegerleri[1] . '&betonIscilik=' . $degiskenDegerleri[2] . '&demirIscilik=' . $degiskenDegerleri[3] . '&nakliyat=' . $nakliyatFiyat . '&montajIscilik=' . $degiskenDegerleri[5] . '&buharKuru=' . $degiskenDegerleri[6] . '&ankraj=' . $degiskenDegerleri[7]  . '&ongermeHalatFiyati=' . $degiskenDegerleri[8] . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&adsoyad=' . urlencode(base64_encode($adsoyad)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&date=' . $dateOnly . '&vincKirisiMetreKup=' . $vincKirisiMetreKup . '&olukMetreKup=' . $olukMetreKup . '&asikMetreKupT=' . $asikMetreKupT . '&makasMetreKup=' . $makasMetreKup . '&kolonMetreKup=' . $kolonMetreKup . '&ongermeHalatiToplam=' . $ongermeHalatiToplam . '&ankrajToplam=' . $ankrajToplam . '&arakatYuku=' . $arakatYuku . '&ttPlakMetreKup=' . $ttPlakMetreKup);
+
+$message = wordwrap($message, 1500, "\n", true);
+$messageHesap = wordwrap($messageHesap, 1500, "\n", true);
+
 
 $mail = new PHPMailer();
 
@@ -170,9 +205,11 @@ $mail->SMTPAuth = true; // SMTP auth
 $mail->Username = ""; // SMTP username
 $mail->Password = ""; // SMTP password
 
-$mail->setFrom('betonel@betonel.com.tr', 'Betonel A.Ş.');
+
+$mail->setFrom('', 'Betonel A.Ş.');
 $mail->AddAddress($_GET["email"]);
-$mail->addReplyTo("betonel@betonel.com.tr", "Betonel A.Ş.");
+$mail->addReplyTo("", "");
+
 
 $mail->Subject = "Betonel E-Posta Dogrulama Maili";
 $mail->AddEmbeddedImage('presets/mail-footer.png', 'mail-footer');
@@ -180,6 +217,10 @@ $mail->AltBody = "BETONEL Teklif PDF'ine ulaşmak için linki kopyalayınız ve 
 				
 $mail->Body =
 		"<head>
+
+			<meta charset='UTF-8' name='viewport' content='width=device-width, initial-scale=1.0'>
+		  	<meta name='theme-color' content='#F0FFFF'/>
+
 			<style>
 				div.container{
 				
@@ -205,7 +246,8 @@ $mail->WordWrap = 50;
 if(!$mail->Send()){
 
 		echo '<head>
-				<meta charset="UTF-8">
+				<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
   				<title>Doğrulama Maili Bilgi Ekranı</title>
 				<style>
 					div.container{
@@ -292,7 +334,8 @@ if(!$mail->Send()){
 else{
 	
 	echo '<head>
-			<meta charset="UTF-8">
+			<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
   			<title>Doğrulama Maili Bilgi Ekranı</title>
 			<style>
 				div.container{
@@ -337,7 +380,8 @@ else{
 				</header>
 
 				<article>
-				  <p><img src="presets/logo.png" alt="Betonel A.Ş." style="width:150px;height:75;"> <br> <br> Merhaba Sayın '. $adsoyad . '<strong><i>; <br> <br>' .$email. '</i></strong> e-posta adresine bir doğrulama maili gönderildi, mailinizdeki linke tıklayarak teklif pdfine ulaşabilirsiniz.</p>
+
+				  <p><img src="presets/logo.png" alt="Betonel A.Ş." style="width:150px; height:75;"> <br> <br> Merhaba Sayın '. $adsoyad . '<strong><i>; <br> <br>' .$email. '</i></strong> e-posta adresine bir doğrulama maili gönderildi, mailinizdeki linke tıklayarak teklif pdfine ulaşabilirsiniz.</p>
 				</article>
 
 				<footer> BETONEL AŞ. Copyright &copy;' . $dateOnlyY .' .All rights reserved.</footer>
@@ -359,9 +403,9 @@ $mail->SMTPAuth = true; // SMTP auth
 $mail->Username = ""; // SMTP username
 $mail->Password = ""; // SMTP password 
 
-$mail->setFrom('betonel@betonel.com.tr', 'Betonel A.Ş.');
-$mail->AddAddress("akilinc@betonel.com.tr");
-$mail->addReplyTo("betonel@betonel.com.tr", "Betonel A.Ş.");
+$mail->setFrom('', '');
+$mail->AddAddress("");
+$mail->addReplyTo("", "");
 
 $mail->Subject = "Betonel Müşteri Teklif Bilgileri";
 $mail->AddEmbeddedImage('presets/mail-footer.png', 'mail-footer');
@@ -369,6 +413,9 @@ $mail->AltBody = "BETONEL Teklif PDF'ine ulaşmak için linki kopyalayınız ve 
 
 $mail->Body = 
 		"<head> 
+
+			<meta charset='UTF-8' name='viewport' content='width=device-width, initial-scale=1.0'>
+
 			<style>
 				div.container{
 
@@ -467,6 +514,9 @@ $mail->WordWrap = 50;
 if(!$mail->Send()){
 '<html>
 		<header>
+
+			<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
 			<style>
 				a{
 				
@@ -495,3 +545,4 @@ else{
 
 $conn->close();
 ?>
+

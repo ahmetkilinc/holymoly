@@ -1,10 +1,4 @@
-Kullanılan Teknolojiler:
-1)	Client-Side Programlama için kullanılanlar:
-	a)	JavaScript Three.js
-	b)	JavaScript JQuery
-	c)	HTML
-	d)	CSS
-	e)	Google Map Api
+A Pen created at CodePen.io. You can find this one at http://codepen.io/ahmetkilinc
 
 2)	Server-Side Programlama için kullanılanlar:
 	a)	PHP PHPMailer
@@ -20,3 +14,4 @@ Kullanılan Teknolojiler:
 4)	Üç Boyutlu Çizim ve Gösterimi için kullanılanlar:
 	a)	Blender 2.78c
 	b)	Microsoft 3D Builder
+
