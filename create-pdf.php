@@ -582,7 +582,7 @@ $pdf->SetY(105);
 $pdf->AddFont('arial','BU','arial.php');
 $pdf->SetFont("arial","BU","11");
 $pdf->SetTextColor(0, 0, 0);
-$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9', "4. FİYATLAR:"), 0, 1);
+$pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9', "4. FİYATLAR*:"), 0, 1);
 
 $pdf->SetY(115);
 $pdf->SetFont("arial","B","10");
@@ -1135,6 +1135,19 @@ $pdf->Setx(30);
 $pdf->SetFont("arial","","11");
 $pdf->SetTextColor(0,58,124);
 $pdf->MultiCell(200, 5, iconv('utf-8', 'ISO-8859-9', "Türk Standardına Uygunluk Belgelerine sahiptir."), 0, 1);
+
+//not
+
+$pdf->SetY(205);
+$pdf->SetFont("arial","BU","11");
+$pdf->SetTextColor(0,0,0);
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "*Not:"), 0, 1);
+
+$pdf->SetY(210);
+$pdf->SetFont("arial","","11");
+$pdf->SetTextColor(0,0,0);
+$pdf->MultiCell(190, 5, iconv('utf-8', 'ISO-8859-9', "Otomatik olarak aldığınız bu teklif sadece size fikir vermek amaçlıdır. Şirketimize ulaşarak alacağınız teklif fiyatı ile farklılıklar gösterebilir. Lütfen bizimle iletişime geçerek asıl teklifinizi alınız."), 0, 'J');
+//not
 
 $pdf->SetAlpha(0.5);
 
