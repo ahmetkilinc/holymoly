@@ -22,7 +22,7 @@
 
 	$success = file_put_contents('images/'.$token.'/2Dimage.png', $data, 8);
 /*
-	$dir = "http://localhost/tutorialsPoint/holymoly/images/";
+	$dir = "http://ahmetkilinc.net/holymoly/images/";
 
 	//fclose($dir);
 
@@ -267,9 +267,10 @@
 			  
 	  <div class='label'>
         <label for='number_01'>Vinç Kaldırma Kapasitesi (ton)</label>
+		<span class='hint'>Vinç kaldırma kapasitesini ton cinsinden yazınız.</span>
       </div>
       <div class='input'>
-		<input type="text" class="textfield" required='required' value="" id="extra7" name="vinc" onkeypress="return isNumber(event)" />
+		<input type="text" class="textfield" required='required' value="0" id="extra7" name="vinc" onkeypress="return isNumber(event)" />
       </div>
 		  
 	  <div class='label'>
@@ -366,7 +367,6 @@
 		
 		var arakatKismi = document.getElementById("input_kismiAraKat").value;
 		
-		
 		var controlParameterUzaklik = document.getElementById('fabrikauzaklik').value;
 		
 		if(controlParameterUzaklik == 'undefined' || controlParameterUzaklik == null || controlParameterUzaklik == "" || document.getElementById('fabrika').value == '' || document.getElementById('fabrika').value == 'undefined' || document.getElementById('fabrika').value == null){
@@ -395,7 +395,7 @@
     <script src="js/new-form-index.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8LekTJKEelUsRKGwKXaunkVJt8wHV7Gk&libraries=geometry&language=tr&region=TR">
 	</script>	
-	<script src="http://localhost/tutorialsPoint/holymoly/js/googlemaps.js"></script>
+	<script src="http://ahmetkilinc.net/holymoly/js/googlemaps.js"></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 </body>
 </html>
