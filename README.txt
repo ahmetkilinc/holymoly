@@ -1,4 +1,4 @@
-Kullanılan Teknolojiler: (Technologies and languages used to building this app)
+Kullanılan Teknolojiler: (Technologies and languages used for building this app)
 
 1)	Client-Side Programlama için kullanılanlar: (Front-end stuff)
 	a)	JavaScript Three.js
