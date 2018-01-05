@@ -183,12 +183,98 @@ $vinckirisiBuharKuruFiyat = round(($vincKirisiBetonMetreKup * $degiskenDegerleri
 
 $vinckirisiToplamFiyat = round(($vinckirisiBetonMetreKupFiyat + $vinckirisiDemirMetreKupFiyat + $vinckirisiBetonIscilikFiyat + $vinckirisiDemirIscilikFiyat + $vinckirisiNakliyatFiyat + $vinckirisiMontajIscilikFiyat + $vinckirisiBuharKuruFiyat), 2);
 
-/*
-$message = str_replace(' ', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf.php?adsoyad=' .urlencode(base64_encode($adsoyad)) . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&faks=' . urlencode(base64_encode($faks)) . '&binayeri=' . urlencode(base64_encode($binayeri)) . '&boy=' . $boy . '&en=' . $en . '&yukseklik=' . $yukseklik . '&vincKirisleri=' . $vincKirisleri . '&asikSayisi=' . $asikSayisi . '&olukSayisi=' . $olukSayisi . '&kolonSayisi=' . $kolonSayisi . '&ruzgarKolonSayisi=' . $ruzgarKolonSayisi . '&makasSayisi=' . $makasSayisi . '&vincKirisSayisi=' . $vincKirisSayisi . '&genelHolSayisi=' . $genelHolSayisi . '&kompleAraKat=' . $kompleAraKat . '&kismiAraKat=' . $kismiAraKat . '&KompleAraKatHolSayisi=' . $KompleAraKatHolSayisi . '&KompleAraKatHolBoyutu=' . $KompleAraKatHolBoyutu . '&kismiAraKatHolSayisi=' . $kismiAraKatHolSayisi . '&kismiAraKatAksSayisi=' . $kismiAraKatAksSayisi . '&kAKatHolByt=' . $kismiAraKatHolBoyutu . '&kAKatAksByt=' . $kismiAraKatAksBoyutu . '&enlem=' . $lat . '&boylam=' . $lng . '&vincKirisYeriEn=' . $vincKirisYeriEn . '&vincKirisYeriBoy=' . $vincKirisYeriBoy . '&araKatYeriEn='. $araKatYeriEn . '&araKatYeriBoy=' . $araKatYeriBoy . '&ttPlak=' . $ttPlak . '&taliKiris=' . $taliKiris . '&arakatKiris=' . $arakatKiris . '&arakatKolon=' . $arakatKolon . '&depremBolgesi=' . $depremBolgesi . '&karyuku=' . $karyuku . '&karBolgesi=' . $karBolgesi . '&rakim=' . $rakim . '&token=' . $token . '&arakat=' . $arakat . '&demirFiyatdb=' . $demirFiyatdb . '&demirFiyatTarihdb=' . $demirFiyatTarihdb . '&date=' . $dateOnly . '&teklif=' . $teklif . '&arakatYuku=' . $arakatYuku . '&karkasToplamFiyat=' . $karkasToplamFiyat . '&vinckTFiyat=' . $vinckirisiToplamFiyat . '&aFiyat=' . $arakatToplamFiyat . '&vinc=' . $vinc);*/
-
 $message = str_replace(' ', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf.php?adsoyad=' .urlencode(base64_encode($adsoyad)) . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&faks=' . urlencode(base64_encode($faks)) . '&binayeri=' . urlencode(base64_encode($binayeri)) . '&boy=' . $boy . '&en=' . $en . '&yukseklik=' . $yukseklik . '&vincKirisleri=' . $vincKirisleri . '&asikSayisi=' . $asikSayisi . '&olukSayisi=' . $olukSayisi . '&kolonSayisi=' . $kolonSayisi . '&ruzgarKolonSayisi=' . $ruzgarKolonSayisi . '&makasSayisi=' . $makasSayisi . '&vincKirisSayisi=' . $vincKirisSayisi . '&genelHolSayisi=' . $genelHolSayisi . '&kompleAraKat=' . $kompleAraKat . '&kismiAraKat=' . $kismiAraKat . '&KompleAraKatHolSayisi=' . $KompleAraKatHolSayisi . '&KompleAraKatHolBoyutu=' . $KompleAraKatHolBoyutu . '&kAKatHolByt=' . $kismiAraKatHolBoyutu . '&kAKatAksByt=' . $kismiAraKatAksBoyutu . '&enlem=' . $lat . '&boylam=' . $lng . '&vincKirisYeriEn=' . $vincKirisYeriEn . '&vincKirisYeriBoy=' . $vincKirisYeriBoy . '&araKatYeriEn='. $araKatYeriEn . '&araKatYeriBoy=' . $araKatYeriBoy . '&ttPlak=' . $ttPlak . '&taliKiris=' . $taliKiris . '&arakatKiris=' . $arakatKiris . '&arakatKolon=' . $arakatKolon . '&depremBolgesi=' . $depremBolgesi . '&karyuku=' . $karyuku . '&karBolgesi=' . $karBolgesi . '&rakim=' . $rakim . '&token=' . $token . '&arakat=' . $arakat . '&demirFiyatdb=' . $demirFiyatdb . '&demirFiyatTarihdb=' . $demirFiyatTarihdb . '&date=' . $dateOnly . '&teklif=' . $teklif . '&arakatYuku=' . $arakatYuku . '&karkasToplamFiyat=' . $karkasToplamFiyat . '&vinckTFiyat=' . $vinckirisiToplamFiyat . '&aFiyat=' . $arakatToplamFiyat . '&vinc=' . $vinc);
 
 $messageHesap = str_replace('', '+', 'http://localhost/tutorialsPoint/holymoly/create-pdf-hesap.php?demirFiyat=' . $degiskenDegerleri[0] . '&betonFiyat=' . $degiskenDegerleri[1] . '&betonIscilik=' . $degiskenDegerleri[2] . '&demirIscilik=' . $degiskenDegerleri[3] . '&nakliyat=' . $nakliyatFiyat . '&montajIscilik=' . $degiskenDegerleri[5] . '&buharKuru=' . $degiskenDegerleri[6] . '&ankraj=' . $degiskenDegerleri[7]  . '&ongermeHalatFiyati=' . $degiskenDegerleri[8] . '&sirketadi=' . urlencode(base64_encode($sirketadi)) . '&adsoyad=' . urlencode(base64_encode($adsoyad)) . '&ceptel=' . urlencode(base64_encode($ceptel)) . '&date=' . $dateOnly . '&vincKirisiMetreKup=' . $vincKirisiMetreKup . '&olukMetreKup=' . $olukMetreKup . '&asikMetreKupT=' . $asikMetreKupT . '&makasMetreKup=' . $makasMetreKup . '&kolonMetreKup=' . $kolonMetreKup . '&ongermeHalatiToplam=' . $ongermeHalatiToplam . '&ankrajToplam=' . $ankrajToplam . '&arakatYuku=' . $arakatYuku . '&ttPlakMetreKup=' . $ttPlakMetreKup);
+
+//veritabanına müşteri bilgilerini yazdırma----->
+
+if($vincKirisleri == 'true'){
+	
+	if($kompleAraKat == 'true' || $kismiAraKat == 'true'){//v+a
+		
+		$t = $karkasToplamFiyat + $vinckirisiToplamFiyat + $arakatToplamFiyat;
+	}
+	else{
+		
+		$t = $karkasToplamFiyat + $vinckirisiToplamFiyat;
+	}
+}
+else{
+	
+	if($kompleAraKat == 'true' || $kismiAraKat == 'true'){
+		
+		$t = $karkasToplamFiyat + $arakatToplamFiyat;
+	}
+	
+	else{
+		
+		$t = $karkasToplamFiyat;
+	}
+}
+
+//toplam fiyatı bulma ->
+$genelGiderlerFiyat = round(($t * 0.1), 2);
+
+$t = $t + $genelGiderlerFiyat;
+
+if($t < 100000){
+	
+	$karOrani = 25;
+	$kar = ($t * $karOrani) / 100;
+}
+
+else if($t >= 100000 && $t < 200000){
+	
+	$karOrani = 20;
+	$kar = ($t * $karOrani) / 100;
+}
+
+else if($t >= 200000 && $t < 500000){
+	
+	$karOrani = 15;
+	$kar = ($t * $karOrani) / 100;
+}
+
+else if($t >= 500000){
+	
+	$karOrani = 10;
+	$kar = ($t * $karOrani) / 100;
+}
+
+$t = $t + $kar;
+
+$t = money_format('%i', $t);
+//<- toplam fiyat bulma
+
+//doğru formatlı date yollama ->
+$dateDb = date("Y-m-d");
+//<- doğru formatlı date yollama
+
+$servername = "mysql.hostinger.web.tr";
+$username = "u786273580_cv";
+$password = "ahmet3899";
+$dbname = "u786273580_dbcv";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if($conn->connect_error){
+	
+	die("Bağlantı sağlanamadı: " . $conn->connect_error);
+}
+
+$sql = "INSERT INTO musteri (musteri_adi, musteri_firma, musteri_tel, musteri_eposta, teklif_fiyat, teklif_tarih) VALUES ('$adsoyad', '$sirketadi', '$ceptel', '$email', '$t' ,'$dateDb')";
+
+if ($conn->query($sql) === TRUE) {
+	
+    //echo "New record created successfully";
+} else {
+	
+    //echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+//<-----veritabanına müşteri bilgilerini yazdırma
 
 $message = wordwrap($message, 1500, "\n", true);
 $messageHesap = wordwrap($messageHesap, 1500, "\n", true);
