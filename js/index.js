@@ -3118,15 +3118,16 @@ class ThreeUtils {
 
 			this.ttPlakMetreKupHesabi = function(){
 				
-				var tempTtPlakMetreKup30 = ttPlakYukseklik3045 * (settings.stepEn / 3) * settings.stepBoy;
-				var tempTtPlakMetreKup45 = ttPlakYukseklik3045 * (settings.stepEn / 3) * settings.stepBoy;
-				var tempTtPlakMetreKup70 = ttPlakYukseklik70 * (settings.stepEn / 3) * settings.stepBoy;
-
-				ttPlakMetreKup30 = (tempTtPlakMetreKup30 + ((0.125 * 0.25 * 1) * 2)) * ttPlak;
-				ttPlakMetreKup45 = (tempTtPlakMetreKup45 + ((0.125 * 0.4 * 1) * 2)) * ttPlak;
-				ttPlakMetreKup70 = (tempTtPlakMetreKup70 + ((0.125 * 0.6 * 1) * 3)) * ttPlak;
+				var tempTtPlakMetreKup30 = ttPlakYukseklik3045 * ((settings.stepEn / 3) / Math.ceil((settings.stepEn / 3) / 2.35));
+				var tempTtPlakMetreKup45 = ttPlakYukseklik3045 * ((settings.stepEn / 3) / Math.ceil((settings.stepEn / 3) / 2.35));
+				var tempTtPlakMetreKup70 = ttPlakYukseklik70 * ((settings.stepEn / 3) / Math.ceil((settings.stepEn / 3) / 2.35));
 				
-				console.log("ttplakMetreKup: " + ttPlakMetreKup30 + " - " + ttPlakMetreKup45 + " - " + ttPlakMetreKup70);
+				console.log("70lik ttplak: " + tempTtPlakMetreKup70);
+				console.log("ttplak sayısı: " + ttPlak);
+
+				ttPlakMetreKup30 = (tempTtPlakMetreKup30 + ((0.125 * 0.25 * 1) * 2)) * ttPlak * settings.stepBoy;
+				ttPlakMetreKup45 = (tempTtPlakMetreKup45 + ((0.125 * 0.4 * 1) * 2)) * ttPlak * settings.stepBoy;
+				ttPlakMetreKup70 = (tempTtPlakMetreKup70 + ((0.125 * 0.6 * 1) * 2)) * ttPlak * settings.stepBoy;
 			}
 		}
 		
