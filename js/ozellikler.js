@@ -90,7 +90,8 @@ class LabeledGrid extends THREE.Object3D{
 					gridGeometry.vertices.push(new THREE.Vector3(i * stepEn, width - (width % stepBoy), mainGridZ)); // 0 to width e kadar çiz.
 				}
 				
-				if(stepEn / 3 >= 7 || (length === 60) || (length === 61) || (length === 62) || (length === 63)){
+				//if(stepEn / 3 >= 7 || (length === 60) || (length === 61) || (length === 62) || (length === 63)){
+				if(stepEn / 3 >= 7 || (length >= 60 && length <= 63) || (length >= 21 && length <=	27.1) || (length > 40 && length <= 44)){
 
 					for (var i = 0; i <= length - (length % stepEn); i += stepEn / 3){
 
@@ -149,8 +150,8 @@ class LabeledGrid extends THREE.Object3D{
                 opacity: this.opacity * 0,
                 linewidth: 2,
                 transparent: true
-            });
-
+            });                      
+			
             this.margin = new THREE.LineSegments(marginGeometry, strongGridMaterial);
             //ekle grids, subgrids, margins ..
             this.add(this.mainGrid);
@@ -278,20 +279,20 @@ class LabeledGrid extends THREE.Object3D{
             if(numbering == "centerBased"){
 				
 				//*Boy grid numaralandırma, 1, 2, 3, ... rightside
-				for(var i = 0 ; i <= ((width - (width % stepBoy)) / stepBoy); i++){
+				for(var i = 1 ; i <= ((width - (width % stepBoy)) / stepBoy) + 1; i++){
 					
                     var sizeLabel = this.drawTextOnPlane("" + i, 32);
                     var sizeLabel2 = sizeLabel.clone();
-                    sizeLabel2.position.set(2.5 + length - (length % stepEn), 0.2 +  (i * stepBoy), 0);
+                    sizeLabel2.position.set(2.5 + length - (length % stepEn), 0.2 +  ((i - 1) * stepBoy), 0);
                     sizeLabel2.rotation.z = - Math.PI / 2;
                     labelsFront.add(sizeLabel2);
                 }
 				//leftside
-				for(var i = 0 ; i <= ((width - (width % stepBoy)) / stepBoy); i++){
+				for(var i = 1 ; i <= ((width - (width % stepBoy)) / stepBoy) + 1; i++){
 					
                     var sizeLabel = this.drawTextOnPlane("" + i, 32);
                     var sizeLabel2 = sizeLabel.clone();
-                    sizeLabel2.position.set(-3.5, 0.2 +  (i * stepBoy), 0);
+                    sizeLabel2.position.set(-3.5, 0.2 +  ((i - 1) * stepBoy), 0);
                     sizeLabel2.rotation.z = -Math.PI / 2;
                     labelsFront.add(sizeLabel2);
                 }
@@ -310,7 +311,7 @@ class LabeledGrid extends THREE.Object3D{
 					
                     var sizeLabel = this.drawTextOnPlane("" + Math.round(stepBoy * 100) / 100, 32);
                     var sizeLabel2 = sizeLabel.clone();
-                    sizeLabel2.position.set(length - (length % stepEn), 4.3 +  i, 0);
+                    sizeLabel2.position.set(length - (length % stepEn) + 5, 4.3 +  i, 0);
                     sizeLabel2.rotation.z = - Math.PI / 2;
                     labelsFront.add(sizeLabel2);
                 }
@@ -319,7 +320,7 @@ class LabeledGrid extends THREE.Object3D{
 					
                     var sizeLabel = this.drawTextOnPlane("" + Math.round(stepBoy * 100) / 100, 32);
                     var sizeLabel2 = sizeLabel.clone();
-                    sizeLabel2.position.set(0, 4.3 +  i, 0);
+                    sizeLabel2.position.set(0 - 5, 4.3 +  i, 0);
                     sizeLabel2.rotation.z = - Math.PI / 2;
                     labelsFront.add(sizeLabel2);
                 }
@@ -359,8 +360,9 @@ class LabeledGrid extends THREE.Object3D{
                     labelsSideRight.add(sizeLabel2);
                 }
 
-                if(stepEn / 3 >= 7 || (length === 60) || (length === 61) || (length === 62) || (length === 63)){
-				
+                //if(stepEn / 3 >= 7 || (length === 60) || (length === 61) || (length === 62) || (length === 63)){
+				if(stepEn / 3 >= 7 || (length >= 60 && length <= 63) || (length >= 21 && length <=	27.1) || (length > 40 && length <= 44)){
+					
                     var t = 1000;
 					
                     for(var i = 0 ; i <= length - (length % stepEn); i += stepEn / 3){
@@ -415,7 +417,8 @@ class LabeledGrid extends THREE.Object3D{
                     labelsSideLeft.add(sizeLabel2);
                 }
 
-                if((stepEn / 3 >= 7) || (length === 60) || (length === 61) || (length === 62) || (length === 63)){
+                //if((stepEn / 3 >= 7) || (length === 60) || (length === 61) || (length === 62) || (length === 63)){
+				if(stepEn / 3 >= 7 || (length >= 60 && length <= 63) || (length >= 21 && length <= 27.1) || (length > 40 && length <= 44)){
 				
                     var t = 1000;
 					
