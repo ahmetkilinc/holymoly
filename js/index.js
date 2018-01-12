@@ -143,14 +143,22 @@ class ThreeUtils {
 
 				settings.EkranResetleme();
 				//settings.objeSayisiniBul();
-                this.stepBoy = parseFloat(this.Boy / ((this.Boy / 9.54) + 1));
+                this.stepBoy = parseFloat(this.Boy / (Math.ceil(this.Boy / 10)));
                 this.stepEn  = parseFloat(this.En / ((this.En / 30) + 1));
 
-				app.grid = new LabeledGrid(60, 20, (60/ (60/10+1)), (60/ (60/30+1)), 13, [0,1,0], 0x000055, 0.21, true, "#000000", "left");
+				app.grid = new LabeledGrid(60, 20, (60/ (60/10)), (60/ (60/30+1)), 13, [0,1,0], 0x000055, 0.21, true, "#000000", "left");
 				app.scene.add(app.grid);
 				//return app;
 
 				this.stepEn = this.stepEn + ((this.En % this.stepEn) / (this.En  / this.stepEn));
+				
+				//this.stepBoy = this.stepBoy + ((this.Boy % this.stepBoy) / (this.Boy / this.stepBoy));
+				/*
+				if(this.stepBoy < 7.1){
+					
+					this.stepBoy = parseFloat(19 / ((19 / 9.54) + 1));
+					this.stepBoy = this.stepBoy + ((19 % this.stepBoy) / (19 / this.stepBoy));					
+				}*/
 				
                 app.grid.resize(this.Boy, this.En, this.stepBoy.toFixed(2), this.stepEn.toFixed(2), this.Yükseklik);
 				
@@ -1612,7 +1620,7 @@ class ThreeUtils {
 			this.RuzgarKolonlariEkle = function(){
 							
 				//***rüzgar kolonlarını ekleme koşulları
-				if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+				if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
 							
 					//rüzgar kolonlarının alt standlarını oluşturma.
 					var manager = new THREE.LoadingManager();
@@ -2970,25 +2978,7 @@ class ThreeUtils {
 			//diğer tüm metreküpler(aşık-oluk-vinçkirişi)
 			this.metreKupHesaplari = function(){
 				
-				//if(settings.En > 50 && settings.Boy > 50){
-					
-					//aşık kirişi
-					asikMetreKupT = taneAsikMetreKup * asikSayisi;
-					console.log("aşık sayısı: " + asikSayisi + " aşık metreküp: " + asikMetreKupT);
-					console.log("********");
-
-					//oluk kirişi
-					olukMetreKup = taneOlukMetreKup * olukSayisi;
-					console.log("oluk sayısı: " + olukSayisi + " oluk metreküp: " + olukMetreKup);
-					console.log("********");
-
-					//vinç kirişi
-					vincKirisiMetreKup = taneVincMetreKup * vincKirisiSayisi.toFixed(0);
-					console.log("vinç kiriş sayısı: " + vincKirisiSayisi.toFixed(0) + " vinç kiriş metreküp: " + vincKirisiMetreKup);
-					console.log("********");
-				//}
-				/*
-				else{
+				if(settings.En < 31 && settings.Boy < 31 && settings.Yükseklik < 9){
 					
 					//aşık kirişi
 					asikMetreKupT = taneAsikMetreKup2 * asikSayisi;
@@ -3004,27 +2994,43 @@ class ThreeUtils {
 					vincKirisiMetreKup = taneVincMetreKup2 * vincKirisiSayisi.toFixed(0);
 					console.log("vinç kiriş sayısı: " + vincKirisiSayisi.toFixed(0) + " vinç kiriş metreküp: " + vincKirisiMetreKup);
 					console.log("********");
-				}*/
+				}
 				
-				
+				else{
+
+					//aşık kirişi
+					asikMetreKupT = taneAsikMetreKup * asikSayisi;
+					console.log("aşık sayısı: " + asikSayisi + " aşık metreküp: " + asikMetreKupT);
+					console.log("********");
+
+					//oluk kirişi
+					olukMetreKup = taneOlukMetreKup * olukSayisi;
+					console.log("oluk sayısı: " + olukSayisi + " oluk metreküp: " + olukMetreKup);
+					console.log("********");
+
+					//vinç kirişi
+					vincKirisiMetreKup = taneVincMetreKup * vincKirisiSayisi.toFixed(0);
+					console.log("vinç kiriş sayısı: " + vincKirisiSayisi.toFixed(0) + " vinç kiriş metreküp: " + vincKirisiMetreKup);
+					console.log("********");
+				}
 			}
 			
 			//makas metreküp hesabı
 			this.makasMetreKupHesabi = function(){
 				
-				//if(settings.En > 50 && settings.Boy > 50){
-					
-					makasMetreKup = taneMakasMetreKup * makasSayisi;
-					console.log("makas sayısı: " + makasSayisi + ", makas metreküp: " + makasMetreKup);
-					console.log("*******");
-				//}
-				/*
-				else{
+				if(settings.En < 31 && settings.Boy < 31 && settings.Yükseklik < 9){
 					
 					makasMetreKup = taneMakasMetreKup2 * makasSayisi;
 					console.log("makas sayısı: " + makasSayisi + ", makas metreküp: " + makasMetreKup);
 					console.log("*******");
-				}*/
+				}
+				
+				else{
+					
+					makasMetreKup = taneMakasMetreKup * makasSayisi;
+					console.log("makas sayısı: " + makasSayisi + ", makas metreküp: " + makasMetreKup);
+					console.log("*******");
+				}
 			}
 			
 			//kolon metreküp hesabı
@@ -3128,6 +3134,8 @@ class ThreeUtils {
 				ttPlakMetreKup30 = (tempTtPlakMetreKup30 + ((0.125 * 0.25 * 1) * 2)) * ttPlak * settings.stepBoy;
 				ttPlakMetreKup45 = (tempTtPlakMetreKup45 + ((0.125 * 0.4 * 1) * 2)) * ttPlak * settings.stepBoy;
 				ttPlakMetreKup70 = (tempTtPlakMetreKup70 + ((0.125 * 0.6 * 1) * 2)) * ttPlak * settings.stepBoy;
+				
+				console.log("ttplakMetreKup: " + ttPlakMetreKup30 + " - " + ttPlakMetreKup45 + " - " + ttPlakMetreKup70);
 			}
 		}
 		
@@ -4252,7 +4260,7 @@ class ThreeUtils {
 			
 			//teklifAl.open();
 			
-			//GUI kontrol text manipülasyonu < renk, boyut, button >
+			//GUI kontrol text manipülasyonu <renk, boyut, button>
 			  	app.gui.__ul.childNodes[3].childNodes[0].childNodes[0].classList += ' reset_button';
 				araKatFolder.__ul.childNodes[4].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
 				araKatFolder.__ul.childNodes[5].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
