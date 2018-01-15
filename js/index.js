@@ -125,7 +125,7 @@ class ThreeUtils {
             this.Boy = 60,
             this.En = 20,
 			this.Yükseklik = 13,
-            this.stepBoy = 8.57, //with number
+            this.stepBoy = 10, //with number
             this.stepEn = 20, //with alpha-beta
             this.a = 0,
             this.b = 0,
@@ -153,11 +153,11 @@ class ThreeUtils {
 				this.stepEn = this.stepEn + ((this.En % this.stepEn) / (this.En  / this.stepEn));
 				
 				//this.stepBoy = this.stepBoy + ((this.Boy % this.stepBoy) / (this.Boy / this.stepBoy));
-				/*
-				if(this.stepBoy < 7.1){
+				
+				/*if(this.stepBoy < 7.1){
 					
 					this.stepBoy = parseFloat(19 / ((19 / 9.54) + 1));
-					this.stepBoy = this.stepBoy + ((19 % this.stepBoy) / (19 / this.stepBoy));					
+					this.stepBoy = this.stepBoy + ((19 % this.stepBoy) / (19 / this.stepBoy));
 				}*/
 				
                 app.grid.resize(this.Boy, this.En, this.stepBoy.toFixed(2), this.stepEn.toFixed(2), this.Yükseklik);
@@ -235,7 +235,7 @@ class ThreeUtils {
 					
 						fileloader.load('blenderObjects/VinçliKenarKolon14.obj', function(data){
 
-							for(var i = 0; i < (settings.Boy / settings.stepBoy); i++){
+							for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 								var selectedItem = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
 								app.scene.remove(selectedItem);
@@ -281,7 +281,7 @@ class ThreeUtils {
 						
 						fileloader.load('blenderObjects/AraKatVincliKenarKolon.obj', function(data){
 
-							for(var i = 0; i < (settings.Boy / settings.stepBoy); i++){
+							for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 								var selectedItem = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
 								app.scene.remove(selectedItem);
@@ -353,7 +353,7 @@ class ThreeUtils {
 					fileloader.load('blenderObjects/kolonAltlik.obj', function(data){
 												
 						for(var i = 0; i <= ((settings.En - (settings.En % settings.stepEn)) / (settings.stepEn / 2)) - 1; i++){
-							
+						
 							var selectedItem = app.scene.getObjectByName("RuzgarKolonAltÖn" + i);
 							app.scene.remove(selectedItem);
 							var selectedItem = app.scene.getObjectByName("RuzgarKolonAltArka" + i);
@@ -371,7 +371,7 @@ class ThreeUtils {
 							app.scene.add(object);
 							
 							var object = loader.parse(data);
-							object.position.set((settings.stepEn / 2) + (settings.stepEn / 2) * i, 0, - 1.95 - (settings.Boy - (settings.Boy % settings.stepBoy)));
+							object.position.set((settings.stepEn / 2) + (settings.stepEn / 2) * i, 0, - 1.95 - (settings.Boy));
 							object.name = "RuzgarKolonAltArka" + i;
 							object.scale.set(0.21, 0.21, 0.21);
 							object.traverse(function (child){
@@ -412,7 +412,7 @@ class ThreeUtils {
 						app.scene.add(object);
 						
 						var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: 0xffffff }));
-						object.position.set((settings.stepEn / 2) + (settings.stepEn / 2) * i, (settings.Yükseklik / 2.25), - (settings.Boy - (settings.Boy % settings.stepBoy)));
+						object.position.set((settings.stepEn / 2) + (settings.stepEn / 2) * i, (settings.Yükseklik / 2.25), - (settings.Boy));
 						object.scale.set(0.2, settings.Yükseklik / 5.65, 0.2);
 						object.children.color = 0xff0000;
 						object.castShadow = true;
@@ -427,7 +427,7 @@ class ThreeUtils {
 						fileloader.load('blenderObjects/VinçsizKenarKolon.obj', function(data){
 						
 						//console.log("stepEn kolon fonk içinde: " + settings.stepBoy);						
-						for(var i = 0; i < (settings.Boy / settings.stepBoy); i++){
+						for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 							
 							//scene'deki objeleri isme göre bulup eskilerini sil
 							var selectedItem = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
@@ -474,7 +474,7 @@ class ThreeUtils {
 						fileloader.load('blenderObjects/AraKatKenarKolonSon.obj', function(data){
 						
 							//console.log("stepEn kolon fonk içinde: " + settings.stepBoy);						
-							for(var i = 0; i < (settings.Boy / settings.stepBoy); i++){
+							for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 								//scene'deki objeleri isme göre bulup eskilerini sil
 								var selectedItem = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
@@ -527,7 +527,7 @@ class ThreeUtils {
 					//gui değiştikten sonra, en'e göre soldan ilk makaslar.
 					fileloader.load('blenderObjects/makasD1.obj', function(data){
 					
-						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+						for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 							
 							var selectedItem1 = app.scene.getObjectByName("makasIlk" + i);
 							app.scene.remove(selectedItem1);
@@ -556,7 +556,7 @@ class ThreeUtils {
 					//iki for ile x ve y ekseninde çoğalan makaslar oluşturuluyor.
 					fileloader.load('blenderObjects/makasD1.obj', function(data){
 												
-							for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+							for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 									
 								// arta kalan bir bölüm yoksa bu kısma girilecek.
 								if(settings.En % settings.stepEn === 0){
@@ -612,7 +612,7 @@ class ThreeUtils {
 				
 				fileloader.load('blenderObjects/makasD1.obj', function(data){
 					
-						for(var i = 0; i < (settings.Boy / settings.stepBoy); i++){
+						for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 							
 							var selectedItem1 = app.scene.getObjectByName("makasElse" + i);
 							app.scene.remove(selectedItem1);
@@ -653,7 +653,7 @@ class ThreeUtils {
 
 					fileloader.load('blenderObjects/kolonAltlik.obj', function(data){
 												
-					for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+					for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 						if(settings.En % settings.stepEn === 0){
 								
@@ -676,7 +676,7 @@ class ThreeUtils {
 							
 							if(settings.AraKatEkle === true){
 								
-								if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+								if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
 									
 									for(var j = 0; j < ((settings.En / (settings.stepEn / 3)) - 1); j++){
 
@@ -733,7 +733,7 @@ class ThreeUtils {
 							
 							if(settings.AraKatEkle === true){
 								
-								if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+								if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
 								
 									for(var j = 0; j < ((settings.En / (settings.stepEn / 3)) - 2); j++){
 
@@ -788,7 +788,7 @@ class ThreeUtils {
 						var selectedItem1 = app.scene.getObjectByName("kolonAltlikSol" + i);
 						app.scene.remove(selectedItem1);
 
-						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+						for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 							var object = objLoader.parse(data);
 							object.position.set((settings.En - (settings.En % settings.stepEn)), 0,  - 2 -(settings.stepBoy * i));
@@ -837,7 +837,7 @@ class ThreeUtils {
 						var selectedItem1 = app.scene.getObjectByName("kolonAltlikOrta" + i);
 						app.scene.remove(selectedItem1);
 												
-						for(var i = 0; i < (settings.Boy / settings.stepBoy); i++){
+						for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 							
 							var object = objLoader.parse(data);
 							object.position.set(0 + (settings.En - (settings.En % settings.stepEn)), 0,  - 1.9 - (settings.stepBoy * i));
@@ -919,17 +919,17 @@ class ThreeUtils {
 								app.scene.remove(selectedItem1);
 
 								var object = loader.parse(data);
-								object.position.set(((settings.stepEn / 2) + 0.4) + (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy - (settings.Boy % settings.stepBoy)) /2);
+								object.position.set(((settings.stepEn / 2) + 0.4) + (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy) / 2);
 								object.rotateY(0);
 								object.name = "asik4" + i + j;
-								object.scale.set(0.3, 0.5, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 15.7));
+								object.scale.set(0.3, 0.5, ((settings.Boy) / 15.7));
 								app.scene.add(object);
 
 								var object = loader.parse(data);
-								object.position.set(((settings.stepEn / 2) - 0.2) - (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy - (settings.Boy % settings.stepBoy)) /2);
+								object.position.set(((settings.stepEn / 2) - 0.2) - (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy) / 2);
 								object.rotateY(0);
 								object.name = "asik5" + i + j;
-								object.scale.set(0.3, 0.5, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 15.7));
+								object.scale.set(0.3, 0.5, ((settings.Boy) / 15.7));
 								app.scene.add(object);
 
 							}
@@ -950,17 +950,17 @@ class ThreeUtils {
 									app.scene.remove(selectedItem1);
 
 									var object = loader.parse(data);
-									object.position.set(((settings.stepEn / 2) + 0.4) + (settings.stepEn * j) + (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
+									object.position.set(((settings.stepEn / 2) + 0.4) + (settings.stepEn * j) + (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy) / 2);
 									object.rotateY(0);
 									object.name = "asik2" + i + j;
-									object.scale.set(0.3, 0.5, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 15.7));
+									object.scale.set(0.3, 0.5, ((settings.Boy) / 15.7));
 									app.scene.add(object);
 
 									var object = loader.parse(data);
-									object.position.set(((settings.stepEn / 2) - 0.1) + (settings.stepEn * j) - (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
+									object.position.set(((settings.stepEn / 2) - 0.1) + (settings.stepEn * j) - (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy) / 2);
 									object.rotateY(0);
 									object.name = "asik3" + i + j;
-									object.scale.set(0.3, 0.5, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 15.7));
+									object.scale.set(0.3, 0.5, ((settings.Boy) / 15.7));
 									app.scene.add(object);
 
 								}
@@ -983,17 +983,17 @@ class ThreeUtils {
 									app.scene.remove(selectedItem1);
 
 									var object = loader.parse(data);
-									object.position.set(((settings.stepEn / 2) + 0.4) + (settings.stepEn * j) + (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
+									object.position.set(((settings.stepEn / 2) + 0.4) + (settings.stepEn * j) + (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy) / 2);
 									object.rotateY(0);
 									object.name = "asik2" + i + j;
-									object.scale.set(0.3, 0.5, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 15.7));
+									object.scale.set(0.3, 0.5, ((settings.Boy) / 15.7));
 									app.scene.add(object);
 
 									var object = loader.parse(data);
-									object.position.set(((settings.stepEn / 2) - 0.1) + (settings.stepEn * j) - (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
+									object.position.set(((settings.stepEn / 2) - 0.1) + (settings.stepEn * j) - (1.88 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy) / 2);
 									object.rotateY(0);
 									object.name = "asik3" + i + j;
-									object.scale.set(0.3, 0.5, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 15.7));
+									object.scale.set(0.3, 0.5, ((settings.Boy) / 15.7));
 									app.scene.add(object);
 
 								}
@@ -1028,14 +1028,14 @@ class ThreeUtils {
 							app.scene.remove(selectedItem1);
 
 							var object = loader.parse(data);
-							object.position.set(((settings.stepEn / 2) - 0.2) - (1.95 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
+							object.position.set(((settings.stepEn / 2) - 0.2) - (1.95 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy) / 2);
 							object.rotateY(0);
 							object.name = "asik" + i;
 							object.scale.set(0.3, 0.5, 3.82);
 							app.scene.add(object);
 											
 							var object = loader.parse(data);
-							object.position.set(((settings.stepEn / 2) + 0.35) + (1.95 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
+							object.position.set(((settings.stepEn / 2) + 0.35) + (1.95 * i), 2.7 + settings.Yükseklik / 1.15 - (0.35 * i), - (settings.Boy) / 2);
 							object.rotateY(0);
 							object.name = "asik1" + i;
 							object.scale.set(0.3, 0.5, 3.82);
@@ -1075,10 +1075,10 @@ class ThreeUtils {
 						app.scene.remove(selectedItem1);
 						
 						var object = loader.parse(data);
-						object.position.set(-0.35, 0.85 + settings.Yükseklik / 1.178, - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
+						object.position.set(-0.35, 0.85 + settings.Yükseklik / 1.178, - (settings.Boy) / 2);
 						object.rotateY(0);
 						object.name= "olukIlk";
-						object.scale.set(0.2, 0.15, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 98.3284));
+						object.scale.set(0.2, 0.15, ((settings.Boy) / 98.3284));
 						app.scene.add(object);
 						
 						},
@@ -1105,10 +1105,10 @@ class ThreeUtils {
 								app.scene.remove(selectedItem1);
 
 								var object = loader.parse(data);
-								object.position.set(-0.2 + (settings.stepEn * (i + 1)), 0.85 + settings.Yükseklik / 1.178, - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
+								object.position.set(-0.2 + (settings.stepEn * (i + 1)), 0.85 + settings.Yükseklik / 1.178, - (settings.Boy) / 2);
 								object.rotateY(0);
 								object.name= "oluk" + i;
-								object.scale.set(0.2, 0.15, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 98.3284));
+								object.scale.set(0.2, 0.15, ((settings.Boy) / 98.3284));
 								app.scene.add(object);
 							}
 						}
@@ -1121,10 +1121,10 @@ class ThreeUtils {
 								app.scene.remove(selectedItem1);
 
 								var object = loader.parse(data);
-								object.position.set(-0.2 + (settings.stepEn * (i + 1)), 0.85 + settings.Yükseklik / 1.178, - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
+								object.position.set(-0.2 + (settings.stepEn * (i + 1)), 0.85 + settings.Yükseklik / 1.178, - (settings.Boy) / 2);
 								object.rotateY(0);
 								object.name= "oluk" + i;
-								object.scale.set(0.2, 0.15, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 98.3284));
+								object.scale.set(0.2, 0.15, ((settings.Boy) / 98.3284));
 								app.scene.add(object);
 							}
 						}
@@ -1200,8 +1200,8 @@ class ThreeUtils {
 				if(this.AraKatEkle === false){
 				//iki for ile x ve y ekseninde çoğalan vinçsiz orta kolonlar oluşturuluyor.
 					fileloader.load('blenderObjects/VinçsizOrtaKolon.obj', function(data){
-
-						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+//***************************hoppp***********************************************************
+						for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 							var selectedItem1 = app.scene.getObjectByName("x" + i);
 							app.scene.remove(selectedItem1);
@@ -1268,7 +1268,7 @@ class ThreeUtils {
 					//kenar kolonlar ayrı şekilde oluşturuldu.
 					fileloader.load('blenderObjects/VinçsizKenarKolon.obj', function(data){
 
-						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+						for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 							/*var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonX" + i);
 							app.scene.remove(selectedItem1);
@@ -1321,17 +1321,13 @@ class ThreeUtils {
 				if(this.AraKatEkle === false){
 				//iki for ile x ve y ekseninde çoğalan vinçsiz orta kolonlar oluşturuluyor.
 					fileloader.load('blenderObjects/VinçliKenarKolonlar/VinçliOrtaKolon14.obj', function(data){
-
-						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+//*****************************************hooop******************************************************************
+						for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 							var selectedItem1 = app.scene.getObjectByName("x" + i);
 							app.scene.remove(selectedItem1);
 							var selectedItem1 = app.scene.getObjectByName("y" + i);
 							app.scene.remove(selectedItem1);
-							/*var selectedItem = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
-							app.scene.remove(selectedItem);
-							var selectedItem1 = app.scene.getObjectByName("VincliKenarKolonEkleY" + i);
-							app.scene.remove(selectedItem1);*/
 							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonX" + i);
 							app.scene.remove(selectedItem1);
 							var selectedItem1 = app.scene.getObjectByName("VincsizKenarKolonY" + i);
@@ -1385,7 +1381,7 @@ class ThreeUtils {
 					//kenar kolonlar ayrı şekilde oluşturuldu.
 					fileloader.load('blenderObjects/VinçliKenarKolon14.obj', function(data){
 
-						for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+						for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 							/*var selectedItem1 = app.scene.getObjectByName("VincliKenarKolonEkleX" + i);
 							app.scene.remove(selectedItem1);
@@ -1447,17 +1443,17 @@ class ThreeUtils {
 							
 							//ilk kiriş position'ı farklı olduğu için ayrı şekilde üretildi
 							var object = loader.parse(data);
-							object.position.set(1, settings.Yükseklik / 1.65, (-(settings.Boy - (settings.Boy % settings.stepBoy)) + 0) / 2);
+							object.position.set(1, settings.Yükseklik / 1.65, (-(settings.Boy) + 0) / 2);
 							object.rotateY(0);
 							object.name= "vincKirisiIlk";
-							object.scale.set(0.45, 0.6, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 39.2168));
+							object.scale.set(0.45, 0.6, ((settings.Boy) / 39.2168));
 							app.scene.add(object);
 							
 							var object = loader.parse(data);
-							object.position.set(((settings.En / settings.stepEn) * settings.stepEn) - (settings.En % settings.stepEn) - 1.2, settings.Yükseklik / 1.65, (-(settings.Boy - (settings.Boy % settings.stepBoy)) + 0.5) / 2);
+							object.position.set(((settings.En / settings.stepEn) * settings.stepEn) - (settings.En % settings.stepEn) - 1.2, settings.Yükseklik / 1.65, (-(settings.Boy) + 0.5) / 2);
 							object.rotateY(0);
 							object.name= "vincKirisiSon";
-							object.scale.set(0.45, 0.6, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 39.2168));
+							object.scale.set(0.45, 0.6, ((settings.Boy) / 39.2168));
 							app.scene.add(object);
 							
 							//geri kalan kirişler dinamik olarak eklendi ekrana
@@ -1472,17 +1468,17 @@ class ThreeUtils {
 									app.scene.remove(selectedItem1);
 
 									var object = loader.parse(data);
-									object.position.set(1 + (settings.stepEn * i), settings.Yükseklik / 1.6, (-(settings.Boy - (settings.Boy % settings.stepBoy)) + 0.5) / 2);
+									object.position.set(1 + (settings.stepEn * i), settings.Yükseklik / 1.6, (-(settings.Boy) + 0.5) / 2);
 									object.rotateY(0);
 									object.name = "vincKiris" + i;
-									object.scale.set(0.45, 0.6, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 39.2168));
+									object.scale.set(0.45, 0.6, ((settings.Boy) / 39.2168));
 									app.scene.add(object);
 
 									var object = loader.parse(data);
-									object.position.set(-1.2 +(settings.stepEn * i), settings.Yükseklik / 1.6, (-(settings.Boy - (settings.Boy % settings.stepBoy)) + 0.5) / 2);
+									object.position.set(-1.2 +(settings.stepEn * i), settings.Yükseklik / 1.6, (-(settings.Boy) + 0.5) / 2);
 									object.rotateY(0);
 									object.name= "vincKiris1" + i;
-									object.scale.set(0.45, 0.6, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 39.2168));
+									object.scale.set(0.45, 0.6, ((settings.Boy) / 39.2168));
 									app.scene.add(object);
 								}
 							}
@@ -1497,17 +1493,17 @@ class ThreeUtils {
 									app.scene.remove(selectedItem1);
 
 									var object = loader.parse(data);
-									object.position.set(1 + (settings.stepEn * i), settings.Yükseklik / 1.6, (-(settings.Boy - (settings.Boy % settings.stepBoy)) + 0.5) / 2);
+									object.position.set(1 + (settings.stepEn * i), settings.Yükseklik / 1.6, (-(settings.Boy) + 0.5) / 2);
 									object.rotateY(0);
 									object.name= "vincKiris" + i;
-									object.scale.set(0.45, 0.6, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 39.2168));
+									object.scale.set(0.45, 0.6, ((settings.Boy) / 39.2168));
 									app.scene.add(object);
 									
 									var object = loader.parse(data);
-									object.position.set(- 1.2 +(settings.stepEn * i), settings.Yükseklik / 1.6, (-(settings.Boy - (settings.Boy % settings.stepBoy)) + 0.5) / 2);
+									object.position.set(- 1.2 +(settings.stepEn * i), settings.Yükseklik / 1.6, (-(settings.Boy) + 0.5) / 2);
 									object.rotateY(0);
 									object.name= "vincKiris1" + i;
-									object.scale.set(0.45, 0.6, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 39.2168));
+									object.scale.set(0.45, 0.6, ((settings.Boy) / 39.2168));
 									app.scene.add(object);
 								}
 							}
@@ -1540,10 +1536,10 @@ class ThreeUtils {
 						fileloader.load('blenderObjects/vincKirisiSon.obj', function(data){
 							
 							var object = loader.parse(data);
-							object.position.set(-1.2 + settings.stepEn, settings.Yükseklik / 1.6, (-(settings.Boy - (settings.Boy % settings.stepBoy)) + 0.5) / 2);
+							object.position.set(-1.2 + settings.stepEn, settings.Yükseklik / 1.6, (-(settings.Boy) + 0.5) / 2);
 							object.rotateY(0);
 							object.name= "vincKirisiSol";
-							object.scale.set(0.45, 0.6, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 39.2168));
+							object.scale.set(0.45, 0.6, ((settings.Boy) / 39.2168));
 							app.scene.add(object);
 						},
 							function(xhr){
@@ -1556,10 +1552,10 @@ class ThreeUtils {
 						fileloader.load('blenderObjects/vincKirisiSon.obj', function(data){
 
 							var object = loader.parse(data);
-							object.position.set(1, settings.Yükseklik / 1.6, (-(settings.Boy - (settings.Boy % settings.stepBoy)) + 0.5) / 2);
+							object.position.set(1, settings.Yükseklik / 1.6, (-(settings.Boy) + 0.5) / 2);
 							object.rotateY(0.0);
 							object.name= "vincKirisiSag";
-							object.scale.set(0.45, 0.6, ((settings.Boy - (settings.Boy % settings.stepBoy)) / 39.2168));
+							object.scale.set(0.45, 0.6, ((settings.Boy) / 39.2168));
 							app.scene.add(object);
 						},
 							function(xhr){
@@ -1648,7 +1644,7 @@ class ThreeUtils {
 							app.scene.add(object);
 							
 							var object = loader.parse(data);
-							object.position.set((settings.stepEn / 3) + (settings.stepEn / 3) * i, 0, - 1.95 - (settings.Boy - (settings.Boy % settings.stepBoy)));
+							object.position.set((settings.stepEn / 3) + (settings.stepEn / 3) * i, 0, - 1.95 - settings.Boy);
 							object.name = "RuzgarKolonAltArka" + i;
 							object.scale.set(0.21, 0.21, 0.21);
 							object.traverse(function (child){
@@ -1689,7 +1685,7 @@ class ThreeUtils {
 						app.scene.add(object);
 						
 						var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: 0xffffff }));
-						object.position.set((settings.stepEn / 3) + (settings.stepEn / 3) * i, (settings.Yükseklik / 2.25), - (settings.Boy - (settings.Boy % settings.stepBoy)));
+						object.position.set((settings.stepEn / 3) + (settings.stepEn / 3) * i, (settings.Yükseklik / 2.25), - settings.Boy);
 						object.scale.set(0.2, settings.Yükseklik / 5.65, 0.2);
 						object.children.color = 0xff0000;
 						object.castShadow = true;
@@ -1727,7 +1723,7 @@ class ThreeUtils {
 							app.scene.add(object);
 							
 							var object = loader.parse(data);
-							object.position.set((settings.stepEn / 2) + (settings.stepEn / 2) * i, 0, - 1.95 - (settings.Boy - (settings.Boy % settings.stepBoy)));
+							object.position.set((settings.stepEn / 2) + (settings.stepEn / 2) * i, 0, - 1.95 - (settings.Boy));
 							object.name = "RuzgarKolonAltArka" + i;
 							object.scale.set(0.21, 0.21, 0.21);
 							object.traverse(function (child){
@@ -1768,7 +1764,7 @@ class ThreeUtils {
 						app.scene.add(object);
 						
 						var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: 0xffffff }));
-						object.position.set((settings.stepEn / 2) + (settings.stepEn / 2) * i, (settings.Yükseklik / 2.25), - (settings.Boy - (settings.Boy % settings.stepBoy)));
+						object.position.set((settings.stepEn / 2) + (settings.stepEn / 2) * i, (settings.Yükseklik / 2.25), - (settings.Boy));
 						object.scale.set(0.2, settings.Yükseklik / 5.65, 0.2);
 						object.children.color = 0xff0000;
 						object.castShadow = true;
@@ -1812,17 +1808,17 @@ class ThreeUtils {
 						app.scene.remove(selectedItem1);
 
 						var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-						object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i + 1)), settings.Yükseklik / 2.25, - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
-						object.scale.set( - 0.1 + settings.stepEn / 5.2, 0.1, (settings.Boy - (settings.Boy % settings.stepBoy)) / 5);
+						object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i + 1)), settings.Yükseklik / 2.25, - (settings.Boy) / 2);
+						object.scale.set( - 0.1 + settings.stepEn / 5.2, 0.1, (settings.Boy) / 5);
 						object.name = "araKat" + i;
 						app.scene.add(object);
 					}
 					//arakat destek kolonları ekleme.
-					if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+					if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
 
 						for(var i = 0; i < ((settings.En - (settings.En % settings.stepEn)) / (settings.stepEn / 3)); i++){
 
-							for(var j = 0; j < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) ; j++){
+							for(var j = 0; j < ((settings.Boy) / settings.stepBoy) ; j++){
 
 								var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
 								object.position.set((settings.stepEn / 3) + (settings.stepEn / 3) * i, (settings.Yükseklik / 4.7), - ((j + 1) * settings.stepBoy));
@@ -1836,7 +1832,7 @@ class ThreeUtils {
 						
 						for(var i = 0; i < ((settings.En - (settings.En % settings.stepEn)) / (settings.stepEn / 2)); i++){
 
-							for(var j = 0; j < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) ; j++){
+							for(var j = 0; j < ((settings.Boy) / settings.stepBoy) ; j++){
 
 								var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
 								object.position.set((settings.stepEn / 2) + (settings.stepEn / 2) * i, (settings.Yükseklik / 4.7), - ((j + 1) * settings.stepBoy));
@@ -1847,7 +1843,6 @@ class ThreeUtils {
 						}
 						//boş dursun.
 					}
-					
 				}
 				
 				else{
@@ -1862,18 +1857,17 @@ class ThreeUtils {
 						app.scene.remove(selectedItem1);
 
 						var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-						object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i + 1)), settings.Yükseklik / 2.25, - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
-						//object.position.set(-12 + (settings.stepEn * (i + 1)), 5.6, - (settings.Boy - (settings.Boy % settings.stepBoy)) / 2);
-						object.scale.set( - 0.1 + settings.stepEn / 5.2, 0.1, (settings.Boy - (settings.Boy % settings.stepBoy)) / 5);
+						object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i + 1)), settings.Yükseklik / 2.25, - (settings.Boy) / 2);
+						object.scale.set( - 0.1 + settings.stepEn / 5.2, 0.1, (settings.Boy) / 5);
 						object.name = "araKat" + i;
 						app.scene.add(object);
 					}
 					//arakat destek kolonları ekleme.
-					if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+					if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
 
 						for(var i = 0; i < ((settings.En - (settings.En % settings.stepEn)) / (settings.stepEn / 3)); i++){
 
-							for(var j = 0; j < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) ; j++){
+							for(var j = 0; j < ((settings.Boy) / settings.stepBoy) ; j++){
 
 								var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
 								object.position.set((settings.stepEn / 3) + (settings.stepEn / 3) * i, (settings.Yükseklik / 4.7), - ((j + 1) * settings.stepBoy));
@@ -1888,7 +1882,7 @@ class ThreeUtils {
 						
 						for(var i = 0; i < ((settings.En - (settings.En % settings.stepEn)) / (settings.stepEn / 2)); i++){
 
-							for(var j = 0; j < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) ; j++){
+							for(var j = 0; j < ((settings.Boy) / settings.stepBoy) ; j++){
 
 								var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
 								object.position.set((settings.stepEn / 2) + (settings.stepEn / 2) * i, (settings.Yükseklik / 4.7), - ((j + 1) * settings.stepBoy));
@@ -1911,7 +1905,7 @@ class ThreeUtils {
 
 						fileloader.load('blenderObjects/AraKatVincsizOrtaKolonSon.obj', function(data){
 
-							for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+							for(var i = 0; i < ((settings.Boy) / settings.stepBoy) + 1; i++){
 
 								var selectedItem1 = app.scene.getObjectByName("x" + i);
 								app.scene.remove(selectedItem1);
@@ -1987,7 +1981,7 @@ class ThreeUtils {
 							var selectedItem1 = app.scene.getObjectByName("AraKatKenarKolonY" + i);
 							app.scene.remove(selectedItem1);
 
-							for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+							for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 								var object = loader.parse(data);
 								object.position.set(0 + (settings.En - (settings.En % settings.stepEn)), 0, 0.34 - (settings.stepBoy * i));
@@ -2020,7 +2014,7 @@ class ThreeUtils {
 
 						fileloader.load('blenderObjects/AraKatVincliOrtaKolonSon.obj', function(data){
 
-							for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+							for(var i = 0; i < ((settings.Boy) / settings.stepBoy) + 1; i++){
 
 								var selectedItem1 = app.scene.getObjectByName("x" + i);
 								app.scene.remove(selectedItem1);
@@ -2084,7 +2078,7 @@ class ThreeUtils {
 							var selectedItem1 = app.scene.getObjectByName("ArakatVincliKenarKolonY" + i);
 							app.scene.remove(selectedItem1);
 
-							for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+							for(var i = 0; i < ((settings.Boy) / settings.stepBoy) + 1; i++){
 
 								var object = loader.parse(data);
 								object.position.set(0 + (settings.En - (settings.En % settings.stepEn)), 0, 0.34 - (settings.stepBoy * i));
@@ -2116,7 +2110,7 @@ class ThreeUtils {
 			//ara kat ve kolonları kaldırılması
 			this.AraKatKaldir = function(){
 				
-				for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+				for(var i = 0; i < ((settings.Boy) / settings.stepBoy) + 1; i++){
 					
 					var selectedItem1 = app.scene.getObjectByName("x" + i);
 					app.scene.remove(selectedItem1);
@@ -2140,7 +2134,7 @@ class ThreeUtils {
 				
 				for(var t= 0; t<2; t++){
 					
-					for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+					for(var i = 0; i < ((settings.Boy) / settings.stepBoy) + 1; i++){
 
 						for(var j = 0; j < ((settings.En / (settings.stepEn / 3)) + 2); j++){
 
@@ -2150,7 +2144,7 @@ class ThreeUtils {
 					}
 				}
 				
-				for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+				for(var i = 0; i < ((settings.Boy) / settings.stepBoy) + 1; i++){
 								
 					for(var j = 0; j < ((settings.En / (settings.stepEn / 2)) + 2); j++){
 
@@ -2168,7 +2162,7 @@ class ThreeUtils {
 				
 				for(var i = 0; i < ((settings.En - (settings.En % settings.stepEn)) / (settings.stepEn / 3)) + 1; i++){
 
-					for(var j = 0; j < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) ; j++){
+					for(var j = 0; j < ((settings.Boy) / settings.stepBoy) ; j++){
 							
 						var selectedItem1 = app.scene.getObjectByName("araKatDestek" + i + j);
 						app.scene.remove(selectedItem1);
@@ -2177,7 +2171,7 @@ class ThreeUtils {
 				
 				//destek kolon altlık kaldır
 				
-				for(var i = 0; i < ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1; i++){
+				for(var i = 0; i < ((settings.Boy) / settings.stepBoy) + 1; i++){
 													
 					for(var j = 0; j < ((settings.En / (settings.stepEn / 3)) + 4); j++){
 						
@@ -2359,35 +2353,35 @@ class ThreeUtils {
 					//kompleAraKat varsa -->
 					if(settings.AraKatEkle == true){
 						//stepEn 3 e bölündüğü durum
-						if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+						if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
 
 							//rüzgar kolon sayısı + arakat kolon sayısı
 							ruzgarKolonSayisi = 0;
 							
-							arakatKolon = (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1);
+							arakatKolon = (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2) * (((settings.Boy) / settings.stepBoy) + 1);
 							//rüzgar kolon sayısı + arakat kolon sayısı
 							
 							if((((settings.En  + (settings.En % settings.stepEn)) / (settings.En / settings.stepEn)) / 3) < settings.stepBoy){
 								
-								taliKiris = (((settings.En -  (settings.En % settings.stepEn)) / settings.stepEn) * 3) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1);
+								taliKiris = (((settings.En -  (settings.En % settings.stepEn)) / settings.stepEn) * 3) * (((settings.Boy ) / settings.stepBoy) + 1);
 								
-								arakatKiris = ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) * ((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3) + 1);
+								arakatKiris = ((settings.Boy) / settings.stepBoy) * ((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3) + 1);
 								
 								//ttPlak bulma
 								var araSayiTtPlak = Math.ceil(settings.stepBoy / 2.35);
 								
-								ttPlak = (araSayiTtPlak * ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy)) * (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3);
+								ttPlak = (araSayiTtPlak * ((settings.Boy) / settings.stepBoy)) * (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3);
 							}
 							else{
 								
-								taliKiris = ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) * ((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3) + 1);
+								taliKiris = ((settings.Boy ) / settings.stepBoy) * ((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3) + 1);
 								
-								arakatKiris = (((settings.En -  (settings.En % settings.stepEn)) / settings.stepEn) * 3) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1);
+								arakatKiris = (((settings.En -  (settings.En % settings.stepEn)) / settings.stepEn) * 3) * (((settings.Boy) / settings.stepBoy) + 1);
 								
 								//ttplak bulma
 								var araSayiTtPlak = Math.ceil((((settings.En  + (settings.En % settings.stepEn)) / (settings.En / settings.stepEn)) / 3) / 2.35);
 								
-								ttPlak = ((araSayiTtPlak * 3) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy);
+								ttPlak = ((araSayiTtPlak * 3) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * ((settings.Boy) / settings.stepBoy);
 							}
 						}
 						//stepEn 2ye bölündüğü durum
@@ -2396,38 +2390,38 @@ class ThreeUtils {
 							//rüzgar kolon sayısı + arakat kolon sayısı
 							ruzgarKolonSayisi = 0;
 							
-							arakatKolon = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1);
+							arakatKolon = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * (((settings.Boy) / settings.stepBoy) + 1);
 							//rüzgar kolon sayısı + arakat kolon sayısı
 							
 							//a-a1 arası stepBoydan küçük
 							if((((settings.En  + (settings.En % settings.stepEn)) / (settings.En / settings.stepEn)) / 2) < settings.stepBoy){
 								
-								taliKiris = (((settings.En -  (settings.En % settings.stepEn)) / settings.stepEn) * 2) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1);
+								taliKiris = (((settings.En -  (settings.En % settings.stepEn)) / settings.stepEn) * 2) * (((settings.Boy ) / settings.stepBoy) + 1);
 								
-								arakatKiris = ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) * ((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2) + 1);
+								arakatKiris = ((settings.Boy) / settings.stepBoy) * ((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2) + 1);
 								
 								//ttPlak bulma
 								var araSayiTtPlak = Math.ceil(settings.stepBoy / 2.35);
 								
-								ttPlak = (araSayiTtPlak * ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy)) * (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3);
+								ttPlak = (araSayiTtPlak * ((settings.Boy) / settings.stepBoy)) * (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3);
 							}
 							else{
 								
-								taliKiris = ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) * ((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2) + 1);
+								taliKiris = ((settings.Boy) / settings.stepBoy) * ((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2) + 1);
 								
-								arakatKiris = (((settings.En -  (settings.En % settings.stepEn)) / settings.stepEn) * 2) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1);
+								arakatKiris = (((settings.En -  (settings.En % settings.stepEn)) / settings.stepEn) * 2) * (((settings.Boy) / settings.stepBoy) + 1);
 								
 								//ttplak bulma
 								var araSayiTtPlak = Math.ceil((((settings.En  + (settings.En % settings.stepEn)) / (settings.En / settings.stepEn)) / 2) / 2.35);
 								
-								ttPlak = ((araSayiTtPlak * 2) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy);
+								ttPlak = ((araSayiTtPlak * 2) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * ((settings.Boy) / settings.stepBoy);
 							}
 						}
 					}
 					
 					if(settings.KismiAraKatEkle == true){
 						
-						if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+						if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
 							
 							//rüzgarkolonları ve arakatkolonlarını bulma
 							
@@ -2436,7 +2430,7 @@ class ThreeUtils {
 							//rüzgarkolonunu kısmi arakat varken hesaplamada arakat kolonu olan rüzgar kolonlarını hesaba kat.
 							if(((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) == settings.araKatGenisligi){
 								
-								if(((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) == settings.araKatUzunlugu){
+								if(((settings.Boy) / settings.stepBoy) == settings.araKatUzunlugu){
 									
 									ruzgarKolonSayisi = 0;
 								}
@@ -2447,7 +2441,7 @@ class ThreeUtils {
 							}
 							else{
 								
-								if(((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) == settings.araKatUzunlugu){
+								if(((settings.Boy) / settings.stepBoy) == settings.araKatUzunlugu){
 									
 									var araSayiRuzgarKolon = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) - settings.araKatGenisligi;
 									
@@ -2499,7 +2493,7 @@ class ThreeUtils {
 							//rüzgarkolonunu kısmi arakat varken hesaplamada arakat kolonu olan rüzgar kolonlarını hesaba kat.
 							if(((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) == settings.araKatGenisligi){
 								
-								if(((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) == settings.araKatUzunlugu){
+								if(((settings.Boy) / settings.stepBoy) == settings.araKatUzunlugu){
 									
 									ruzgarKolonSayisi = 0;
 								}
@@ -2510,7 +2504,7 @@ class ThreeUtils {
 							}
 							else{
 								
-								if(((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) == settings.araKatUzunlugu){
+								if(((settings.Boy) / settings.stepBoy) == settings.araKatUzunlugu){
 									
 									var araSayiRuzgarKolon = ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) - settings.araKatGenisligi;
 									
@@ -2554,7 +2548,7 @@ class ThreeUtils {
 					if(settings.AraKatEkle == false && settings.KismiAraKatEkle == false){
 						
 						//ara kat yoksa ve 3e bölünüyorsa stepEn
-						if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+						if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
 							
 							//rüzgar kolon sayısı + arakat kolon sayısı
 							ruzgarKolonSayisi = (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 4).toFixed(0);
@@ -2595,7 +2589,7 @@ class ThreeUtils {
 							vincKirisYeriEn = 'A-E';
 						}
 						
-						var vincKirisYeriBoyIkinciDegisken = ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy);
+						var vincKirisYeriBoyIkinciDegisken = ((settings.Boy) / settings.stepBoy);
 						vincKirisYeriBoy = '0-' + vincKirisYeriBoyIkinciDegisken;
 						//vincKirisYeriEn = 'A-B';
 						//vincKirisYeriBoy = '0-7';
@@ -2623,7 +2617,7 @@ class ThreeUtils {
 							araKatYeriEn = 'A-E';
 						}
 						
-						var araKatYeriBoyIkinciDegisken = ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) ;
+						var araKatYeriBoyIkinciDegisken = ((settings.Boy) / settings.stepBoy) ;
 						araKatYeriBoy = '0-' + araKatYeriBoyIkinciDegisken;
 						//var araKatYeriEn = 'A-B';
 						//var araKatYeriBoy ='0-7';
@@ -2656,13 +2650,13 @@ class ThreeUtils {
 					
 					
 					//kolon sayısı*
-					kolonSayisi = Math.round((((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1) * (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) + 1));
+					kolonSayisi = Math.round((((settings.Boy) / settings.stepBoy) + 1) * (((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) + 1));
 					
 					//console.log("Kolon Sayısı: " + kolonSayisi);
 					//
 					
 					//rüzgar kolonu sayısı + stand sayısı*
-					if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){//her holde iki rüzgar kolonu var
+					if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){//her holde iki rüzgar kolonu var
 					
 						if((settings.En < 30 && settings.En > 24) || (settings.En < 90 && settings.En > 82) || (settings.En < 60 && settings.En > 49)){
 							
@@ -2677,7 +2671,7 @@ class ThreeUtils {
 							}
 							else{
 								
-								tumStandSayisi = Math.round(((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3) + 1) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1));
+								tumStandSayisi = Math.round(((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3) + 1) * (((settings.Boy) / settings.stepBoy) + 1));
 
 								//console.log("Tüm stand sayısı: " + tumStandSayisi);
 							}
@@ -2695,7 +2689,7 @@ class ThreeUtils {
 							
 							else{
 								
-								tumStandSayisi = Math.round(((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3) + 1) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1));
+								tumStandSayisi = Math.round(((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 3) + 1) * (((settings.Boy) / settings.stepBoy) + 1));
 
 								//console.log("Tüm stand sayısı: " + tumStandSayisi);
 							}
@@ -2714,7 +2708,7 @@ class ThreeUtils {
 							
 							else{
 								
-								tumStandSayisi = Math.round(((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2) + 1) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1));
+								tumStandSayisi = Math.round(((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) * 2) + 1) * (((settings.Boy) / settings.stepBoy) + 1));
 
 								//console.log("Tüm stand sayısı: " + tumStandSayisi);
 							}
@@ -2723,12 +2717,12 @@ class ThreeUtils {
 					//rüzgar kolon sayısı + stand sayısı end*
 					
 					//oluk sayısı
-					olukSayisi = (Math.round((settings.En /  settings.stepEn) + 1) * ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy));
+					olukSayisi = (Math.round((settings.En /  settings.stepEn) + 1) * ((settings.Boy) / settings.stepBoy));
 					//console.log("Oluk Sayısı: " + olukSayisi);
 					//oluk sayısı end*
 					
 					//makas sayısı
-					makasSayisi = Math.round((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * (((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) + 1));
+					makasSayisi = Math.round((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * (((settings.Boy) / settings.stepBoy) + 1));
 					//console.log("Makas Sayısı: " + makasSayisi);
 					//makas sayısı end*
 					
@@ -2737,7 +2731,7 @@ class ThreeUtils {
 					//vinç kirişleri sayısı
 					if(settings.Vinc_Kirisleri_Ekle === true){
 						
-						vincKirisiSayisi = (Math.round(((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) - 1) * 2) + 2) * ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy));
+						vincKirisiSayisi = Math.round((((((settings.En - (settings.En % settings.stepEn)) / settings.stepEn) - 1) * 2) + 2) * ((settings.Boy) / settings.stepBoy));
 						//console.log("Vinç Kirişi Sayısı: " + vincKirisiSayisi);
 					}
 					
@@ -2788,28 +2782,28 @@ class ThreeUtils {
 					
 					if(settings.En > 0 && settings.En < 30){
 						
-						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 2) * Math.round((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy);
+						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 2) * Math.round((settings.Boy) / settings.stepBoy);
 						
 						//console.log("aşık Sayısı: " + asikSayisi);
 					}
 					
 					else if(settings.En >= 30 && settings.En < 60){
 						
-						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 4) * Math.round((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy);
+						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 4) * Math.round((settings.Boy) / settings.stepBoy);
 						
 						//console.log("aşık Sayısı: " + asikSayisi);
 					}
 					
 					else if(settings.En >= 60 && settings.En < 90){
 							
-						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 6) * Math.round((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy);
+						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 6) * Math.round((settings.Boy) / settings.stepBoy);
 						
 						//console.log("aşık Sayısı: " + asikSayisi);
 					}
 					
 					else{
 						
-						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 8) * Math.round((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy);
+						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 8) * Math.round((settings.Boy) / settings.stepBoy);
 
 						//console.log("aşık Sayısı: " + asikSayisi);
 					}
@@ -2824,7 +2818,7 @@ class ThreeUtils {
 					//rüzgar kolonu ve arakat kolonu bulma
 					if(settings.KismiAraKatEkle == true){
 						
-						if(((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy) == settings.araKatUzunlugu){
+						if(((settings.Boy) / settings.stepBoy) == settings.araKatUzunlugu){
 							
 							ruzgarKolonSayisi = 0;
 							arakatKolon = 8;
@@ -2966,7 +2960,7 @@ class ThreeUtils {
 					
 					else{
 						
-						vincKirisiSayisi = 2 * ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy);
+						vincKirisiSayisi = 2 * ((settings.Boy) / settings.stepBoy);
 						
 						//console.log("Vinc Kirisi Sayısı: " + vincKirisiSayisi);
 					}
@@ -3085,7 +3079,7 @@ class ThreeUtils {
 				ongermeHalatiAsik = asikSayisi * settings.stepBoy * 1.548;
 				ongermeHalatiMakas = makasSayisi * settings.stepEn * 8.808;
 				
-				if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+				if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
 					
 					ongermeHalatiAraKatKiris = arakatKiris.toFixed(0) * (settings.stepBoy / 3) * 8.808;
 					ongermeHalatiPiplak = ttPlak * (settings.stepBoy / 3) * 4.404;
@@ -3161,7 +3155,7 @@ class ThreeUtils {
 				
 					if((settings.araKatGenisligi > (settings.En / settings.stepEn)) || (settings.araKatUzunlugu > (settings.Boy / settings.stepBoy))){
 					   
-						   alert("Kısmi Arakat değerlerinizde bir yanlışlık olmalı, lütfen yeni değerler girerek tekrar deneyin. Binanın şuanki boyutlarına göre verebileceğiniz maksimum değerler: Arakat Genişliği: " + ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn).toFixed(0) + ", Arakat Uzunluğu: " + ((settings.Boy - (settings.Boy % settings.stepBoy)) / settings.stepBoy).toFixed(0));
+						   alert("Kısmi Arakat değerlerinizde bir yanlışlık olmalı, lütfen yeni değerler girerek tekrar deneyin. Binanın şuanki boyutlarına göre verebileceğiniz maksimum değerler: Arakat Genişliği: " + ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn).toFixed(0) + ", Arakat Uzunluğu: " + ((settings.Boy) / settings.stepBoy).toFixed(0));
 						
 						   settings.KismiAraKatEkle = false;
 					}
@@ -3212,7 +3206,7 @@ class ThreeUtils {
 					  //kısmi ara katla alakalı her objeyi silme kısmı bitiş
 					  
 					  //arakat destek kolonları ekleme -if hol 3e bölünüyorsa-
-					  if(settings.stepEn / 3 >= 7 || (settings.En === 60) || (settings.En === 61) || (settings.En === 62) || (settings.En === 63)){
+					  if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
 						  
 						for(var i = 0; i < settings.araKatGenisligi * 3; i++){
 
@@ -4032,57 +4026,7 @@ class ThreeUtils {
 				}
 				
 				
-				/*
-				document.getElementById('gonderBoy').value = settings.Boy.toFixed(2);
 				
-				document.getElementById('gonderEn').value = settings.En.toFixed(2);
-		
-				if(settings.KismiAraKatEkle === false){
-					
-					kismiAraKatHolSayisi = 0;
-					kismiAraKatAksSayisi = 0;
-					kismiAraKatHolBoyutu = 0;
-					kismiAraKatAksBoyutu = 0;
-				}
-				
-				settings.objeSayisiniBul();
-				settings.metreKupHesaplari();
-				settings.makasMetreKupHesabi();
-				settings.kolonMetreKupHesabi();
-				settings.metrajHesabi();
-				settings.ankrajHesabi();
-				
-				var img = new Image();
-				app.renderer.render(app.scene, app.camera);
-				img.src = app.renderer.domElement.toDataURL();
-
-				if(settings.AraKatEkle === true || settings.KismiAraKatEkle === true){
-					
-					settings.ttPlakMetreKupHesabi();
-				}
-
-				console.log("30luk ttPlak: " + ttPlakMetreKup30 + "45lik ttPlak: " + ttPlakMetreKup45 + "70lik ttPlak: " + ttPlakMetreKup70);
-				
-				var myJSON = JSON.stringify(img);
-
-				$.ajax({
-					
-					  type: "POST",
-					
-					  url: "http://ahmetkilinc.net/holymoly/create-form.php",
-					
-					  contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-					
-					  data:{
-						  
-						 imgBase64: img.src
-					  }
-					}).done(function(o){
-					
-					  	console.log('saved');
-
-						window.location.assign('http://ahmetkilinc.net/holymoly/create-form.php?boy='+ document.getElementById('gonderBoy').value + '&en=' + document.getElementById('gonderEn').value + '&yukseklik=' + settings.Yükseklik + '&vincliKolonlar=' + settings.VincliKolonlar + '&vincKirisleri=' + settings.Vinc_Kirisleri_Ekle + '&vincKirisSayisi=' + vincKirisiSayisi.toFixed(0) + '&kolonSayisi=' + kolonSayisi + '&ruzgarKolonSayisi=' + ruzgarKolonSayisi + '&standSayisi=' + tumStandSayisi + '&olukSayisi=' + olukSayisi + '&makasSayisi=' + makasSayisi + '&kompleAraKat=' + settings.AraKatEkle + '&KompleAraKatHolSayisi=' + KompleAraKatHolSayisi + '&KompleAraKatHolBoyutu=' + KompleAraKatHolBoyutu + '&kismiAraKat=' + settings.KismiAraKatEkle + '&kismiAraKatHolSayisi=' + kismiAraKatHolSayisi + '&kismiAraKatAksSayisi=' + kismiAraKatAksSayisi + '&kismiAraKatHolBoyutu=' + kismiAraKatHolBoyutu + '&kismiAraKatAksBoyutu=' + kismiAraKatAksBoyutu + '&genelHolSayisi=' + genelHolSayisi + '&asikSayisi=' + asikSayisi + '&vincKirisYeriEn=' + vincKirisYeriEn + '&vincKirisYeriBoy=' + vincKirisYeriBoy + '&araKatYeriEn=' + araKatYeriEn + '&araKatYeriBoy=' + araKatYeriBoy + '&ttPlak=' + ttPlak.toFixed(0) + '&taliKiris=' + taliKiris.toFixed(0) + '&arakatKiris=' + arakatKiris.toFixed(0) + '&arakatKolon=' + arakatKolon.toFixed(0) + '&imgBase64=' + '&vincKirisiMetreKup=' + vincKirisiMetreKup + '&olukMetreKup=' + olukMetreKup.toFixed(2) + '&asikMetreKupT=' + asikMetreKupT.toFixed(2) + '&makasMetreKup=' + makasMetreKup.toFixed(2) + '&kolonMetreKup=' + (kolonMetreKup).toFixed(2) + '&ongermeHalatiToplam=' + ongermeHalatiToplam.toFixed(2) + '&ankrajToplam=' + ankrajToplam + '&ttPlakMetreKup30=' + ttPlakMetreKup30 + '&ttPlakMetreKup45=' + ttPlakMetreKup45 + '&ttPlakMetreKup70=' + ttPlakMetreKup70 + '&ongermeHalatiKarkas=' + ongermeHalatiKarkas + '&ongermeHalatiAraKatKiris=' + ongermeHalatiAraKatKiris);
-					});*/
 			}
 		};
 
@@ -4272,7 +4216,7 @@ class ThreeUtils {
 		settings.objeSayisiniBul();
 		settings.VincsizKolonEkle();
 		//ilk grid oluşumu, özellikler.js'ye ilk değerleri yolla.
-        app.grid = new LabeledGrid(60, 20, (60/ (60/10+1)), (60/ (60/30+1)), 13, [0,1,0], 0x000055, 0.21,  true, "#000000", "left");
+        app.grid = new LabeledGrid(60, 20, (60/ (60/10)), (60/ (60/30+1)), 13, [0,1,0], 0x000055, 0.21,  true, "#000000", "left");
         app.scene.add(app.grid);
         return app;
     }
