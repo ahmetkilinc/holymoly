@@ -13,12 +13,11 @@ html{
 	
 	position: fixed;
 	top: 80%;
-	width:  80%;
-	padding-left: 10%;
-	padding-right: 10%;
+	width:  75%;
 	text-align: center;
 	z-index: 50;
 	display: grid;
+	margin-top: 4%;
 }
 
 p{
@@ -74,6 +73,15 @@ p{
 	
 	width: 100% !important;
 	color: deepskyblue !important; 
+	font-size: 105% !important;
+	font-weight: bold;
+	text-align: center;
+}
+
+.elilegir{
+	
+	width: 100% !important;
+	color: crimson !important; 
 	font-size: 105% !important;
 	font-weight: bold;
 	text-align: center;
