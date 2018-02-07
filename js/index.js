@@ -17,9 +17,9 @@ class ThreeUtils {
 		var genelHolSayisi = 1;
 		var asikSayisi = 12;
 		var vincKirisYeriEn = 'A-B';
-		var vincKirisYeriBoy = '0-7';
+		var vincKirisYeriBoy = '1-7';
 		var araKatYeriEn = 'A-B';
-		var araKatYeriBoy = '0-7';
+		var araKatYeriBoy = '1-7';
 		var ttPlak = 0;
 		var taliKiris = 0;
 		var arakatKiris = 0;
@@ -138,29 +138,32 @@ class ThreeUtils {
 			this.asikSayisi = 12,
 			this.araKatSayisi = 0,
 			this.KismiaraKatSayisi = 0,
+			this.aks = 6;
+			this.hol = 1;
 				
             this.redraw = function(){
 
 				settings.EkranResetleme();
 				//settings.objeSayisiniBul();
-                this.stepBoy = parseFloat(this.Boy / (Math.ceil(this.Boy / 10)));
-                this.stepEn  = parseFloat(this.En / ((this.En / 30) + 1));
 
-				app.grid = new LabeledGrid(60, 20, (60/ (60/10)), (60/ (60/30+1)), 13, [0,1,0], 0x000055, 0.21, true, "#000000", "left");
+				this.stepBoy = parseFloat(this.Boy / (Math.ceil(this.Boy / 10)));
+				this.stepEn  = parseFloat(this.En / ((this.En / 30) + 1));
+
+				app.grid = new LabeledGrid(60, 20, (60 / (60 / 10)), (60 / ((60 / 30) + 1)), 13, [0,1,0], 0x000055, 0.21, true, "#000000", "left");
 				app.scene.add(app.grid);
 				//return app;
 
-				this.stepEn = this.stepEn + ((this.En % this.stepEn) / (this.En  / this.stepEn));
-				
+				this.stepEn = this.stepEn + ((this.En % this.stepEn) / (this.En / this.stepEn));
+
 				//this.stepBoy = this.stepBoy + ((this.Boy % this.stepBoy) / (this.Boy / this.stepBoy));
-				
+
 				/*if(this.stepBoy < 7.1){
-					
+
 					this.stepBoy = parseFloat(19 / ((19 / 9.54) + 1));
 					this.stepBoy = this.stepBoy + ((19 % this.stepBoy) / (19 / this.stepBoy));
 				}*/
-				
-                app.grid.resize(this.Boy, this.En, this.stepBoy.toFixed(2), this.stepEn.toFixed(2), this.Yükseklik);
+
+				app.grid.resize(this.Boy, this.En, this.stepBoy.toFixed(2), this.stepEn.toFixed(2), this.Yükseklik);
 				
 				settings.RuzgarKolonlariEkle();
 				
@@ -1200,7 +1203,7 @@ class ThreeUtils {
 				if(this.AraKatEkle === false){
 				//iki for ile x ve y ekseninde çoğalan vinçsiz orta kolonlar oluşturuluyor.
 					fileloader.load('blenderObjects/VinçsizOrtaKolon.obj', function(data){
-//***************************hoppp***********************************************************
+						
 						for(var i = 0; i < (settings.Boy / settings.stepBoy) + 1; i++){
 
 							var selectedItem1 = app.scene.getObjectByName("x" + i);
@@ -2589,8 +2592,8 @@ class ThreeUtils {
 							vincKirisYeriEn = 'A-E';
 						}
 						
-						var vincKirisYeriBoyIkinciDegisken = ((settings.Boy) / settings.stepBoy);
-						vincKirisYeriBoy = '0-' + vincKirisYeriBoyIkinciDegisken;
+						var vincKirisYeriBoyIkinciDegisken = ((settings.Boy) / settings.stepBoy) + 1;
+						vincKirisYeriBoy = '1-' + vincKirisYeriBoyIkinciDegisken;
 						//vincKirisYeriEn = 'A-B';
 						//vincKirisYeriBoy = '0-7';
 					}
@@ -2617,8 +2620,8 @@ class ThreeUtils {
 							araKatYeriEn = 'A-E';
 						}
 						
-						var araKatYeriBoyIkinciDegisken = ((settings.Boy) / settings.stepBoy) ;
-						araKatYeriBoy = '0-' + araKatYeriBoyIkinciDegisken;
+						var araKatYeriBoyIkinciDegisken = ((settings.Boy) / settings.stepBoy) + 1;
+						araKatYeriBoy = '1-' + araKatYeriBoyIkinciDegisken;
 						//var araKatYeriEn = 'A-B';
 						//var araKatYeriBoy ='0-7';
 					}
@@ -2642,8 +2645,8 @@ class ThreeUtils {
 							araKatYeriEn = 'A-E';
 						}
 
-						var araKatYeriBoyIkinciDegisken = settings.araKatUzunlugu;
-						araKatYeriBoy = '0-' + araKatYeriBoyIkinciDegisken;
+						var araKatYeriBoyIkinciDegisken = settings.araKatUzunlugu + 1;
+						araKatYeriBoy = '1-' + araKatYeriBoyIkinciDegisken;
 						
 					}
 					//**ara kat yerleri bulma
@@ -2866,7 +2869,7 @@ class ThreeUtils {
 					if(settings.VincliKolonlar === true){
 						
 						vincKirisYeriEn = 'A-B';
-						vincKirisYeriBoy = '0-7';
+						vincKirisYeriBoy = '1-7';
 					}
 					else{
 						
@@ -2878,7 +2881,7 @@ class ThreeUtils {
 					if(settings.AraKatEkle ==  true){
 					   
 						araKatYeriEn = 'A-B';
-						araKatYeriBoy = '0-7';
+						araKatYeriBoy = '1-7';
 						
 					}
 					
@@ -2903,8 +2906,8 @@ class ThreeUtils {
 						
 						araKatYeriEn = 'A-B';
 						
-						var araKatYeriBoyIkinciDegisken = settings.araKatUzunlugu;
-						araKatYeriBoy = '0-' + araKatYeriBoyIkinciDegisken;
+						var araKatYeriBoyIkinciDegisken = settings.araKatUzunlugu + 1;
+						araKatYeriBoy = '1-' + araKatYeriBoyIkinciDegisken;
 						
 					}
 					//**ara kat yerleri bulma
@@ -3143,7 +3146,7 @@ class ThreeUtils {
 		});
 		
 		var obj = {
-			
+
 			change : function(){
 
 				  	settings.redraw();
@@ -3963,6 +3966,93 @@ class ThreeUtils {
 				console.log("ttPlakMetreKup45: " + ttPlakMetreKup45);
 				console.log("ttPlakMetreKup70: " + ttPlakMetreKup70);
 			},
+			
+			aksveholgir: function(){
+				
+				settings.EkranResetleme();
+				
+				settings.stepBoy = settings.Boy / settings.aks;
+				
+				if(settings.En == 65 || settings.En == 66){
+					
+					settings.stepEn = settings.En / (settings.hol + 0.5);
+				}
+				
+				else{
+					
+					settings.stepEn = settings.En / settings.hol;
+				}
+				
+				if(settings.stepBoy > 12){
+					
+					alert("Aks Boyu 12 metreden büyük olamaz. Lütfen Aks sayısını ona göre seçiniz.");
+					settings.redraw();
+				}
+				
+				else if(settings.stepEn > 30){
+					
+					alert("Hol Eni 30 metreden büyük olamaz. Lütfen Hol sayısını ona göre seçiniz.");
+					settings.redraw();
+				}
+				
+				else{
+					
+					app.grid = new LabeledGrid(60, 20, (60 / settings.aks), (60 / settings.hol), 13, [0,1,0], 0x000055, 0.21, true, "#000000", "left");
+					app.scene.add(app.grid);
+					//return app;
+
+					settings.stepEn = settings.stepEn + ((settings.En % settings.stepEn) / (settings.En / settings.stepEn));
+
+					app.grid.resize(settings.Boy, settings.En, settings.stepBoy.toFixed(2), settings.stepEn.toFixed(2), settings.Yükseklik);
+
+					settings.RuzgarKolonlariEkle();
+
+					if(this.AraKatEkle === true){
+
+						settings.AraKatEkleme();
+					}
+
+					else{
+
+						settings.AraKatKaldir();
+					}
+
+					if(this.VincliKolonlar === true){
+
+						settings.VincKirisleriKaldir();
+						settings.kolEkle();
+					}
+
+					else{
+
+						settings.VincsizKolonEkle();
+					}
+
+					//GUI vinç kirişleri aktif mi?
+					if(this.Vinc_Kirisleri_Ekle === true){
+
+						settings.VincKirisiEkle();
+					}
+
+					else{
+
+						settings.VincKirisleriKaldir();
+					}
+
+					genelHolSayisi = Math.round((settings.En - (settings.En % settings.stepEn)) / settings.stepEn);
+
+					//console.log(genelHolSayisi);
+
+					var group = new THREE.Group();
+					var light1 = new THREE.DirectionalLight(0xFFFFFF, 1);
+					light1.position.set(-100, -80, -150);
+					var light = new THREE.DirectionalLight(0xFFFFFF, 1);
+					light.position.set(100, 80, 130);
+					group.add(light);
+					group.add(light1);
+					app.scene.add(group);
+				}
+			},
 
 			teklifAl: function(){
 				
@@ -4024,9 +4114,6 @@ class ThreeUtils {
 					
 					alert("Mous'unuzun sol tıkı ile binanın yönünü değiştirebilir, sağ tıkı ile ise yakınlık-uzaklık değerlerini değiştirebilirsiniz.");
 				}
-				
-				
-				
 			}
 		};
 
@@ -4198,14 +4285,34 @@ class ThreeUtils {
 
 			app.gui.add(obj, 'change').name('Çizimi Tekrar Oluştur. (Hatalı çizim olduğunda tıklayınız.)');
 			
+			//kolon sayısı ve aks sayısını kullanıcıya girdirmek.
+			var aksveholgirdir = app.gui.addFolder('Aks ve Hol Boyutunu El ile Girmek için Tıklayınız');
+			
+			aksveholgirdir.add(settings, 'aks').min(2).max(10).step(1).name('Aks Sayısını El ile Gir').onChange(function(value){
+				
+				settings.aks = value;
+			});
+			
+			aksveholgirdir.add(settings, 'hol').min(1).max(4).step(1).name('Hol Sayısını El ile Gir').onChange(function(value){
+				
+				settings.hol = value;
+			});
+			
+			aksveholgirdir.add(obj, 'aksveholgir').name('Ayarla');
+			//end*
+			
+			
 			var teklifAl = app.gui.addFolder('Teklif Almak için Aşağıdaki Butonu Tıklayınız.');
 			
 			teklifAl.add(obj, 'teklifAl').name('Teklif Al');
+			
+			
 			
 			//teklifAl.open();
 			
 			//GUI kontrol text manipülasyonu <renk, boyut, button>
 			  	app.gui.__ul.childNodes[3].childNodes[0].childNodes[0].classList += ' reset_button';
+				//app.gui.__ul.childNodes[4].childNodes[0].childNodes[0].classList += ' elilegir';
 				araKatFolder.__ul.childNodes[4].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
 				araKatFolder.__ul.childNodes[5].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
 				boyutlandirma.__ul.childNodes[4].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
