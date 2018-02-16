@@ -1,6 +1,6 @@
 class ThreeUtils {
 	
-    static setupApp({containerid = 'container', grid = true} = {}){
+	static setupApp({containerid = 'container', grid = true} = {}){
 		
 		var vincKirisiSayisi = 0;
 		var kolonSayisi = 16;
@@ -76,23 +76,23 @@ class ThreeUtils {
 		var taneVincMetreKup = 2.3;//1.5
 		var taneVincMetreKup2 = 1.5;
 		var vincKirisiMetreKup = 0;
-				
+		
         ThreeUtils.app = {};
         var app = ThreeUtils.app;
         app.container = document.getElementById(containerid);
         app.renderer = ThreeUtils.setupRenderer(app.container);
 
-        app.scene = new THREE.Scene();
-        var group = new THREE.Group();
-        app.scene.add(group);
+		app.scene = new THREE.Scene();
+		var group = new THREE.Group();
+		app.scene.add(group);
 		var light1 = new THREE.DirectionalLight(0xFFFFFF, 1);
 		light1.position.set(-100, -80, -150);
-        var light = new THREE.DirectionalLight(0xFFFFFF, 1);
-        light.position.set(100, 80, 130);
-        group.add(light);
+		var light = new THREE.DirectionalLight(0xFFFFFF, 1);
+		light.position.set(100, 80, 130);
+		group.add(light);
 		group.add(light1);
 
-        var size = app.renderer.getSize();
+		var size = app.renderer.getSize();
         app.camera = new THREE.PerspectiveCamera(45, size.width / size.height, 1, 1000);
         app.camera.position.set(- 40, 30, 100);
 		
@@ -3162,11 +3162,10 @@ class ThreeUtils {
 						
 						   settings.KismiAraKatEkle = false;
 					}
-				
-				
+					
 					else{
 						//kısmi ara katla alakalı her objeyi silme kısmı
-					  	settings.kismiAraKatKolonlariEkle();
+						settings.kismiAraKatKolonlariEkle();
 					  
 					  	for(var i = -2; i < settings.araKatGenisligi * 6; i++){
 								
@@ -3179,6 +3178,17 @@ class ThreeUtils {
 								app.scene.remove(selectedItem1);
 							}
 						}
+						/*
+						//yok et piPlakları
+						for(var i = 1; i <= settings.araKatGenisligi; i++){
+							
+							for(var j = 1; j <= settings.araKatUzunlugu; j++){
+
+								var selectedItem1 = app.scene.getObjectByName("KismiaraKat"+i+j);
+								app.scene.remove(selectedItem1);
+							}
+						}*/
+						
 
 						var selectedItem1 = app.scene.getObjectByName("KismiaraKat" + 1);
 						app.scene.remove(selectedItem1); 
@@ -3292,16 +3302,16 @@ class ThreeUtils {
 									
 									for(var j = 1; j < settings.araKatUzunlugu + 1; j++){
 									
-									var object = objLoader.parse(data);
-									object.position.set(((settings.stepEn / 2) * (i + 1)), 0, - 2 - (settings.stepBoy * j));
-									object.name = "kolonAltlikKismiAraKat" + i + j;
-									object.scale.set(0.21, 0.21, 0.21);
-									object.traverse(function (child){
+										var object = objLoader.parse(data);
+										object.position.set(((settings.stepEn / 2) * (i + 1)), 0, - 2 - (settings.stepBoy * j));
+										object.name = "kolonAltlikKismiAraKat" + i + j;
+										object.scale.set(0.21, 0.21, 0.21);
+										object.traverse(function (child){
 
-									if(child instanceof THREE.Mesh)
-										child.material.color.setHex(0x969696);
-									});
-									app.scene.add(object);
+											if(child instanceof THREE.Mesh)
+												child.material.color.setHex(0x969696);
+										});
+										app.scene.add(object);
 									}
 								}
 							},
@@ -3317,9 +3327,40 @@ class ThreeUtils {
 							);
 						  //boş bırak şimdilik.
 					  }
-											
-							//Obj alt bölümleri ekleme bitiş
+					  //Obj alt bölümleri ekleme bitiş*
+				
+						//***eklemeden önce piplakları kaldırma kısmı
+						for(var k = 1;  k <= settings.araKatGenisligi; k++){
+							
+							for(var l = 1; l <= settings.araKatUzunlugu; l++){
+								
+								var kismiaraKatObject = app.scene.getObjectByName("KismiaraKat" +k+l);
+								app.scene.remove(kismiaraKatObject);
+							}
+						}
 
+						for(var i = 1; i <= settings.araKatGenisligi; i++){
+							
+							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
+							var minusSet = 0;
+							
+							for(var j = 1; j <= settings.araKatUzunlugu; j++){
+								
+								//(left-right, up-down, forward-backward)
+								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 1));
+								
+								object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
+								object.name = "KismiaraKat"+i+j;
+								app.scene.add(object);
+								
+								minusSet = minusSet + 0.1;
+							}
+						}
+						
+						
+						
+						
+						/*
 						if(settings.araKatGenisligi === 1){
 							
 							//ara kat genişliği == 1  olduğu zaman oluşturulacak ara katlar.
@@ -3331,6 +3372,7 @@ class ThreeUtils {
 							}
 
 							else if(settings.araKatUzunlugu === 1){
+							
 								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
 							}
 
@@ -3501,6 +3543,7 @@ class ThreeUtils {
 							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
 							object.name = "KismiaraKat1" + 2;
 							app.scene.add(object);
+							
 
 						}
 						
@@ -3560,7 +3603,7 @@ class ThreeUtils {
 
 							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
 							object.name = "KismiaraKat" + 1;
-							app.scene.add(object);							
+							app.scene.add(object);					
 							
 							//ara kat genişliği 2 olduğu zaman bir sonraki arakatlar.
 							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
@@ -3618,6 +3661,7 @@ class ThreeUtils {
 							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
 							object.name = "KismiaraKat1" + 2;								
 							app.scene.add(object);	
+							
 							
 							//var selectedItem1 = app.scene.getObjectByName("KismiaraKat1" + (sayac - 1));
 							//app.scene.remove(selectedItem1);
@@ -3928,7 +3972,8 @@ class ThreeUtils {
 						var selectedItem1 = app.scene.getObjectByName("KismiaraKat3" + 4);
 						app.scene.remove(selectedItem1);
 						  
-					  }}
+					  }*/
+					}
 				},
 
 			kismiAraKatKaldir: function(){
@@ -4040,6 +4085,8 @@ class ThreeUtils {
 					}
 
 					genelHolSayisi = Math.round((settings.En - (settings.En % settings.stepEn)) / settings.stepEn);
+					
+					settings.objeSayisiniBul();
 
 					//console.log(genelHolSayisi);
 
@@ -4247,13 +4294,13 @@ class ThreeUtils {
 				}
 			});
 
-			araKatFolder.add(settings, 'araKatUzunlugu').min(1).max(10).step(1).name('Kısmi Ara Kat Uzunluğu (Kaç Aks Olduğu)').onFinishChange(function(value){
+			araKatFolder.add(settings, 'araKatUzunlugu').min(1).max(15).step(1).name('Kısmi Ara Kat Uzunluğu (Kaç Aks Olduğu)').onFinishChange(function(value){
 				
 				settings.araKatUzunlugu = value;
 				//obj.kismiAraKatEkle();
 			});
 
-			araKatFolder.add(settings, 'araKatGenisligi').min(1).max(4).step(1).name('Kısmi Ara Kat Genişliği (Kaç Hol olduğu)').onFinishChange(function(value){
+			araKatFolder.add(settings, 'araKatGenisligi').min(1).max(10).step(1).name('Kısmi Ara Kat Genişliği (Kaç Hol olduğu)').onFinishChange(function(value){
 				
 				settings.araKatGenisligi = value;
 				//obj.kismiAraKatEkle();
@@ -4288,12 +4335,12 @@ class ThreeUtils {
 			//kolon sayısı ve aks sayısını kullanıcıya girdirmek.
 			var aksveholgirdir = app.gui.addFolder('Aks ve Hol Boyutunu El ile Girmek için Tıklayınız');
 			
-			aksveholgirdir.add(settings, 'aks').min(2).max(10).step(1).name('Aks Sayısını El ile Gir').onChange(function(value){
+			aksveholgirdir.add(settings, 'aks').min(2).max(15).step(1).name('Aks Sayısını El ile Gir').onChange(function(value){
 				
 				settings.aks = value;
 			});
 			
-			aksveholgirdir.add(settings, 'hol').min(1).max(4).step(1).name('Hol Sayısını El ile Gir').onChange(function(value){
+			aksveholgirdir.add(settings, 'hol').min(1).max(10).step(1).name('Hol Sayısını El ile Gir').onChange(function(value){
 				
 				settings.hol = value;
 			});
@@ -4306,17 +4353,12 @@ class ThreeUtils {
 			
 			teklifAl.add(obj, 'teklifAl').name('Teklif Al');
 			
-			
-			
-			//teklifAl.open();
-			
-			//GUI kontrol text manipülasyonu <renk, boyut, button>
-			  	app.gui.__ul.childNodes[3].childNodes[0].childNodes[0].classList += ' reset_button';
+				app.gui.__ul.childNodes[3].childNodes[0].childNodes[0].classList.add('reset_button');
 				//app.gui.__ul.childNodes[4].childNodes[0].childNodes[0].classList += ' elilegir';
-				araKatFolder.__ul.childNodes[4].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
-				araKatFolder.__ul.childNodes[5].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
-				boyutlandirma.__ul.childNodes[4].childNodes[0].childNodes[0].classList += ' kontrol_buttons';
-				teklifAl.__ul.childNodes[1].childNodes[0].childNodes[0].classList += ' teklif_button';
+				araKatFolder.__ul.childNodes[4].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
+				araKatFolder.__ul.childNodes[5].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
+				boyutlandirma.__ul.childNodes[4].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
+				teklifAl.__ul.childNodes[1].childNodes[0].childNodes[0].classList.add('teklif_button');
         }
 
 		//ekran ve grid oluşturulduktan sonra ilk kenar kolonlarını da oluştur.
