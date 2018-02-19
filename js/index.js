@@ -3138,6 +3138,15 @@ class ThreeUtils {
 		
         //GUI settings
         var settings = new Settings();
+		app.gui2 = new dat.GUI({
+			
+			closed: false,
+			opacity: 0.5,
+			width: 175,
+		});
+		
+		app.gui2.domElement.id = 'gui2';
+		
         app.gui = new dat.GUI({
 
 			closed: true,
@@ -3152,6 +3161,7 @@ class ThreeUtils {
 				  	settings.redraw();
 				  },
 
+			//kısmi arakat ekleme fonksiyonu (gerekmedikçe değişim yapma)
 			kismiAraKatEkle: function(){
 				
 					settings.ttPlakMetreKupHesabi();
@@ -3176,28 +3186,11 @@ class ThreeUtils {
 									
 								var selectedItem1 = app.scene.getObjectByName("hoho" + i + j);
 								app.scene.remove(selectedItem1);
-							}
-						}
-						/*
-						//yok et piPlakları
-						for(var i = 1; i <= settings.araKatGenisligi; i++){
-							
-							for(var j = 1; j <= settings.araKatUzunlugu; j++){
-
+								
 								var selectedItem1 = app.scene.getObjectByName("KismiaraKat"+i+j);
 								app.scene.remove(selectedItem1);
 							}
-						}*/
-						
-
-						var selectedItem1 = app.scene.getObjectByName("KismiaraKat" + 1);
-						app.scene.remove(selectedItem1); 
-						var selectedItem1 = app.scene.getObjectByName("KismiaraKat1" + 2);
-						app.scene.remove(selectedItem1); 
-						var selectedItem1 = app.scene.getObjectByName("KismiaraKat2" + 3);
-						app.scene.remove(selectedItem1); 
-						var selectedItem1 = app.scene.getObjectByName("KismiaraKat3" + 4);
-						app.scene.remove(selectedItem1);
+						}
 
 					  	for(var i = - 2; i <= settings.araKatGenisligi * 6; i++){
 									
@@ -3328,651 +3321,99 @@ class ThreeUtils {
 						  //boş bırak şimdilik.
 					  }
 					  //Obj alt bölümleri ekleme bitiş*
-				
-						//***eklemeden önce piplakları kaldırma kısmı
-						for(var k = 1;  k <= settings.araKatGenisligi; k++){
-							
-							for(var l = 1; l <= settings.araKatUzunlugu; l++){
-								
-								var kismiaraKatObject = app.scene.getObjectByName("KismiaraKat" +k+l);
-								app.scene.remove(kismiaraKatObject);
-							}
-						}
-
+						
 						for(var i = 1; i <= settings.araKatGenisligi; i++){
 							
 							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-							var minusSet = 0;
 							
 							for(var j = 1; j <= settings.araKatUzunlugu; j++){
 								
 								//(left-right, up-down, forward-backward)
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 1));
+								
+								if(settings.araKatUzunlugu === 2){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy));
+								}
+
+								else if(settings.araKatUzunlugu === 1){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
+								}
+
+								else if(settings.araKatUzunlugu === 3){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
+								}
+
+								else if(settings.araKatUzunlugu === 4){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
+								}
+
+								else if(settings.araKatUzunlugu === 5){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
+								}
+
+								else if(settings.araKatUzunlugu === 6){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
+								}
+
+								else if(settings.araKatUzunlugu === 7){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
+								}
+
+								else if(settings.araKatUzunlugu === 8){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
+								}
+
+								else if(settings.araKatUzunlugu === 9){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
+								}
+
+								else if(settings.araKatUzunlugu === 10){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
+								}
+
+								else if(settings.araKatUzunlugu === 11){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.18));
+								}
+
+								else if(settings.araKatUzunlugu === 12){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.165));
+								}
+
+								else if(settings.araKatUzunlugu === 13){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.152));
+								}
+
+								else if(settings.araKatUzunlugu === 14){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.142));
+								}
+
+								else if(settings.araKatUzunlugu === 15){
+
+									object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (i)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.133));
+								}
+								
 								
 								object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
 								object.name = "KismiaraKat"+i+j;
+								
+								console.log("KismiaraKat"+i+j);
 								app.scene.add(object);
-								
-								minusSet = minusSet + 0.1;
+
 							}
 						}
-						
-						
-						
-						
-						/*
-						if(settings.araKatGenisligi === 1){
-							
-							//ara kat genişliği == 1  olduğu zaman oluşturulacak ara katlar.
-							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-
-							if(settings.araKatUzunlugu === 2){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy));
-							}
-
-							else if(settings.araKatUzunlugu === 1){
-							
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
-							}
-
-							else if(settings.araKatUzunlugu === 3){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
-							}
-
-							else if(settings.araKatUzunlugu === 4){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
-							}
-
-							else if(settings.araKatUzunlugu === 5){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
-							}
-
-							else if(settings.araKatUzunlugu === 6){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
-							}
-
-							else if(settings.araKatUzunlugu === 7){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
-							}
-							
-							else if(settings.araKatUzunlugu === 8){
-								
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
-							}
-							
-							else if(settings.araKatUzunlugu === 9){
-								
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
-							}
-							
-							else if(settings.araKatUzunlugu === 10){
-								
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
-							}
-
-							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
-							object.name = "KismiaraKat" + 1;
-							app.scene.add(object);
-						
-						}
-					  
-						else if(settings.araKatGenisligi === 0){
-							
-						}
-						
-						else if(settings.araKatGenisligi === 2){
-							
-							
-							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-
-							if(settings.araKatUzunlugu === 2){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy));
-							}
-
-							else if(settings.araKatUzunlugu === 1){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
-							}
-
-							else if(settings.araKatUzunlugu === 3){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
-							}
-
-							else if(settings.araKatUzunlugu === 4){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
-							}
-
-							else if(settings.araKatUzunlugu === 5){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
-							}
-
-							else if(settings.araKatUzunlugu === 6){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
-							}
-
-							else if(settings.araKatUzunlugu ===7){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
-							}
-							
-							else if(settings.araKatUzunlugu === 8){
-								
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
-							}
-							
-							else if(settings.araKatUzunlugu === 9){
-								
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
-							}
-							
-							else if(settings.araKatUzunlugu === 10){
-								
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
-							}
-
-							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
-							object.name = "KismiaraKat" + 1;
-							app.scene.add(object);
-
-							
-							
-							//ara kat genişliği 2 olduğu zaman bir sonraki arakatlar.
-							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-							
-							if(settings.araKatUzunlugu === 2){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy));
-							}
-						
-							else if(settings.araKatUzunlugu === 1){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
-							}
-
-							else if(settings.araKatUzunlugu === 3){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
-							}
-
-							else if(settings.araKatUzunlugu === 4){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
-							}
-
-							else if(settings.araKatUzunlugu === 5){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
-							}
-
-							else if(settings.araKatUzunlugu === 6){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
-							}
-
-							else if(settings.araKatUzunlugu === 7){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
-							}
-							
-							else if(settings.araKatUzunlugu === 8){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
-							}
-							
-							else if(settings.araKatUzunlugu === 9){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
-							}
-							
-							else if(settings.araKatUzunlugu === 10){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
-							}
-							
-							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
-							object.name = "KismiaraKat1" + 2;
-							app.scene.add(object);
-							
-
-						}
-						
-						else if(settings.araKatGenisligi === 3){
-							
-							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-
-							if(settings.araKatUzunlugu === 2){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy));
-							}
-
-							else if(settings.araKatUzunlugu === 1){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
-							}
-
-							else if(settings.araKatUzunlugu === 3){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
-							}
-
-							else if(settings.araKatUzunlugu === 4){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
-							}
-
-							else if(settings.araKatUzunlugu === 5){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
-							}
-
-							else if(settings.araKatUzunlugu === 6){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
-							}
-
-							else if(settings.araKatUzunlugu === 7){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
-							}
-							
-							else if(settings.araKatUzunlugu === 8){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
-							}
-							
-							else if(settings.araKatUzunlugu === 9){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
-							}
-							
-							else if(settings.araKatUzunlugu === 10){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
-							}
-
-							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
-							object.name = "KismiaraKat" + 1;
-							app.scene.add(object);					
-							
-							//ara kat genişliği 2 olduğu zaman bir sonraki arakatlar.
-							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-							
-							if(settings.araKatUzunlugu === 2){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy));
-							}
-						
-							else if(settings.araKatUzunlugu === 1){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
-							}
-
-							else if(settings.araKatUzunlugu === 3){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
-							}
-
-							else if(settings.araKatUzunlugu === 4){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
-							}
-
-							else if(settings.araKatUzunlugu === 5){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
-							}
-
-							else if(settings.araKatUzunlugu === 6){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
-							}
-
-							else if(settings.araKatUzunlugu === 7){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
-							}
-							
-							else if(settings.araKatUzunlugu === 8){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
-							}
-							
-							else if(settings.araKatUzunlugu === 9){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
-							}
-							
-							else if(settings.araKatUzunlugu === 10){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
-							}
-							
-							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
-							object.name = "KismiaraKat1" + 2;								
-							app.scene.add(object);	
-							
-							
-							//var selectedItem1 = app.scene.getObjectByName("KismiaraKat1" + (sayac - 1));
-							//app.scene.remove(selectedItem1);
-							
-							//3. katman ara katlar
-							
-							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-							
-							if(settings.araKatUzunlugu === 2){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy));
-							}
-						
-							else if(settings.araKatUzunlugu === 1){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
-							}
-
-							else if(settings.araKatUzunlugu === 3){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
-							}
-
-							else if(settings.araKatUzunlugu === 4){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
-							}
-
-							else if(settings.araKatUzunlugu === 5){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
-							}
-
-							else if(settings.araKatUzunlugu === 6){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
-							}
-
-							else if(settings.araKatUzunlugu ===7){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
-							}
-							
-							else if(settings.araKatUzunlugu === 8){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
-							}
-							
-							else if(settings.araKatUzunlugu === 9){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
-							}
-							
-							else if(settings.araKatUzunlugu === 10){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
-							}
-							
-							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
-							object.name = "KismiaraKat2" + 3;
-							app.scene.add(object);
-							
-						}
-						
-						else if(settings.araKatGenisligi === 4){
-							
-							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-
-							if(settings.araKatUzunlugu === 2){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy));
-							}
-
-							else if(settings.araKatUzunlugu === 1){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
-							}
-
-							else if(settings.araKatUzunlugu === 3){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
-							}
-
-							else if(settings.araKatUzunlugu === 4){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
-							}
-
-							else if(settings.araKatUzunlugu === 5){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
-							}
-
-							else if(settings.araKatUzunlugu === 6){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
-							}
-
-							else if(settings.araKatUzunlugu ===7){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
-							}
-							
-							else if(settings.araKatUzunlugu === 8){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
-							}
-							
-							else if(settings.araKatUzunlugu === 9){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
-							}
-							
-							else if(settings.araKatUzunlugu === 10){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (1)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
-							}
-
-							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
-							object.name = "KismiaraKat" + 1;								
-							app.scene.add(object);
-	
-							//ara kat genişliği 2 olduğu zaman bir sonraki arakatlar.
-							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-							
-							if(settings.araKatUzunlugu === 2){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy));
-							}
-						
-							else if(settings.araKatUzunlugu === 1){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
-							}
-
-							else if(settings.araKatUzunlugu === 3){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
-							}
-
-							else if(settings.araKatUzunlugu === 4){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
-							}
-
-							else if(settings.araKatUzunlugu === 5){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
-							}
-
-							else if(settings.araKatUzunlugu === 6){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
-							}
-
-							else if(settings.araKatUzunlugu ===7){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
-							}
-							
-							else if(settings.araKatUzunlugu === 8){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
-							}
-							
-							else if(settings.araKatUzunlugu === 9){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
-							}
-							
-							else if(settings.araKatUzunlugu === 10){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (2)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
-							}
-							
-							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
-							object.name = "KismiaraKat1" + 2;								
-							app.scene.add(object);
-							
-							//var selectedItem1 = app.scene.getObjectByName("KismiaraKat1" + (sayac - 1));
-							//app.scene.remove(selectedItem1);
-							
-							//3. katman ara katlar
-							
-							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-							
-							if(settings.araKatUzunlugu === 2){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy));
-							}
-						
-							else if(settings.araKatUzunlugu === 1){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
-							}
-
-							else if(settings.araKatUzunlugu === 3){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
-							}
-
-							else if(settings.araKatUzunlugu === 4){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
-							}
-
-							else if(settings.araKatUzunlugu === 5){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
-							}
-
-							else if(settings.araKatUzunlugu === 6){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
-							}
-
-							else if(settings.araKatUzunlugu ===7){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
-							}
-							
-							else if(settings.araKatUzunlugu === 8){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
-							}
-							
-							else if(settings.araKatUzunlugu === 9){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
-							}
-							
-							else if(settings.araKatUzunlugu === 10){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (3)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
-							}
-							
-							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
-							object.name = "KismiaraKat2" + 3;
-							app.scene.add(object);
-							
-							//4. katman
-							
-							var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({}));
-							
-							if(settings.araKatUzunlugu === 2){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (4)), settings.Yükseklik / 2.25, - (settings.stepBoy));
-							}
-						
-							else if(settings.araKatUzunlugu === 1){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (4)), settings.Yükseklik / 2.25, - (settings.stepBoy / 2));
-							}
-
-							else if(settings.araKatUzunlugu === 3){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (4)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.68));
-							}
-
-							else if(settings.araKatUzunlugu === 4){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (4)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.5));
-							}
-
-							else if(settings.araKatUzunlugu === 5){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (4)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.4));
-							}
-
-							else if(settings.araKatUzunlugu === 6){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (4)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.33));
-							}
-
-							else if(settings.araKatUzunlugu ===7){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (4)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.28));
-							}
-							
-							else if(settings.araKatUzunlugu === 8){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (4)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.25));
-							}
-							
-							else if(settings.araKatUzunlugu === 9){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (4)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.22));
-							}
-							
-							else if(settings.araKatUzunlugu === 10){
-
-								object.position.set(0 - (settings.stepEn / 2) + (settings.stepEn * (4)), settings.Yükseklik / 2.25, - (settings.stepBoy / 0.2));
-							}
-							
-							object.scale.set(- 0.1 + ((settings.stepEn * 1) / 5.2), 0.1, (settings.stepBoy * settings.araKatUzunlugu) / 5);
-							object.name = "KismiaraKat3" + 4;
-							app.scene.add(object);
-						}
-
-					  else{
-						
-						var selectedItem1 = app.scene.getObjectByName("KismiaraKat" + 1);
-						app.scene.remove(selectedItem1);
-						var selectedItem1 = app.scene.getObjectByName("KismiaraKat2" + 3);
-						app.scene.remove(selectedItem1);
-						var selectedItem1 = app.scene.getObjectByName("KismiaraKat1" + 2);
-						app.scene.remove(selectedItem1);
-						var selectedItem1 = app.scene.getObjectByName("KismiaraKat3" + 4);
-						app.scene.remove(selectedItem1);
-						  
-					  }*/
 					}
 				},
 
@@ -4161,6 +3602,31 @@ class ThreeUtils {
 					
 					alert("Mous'unuzun sol tıkı ile binanın yönünü değiştirebilir, sağ tıkı ile ise yakınlık-uzaklık değerlerini değiştirebilirsiniz.");
 				}
+			},
+			
+			ustten: function(){
+				
+				console.log("cam position x: " + app.camera.position.x);
+				console.log("cam position y: " + app.camera.position.y);
+				console.log("cam position z: " + app.camera.position.z);
+				console.log("cam rotation x: " + app.camera.rotation.x);
+				console.log("cam rotation y: " + app.camera.rotation.y);
+				console.log("cam rotation z: " + app.camera.rotation.z);
+				//(y,z,x)
+				app.camera.position.set(127.45223946727837, 22.528805237412012, -6.6925433096117475);
+				//app.camera.rotation.set(-0.06639231070657999, -1.5787076408075524, -1.571321202027558);
+				//app.camera.rotation.set(-1.571321202027558, -0.06639231070657999, -1.5787076408075524);
+				app.controls.update();
+				
+
+			},
+			
+			yandan: function(){
+				
+				app.camera.position.set(settings.En, 150, settings.Boy);
+				//app.camera.rotation.set(-1, 0, 0);			
+				
+				//app.controls.update();
 			}
 		};
 
@@ -4359,8 +3825,13 @@ class ThreeUtils {
 				araKatFolder.__ul.childNodes[5].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
 				boyutlandirma.__ul.childNodes[4].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
 				teklifAl.__ul.childNodes[1].childNodes[0].childNodes[0].classList.add('teklif_button');
+			
+			
+			app.gui2.add(obj, 'ustten').name('Kuşbakışı Görünüm');
+			app.gui2.add(obj, 'yandan').name('90 derece Görünüm');
         }
-
+		
+		
 		//ekran ve grid oluşturulduktan sonra ilk kenar kolonlarını da oluştur.
 		settings.objeSayisiniBul();
 		settings.VincsizKolonEkle();
