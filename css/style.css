@@ -39,6 +39,12 @@ p{
     background: radial-gradient(#FFFFFF,#FFFFFF);
 }
 
+#gui2{
+	
+	position: absolute;
+	text-align: left;
+}
+
 .dg.main .close-button{
 	
   	opacity: 0.5;

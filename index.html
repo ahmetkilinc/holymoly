@@ -5,20 +5,14 @@
 		  <meta name="theme-color" content="#F0FFFF"/>
           <title>3D Web Uygulaması - Three.js</title>
               <link rel="stylesheet" href="css/style.css">
+			  <link rel="stylesheet" href="css/nfpopup.css">
         </head>
         <body>
 			
 		<noscript>
     		Bu uygulamayı çalıştırmak için tarayıcınızın JavaScript desteklemesi gerekmektedir. Lütfen ayarlardan açınız veya teknik ekibinizden açmak için yardım isteyiniz.
 		</noscript>
-		
-		<div class="textarea" id="info" style="background-color: skyblue" >
-			<textarea class="text" rows="4" cols="50%" style="background-color: lightblue" readonly> Kullanım Talimatları:
- Sağ üst taraftaki kontroller ile binanızın boyutunu ayarlayabilir, vinç kirişleri ve arakat ekleyebilirsiniz.
-				
- Mouse'un sol tıkı ile Çizim'in yönünü değiştirebilirsiniz, sağ tıkı ile Çizimin yerini değiştirebilirsiniz, tekerleği ile ise yakınlaştırabilir veya uzaklaştırabilirsiniz.
-			</textarea>		
-		</div>
+
 			<form action="http://localhost/tutorialsPoint/holymoly/new-form-index.php" method="get">
 			  <input type="text" name="boy" id="gonderBoy">
 			  <input type="text" name="en" id="gonderEn">
@@ -28,6 +22,17 @@
         <div id="container" style="text-align:center">
 
         </div>
+			
+		  <div class="popup"  >
+			  <div class="popup-content">
+				<h3>Talimatlar ve Yenilikler</h3>
+				<h4>Sağ üst taraftaki kontroller ile binanızın boyutunu ayarlayabilir, vinç kirişleri ve arakat ekleyebilirsiniz.
+				
+ Mouse'un sol tıkı ile Çizim'in yönünü değiştirebilirsiniz, sağ tıkı ile Çizimin yerini değiştirebilirsiniz, tekerleği ile ise yakınlaştırabilir veya uzaklaştırabilirsiniz.</h4>
+			  </div>  
+			  <a class="buttonnf" ></a>
+		  </div>
+			
         <script>
         document.addEventListener("DOMContentLoaded", function(event){
 			
@@ -63,6 +68,7 @@
 			
         <script src='js/dat.gui.js'></script>
 		<script src="js/index.js"></script>
+		<script src="js/nfpopup.js"></script>
         <script src='js/ozellikler.js'></script>
 		<script src="js/OrbitControls.js"></script>
 		<script src="js/DragControls.js"></script>
