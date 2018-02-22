@@ -2972,6 +2972,46 @@ class ThreeUtils {
 			}
 			//obje ekleme ve kaldırma fonksiyonları son*
 			
+			this.objeSayisiniBulElile = function(){
+				
+				//makaslar
+				makasSayisi = (settings.hol) * (settings.aks + 1);
+				console.log("yeni makas sayisi: " + makasSayisi);
+				
+				//oluklar
+				olukSayisi = (settings.hol + 1) * (settings.aks);
+				console.log("yeni oluk sayisi: " + olukSayisi);
+				
+				//vinç kirişleri
+				if(settings.VincliKolonlar == true){
+					
+					vincKirisiSayisi = (settings.hol * 2) * (settings.aks);
+					console.log("yeni vinç kiriş sayısı: " + vincKirisiSayisi);
+				}
+				
+				//kolonlar
+				var kenarkolon = (settings.aks + 1) * 2;
+				console.log("kenar kolon: " + kenarkolon);
+				var ortakolon = (settings.aks + 1) * (settings.hol - 1);
+				console.log("orta kolon: " + ortakolon);
+				kolonSayisi = kenarkolon + ortakolon;
+				console.log("kolon sayısı: " + kolonSayisi);
+				
+				//rüzgar kolonları
+				if(settings.stepEn / 3 >= 7 || (settings.En >= 60 && settings.En <= 63) || (settings.En >= 21 && settings.En <=	27.1 ) || (settings.En > 40 && settings.En <= 44)){
+				
+					ruzgarKolonSayisi = settings.hol * 2 * 2;
+				}
+				
+				else{
+				
+					ruzgarKolonSayisi = settings.hol * 2;
+				}
+				
+				//kolon altları
+				
+			}
+			
 			//diğer tüm metreküpler(aşık-oluk-vinçkirişi)
 			this.metreKupHesaplari = function(){
 				
@@ -3136,8 +3176,8 @@ class ThreeUtils {
 			}
 		}
 		
-        //GUI settings
-        var settings = new Settings();
+		//GUI settings
+		var settings = new Settings();
 		app.gui2 = new dat.GUI({
 			
 			closed: false,
@@ -3147,9 +3187,9 @@ class ThreeUtils {
 		
 		app.gui2.domElement.id = 'gui2';
 		
-        app.gui = new dat.GUI({
+		app.gui = new dat.GUI({
 
-			closed: true,
+			closed: false,
 			opacity: 0.5,
 			width: 323,
 		});
@@ -3456,7 +3496,7 @@ class ThreeUtils {
 			aksveholgir: function(){
 				
 				settings.EkranResetleme();
-				
+
 				settings.stepBoy = settings.Boy / settings.aks;
 				
 				/*if((settings.En >= 60 && settings.En < 90) || (settings.En >= 30 && settings.En < 60) || (settings.En >= 0 && settings.En < 30)){*/
@@ -3482,6 +3522,8 @@ class ThreeUtils {
 				}
 				
 				else{
+					
+					settings.objeSayisiniBulElile();
 					
 					app.grid = new LabeledGrid(60, 20, (60 / settings.aks), (60 / settings.hol), 13, [0,1,0], 0x000055, 0.21, true, "#000000", "left");
 					app.scene.add(app.grid);
@@ -3604,29 +3646,47 @@ class ThreeUtils {
 				}
 			},
 			
-			ustten: function(){
+			kusbakisiG: function(){
 				
+				//camera pozisyon ve rotasyon değerlerini bulmak için
+				console.log("************");
 				console.log("cam position x: " + app.camera.position.x);
 				console.log("cam position y: " + app.camera.position.y);
 				console.log("cam position z: " + app.camera.position.z);
+				console.log("-- -- -- --")
 				console.log("cam rotation x: " + app.camera.rotation.x);
 				console.log("cam rotation y: " + app.camera.rotation.y);
 				console.log("cam rotation z: " + app.camera.rotation.z);
-				//(y,z,x)
-				app.camera.position.set(127.45223946727837, 22.528805237412012, -6.6925433096117475);
-				//app.camera.rotation.set(-0.06639231070657999, -1.5787076408075524, -1.571321202027558);
-				//app.camera.rotation.set(-1.571321202027558, -0.06639231070657999, -1.5787076408075524);
-				app.controls.update();
 				
+				//app.camera.position.set(-22.869529070004635, 161.23540758578247, 0.3991552480390056);
+				//app.camera.position.set(-25.86405035505642, 167.49408147306153, 0.16989935372886258);
+				app.camera.position.x = -25.86405035505642;
+				app.camera.position.y = 167.49408147306153;
+				app.camera.position.z = 0.16989935372886258;
+				app.camera.rotation.set(-1.5703216504442, -0.09048796713770424, -1.5655440310361424);
 
+				app.controls.update();
 			},
 			
-			yandan: function(){
+			doksandereceG: function(){
 				
-				app.camera.position.set(settings.En, 150, settings.Boy);
-				//app.camera.rotation.set(-1, 0, 0);			
+				app.camera.position.set(-112.19523658027542, 13.881005566225932, -27.061981045527084);
+				app.camera.rotation.set(-2.0324654693569615, -1.4076490679617977, -2.037818188953917);
+				app.controls.update();
+			},
+			
+			kirkbesdereceG: function(){
 				
-				//app.controls.update();
+				app.camera.position.set(-80.29754915963343, 30.24538471979555, 59.87627786125186);
+				app.camera.rotation.set(-0.3244774164870534, -0.9853707737297135, -0.2733362813527992);
+				app.controls.update();
+			},
+			
+			eksidoksandereceG: function(){
+				
+				app.camera.position.set(183.40894829394384, 23.580850087595255, -31.179362619672577);
+				app.camera.rotation.set(-1.2562965191376148, 1.4133739067734574, 1.2526179313070114);
+				app.controls.update();
 			}
 		};
 
@@ -3826,9 +3886,14 @@ class ThreeUtils {
 				boyutlandirma.__ul.childNodes[4].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
 				teklifAl.__ul.childNodes[1].childNodes[0].childNodes[0].classList.add('teklif_button');
 			
+			var gorusAcisi = app.gui2.addFolder('Görüş Açısını Değiştir:');
 			
-			app.gui2.add(obj, 'ustten').name('Kuşbakışı Görünüm');
-			app.gui2.add(obj, 'yandan').name('90 derece Görünüm');
+			gorusAcisi.add(obj, 'kusbakisiG').name('Kuşbakışı Görünüm');
+			gorusAcisi.add(obj, 'doksandereceG').name('90 Derece Görünüm');
+			gorusAcisi.add(obj, 'kirkbesdereceG').name('45 Derece Görünüm');
+			gorusAcisi.add(obj, 'eksidoksandereceG').name('-90 Derece Görünüm');
+
+			gorusAcisi.open();
         }
 		
 		
