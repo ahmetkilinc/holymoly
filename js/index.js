@@ -3008,8 +3008,39 @@ class ThreeUtils {
 					ruzgarKolonSayisi = settings.hol * 2;
 				}
 				
-				//kolon altları
+				//kolon altları, arakat kolonlarınınkiler hariç
+				tumStandSayisi = kolonSayisi + ruzgarKolonSayisi;
+				console.log("arakat olmadan tüm altlıklar: " + tumStandSayisi);
 				
+				//aşıklar
+				//aşık sayısı
+					if(settings.En > 0 && settings.En < 30){
+						
+						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 2) * Math.round((settings.Boy) / settings.stepBoy);
+						
+						//console.log("aşık Sayısı: " + asikSayisi);
+					}
+					
+					else if(settings.En >= 30 && settings.En < 60){
+						
+						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 4) * Math.round((settings.Boy) / settings.stepBoy);
+						
+						//console.log("aşık Sayısı: " + asikSayisi);
+					}
+					
+					else if(settings.En >= 60 && settings.En < 90){
+							
+						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 6) * Math.round((settings.Boy) / settings.stepBoy);
+						
+						//console.log("aşık Sayısı: " + asikSayisi);
+					}
+					
+					else{
+						
+						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 8) * Math.round((settings.Boy) / settings.stepBoy);
+
+						//console.log("aşık Sayısı: " + asikSayisi);
+					}
 			}
 			
 			//diğer tüm metreküpler(aşık-oluk-vinçkirişi)
