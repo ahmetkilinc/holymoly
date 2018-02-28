@@ -267,10 +267,10 @@
 			  
 	  <div class='label'>
         <label for='number_01'>Vinç Kaldırma Kapasitesi (ton)</label>
-		<span class='hint'>Vinç kaldırma kapasitesini ton cinsinden yazınız.</span>
       </div>
       <div class='input'>
 		<input type="text" class="textfield" required='required' value="0" id="extra7" name="vinc" onkeypress="return isNumber(event)" />
+		<span class='hint'>Vinç kaldırma kapasitesini ton cinsinden yazınız.</span>
       </div>
 		  
 	  <div class='label'>
@@ -361,11 +361,18 @@
 	
 	function controlfonk(){
 		
+		
 		var e = document.getElementById("arakatyukId").value;
 		
 		var arakatKomple = document.getElementById("input_kompleAraKat").value;
 		
 		var arakatKismi = document.getElementById("input_kismiAraKat").value;
+		
+		if((arakatKomple == "true" && e == 0) || (arakatKismi == "true" && e == 0)){
+			
+			alert("Lütfen arakat yükünü seçiniz. (Çiziminizde arakat var olduğu gözüküyor.)");
+			return false;
+		}
 		
 		var controlParameterUzaklik = document.getElementById('fabrikauzaklik').value;
 		
@@ -391,11 +398,11 @@
 	}
 
 </script>
-  	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="js/new-form-index.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8LekTJKEelUsRKGwKXaunkVJt8wHV7Gk&libraries=geometry&language=tr&region=TR">
 	</script>	
-	<script src="http://ahmetkilinc.net/holymoly/js/googlemaps.js"></script>
-	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+	<script src="https://ahmetkilinc.net/holymoly/js/googlemaps.js"></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 </body>
 </html>
