@@ -3012,35 +3012,8 @@ class ThreeUtils {
 				tumStandSayisi = kolonSayisi + ruzgarKolonSayisi;
 				console.log("arakat olmadan tüm altlıklar: " + tumStandSayisi);
 				
-				//aşıklar
 				//aşık sayısı
-					if(settings.En > 0 && settings.En < 30){
-						
-						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 2) * Math.round((settings.Boy) / settings.stepBoy);
-						
-						//console.log("aşık Sayısı: " + asikSayisi);
-					}
-					
-					else if(settings.En >= 30 && settings.En < 60){
-						
-						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 4) * Math.round((settings.Boy) / settings.stepBoy);
-						
-						//console.log("aşık Sayısı: " + asikSayisi);
-					}
-					
-					else if(settings.En >= 60 && settings.En < 90){
-							
-						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 6) * Math.round((settings.Boy) / settings.stepBoy);
-						
-						//console.log("aşık Sayısı: " + asikSayisi);
-					}
-					
-					else{
-						
-						asikSayisi = ((Math.round((settings.stepEn / 2 / 1.95) * ((settings.En - (settings.En % settings.stepEn)) / settings.stepEn)) * 2) + 8) * Math.round((settings.Boy) / settings.stepBoy);
-
-						//console.log("aşık Sayısı: " + asikSayisi);
-					}
+				
 			}
 			
 			//diğer tüm metreküpler(aşık-oluk-vinçkirişi)
@@ -3205,6 +3178,18 @@ class ThreeUtils {
 				
 				console.log("ttplakMetreKup: " + ttPlakMetreKup30 + " - " + ttPlakMetreKup45 + " - " + ttPlakMetreKup70);
 			}
+			
+			/*this.openArakatGui = function(){
+				
+				gui3 = new dat.GUI({
+			
+					closed: false,
+					opacity: 0.5,
+					width: 175,
+				});
+				
+				gui3.add(obj, 'change').name('Çizimi Tekrar Oluştur. (Hatalı çizim olduğunda tıklayınız.)');
+			}*/
 		}
 		
 		//GUI settings
@@ -3718,6 +3703,35 @@ class ThreeUtils {
 				app.camera.position.set(183.40894829394384, 23.580850087595255, -31.179362619672577);
 				app.camera.rotation.set(-1.2562965191376148, 1.4133739067734574, 1.2526179313070114);
 				app.controls.update();
+			},
+			
+			arakatlar: function(){
+				
+				//settings.openArakatGui();
+				
+				// Get the modal
+				var modal = document.getElementById('myModal');
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("close-arakat")[0];
+				
+				// When the user clicks the button, open the modal 	
+				modal.style.display = "block";
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function(){
+					
+					modal.style.display = "none";
+				}
+
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event){
+					
+					if(event.target == modal){
+						
+						modal.style.display = "none";
+					}
+				}
 			}
 		};
 
@@ -3799,6 +3813,7 @@ class ThreeUtils {
 			//Vinç Kontrol end*
 
 			//ara kat folderı*
+			/*
 			var araKatFolder = app.gui.addFolder('Ara Kat Ekleme/Kaldırma');
 
 			araKatFolder.add(settings, 'AraKatEkle').name('Komple Ara Kat Ekle').onChange(function(z){
@@ -3883,11 +3898,13 @@ class ThreeUtils {
 				obj.kismiAraKatKaldir();
 				settings.objeSayisiniBul();
 			});
-
+			*/
 			//araKatFolder.open();
 			//ara kat folderı end*
 
 			app.gui.add(obj, 'change').name('Çizimi Tekrar Oluştur. (Hatalı çizim olduğunda tıklayınız.)');
+			
+			app.gui.add(obj, 'arakatlar').name('<-arakatlar->');
 			
 			//kolon sayısı ve aks sayısını kullanıcıya girdirmek.
 			var aksveholgirdir = app.gui.addFolder('Aks ve Hol Boyutunu El ile Girmek için Tıklayınız');
@@ -3906,14 +3923,16 @@ class ThreeUtils {
 			//end*
 			
 			
+			
+			
 			var teklifAl = app.gui.addFolder('Teklif Almak için Aşağıdaki Butonu Tıklayınız.');
 			
 			teklifAl.add(obj, 'teklifAl').name('Teklif Al');
 			
 				app.gui.__ul.childNodes[3].childNodes[0].childNodes[0].classList.add('reset_button');
 				//app.gui.__ul.childNodes[4].childNodes[0].childNodes[0].classList += ' elilegir';
-				araKatFolder.__ul.childNodes[4].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
-				araKatFolder.__ul.childNodes[5].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
+				//araKatFolder.__ul.childNodes[4].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
+				//araKatFolder.__ul.childNodes[5].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
 				boyutlandirma.__ul.childNodes[4].childNodes[0].childNodes[0].classList.add('kontrol_buttons');
 				teklifAl.__ul.childNodes[1].childNodes[0].childNodes[0].classList.add('teklif_button');
 			

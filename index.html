@@ -6,6 +6,7 @@
           <title>3D Web Uygulaması - Three.js</title>
               <link rel="stylesheet" href="css/style.css">
 			  <link rel="stylesheet" href="css/nfpopup.css">
+			  <link rel="stylesheet" href="css/new-form-style.css">
         </head>
         <body>
 			
@@ -26,15 +27,70 @@
 		  <div class="popup"  >
 			  <div class="popup-content">
 				<h3>Talimatlar ve Yenilikler</h3>
-				<h4>Sağ üst taraftaki kontroller ile binanızın boyutunu ayarlayabilir, vinç kirişleri ve arakat ekleyebilirsiniz.
+				  <h4>Sağ üst taraftaki kontroller ile binanızın <strong>boyutunu</strong> ayarlayabilir, <strong>vinç kirişleri ve arakat</strong> ekleyebilirsiniz.
 				
- Mouse'un sol tıkı ile Çizim'in yönünü değiştirebilirsiniz, sağ tıkı ile Çizimin yerini değiştirebilirsiniz, tekerleği ile ise yakınlaştırabilir veya uzaklaştırabilirsiniz.</h4>
-			  </div>  
-			  <a class="buttonnf" ></a>
+ Mouse'un sol tıkı ile Çizim'in <strong>yönünü</strong> değiştirebilirsiniz, sağ tıkı ile Çizimin <strong>yerini</strong> değiştirebilirsiniz, tekerleği ile ise <strong>yakınlaştırabilir</strong> veya <strong>uzaklaştırabilirsiniz.</strong></h4>
+			  </div>
+			  <a class="buttonnf"></a>
 		  </div>
 			
-        <script>
-        document.addEventListener("DOMContentLoaded", function(event){
+
+			
+			
+			
+		<!-- popup -->
+		<div id="myModal" class="modal">
+		
+			
+			
+		<form class='form'>	
+		  <!-- Modal content -->
+		  <div class="modal-content">
+			<span class="close-arakat">&times;</span>
+			<div class="gui-content" id="gui-content">
+				
+				  <div class='label'>
+					<label for='number_01'>Kısmi Arakat Uzunlugu:</label>
+					<label for='number_01'>Kısmi Arakat Genişliği:</label
+				  </div>
+				  <div class='input'>
+
+					<input type="number" class="textfield" required='required' min="1" max="15" pattern=".{2,}" value="" id="extra7" name="" onkeypress="return isNumber(event)" />
+					  
+					<input type="number" class="textfield" required='required' min="1" max="15" pattern=".{2,}" value="" id="extra7" name="" onkeypress="return isNumber(event)" />
+					<span class='hint'></span>
+				  </div>
+			</div>
+		  </div>
+		</form>
+			
+			
+			
+		</div>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			<script>
+				
+			function isNumber(evt){
+		
+				evt = (evt) ? evt : window.event;
+				var charCode = (evt.which) ? evt.which : evt.keyCode;
+
+				if(charCode > 31 && (charCode < 48 || charCode > 57)){
+					//"window.location.assign('index.html');"
+					return false;
+				}
+				return true;
+			}
+				
+			document.addEventListener("DOMContentLoaded", function(event){
 			
 			var app = ThreeUtils.setupApp();
 			var scene = app.scene;
