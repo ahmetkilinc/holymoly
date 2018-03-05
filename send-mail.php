@@ -251,10 +251,10 @@ $t = money_format('%i', $t);
 $dateDb = date("Y-m-d");
 //<- doğru formatlı date yollama
 
-$servername = "mysql.hostinger.web.tr";
-$username = "u786273580_cv";
-$password = "ahmet3899";
-$dbname = "u786273580_dbcv";
+$servername = "";
+$username = "";
+$password = "";
+$dbname = "";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
