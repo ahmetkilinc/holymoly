@@ -140,6 +140,10 @@ class ThreeUtils {
 			this.KismiaraKatSayisi = 0,
 			this.aks = 6;
 			this.hol = 1;
+			this.arakatgenisligibaslangic = 'A';
+			this.arakatgenisligibitis = 'B';
+			this.arakatuzunlugubaslangic = 1;
+			this.arakatuzunlugubitis = 2;
 				
             this.redraw = function(){
 
@@ -3210,6 +3214,16 @@ class ThreeUtils {
 			width: 323,
 		});
 		
+		app.gui3 = new dat.GUI({
+					
+			autoPlace: false,
+			closed: false,
+			opacity: 0.5,
+			width: 323,
+		}); 
+		
+		app.gui3.domElement.id = 'gui3';
+		
 		var obj = {
 
 			change : function(){
@@ -3706,7 +3720,7 @@ class ThreeUtils {
 			},
 			
 			arakatlar: function(){
-				
+
 				//settings.openArakatGui();
 				
 				// Get the modal
@@ -3714,9 +3728,14 @@ class ThreeUtils {
 
 				// Get the <span> element that closes the modal
 				var span = document.getElementsByClassName("close-arakat")[0];
+
 				
+				var customContainer = document.getElementById('gui-content');
+				customContainer.appendChild(app.gui3.domElement);
+				
+
 				// When the user clicks the button, open the modal 	
-				modal.style.display = "block";
+				modal.style.display = "block";		
 
 				// When the user clicks on <span> (x), close the modal
 				span.onclick = function(){
@@ -3812,11 +3831,11 @@ class ThreeUtils {
 			//VincKontrol.close();
 			//Vinç Kontrol end*
 
+			
 			//ara kat folderı*
-			/*
-			var araKatFolder = app.gui.addFolder('Ara Kat Ekleme/Kaldırma');
+			var araKatFolder1 = app.gui3.addFolder('Komple Ara Kat Ekleme/Kaldırma');
 
-			araKatFolder.add(settings, 'AraKatEkle').name('Komple Ara Kat Ekle').onChange(function(z){
+			araKatFolder1.add(settings, 'AraKatEkle').name('Komple Ara Kat Ekle').onChange(function(z){
 					
 				if(z === true){
 					
@@ -3828,7 +3847,7 @@ class ThreeUtils {
 					settings.ttPlakMetreKupHesabi();
 					settings.metrajHesabi();
 				}
-					
+
 				else{
 					
 					ttPlak = 0;
@@ -3865,19 +3884,133 @@ class ThreeUtils {
 					}
 				}
 			});
-
+			/*
 			araKatFolder.add(settings, 'araKatUzunlugu').min(1).max(15).step(1).name('Kısmi Ara Kat Uzunluğu (Kaç Aks Olduğu)').onFinishChange(function(value){
 				
 				settings.araKatUzunlugu = value;
 				//obj.kismiAraKatEkle();
-			});
-
+			});*/
+			/*
 			araKatFolder.add(settings, 'araKatGenisligi').min(1).max(10).step(1).name('Kısmi Ara Kat Genişliği (Kaç Hol olduğu)').onFinishChange(function(value){
 				
 				settings.araKatGenisligi = value;
 				//obj.kismiAraKatEkle();
-			});
+			});*/
+			
+			var araKatFolder = app.gui3.addFolder('Kısmi Ara Kat Ekleme/Kaldırma');
+			
+			//çizimin boyutuna göre if ler ekle!
+			
+			if(settings.araKatGenisligi == 1){
+				
+				if(settings.araKatUzunlugu == 1){
+					
+					araKatFolder.add(settings, 'arakatgenisligibaslangic', ['A']).name('Genişlik Başlangıç Noktası');
+			
+					araKatFolder.add(settings, 'arakatgenisligibitis', ['B']).name('Genişlik Bitiş Noktası');
 
+					araKatFolder.add(settings, 'arakatuzunlugubaslangic', [1]).name('Uzunluk Başlangıç');
+
+					araKatFolder.add(settings, 'arakatuzunlugubitis', [2]).name('Uzunluk Bitiş');
+				}
+				
+				if(settings.araKatUzunlugu == 2){
+					
+					araKatFolder.add(settings, 'arakatgenisligibaslangic', ['A']).name('Genişlik Başlangıç Noktası');
+			
+					araKatFolder.add(settings, 'arakatgenisligibitis', ['B']).name('Genişlik Bitiş Noktası');
+
+					araKatFolder.add(settings, 'arakatuzunlugubaslangic', [1, 2]).name('Uzunluk Başlangıç');
+
+					araKatFolder.add(settings, 'arakatuzunlugubitis', [2, 3]).name('Uzunluk Bitiş');
+				}
+				
+				if(settings.araKatUzunlugu == 3){
+					
+					araKatFolder.add(settings, 'arakatgenisligibaslangic', ['A']).name('Genişlik Başlangıç Noktası');
+			
+					araKatFolder.add(settings, 'arakatgenisligibitis', ['B']).name('Genişlik Bitiş Noktası');
+
+					araKatFolder.add(settings, 'arakatuzunlugubaslangic', [1, 2, 3]).name('Uzunluk Başlangıç');
+
+					araKatFolder.add(settings, 'arakatuzunlugubitis', [2, 3, 4]).name('Uzunluk Bitiş');
+				}
+				
+				if(settings.araKatUzunlugu == 4){
+					
+					araKatFolder.add(settings, 'arakatgenisligibaslangic', ['A']).name('Genişlik Başlangıç Noktası');
+					
+					araKatFolder.add(settings, 'arakatgenisligibitis', ['B']).name('Genişlik Bitiş Noktası');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubaslangic', [1, 2, 3, 4]).name('Uzunluk Başlangıç');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubitis', [2, 3, 4, 5]).name('Uzunluk Bitiş');
+				}
+				
+				if(settings.araKatUzunlugu == 5){
+					
+					araKatFolder.add(settings, 'arakatgenisligibaslangic', ['A']).name('Genişlik Başlangıç Noktası');
+					
+					araKatFolder.add(settings, 'arakatgenisligibitis', ['B']).name('Genişlik Bitiş Noktası');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubaslangic', [1, 2, 3, 4, 5]).name('Uzunluk Başlangıç');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubitis', [2, 3, 4, 5, 6]).name('Uzunluk Bitiş');
+				}
+				
+				if(settings.araKatUzunlugu == 6){
+					
+					araKatFolder.add(settings, 'arakatgenisligibaslangic', ['A']).name('Genislik Başlangıç Noktası');
+					
+					araKatFolder.add(settings, 'arakatgenisligibitis', ['B']).name('Genislik Bitiş Noktası');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubaslangic', [1, 2, 3, 4, 5, 6]).name('Uzunluk Başlangıç');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubitis', [2, 3, 4, 5, 6, 7]).name('Uzunluk Bitiş');
+				}
+				
+				if(settings.araKatUzunlugu == 7){
+					
+					araKatFolder.add(settings, 'arakatgenisligibaslangic', ['A']).name('Genislik Başlangıç Noktası');
+					
+					araKatFolder.add(settings, 'arakatgenisligibitis', ['B']).name('Genislik Bitiş Noktası');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubaslangic', [1, 2, 3, 4, 5, 6, 7]).name('Uzunluk Başlangıç');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubitis', [2, 3, 4, 5, 6, 7, 8]).name('Uzunluk Bitiş');
+				}
+				
+				if(settings.araKatUzunlugu == 8){
+					
+					araKatFolder.add(settings, 'arakatgenisligibaslangic', ['A']).name('Genislik Başlangıç Noktası');
+					
+					araKatFolder.add(settings, 'arakatgenisligibitis', ['B']).name('Genislik Bitiş Noktası');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubaslangic', [1, 2, 3, 4, 5, 6, 7, 8]).name('Uzunluk Başlangıç');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubitis', [2, 3, 4, 5, 6, 7, 8, 9]).name('Uzunluk Bitiş');
+				}
+				
+				if(settings.araKatUzunlugu == 9){
+					
+					araKatFolder.add(settings, 'arakatgenisligibaslangic', ['A']).name('Genislik Başlangıç Noktası');
+					
+					araKatFolder.add(settings, 'arakatgenisligibitis', ['B']).name('Genislik Bitiş Noktası');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubaslangic', [1, 2, 3, 4, 5, 6, 7, 8, 9]).name('Uzunluk Başlangıç');
+					
+					araKatFolder.add(settings, 'arakatuzunlugubitis', [2, 3, 4, 5, 6, 7, 8, 9, 10]).name('Uzunluk Bitiş');
+				}
+			}
+			
+			araKatFolder.add(settings, 'arakatgenisligibaslangic', ['A', 'B', 'C', 'D', 'E']).name('Genişlik Başlangıç Noktası');
+			
+			araKatFolder.add(settings, 'arakatgenisligibitis', ['A', 'B', 'C', 'D', 'E']).name('Genişlik Bitiş Noktası');
+			
+			araKatFolder.add(settings, 'arakatuzunlugubaslangic', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]).name('Uzunluk Başlangıç');
+			
+			araKatFolder.add(settings, 'arakatuzunlugubitis', [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]).name('Uzunluk Bitiş');
+			
 			araKatFolder.add(settings, 'KismiAraKatEkle').name('Kısmi Ara Kat Ekle').onChange(function(m){
 				
 				settings.KismiAraKatEkle = true;
@@ -3898,13 +4031,13 @@ class ThreeUtils {
 				obj.kismiAraKatKaldir();
 				settings.objeSayisiniBul();
 			});
-			*/
-			//araKatFolder.open();
+			
+			araKatFolder.open();
 			//ara kat folderı end*
 
 			app.gui.add(obj, 'change').name('Çizimi Tekrar Oluştur. (Hatalı çizim olduğunda tıklayınız.)');
 			
-			app.gui.add(obj, 'arakatlar').name('<-arakatlar->');
+			app.gui.add(obj, 'arakatlar').name('Arakat Ekle');
 			
 			//kolon sayısı ve aks sayısını kullanıcıya girdirmek.
 			var aksveholgirdir = app.gui.addFolder('Aks ve Hol Boyutunu El ile Girmek için Tıklayınız');
@@ -3944,6 +4077,14 @@ class ThreeUtils {
 			gorusAcisi.add(obj, 'eksidoksandereceG').name('-90 Derece Görünüm');
 
 			gorusAcisi.open();
+			
+			/*
+			//popupdaki gui içeriği
+			app.gui3.add(settings, 'araKatUzunlugu').min(1).max(15).step(1).name('Kısmi Ara Kat Uzunluğu (Kaç Aks Olduğu)').onFinishChange(function(value){
+				
+				settings.araKatUzunlugu = value;
+				//obj.kismiAraKatEkle();
+			});*/
         }
 		
 		
